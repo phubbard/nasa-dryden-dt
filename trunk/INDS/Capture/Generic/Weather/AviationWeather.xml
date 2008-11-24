@@ -1,0 +1,4 @@
+<monitor destURLPath="http://localhost/RBNB/AviationWeather/" minimumInterval="60000" 
+		mkcolQuery="?archive=864000&amp;cache=10" debug="true">
+      <url>http://aviationweather.gov/data/obs/sat/intl/ir_ICAO-M_bw.jpg</url>
+</monitor>

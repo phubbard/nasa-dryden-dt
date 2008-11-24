@@ -1,0 +1,10 @@
+May 28, 2008 10:11:22 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+May 28, 2008 10:11:22 AM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+May 28, 2008 10:11:22 AM org.apache.catalina.core.ApplicationContext log
+INFO: org.apache.webapp.balancer.BalancerFilter: init(): ruleChain: [org.apache.webapp.balancer.RuleChain: [org.apache.webapp.balancer.rules.URLStringMatchRule: Target string: News / Redirect URL: http://www.cnn.com], [org.apache.webapp.balancer.rules.RequestParameterRule: Target param name: paramName / Target param value: paramValue / Redirect URL: http://www.yahoo.com], [org.apache.webapp.balancer.rules.AcceptEverythingRule: Redirect URL: http://jakarta.apache.org]]
+May 28, 2008 10:11:23 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+May 28, 2008 10:11:23 AM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()

@@ -1,0 +1,5 @@
+<monitor destURLPath="http://localhost/RBNB/WB57-926-5500-cap/" minimumInterval="30000" maximumInterval="30000" readTimeout="100000"
+		mkcolQuery="?archive=8640000&amp;cache=10" debug="false">
+      	<auth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></auth>
+	<url>http://indscore.dfrc.nasa.gov/RBNB/WB57-926-5500-cap/UDP</url>
+</monitor>

@@ -1,0 +1,4 @@
+Run 
+java InstallCert rbnb.net
+or whatever host you want to trust with a self-signed certificate.
+Then copy jssecacerts file to $JAVA_HOME/jre/lib/security folder.

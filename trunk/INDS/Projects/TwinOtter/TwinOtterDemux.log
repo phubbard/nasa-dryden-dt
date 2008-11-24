@@ -1,0 +1,20 @@
+	0: id = Marker, info (used in chan registration) = Frame Header Text, skip = false
+	1: id = TimeStamp, info (used in chan registration) = Timestamp for data frame: YYYY-MM-DDTHH:MM:SSZ, skip = false
+	2: id = Latitude, info (used in chan registration) = Latitude (deg), skip = false
+	3: id = Longitude, info (used in chan registration) = Longitude (deg), skip = false
+	4: id = Altitude, info (used in chan registration) = Altitude (m), skip = false
+	5: id = Heading, info (used in chan registration) = Heading (deg), skip = false
+	6: id = GroundSpeed, info (used in chan registration) = Ground Speed (m/s), skip = false
+marker: "N255SA"
+Adding Channel "TimeStamp"
+Adding Channel "Latitude"
+Adding Channel "Longitude"
+Adding Channel "Altitude"
+Adding Channel "Heading"
+Adding Channel "GroundSpeed"
+Adding Channel "_Latency"
+Adding Channel "_CSV"
+Output to: N255SA
+Connected to Source: localhost:3333
+Connected to Sink: localhost:3333
+Running subscribe-by-frame newest mode

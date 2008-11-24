@@ -1,0 +1,38 @@
+<monitor destURLPath="http://localhost/RBNB/rtmm"
+	 minimumInterval="120000"
+	 maximumInterval="120000"
+	 readTimeout="800000"
+	 mkcolQuery="?archive=8640000&amp;cache=10&amp;mode=create" debug="true">
+	
+	<!-- authorization needed for fetching the images/files -->
+	<auth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></auth>
+	<!-- authorization needed for locally saving the images/files -->
+	<!--putAuth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></putAuth-->
+	
+	<!--
+	    NOTE: Although these images update at various rates (see below for
+	    details) we will check once every other minute to see if an update
+	    has occurred.
+	-->
+	
+	<!-- updated every 15 min -->
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir4_P3orion.png</url>
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir3_P3orion.png</url>
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_vis_P3orion.png</url>
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir4_P3orion.png</url>
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir3_P3orion.png</url>
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_vis_P3orion.png</url>
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/POLARCAT_P3orion.png</url>
+	
+	<!-- updated every 5 min -->
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/NLDN_P3orion.kmz</url>
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/VAILR_P3orion.kmz</url>
+	
+	<!-- updated every 10 min -->
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/WWLLN_P3orion.kmz</url>
+	
+	<!-- updated once per day -->
+	<url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/waypoints_P3orion.kmz</url>
+	
+</monitor>
+

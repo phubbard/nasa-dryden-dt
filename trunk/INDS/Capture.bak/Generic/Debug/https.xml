@@ -1,0 +1,5 @@
+<monitor destURLPath="http://localhost/RBNB/debug/" minimumInterval="1000" maximumInterval="10000" 
+		mkcolQuery="?archive=10000&amp;cache=1" debug="true">
+      <auth><mode>BASIC</mode><user>mjm</user><password>mjm.1</password></auth>
+	<url>https://rbnb.net/RBNB/Altair-cap/UDP</url>
+</monitor>

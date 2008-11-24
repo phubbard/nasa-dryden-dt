@@ -1,0 +1,8 @@
+Using SAX parser: com.sun.org.apache.xerces.internal.parsers.SAXParser
+MKCOL response = 200
+Local Date,Source URL,Dest URL,GET Code,PUT Code,Server Date,Server LastMod,Server Expires,Next Copy Date
+Fri Oct 31 08:22:59 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Oct 31 08:23:29 GMT-05:00 2008
+Fri Oct 31 08:23:29 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Oct 31 08:23:59 GMT-05:00 2008
+Fri Oct 31 08:23:59 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Oct 31 08:24:29 GMT-05:00 2008
+Fri Oct 31 08:24:29 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Oct 31 08:24:59 GMT-05:00 2008
+Fri Oct 31 08:24:59 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Oct 31 08:25:29 GMT-05:00 2008

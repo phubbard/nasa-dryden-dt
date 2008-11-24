@@ -1,0 +1,20 @@
+Sep 23, 2008 7:51:04 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@f2c136')
+Sep 23, 2008 7:51:04 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@16ad32d')
+Sep 23, 2008 7:51:04 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@4e4edb')
+Sep 23, 2008 7:51:04 AM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Sep 23, 2008 7:51:04 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Sep 23, 2008 7:51:04 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@6907f7')
+Sep 23, 2008 7:51:04 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@18a02fc')
+Sep 23, 2008 7:51:04 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@1c9f555')
+Sep 23, 2008 7:51:04 AM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Sep 23, 2008 7:51:04 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()

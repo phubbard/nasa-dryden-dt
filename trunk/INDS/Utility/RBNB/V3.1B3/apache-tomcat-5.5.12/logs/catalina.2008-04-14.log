@@ -1,0 +1,26 @@
+Apr 14, 2008 12:52:50 PM org.apache.coyote.http11.Http11BaseProtocol pause
+INFO: Pausing Coyote HTTP/1.1 on http-80
+Apr 14, 2008 2:54:01 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The Apache Portable Runtime which allows optimal performance in production environments was not found on the java.library.path: /usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0/jre/lib/i386/client:/usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0/jre/lib/i386:/usr/lib/jvm/java-1.7.0-icedtea-1.7.0.0/jre/../lib/i386:/usr/java/packages/lib/i386:/lib:/usr/lib
+Apr 14, 2008 2:54:01 PM org.apache.coyote.http11.Http11BaseProtocol init
+INFO: Initializing Coyote HTTP/1.1 on http-80
+Apr 14, 2008 2:54:01 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 889 ms
+Apr 14, 2008 2:54:01 PM org.apache.catalina.core.StandardService start
+INFO: Starting service Catalina
+Apr 14, 2008 2:54:01 PM org.apache.catalina.core.StandardEngine start
+INFO: Starting Servlet Engine: Apache Tomcat/5.5.12
+Apr 14, 2008 2:54:01 PM org.apache.catalina.core.StandardHost start
+INFO: XML validation disabled
+Apr 14, 2008 2:54:02 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive documentation.war
+Apr 14, 2008 2:54:03 PM org.apache.coyote.http11.Http11BaseProtocol start
+INFO: Starting Coyote HTTP/1.1 on http-80
+Apr 14, 2008 2:54:03 PM org.apache.jk.common.ChannelSocket init
+INFO: JK: ajp13 listening on /0.0.0.0:8009
+Apr 14, 2008 2:54:03 PM org.apache.jk.server.JkMain start
+INFO: Jk running ID=0 time=0/57  config=null
+Apr 14, 2008 2:54:03 PM org.apache.catalina.storeconfig.StoreLoader load
+INFO: Find registry server-registry.xml at classpath resource
+Apr 14, 2008 2:54:03 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 2124 ms

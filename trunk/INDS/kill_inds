@@ -1,0 +1,22 @@
+:
+echo "killing XMLDemux..."
+ps axww | grep java | grep XMLDemux | awk '{print "kill " $1}' | sh
+sleep 2
+echo "killing CSVDemux..."
+ps axww | grep java | grep CSVDemux | awk '{print "kill " $1}' | sh
+sleep 2
+echo "killing rbnb server..."
+# The following line works for an RBNB server which is parented to another server
+# ps axww | grep java | grep INDS | grep 3333 | grep '\-p' | awk '{print "kill " $1}' | sh
+ps axww | grep java | grep INDS | grep 3333 | grep '\-a:3333' | awk '{print "kill " $1}' | sh
+sleep 10
+echo "killing rbnb clients..."
+ps axww | grep java | grep INDS | awk '{print "kill " $1}' | sh
+sleep 10
+ps axww | grep java | grep INDS | grep 3333 | awk '{print "kill -9 " $1}' | sh
+sleep 1
+echo "killing tomcat..."
+ps axww | grep java | grep apache | awk '{print "kill " $1}' | sh
+sleep 10
+# Make sure Tomcat died
+ps axww | grep java | grep apache | awk '{print "kill -9 " $1}' | sh

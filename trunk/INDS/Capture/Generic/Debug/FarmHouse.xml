@@ -1,0 +1,5 @@
+<monitor destURLPath="http://localhost/RBNB/FarmHouse/" minimumInterval="10000" maximumInterval="100000" 
+		mkcolQuery="?archive=10000&amp;cache=1" debug="true">
+      <auth><mode>BASIC</mode><user>inds</user><password>_rbnb</password></auth>
+	<url>http://rbnb.creare.com:8080/RBNB/sdp/Video/camera.jpg</url>
+</monitor>

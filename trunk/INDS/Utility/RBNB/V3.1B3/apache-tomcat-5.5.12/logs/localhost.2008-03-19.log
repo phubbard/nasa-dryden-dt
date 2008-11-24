@@ -1,0 +1,50 @@
+Mar 19, 2008 2:06:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@c3358b')
+Mar 19, 2008 2:06:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@18b9a72')
+Mar 19, 2008 2:06:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@48bc64')
+Mar 19, 2008 2:06:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 19, 2008 2:06:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 19, 2008 2:06:15 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@1f2be27')
+Mar 19, 2008 2:06:15 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@1a1f370')
+Mar 19, 2008 2:06:15 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@1757337')
+Mar 19, 2008 2:06:15 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 19, 2008 2:06:15 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 19, 2008 3:16:44 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 19, 2008 3:16:44 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 19, 2008 3:16:44 PM org.apache.catalina.core.ApplicationContext log
+INFO: org.apache.webapp.balancer.BalancerFilter: init(): ruleChain: [org.apache.webapp.balancer.RuleChain: [org.apache.webapp.balancer.rules.URLStringMatchRule: Target string: News / Redirect URL: http://www.cnn.com], [org.apache.webapp.balancer.rules.RequestParameterRule: Target param name: paramName / Target param value: paramValue / Redirect URL: http://www.yahoo.com], [org.apache.webapp.balancer.rules.AcceptEverythingRule: Redirect URL: http://jakarta.apache.org]]
+Mar 19, 2008 3:16:46 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 19, 2008 3:16:46 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 19, 2008 3:20:00 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@15e293a')
+Mar 19, 2008 3:20:00 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@cffc79')
+Mar 19, 2008 3:20:00 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@c8769b')
+Mar 19, 2008 3:20:00 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 19, 2008 3:20:00 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 19, 2008 3:20:00 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@2d7440')
+Mar 19, 2008 3:20:00 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@2b349d')
+Mar 19, 2008 3:20:00 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@8b567c')
+Mar 19, 2008 3:20:00 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 19, 2008 3:20:00 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
