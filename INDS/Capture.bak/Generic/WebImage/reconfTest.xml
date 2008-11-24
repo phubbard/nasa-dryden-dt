@@ -1,0 +1,9 @@
+<monitor destURLPath="http://localhost/RBNB/out/" debug="true" 
+    mkcolQuery="?archive=6000&amp;cache=10">
+	<configMonitor>
+		<url>http://localhost/webTurbine/reconfTest.xml</url>
+	</configMonitor>
+	<resource>
+		<url>http://localhost/RBNB/rbnbSource/c5</url>
+	</resource>
+</monitor>

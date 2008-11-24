@@ -1,0 +1,35 @@
+<!-- Name: build.xml
+     By:   John Wilson
+     Date: 07/10/2006
+
+     Description:
+         Ant build file for UDPRecaster application.
+-->
+
+<project name="UDPRecaster" default="compile" basedir=".">
+ 
+ <!-- Load environment variables -->
+ <property environment="env"/>
+ 
+ <!-- Compile the UDPRecaster source code; put class files in the same directory
+      as the source code files.
+  -->
+ <target name="compile">
+  <javac destdir="." deprecation="on">
+   <src path="." />
+   <classpath path="." />
+  </javac>
+  <echo>Compiled UDPRecaster</echo>
+ </target>
+ 
+ <!-- Cleans out all compiled files. -->
+ <target name="clean">
+  <delete>
+    <!-- Delete all files with ".class" extension from -->
+    <!-- the current directory and any subdirectories. -->
+    <fileset dir="." includes="**/*.class"/>
+  </delete>
+ </target>
+ 
+</project>
+

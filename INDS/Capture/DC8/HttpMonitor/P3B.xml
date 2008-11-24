@@ -1,0 +1,9 @@
+<monitor destURLPath="http://localhost/RBNB/P3B-5700-cap/"
+         minimumInterval="30000"
+         maximumInterval="30000"
+         readTimeout="100000"
+         mkcolQuery="?archive=8640000&amp;cache=10&amp;mode=create"
+         debug="true">
+      <auth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></auth>
+      <url>http://indscore.dfrc.nasa.gov/RBNB/P3B-5700-cap/UDP</url>
+</monitor>

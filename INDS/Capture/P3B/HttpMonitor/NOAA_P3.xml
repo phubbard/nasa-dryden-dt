@@ -1,0 +1,9 @@
+<monitor destURLPath="http://localhost/RBNB/NOAA_P3/"
+         minimumInterval="30000"
+         maximumInterval="30000"
+         readTimeout="100000"
+         mkcolQuery="?archive=8640000&amp;cache=10&amp;mode=create"
+         debug="true">
+      <auth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></auth>
+      <url>http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt</url>
+</monitor>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- B200 Total Aerosol Scattering Ratio (ASR) Data Description, reduced vector -->
+<config xmlns="urn:xmlns:b200">
+  <parameter xml:id="Marker"><type>marker</type><skip>0</skip><format>HASR</format><label>Frame Header</label><info xmlns="urn:xmlns:b200">Frame Header Text</info></parameter>
+  <parameter xml:id="TimeStamp"><type>string</type><skip>0</skip><label>Time (UTC)</label><info xmlns="urn:xmlns:b200">Timestamp for data frame: YYYYMMDDTHHMMSS</info></parameter>
+  <parameter xml:id="Latitude"><type>float</type><skip>0</skip><label>Latitude (deg)</label><info xmlns="urn:xmlns:b200">Latitude (deg)</info></parameter>
+  <parameter xml:id="Longitude"><type>float</type><skip>0</skip><label>Longitude (deg)</label><info xmlns="urn:xmlns:b200">Longitude (deg)</info></parameter>
+  <parameter xml:id="GPS_Alt_MSL"><type>float</type><skip>0</skip><label>Altitude (m)</label><info xmlns="urn:xmlns:b200">Altitude, GPS MSL, meters</info></parameter>
+  <parameter xml:id="Pitch"><type>float</type><skip>0</skip><label>Pitch (deg)</label><info xmlns="urn:xmlns:b200">Pitch (deg)</info></parameter>
+  <parameter xml:id="Roll"><type>float</type><skip>0</skip><label>Roll (deg)</label><info xmlns="urn:xmlns:b200">Roll (deg)</info></parameter>
+</config>

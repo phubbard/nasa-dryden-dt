@@ -1,0 +1,11 @@
+
+
+Datagram Socket: 5050
+RBNB Server: localhost:3333
+Source name: DC8-5050-cap
+Cache size: 100
+Archive mode: create
+Archive size: 8640000
+
+UDPCapture opened RBNB connection to /INDS
+

@@ -1,0 +1,11 @@
+<monitor destURLPath="http://localhost/RBNB/NSSTC_Weather/" minimumInterval="60000" 
+		mkcolQuery="?archive=10000&amp;cache=10" debug="true">
+  <resource>
+	<url>http://branch.nsstc.nasa.gov/NAMMA/images/GOES12/current_goes12_vis.png</url>
+	<destFile>vis.png</destFile>
+  </resource>
+  <resource>
+	<url>http://branch.nsstc.nasa.gov/NAMMA/images/GOES12/current_goes12_ir4.png</url>
+	<destFile>ir4.png</destFile>
+  </resource>
+</monitor>

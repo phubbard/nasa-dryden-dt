@@ -1,0 +1,33 @@
+<monitor destURLPath="http://localhost/RBNB/rtmm_INDS_TC4" readTimeout="600000"
+		mkcolQuery="?archive=8640000&amp;cache=10" debug="false">
+	<auth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></auth>
+	
+	<resource>
+	    <!-- Get waypoints.kmz once every hour -->
+	    <minimumInterval>3600000</minimumInterval>
+	    <maximumInterval>3600000</maximumInterval>
+	    <url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_INDS_TC4/waypoints.kmz</url>
+	</resource>
+	
+	<resource>
+	    <!-- Get er2waypoints.kmz once every hour -->
+	    <minimumInterval>3600000</minimumInterval>
+	    <maximumInterval>3600000</maximumInterval>
+	    <url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_INDS_TC4/er2waypoints.kmz</url>
+	</resource>
+	
+	<resource>
+	    <!-- Get crln.kmz once every min -->
+	    <minimumInterval>60000</minimumInterval>
+	    <maximumInterval>60000</maximumInterval>
+	    <url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_INDS_TC4/crln.kmz</url>
+	</resource>
+	
+	<resource>
+	    <!-- Get npol.png once every 20 min -->
+	    <minimumInterval>1200000</minimumInterval>
+	    <maximumInterval>1200000</maximumInterval>
+	    <url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_INDS_TC4/npol.png</url>
+	</resource>
+	
+</monitor>

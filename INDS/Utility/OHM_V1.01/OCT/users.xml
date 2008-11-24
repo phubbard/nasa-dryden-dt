@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?> <!--
+
+ohm:userlist description'
+Generated on 11/05/2004 at 01:06:32 PM EST
+-->
+<ohm:userlist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ohm="http://outlet.creare.com/schema/ohm_schema.xsd">
+<user>
+<id>OHM</id>
+<password>OHM</password>
+<privileges>0</privileges>
+<fullname>Default OHM User</fullname>
+</user>
+</ohm:userlist>

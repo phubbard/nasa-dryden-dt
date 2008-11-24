@@ -1,0 +1,16 @@
+<monitor destURLPath="http://localhost/RBNB/B200"
+	 minimumInterval="15000"
+	 maximumInterval="15000"
+	 readTimeout="10000"
+	 mkcolQuery="?archive=8640000&amp;cache=10&amp;mode=create" debug="true">
+	
+	<!-- authorization needed for fetching the images/files -->
+	<auth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></auth>
+	<!-- authorization needed for locally saving the images/files -->
+	<!--putAuth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></putAuth-->
+	
+	<url>http://indscore.dfrc.nasa.gov/RBNB/B200/B200_ASR.txt</url>
+	<url>http://indscore.dfrc.nasa.gov/RBNB/B200/B200_DEP.txt</url>
+	
+</monitor>
+

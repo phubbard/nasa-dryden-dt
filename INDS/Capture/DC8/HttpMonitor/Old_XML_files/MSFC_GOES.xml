@@ -1,0 +1,12 @@
+<monitor destURLPath="http://localhost/RBNB/rtmm_GOES_INDS_TC4" readTimeout="600000"
+		mkcolQuery="?archive=8640000&amp;cache=10" debug="true">
+	<auth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></auth>
+	
+	<resource>
+	    <!-- Get dc8goes.png once every 10 min -->
+	    <minimumInterval>600000</minimumInterval>
+	    <maximumInterval>600000</maximumInterval>
+	    <url>http://indscore.dfrc.nasa.gov/RBNB/rtmm_INDS_TC4/dc8goes.png</url>
+	</resource>
+	
+</monitor>

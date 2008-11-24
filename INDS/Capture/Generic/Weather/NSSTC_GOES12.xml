@@ -1,0 +1,12 @@
+<monitor destURLPath="http://localhost/RBNB/NSSTC_GOES12/" minimumInterval="60000" 
+		mkcolQuery="?archive=100000&amp;cache=100" debug="true">
+  <auth><mode>BASIC</mode><user>inds</user><password>_rbnb</password></auth>
+  <resource>
+	<url>http://branch.nsstc.nasa.gov/RTMM/GEORGIA/images/GOES12/current_goes12_vis.png</url>
+	<destFile>vis.png</destFile>
+  </resource>
+  <resource>
+	<url>http://branch.nsstc.nasa.gov/RTMM/GEORGIA/images/GOES12/current_goes12_ir4.png</url>
+	<destFile>ir4.png</destFile>
+  </resource>
+</monitor>

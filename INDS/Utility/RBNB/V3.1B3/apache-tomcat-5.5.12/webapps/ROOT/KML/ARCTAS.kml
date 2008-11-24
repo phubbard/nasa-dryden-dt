@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+<Document>
+<Folder>
+	<name>ARCTAS Mission 2008</name>
+	<description>
+	<![CDATA[<a href="http://10.10.3.4/TimeDrive?d=1800&play=live&rate=1800">TimeDrive</a>]]>
+	</description>
+	<open>1</open>
+	<NetworkLink>
+                <name>P3B</name>
+                <visibility>1</visibility>
+                <open>0</open>
+                <Url>
+                        <href>http://10.10.3.4/TimeDrive/RBNB/TrackKML_P3B/TrackData_P3B/GTR_P3orion_IWG1</href>
+                        <refreshMode>onInterval</refreshMode>
+                        <refreshInterval>10</refreshInterval>
+                </Url>
+        </NetworkLink>
+	<NetworkLink>
+		<name>B200</name>
+		<visibility>0</visibility>
+		<open>0</open>
+		<Url>
+			<href>http://10.10.3.4/TimeDrive/RBNB/TrackKML_B200/TrackData_B200/HASR</href>
+			<refreshMode>onInterval</refreshMode>
+			<refreshInterval>10</refreshInterval>
+		</Url>
+	</NetworkLink>
+	<NetworkLink>
+                <name>DC8</name>
+                <visibility>0</visibility>
+                <open>0</open>
+                <Url>
+                        <href>http://10.10.3.4/TimeDrive/RBNB/TrackKML_DC8/TrackData_DC8/DC8-817-TC4_IWG1</href>
+                        <refreshMode>onInterval</refreshMode>
+                        <refreshInterval>10</refreshInterval>
+                </Url>
+        </NetworkLink>
+	<NetworkLink>
+                <name>NOAA P3</name>
+                <visibility>0</visibility>
+                <open>0</open>
+                <Url>
+                        <href>http://10.10.3.4/TimeDrive/RBNB/TrackKML_NOAAP3/TrackData_NOAAP3/WP3D</href>
+                        <refreshMode>onInterval</refreshMode>
+                        <refreshInterval>10</refreshInterval>
+                </Url>
+        </NetworkLink>
+	<NetworkLink>
+                <name>CV580</name>
+                <visibility>0</visibility>
+                <open>0</open>
+                <Url>
+                        <href>http://10.10.3.4/TimeDrive/RBNB/TrackKML_CV580/TrackData_CV580/CV580_IWG1</href>
+                        <refreshMode>onInterval</refreshMode>
+                        <refreshInterval>10</refreshInterval>
+                </Url>
+        </NetworkLink>
+</Folder>
+</Document>
+</kml>

@@ -1,0 +1,6 @@
+<monitor destURLPath="http://localhost/RBNB/Video/" minimumInterval="250"
+		deltaFraction="0.9"
+		mkcolQuery="?archive=25000&amp;cache=100" debug="true">
+	<url>http://rbnb.creare.com:8080/RBNB/sdp/Video/camera.jpg</url>
+</monitor>
+

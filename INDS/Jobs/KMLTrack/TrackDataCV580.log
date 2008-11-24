@@ -1,0 +1,21 @@
+
+
+
+Input Options:
+RBNB server address: localhost:3333
+Method of output coordinate compression: compression algorithm (Douglas-Peucker); tolerance = 0.001
+Desired PlugIn name: TrackData_CV580
+RBNB Fetch timeout: 60000
+Name of the alt channel: GPS_Altitude_ft
+Name of the lat channel: Latitude
+Name of the lon channel: Longitude
+Name of the id channel: TrackID
+Name of the type channel: Type
+Name of the class channel: Classification
+Name of the speed channel: Speed
+Name of the heading channel: Heading
+Name of the pitch channel: Pitch
+Name of the roll channel: Roll
+
+Open PlugIn and Sink connections to localhost:3333...Connections are open
+Error in execution loop: com.rbnb.sapi.SAPIException: Nesting java.io.EOFException

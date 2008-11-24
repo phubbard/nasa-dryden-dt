@@ -1,0 +1,16 @@
+#! /bin/sh
+
+is_running=`ps axww | grep java | grep INDS`
+
+if [ ${#is_running} -eq 0 ]
+then
+    echo "Starting INDS..."
+    cd /home/fedora/INDS
+    source ./environment
+    ./start_tomcat
+    ./startup.sh
+    echo "INDS launched."
+else
+    echo "INDS is already running"
+fi
+

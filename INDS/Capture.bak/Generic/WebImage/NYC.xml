@@ -1,0 +1,6 @@
+<monitor destURLPath="http://localhost/RBNB/NYC/" minimumInterval="60000" 
+		mkcolQuery="?archive=86400&amp;cache=100" debug="true">
+	<auth><mode>BASIC</mode><user>inds</user><password>_rbnb</password></auth>
+	<url>http://images.earthcam.com/ec_metros/ourcams/liberty.jpg</url>
+	<url>http://images.earthcam.com/ec_metros/ourcams/tsone.jpg</url>
+</monitor>

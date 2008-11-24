@@ -1,0 +1,13 @@
+#! /bin/bash
+
+export RBNBVER=V3.1B3
+
+# export INDSHOME=$HOME
+export INDSHOME=/home/fedora
+
+export INDS="$INDSHOME/INDS"
+export INDS_UTILITY="$INDS/Utility"
+
+export RBNB="$INDS/Utility/RBNB/$RBNBVER"
+export RBNBBIN="$RBNB/bin"
+export RBNBPI="$RBNB/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes"

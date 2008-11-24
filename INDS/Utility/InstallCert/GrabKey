@@ -1,0 +1,6 @@
+:
+java InstallCert "$1"
+echo "Copying certificate to JDK/security folder, enter root PW:"
+sudo cp jssecacerts /System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home/lib/security
+echo "Done"
+

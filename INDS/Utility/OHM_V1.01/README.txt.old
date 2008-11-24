@@ -1,0 +1,38 @@
+INSTRUCTIONS FOR RUNNING THE EMAIL ALERT ALGORITHM FOR ER-2 FLIGHT DEMO (JYB 07/15/2005)
+----------------------------------------------------------------------------------------
+
+INSTALLATION AND SETUP:
+-----------------------
+
+1) Copy the entire directory \\dilbert\Projects\6077-VHM-II\OHM_V1.01 to your computer.
+
+2) Edit the file "OHM_ER_2_demo.bat" within directory OHM_V1.01 as follows:
+	- set JAVA_DIR to the Java installation directory 
+           (e.g., set JAVA_DIR="D:\java\j2sdk1.4.2_05")
+	- set OHM_INSTALL_DIR to the absolute path to the OHM_V1.01 directory 
+           (e.g., set OHM_INSTALL_DIR="D:\OHM_V1.01")
+	- set RBNB_PATH to the directory for your rbnb jar files 
+           (e.g., set RBNB_PATH="C:\Program Files\RBNB\V2.4.4\bin")
+	
+
+RUNNING THE EMAIL ALERT ALGORITHM:
+----------------------------------
+
+1) Use RBNB Admin to check for sources on analysis:3333 whose name begins with "AircraftEmailAlert". If any exist, terminate them using RBNB Admin.
+
+2) Run the batch file "OHM_ER_2_demo.bat". A second command prompt window ("start_AlgorithmFactory.bat") will open. After a while, you should see:
+
+> Loaded algorithm: "AircraftAlert" = class AircraftAlert
+
+3) Return to the first window (corresponding to "OHM_ER_2_demo.bat"). After a while, you should see:
+
+> Starting AircraftAlert (AircraftAlert)
+> Press any key to continue . . .
+
+TERMINATING THE EMAIL ALERT ALGORITHM:
+--------------------------------------
+
+1) Close the command prompt windows corresponding to "OHM_ER_2_demo.bat" and "start_AlgorithmFactory.bat"
+
+2) Use RBNB Admin to check for sources on analysis:3333 whose name begins with "AircraftEmailAlert". If any exist, terminate them using RBNB Admin.
+

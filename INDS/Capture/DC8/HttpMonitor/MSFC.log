@@ -1,0 +1,53 @@
+Using SAX parser: com.sun.org.apache.xerces.internal.parsers.SAXParser
+MKCOL response = 200
+Local Date,Source URL,Dest URL,GET Code,PUT Code,Server Date,Server LastMod,Server Expires,Next Copy Date
+Wed Mar 19 16:24:20 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/waypoints_DC8.kmz,http://localhost/RBNB/rtmm/waypoints_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:26:20 EDT 2008
+Wed Mar 19 16:24:21 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/WWLLN_DC8.kmz,http://localhost/RBNB/rtmm/WWLLN_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:26:21 EDT 2008
+Wed Mar 19 16:24:21 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/VAILR_DC8.kmz,http://localhost/RBNB/rtmm/VAILR_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:26:21 EDT 2008
+Wed Mar 19 16:24:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/NLDN_DC8.kmz,http://localhost/RBNB/rtmm/NLDN_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:26:22 EDT 2008
+Wed Mar 19 16:24:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_vis_DC8.png,http://localhost/RBNB/rtmm/GOES-12_vis_DC8.png,404,---,---,---,---,Wed Mar 19 16:26:22 EDT 2008
+Wed Mar 19 16:24:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir3_DC8.png,http://localhost/RBNB/rtmm/GOES-12_ir3_DC8.png,404,---,---,---,---,Wed Mar 19 16:26:22 EDT 2008
+Wed Mar 19 16:24:23 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir4_DC8.png,http://localhost/RBNB/rtmm/GOES-12_ir4_DC8.png,200,201,Wed Mar 19 16:24:23 EDT 2008,Tue Mar 18 13:10:00 EDT 2008,---,Wed Mar 19 16:26:23 EDT 2008
+Wed Mar 19 16:24:24 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_vis_DC8.png,http://localhost/RBNB/rtmm/GOES-11_vis_DC8.png,200,201,Wed Mar 19 16:24:25 EDT 2008,Wed Mar 19 16:00:00 EDT 2008,---,Wed Mar 19 16:26:24 EDT 2008
+Wed Mar 19 16:24:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir3_DC8.png,http://localhost/RBNB/rtmm/GOES-11_ir3_DC8.png,404,---,---,---,---,Wed Mar 19 16:26:25 EDT 2008
+Wed Mar 19 16:24:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir4_DC8.png,http://localhost/RBNB/rtmm/GOES-11_ir4_DC8.png,200,201,Wed Mar 19 16:24:25 EDT 2008,Wed Mar 19 16:00:00 EDT 2008,---,Wed Mar 19 16:26:25 EDT 2008
+Wed Mar 19 16:26:20 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/waypoints_DC8.kmz,http://localhost/RBNB/rtmm/waypoints_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:28:20 EDT 2008
+Wed Mar 19 16:26:21 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/WWLLN_DC8.kmz,http://localhost/RBNB/rtmm/WWLLN_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:28:21 EDT 2008
+Wed Mar 19 16:26:21 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/VAILR_DC8.kmz,http://localhost/RBNB/rtmm/VAILR_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:28:21 EDT 2008
+Wed Mar 19 16:26:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/NLDN_DC8.kmz,http://localhost/RBNB/rtmm/NLDN_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:28:22 EDT 2008
+Wed Mar 19 16:26:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_vis_DC8.png,http://localhost/RBNB/rtmm/GOES-12_vis_DC8.png,404,---,---,---,---,Wed Mar 19 16:28:22 EDT 2008
+Wed Mar 19 16:26:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir3_DC8.png,http://localhost/RBNB/rtmm/GOES-12_ir3_DC8.png,404,---,---,---,---,Wed Mar 19 16:28:22 EDT 2008
+Wed Mar 19 16:26:23 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir4_DC8.png,http://localhost/RBNB/rtmm/GOES-12_ir4_DC8.png,304,---,---,---,---,Wed Mar 19 16:28:23 EDT 2008
+Wed Mar 19 16:26:24 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_vis_DC8.png,http://localhost/RBNB/rtmm/GOES-11_vis_DC8.png,304,---,---,---,---,Wed Mar 19 16:28:24 EDT 2008
+Wed Mar 19 16:26:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir3_DC8.png,http://localhost/RBNB/rtmm/GOES-11_ir3_DC8.png,404,---,---,---,---,Wed Mar 19 16:28:25 EDT 2008
+Wed Mar 19 16:26:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir4_DC8.png,http://localhost/RBNB/rtmm/GOES-11_ir4_DC8.png,304,---,---,---,---,Wed Mar 19 16:28:25 EDT 2008
+Wed Mar 19 16:28:21 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/waypoints_DC8.kmz,http://localhost/RBNB/rtmm/waypoints_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:30:21 EDT 2008
+Wed Mar 19 16:28:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/WWLLN_DC8.kmz,http://localhost/RBNB/rtmm/WWLLN_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:30:22 EDT 2008
+Wed Mar 19 16:28:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/VAILR_DC8.kmz,http://localhost/RBNB/rtmm/VAILR_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:30:22 EDT 2008
+Wed Mar 19 16:28:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/NLDN_DC8.kmz,http://localhost/RBNB/rtmm/NLDN_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:30:22 EDT 2008
+Wed Mar 19 16:28:23 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_vis_DC8.png,http://localhost/RBNB/rtmm/GOES-12_vis_DC8.png,404,---,---,---,---,Wed Mar 19 16:30:23 EDT 2008
+Wed Mar 19 16:28:23 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir3_DC8.png,http://localhost/RBNB/rtmm/GOES-12_ir3_DC8.png,404,---,---,---,---,Wed Mar 19 16:30:23 EDT 2008
+Wed Mar 19 16:28:23 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir4_DC8.png,http://localhost/RBNB/rtmm/GOES-12_ir4_DC8.png,304,---,---,---,---,Wed Mar 19 16:30:23 EDT 2008
+Wed Mar 19 16:28:24 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_vis_DC8.png,http://localhost/RBNB/rtmm/GOES-11_vis_DC8.png,304,---,---,---,---,Wed Mar 19 16:30:24 EDT 2008
+Wed Mar 19 16:28:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir3_DC8.png,http://localhost/RBNB/rtmm/GOES-11_ir3_DC8.png,404,---,---,---,---,Wed Mar 19 16:30:25 EDT 2008
+Wed Mar 19 16:28:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir4_DC8.png,http://localhost/RBNB/rtmm/GOES-11_ir4_DC8.png,304,---,---,---,---,Wed Mar 19 16:30:25 EDT 2008
+Wed Mar 19 16:30:21 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/waypoints_DC8.kmz,http://localhost/RBNB/rtmm/waypoints_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:32:21 EDT 2008
+Wed Mar 19 16:30:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/WWLLN_DC8.kmz,http://localhost/RBNB/rtmm/WWLLN_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:32:22 EDT 2008
+Wed Mar 19 16:30:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/VAILR_DC8.kmz,http://localhost/RBNB/rtmm/VAILR_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:32:22 EDT 2008
+Wed Mar 19 16:30:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/NLDN_DC8.kmz,http://localhost/RBNB/rtmm/NLDN_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:32:22 EDT 2008
+Wed Mar 19 16:30:23 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_vis_DC8.png,http://localhost/RBNB/rtmm/GOES-12_vis_DC8.png,404,---,---,---,---,Wed Mar 19 16:32:23 EDT 2008
+Wed Mar 19 16:30:23 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir3_DC8.png,http://localhost/RBNB/rtmm/GOES-12_ir3_DC8.png,404,---,---,---,---,Wed Mar 19 16:32:23 EDT 2008
+Wed Mar 19 16:30:23 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir4_DC8.png,http://localhost/RBNB/rtmm/GOES-12_ir4_DC8.png,304,---,---,---,---,Wed Mar 19 16:32:23 EDT 2008
+Wed Mar 19 16:30:24 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_vis_DC8.png,http://localhost/RBNB/rtmm/GOES-11_vis_DC8.png,304,---,---,---,---,Wed Mar 19 16:32:24 EDT 2008
+Wed Mar 19 16:30:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir3_DC8.png,http://localhost/RBNB/rtmm/GOES-11_ir3_DC8.png,404,---,---,---,---,Wed Mar 19 16:32:25 EDT 2008
+Wed Mar 19 16:30:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir4_DC8.png,http://localhost/RBNB/rtmm/GOES-11_ir4_DC8.png,304,---,---,---,---,Wed Mar 19 16:32:25 EDT 2008
+Wed Mar 19 16:32:21 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/waypoints_DC8.kmz,http://localhost/RBNB/rtmm/waypoints_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:34:21 EDT 2008
+Wed Mar 19 16:32:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/WWLLN_DC8.kmz,http://localhost/RBNB/rtmm/WWLLN_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:34:22 EDT 2008
+Wed Mar 19 16:32:22 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/VAILR_DC8.kmz,http://localhost/RBNB/rtmm/VAILR_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:34:22 EDT 2008
+Wed Mar 19 16:32:23 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/NLDN_DC8.kmz,http://localhost/RBNB/rtmm/NLDN_DC8.kmz,404,---,---,---,---,Wed Mar 19 16:34:23 EDT 2008
+Wed Mar 19 16:32:23 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_vis_DC8.png,http://localhost/RBNB/rtmm/GOES-12_vis_DC8.png,404,---,---,---,---,Wed Mar 19 16:34:23 EDT 2008
+Wed Mar 19 16:32:24 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir3_DC8.png,http://localhost/RBNB/rtmm/GOES-12_ir3_DC8.png,404,---,---,---,---,Wed Mar 19 16:34:24 EDT 2008
+Wed Mar 19 16:32:24 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-12_ir4_DC8.png,http://localhost/RBNB/rtmm/GOES-12_ir4_DC8.png,304,---,---,---,---,Wed Mar 19 16:34:24 EDT 2008
+Wed Mar 19 16:32:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_vis_DC8.png,http://localhost/RBNB/rtmm/GOES-11_vis_DC8.png,304,---,---,---,---,Wed Mar 19 16:34:25 EDT 2008
+Wed Mar 19 16:32:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir3_DC8.png,http://localhost/RBNB/rtmm/GOES-11_ir3_DC8.png,404,---,---,---,---,Wed Mar 19 16:34:25 EDT 2008
+Wed Mar 19 16:32:25 EDT 2008,http://indscore.dfrc.nasa.gov/RBNB/rtmm_ARCTAS_aircraft/GOES-11_ir4_DC8.png,http://localhost/RBNB/rtmm/GOES-11_ir4_DC8.png,304,---,---,---,---,Wed Mar 19 16:34:25 EDT 2008
