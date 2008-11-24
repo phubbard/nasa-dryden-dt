@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="http://whf/schema/inds_startup.xsd" >
+	<del file="foo.txt" />
+	<sleep duration_ms="1000" />
+	<png name="PNG" hostAddress="localhost:3333" 
+			width="640" height="480"  />
+	<tomcat />
+</startup>

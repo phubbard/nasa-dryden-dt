@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>No-loss RBNB mirrors</title>
+</head>
+<body>
+Paul Hubbard<br>
+Oct 21 2008<br>
+<br>
+<h2>Problem statement</h2>
+Several of our deployments such as ecological sites have common
+characteristics<br>
+<ol>
+  <li>Intermittent or unreliable networks</li>
+  <li>Streaming data</li>
+  <li>Science that values outdated data strongly over current data</li>
+  <li>More than one site, so that mirrors are essential<br>
+  </li>
+</ol>
+These add up to a requirement for a mirror that will maintain last-read
+pointers, and upon reconnection will attempt to mirror all historical
+data, even at the expense of requiring significant wall-clock-time to
+do so.<br>
+<br>
+In experiments we've done recently, Sameer and I have verified that the
+current push-mirror code will lose data if the connection is down for
+long enough. From discussions with Matt, John, Larry and Bill it
+appears that the current mirroring code is biased towards keeping up
+rather than getting lost data.<br>
+<br>
+This new code, which I'm calling a 'no-loss mirror,' would move
+DataTurbine more towards transactional messaging, which differs in
+emphasis from much of the current code. Because of that it might be
+better implemented as a plugin or plugins. <br>
+<h2>Requirements and wishes<br>
+</h2>
+<ol>
+  <li>Provide an administrative interface similar to that existing in
+admin.jar, where a user can select sources to mirror and their
+destination. Optional but useful would be wildcard support, where users
+could mirror all sources matching a wildcard.</li>
+  <li>Unlike the current mirror, there is no choice as to 'now/oldest'
+data.<br>
+  </li>
+  <li>In the case of a reliable network, behave like the current
+push/pull mirror code.</li>
+  <li>When a TCP error is received by the source machine, save the
+timestamp and start trying to reconnect</li>
+  <li>Upon reconnect, start copying data that is</li>
+  <ul>
+    <li>If possible, starting at the timestamp from #4</li>
+    <li>If the data has expired from the Turbine, send starting at the
+earliest available</li>
+  </ul>
+  <li>If the secondary mirror is restarted or started after the first,
+attempt to copy over all data from the primary source.</li>
+  <li>It would be useful to monitor the status of the mirror
+(connected/error/backfilling/current/etc). This could perhaps be done
+via a hidden channel, status channel or similar.<br>
+  </li>
+</ol>
+<h2>Implications</h2>
+If the network goes down for extended periods of time, it's quite
+possible to never catch up to real time data. This is, for these
+communities, the preferred behaviour.<br>
+<br>
+It's also possible that, on lossy links, a large portion of the time
+will be lost to TCP error handling. Also OK.<br>
+<br>
+</body>
+</html>
