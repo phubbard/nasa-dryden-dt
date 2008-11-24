@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+<xsd:element name="startup" type="StartupType" />
+
+<xsd:complexType name="StartupType" >
+	<xsd:sequence>
+		<xsd:element ref="command" minOccurs="0" maxOccurs="unbounded" />
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="CommandType" abstract="true" >
+	<xsd:attribute name="initialDirectory" type="xsd:string" />
+	<xsd:attribute name="logFile" type="xsd:string" />
+</xsd:complexType>
+
+<xsd:complexType name="PluginType" abstract="true" >
+	<xsd:complexContent>
+		<xsd:extension base="CommandType">
+			<xsd:attribute name="name" type="xsd:string" />
+			<xsd:attribute name="hostAddress" type="xsd:string" />
+		</xsd:extension>
+	</xsd:complexContent>
+</xsd:complexType>
+
+<xsd:element name="command" type="CommandType" 
+		abstract="true" block="restriction" />
+
+<!-- Non-java commands: -->
+<xsd:element name="del" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="CommandType">
+				<xsd:attribute name="file" type="xsd:string" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="sleep" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="CommandType">
+				<xsd:attribute name="duration_ms" type="xsd:nonNegativeInteger" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<!-- Java applications: -->
+<xsd:element name="dataTurbine" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="CommandType">
+				<xsd:attribute name="name" type="xsd:string" />
+				<xsd:attribute name="address" type="xsd:string" />
+				<xsd:attribute name="parent" type="xsd:string" />
+				<xsd:attribute name="loadArchivesAtStart" type="xsd:boolean" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="xmlDemux" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="CommandType">
+				<xsd:attribute name="inputName" type="xsd:string" />
+				<xsd:attribute name="xmlFile" type="xsd:string" />
+				<xsd:attribute name="cacheFrames" 
+						type="xsd:nonNegativeInteger" />
+				<xsd:attribute name="archiveFrames" 
+						type="xsd:nonNegativeInteger" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="udpCapture" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="CommandType">
+				<xsd:attribute name="name" type="xsd:string" />
+				<xsd:attribute name="hostAddress" type="xsd:string" />
+				<xsd:attribute name="listenPort" type="xsd:unsignedShort" />
+				<xsd:attribute name="archiveFrames" 
+						type="xsd:nonNegativeInteger" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="httpMonitor" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="CommandType">
+				<xsd:attribute name="configFile" type="xsd:string" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="tomcat" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="CommandType" />
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="timeDrive" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="CommandType">
+				<xsd:attribute name="listenPort" type="xsd:string" />
+				<xsd:attribute name="webserverAddress" type="xsd:string" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+
+<!-- DataTurbine Plugins -->
+<xsd:element name="png" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="PluginType">
+				<xsd:attribute name="width" type="xsd:integer" />
+				<xsd:attribute name="height" type="xsd:integer" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="toString" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="PluginType" />
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="thumbNail" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="PluginType">
+				<xsd:attribute name="scale" type="xsd:double" />
+				<xsd:attribute name="quality" type="xsd:double" />
+				<xsd:attribute name="maxImages" type="xsd:positiveInteger" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="trackData" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="PluginType">
+				<xsd:attribute name="noGUI" type="xsd:boolean" />
+				<xsd:attribute name="configFile" type="xsd:string" />
+				<xsd:attribute name="compression" type="xsd:string" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="trackKML" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="PluginType">
+				<xsd:attribute name="noGUI" type="xsd:boolean" />
+				<xsd:attribute name="configFile" type="xsd:string" />
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+</xsd:schema>
