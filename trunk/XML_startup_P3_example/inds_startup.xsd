@@ -10,8 +10,8 @@
 </xsd:complexType>
 
 <xsd:complexType name="CommandType" abstract="true">
-    <!-- JPW: Add javaFlags attribute -->
-    <xsd:attribute name="javaFlags" type="xsd:string"/>
+	<!-- JPW: Add jvmMaxHeap attribute -->
+	<xsd:attribute name="jvmMaxHeap" type="xsd:string"/>
 	<xsd:attribute name="initialDirectory" type="xsd:string"/>
 	<xsd:attribute name="logFile" type="xsd:string"/>
 </xsd:complexType>
