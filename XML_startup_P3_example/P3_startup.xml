@@ -10,7 +10,7 @@
 	
 	<!-- Server -->
 	<del initialDirectory="Server" file="rbnb.log"/>
-	<dataTurbine javaFlags="-mx1024M" initialDirectory="Server" logFile="rbnb.log" name="INDS" address=":3333"/>
+	<dataTurbine jvmMaxHeap="1024M" initialDirectory="Server" logFile="rbnb.log" name="INDS" address=":3333"/>
 	<sleep duration_ms="15000"/>
 	
 	<!-- Delete all the log files -->
