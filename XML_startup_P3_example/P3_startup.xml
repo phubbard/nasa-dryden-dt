@@ -1,0 +1,80 @@
+
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- A first cut at describing the P3 INDS system using Bill Finger's INDS Execution Manager schema.                 -->
+<!-- Only the RBNB Server is started in a separate directory; all other processes are started in the base directory. -->
+
+<startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://whf/schema/inds_startup.xsd" >
+	
+	<!-- Tomcat -->
+	<tomcat />
+	
+	<!-- Server -->
+	<!-- Questions:
+		1. will the execution manager use $RBNBBIN to know which version of RBNB to launch?
+		2. need to add ability to send flags to Java, for example "-mx1024M" -->
+	<del initialDirectory="Server" file="rbnb.log" />
+	<dataTurbine initialDirectory="Server" logFile="rbnb.log" name="INDS" address=":3333" />
+	<sleep duration_ms="15000" />
+	
+	<!-- Delete all the log files -->
+	<del file="*.log" />
+	
+	<!-- Jobs/KMLTrack -->
+	<trackKML logFile="TrackKMLDC8.log" name="TrackKML_DC8" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigDC8.txt" />
+	<trackKML logFile="TrackKMLP3B.log" name="TrackKML_P3B" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigP3B.txt" />
+	<trackKML logFile="TrackKMLB200.log" name="TrackKML_B200" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigB200.txt" />
+	<trackKML logFile="TrackKMLNOAAP3.log" name="TrackKML_NOAAP3" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigNOAAP3.txt" />
+	<trackKML logFile="TrackKMLCV580.log" name="TrackKML_CV580" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigCV580.txt" />
+	<trackKML logFile="TrackKMLTwinOtter.log" name="TrackKML_TwinOtter" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigTwinOtter.txt" />
+	<trackData logFile="TrackDataDC8.log" name="TrackData_DC8" noGUI="true" configFile="TrackDataConfigDC8.txt" />
+	<trackData logFile="TrackDataP3B.log" name="TrackData_P3B" noGUI="true" configFile="TrackDataConfigP3B.txt" />
+	<trackData logFile="TrackDataB200.log" name="TrackData_B200" noGUI="true" configFile="TrackDataConfigB200.txt" />
+	<trackData logFile="TrackDataNOAAP3.log" name="TrackData_NOAAP3" noGUI="true" configFile="TrackDataConfigNOAAP3.txt" />
+	<trackData logFile="TrackDataCV580.log" name="TrackData_CV580" noGUI="true" configFile="TrackDataConfigCV580.txt" />
+	<trackData logFile="TrackDataTwinOtter.log" name="TrackData_TwinOtter" noGUI="true" configFile="TrackDataConfigTwinOtter.txt" />
+	<sleep duration_ms="2000" />
+	
+	<!-- Jobs/TimeDrive -->
+	<timeDrive logFile="timedrive.log" listenPort="4000" webserverAddress="localhost" multiUserMode="2" />
+	<sleep duration_ms="2000" />
+	
+	<!-- Jobs/PlugIns -->
+	<png name="PNGPlugIn" hostAddress="localhost:3333" width="320" height="200"  />
+	<sleep duration_ms="1000" />
+	<toString name="ToString" />
+	<sleep duration_ms="1000" />
+	<thumbNail name="ThumbNail" scale="0.5" quality="0.9" maxImages="10" />
+	<sleep duration_ms="5000" />
+	
+	<!-- DC8 project -->
+	<xmlDemux -a localhost:3333 -A localhost:3333 -S -I -i DC8-5000-cap/UDP -x IWG1_GTR_OUT.XML -c200 -K1000000 >& IWG1Demux.log  &
+	<sleep duration_ms="1000" />
+	
+	<!-- P3B project -->
+	XMLDemux -a localhost:3333 -A localhost:3333 -S -I -i P3B-5700-cap/UDP -x IWG1_INDS_OUT.XML -c200 -K1000000 >& IWG1Demux.log &
+	<sleep duration_ms="1000" />
+	XMLDemux -a localhost:3333 -A localhost:3333 -S -I -i P3B-5750-cap/UDP -x SCAN_GTR_OUT.XML -c200 -K1000000 >& HskpngDemux.log &
+	<sleep duration_ms="2000" />
+	
+	<!-- B200 project -->
+	CSVDemux -a localhost:3333 -A localhost:3333 -d yyyyMMdd\'T\'HHmmss -i B200/B200_ASR_reduced.txt -x B200.xml -c200 -K1000000 -p -S >& CSVDemux.log  &
+	<sleep duration_ms="1000" />
+	
+	<!-- NOAA P3 project -->
+	CSVDemux -a localhost:3333 -A localhost:3333 -d yyyyMMdd\'T\'HHmmss -i NOAA_P3/WP3D.txt -x NOAA_P3.xml -c200 -K1000000 -p -S >& CSVDemux.log  &
+	<sleep duration_ms="1000" />
+	
+	<!-- CV580 project -->
+	CSVDemux -a localhost:3333 -A localhost:3333 -d yyyyMMdd\'T\'HHmmss -i CV580/_CSV -x CV580.xml -c200 -K1000000 -p -S -o CV580_IWG1 >& CSVDemux.log &
+	<sleep duration_ms="1000" />
+	
+	<!-- Twin Otter project -->
+	CSVDemux -a localhost:3333 -A localhost:3333 -d yyyy-MM-dd\'T\'HH:mm:ss\'Z\' -i P3B-5800-cap/UDP -x TwinOtter.xml -c200 -K1000000 -p -S >& TwinOtterDemux.log  &
+	DeadReckoningPlugIn -m 1800 >& DeadReckoning.log &
+	<sleep duration_ms="1000" />
+	
+	<sleep duration_ms="5000" />
+	
+</startup>
+
