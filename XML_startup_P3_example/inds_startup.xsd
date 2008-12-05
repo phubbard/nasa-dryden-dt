@@ -14,6 +14,8 @@
 	<xsd:attribute name="jvmMaxHeap" type="xsd:string"/>
 	<xsd:attribute name="initialDirectory" type="xsd:string"/>
 	<xsd:attribute name="logFile" type="xsd:string"/>
+	<!-- WHF: Added tag to help in documentation, as per Paul Hubbard. -->
+	<xsd:attribute name="tag" type="xsd:string"/>
 </xsd:complexType>
 
 <xsd:complexType name="PluginType" abstract="true">
