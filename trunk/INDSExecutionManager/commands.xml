@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<commands>
+	<command>
+		<name>del</name>
+		<class>com.rbnb.inds.exec.commands.Del</class>
+	</command>
+	<command>
+		<name>sleep</name>
+		<class>com.rbnb.inds.exec.commands.Sleep</class>
+	</command>
+	<command>
+		<name>tomcat</name>
+		<class>com.rbnb.inds.exec.commands.Tomcat</class>
+		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/bin</executableDirectory>
+	</command>
+	<command>
+		<name>bogus</name>
+		<class>java.lang.String</class>
+	</command>
+</commands>
+
