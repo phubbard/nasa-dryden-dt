@@ -10,3 +10,5 @@ P3_startup.xml: XML instance file describing the P3 INDS system
 inds_startup.xsd: a modified version of Bill's schema; contains changes needed
                   in order to describe the P3 INDS system
 
+P3_INDS_Rough_Diagram.pdf: a hand drawing showing the type of layout and information
+                           desired from the documentation system
