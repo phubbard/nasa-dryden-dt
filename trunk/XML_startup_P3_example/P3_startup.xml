@@ -3,7 +3,8 @@
 <!-- A first cut at describing the P3 INDS system using Bill Finger's INDS Execution Manager schema.                 -->
 <!-- Only the RBNB Server is started in a separate directory; all other processes are started in the base directory. -->
 
-<startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://whf/schema/inds_startup.xsd">
+<!-- startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://whf/schema/inds_startup.xsd" -->
+<startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/user/DryScan/nasa-dryden-dt/XML_startup_P3_example/inds_startup.xsd">
 	
 	<!-- Tomcat -->
 	<tomcat/>
@@ -17,56 +18,110 @@
 	<del file="*.log"/>
 	
 	<!-- Jobs/KMLTrack -->
-	<trackKML logFile="TrackKMLDC8.log" name="TrackKML_DC8" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigDC8.txt"/>
-	<trackKML logFile="TrackKMLP3B.log" name="TrackKML_P3B" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigP3B.txt"/>
-	<trackKML logFile="TrackKMLB200.log" name="TrackKML_B200" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigB200.txt"/>
-	<trackKML logFile="TrackKMLNOAAP3.log" name="TrackKML_NOAAP3" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigNOAAP3.txt"/>
-	<trackKML logFile="TrackKMLCV580.log" name="TrackKML_CV580" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigCV580.txt"/>
-	<trackKML logFile="TrackKMLTwinOtter.log" name="TrackKML_TwinOtter" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigTwinOtter.txt"/>
-	<trackData logFile="TrackDataDC8.log" name="TrackData_DC8" noGUI="true" configFile="TrackDataConfigDC8.txt"/>
-	<trackData logFile="TrackDataP3B.log" name="TrackData_P3B" noGUI="true" configFile="TrackDataConfigP3B.txt"/>
-	<trackData logFile="TrackDataB200.log" name="TrackData_B200" noGUI="true" configFile="TrackDataConfigB200.txt"/>
-	<trackData logFile="TrackDataNOAAP3.log" name="TrackData_NOAAP3" noGUI="true" configFile="TrackDataConfigNOAAP3.txt"/>
-	<trackData logFile="TrackDataCV580.log" name="TrackData_CV580" noGUI="true" configFile="TrackDataConfigCV580.txt"/>
-	<trackData logFile="TrackDataTwinOtter.log" name="TrackData_TwinOtter" noGUI="true" configFile="TrackDataConfigTwinOtter.txt"/>
+	<trackKML logFile="TrackKMLDC8.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigDC8.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_DC8" />
+	</trackKML>
+	<trackKML logFile="TrackKMLP3B.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigP3B.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_P3B" />
+	</trackKML>
+	<trackKML logFile="TrackKMLB200.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigB200.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_B200" />
+	</trackKML>
+	<trackKML logFile="TrackKMLNOAAP3.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigNOAAP3.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_NOAAP3" />
+	</trackKML>
+	<trackKML logFile="TrackKMLCV580.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigCV580.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_CV580" />
+	</trackKML>
+	<trackKML logFile="TrackKMLTwinOtter.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigTwinOtter.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_TwinOtter" />
+	</trackKML>
+	<trackData logFile="TrackDataDC8.log" noGUI="true" configFile="TrackDataConfigDC8.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackData_DC8" />
+	</trackData>
+	<trackData logFile="TrackDataP3B.log" noGUI="true" configFile="TrackDataConfigP3B.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackData_P3B" />
+	</trackData>
+	<trackData logFile="TrackDataB200.log" noGUI="true" configFile="TrackDataConfigB200.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackData_B200" />
+	</trackData>
+	<trackData logFile="TrackDataNOAAP3.log" noGUI="true" configFile="TrackDataConfigNOAAP3.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackData_NOAAP3" />
+	</trackData>
+	<trackData logFile="TrackDataCV580.log" noGUI="true" configFile="TrackDataConfigCV580.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackData_CV580" />
+	</trackData>
+	<trackData logFile="TrackDataTwinOtter.log" noGUI="true" configFile="TrackDataConfigTwinOtter.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackData_TwinOtter" />
+	</trackData>
 	<sleep duration_ms="2000"/>
 	
 	<!-- Jobs/TimeDrive -->
-	<timeDrive logFile="timedrive.log" listenPort="4000" webserverAddress="localhost" multiUserMode="2"/>
+	<timeDrive logFile="timedrive.log" multiUserMode="2">
+	    <input type="tcp" port="4000"/>
+	    <output type="tomcat" port="localhost:80"/>
+	</timeDrive>
 	<sleep duration_ms="2000"/>
 	
 	<!-- Jobs/PlugIns -->
-	<png name="PNGPlugIn" hostAddress="localhost:3333" width="320" height="200"  />
+	<png width="320" height="200">
+	    <plugin type="rbnb" port="localhost:3333" name="PNGPlugIn" />
+	</png>
 	<sleep duration_ms="1000"/>
-	<toString name="ToString"/>
+	<toString>
+	    <plugin type="rbnb" port="localhost:3333" name="ToString" />
+	</toString>
 	<sleep duration_ms="1000"/>
-	<thumbNail name="ThumbNail" scale="0.5" quality="0.9" maxImages="10"/>
+	<thumbNail scale="0.5" quality="0.9" maxImages="10">
+	    <plugin type="rbnb" port="localhost:3333" name="ThumbNail" />
+	</thumbNail>
 	<sleep duration_ms="5000"/>
 	
 	<!-- DC8 project -->
-	<xmlDemux logFile="IWG1DemuxDC8.log" inputDT="localhost:3333" outputDT="localhost:3333" silentMode="true" chanNameFromID="true" inputName="DC8-5000-cap/UDP" xmlFile="IWG1_GTR_OUT_DC8.XML" cacheFrames="200" archiveFrames="1000000" createNewArchive="true"/>
+	<xmlDemux logFile="IWG1DemuxDC8.log" silentMode="true" chanNameFromID="true" xmlFile="IWG1_GTR_OUT_DC8.XML">
+	    <input type="rbnb" port="localhost:3333" name="DC8-5000-cap/UDP"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	</xmlDemux>
 	<sleep duration_ms="1000"/>
 	
 	<!-- P3B project -->
-	<xmlDemux logFile="IWG1DemuxP3B.log" inputDT="localhost:3333" outputDT="localhost:3333" silentMode="true" chanNameFromID="true" inputName="P3B-5700-cap/UDP" xmlFile="IWG1_INDS_OUT_P3B.XML" cacheFrames="200" archiveFrames="1000000" createNewArchive="true"/>
+	<xmlDemux logFile="IWG1DemuxP3B.log" silentMode="true" chanNameFromID="true" xmlFile="IWG1_INDS_OUT_P3B.XML">
+	    <input type="rbnb" port="localhost:3333" name="P3B-5700-cap/UDP"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	</xmlDemux>
 	<sleep duration_ms="1000"/>
-	<xmlDemux logFile="HskpngDemuxP3B.log" inputDT="localhost:3333" outputDT="localhost:3333" silentMode="true" chanNameFromID="true" inputName="P3B-5750-cap/UDP" xmlFile="SCAN_GTR_OUT_P3B.XML" cacheFrames="200" archiveFrames="1000000" createNewArchive="true"/>
+	<xmlDemux logFile="HskpngDemuxP3B.log" silentMode="true" chanNameFromID="true" xmlFile="SCAN_GTR_OUT_P3B.XML">
+	    <input type="rbnb" port="localhost:3333" name="P3B-5750-cap/UDP"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	</xmlDemux>
 	<sleep duration_ms="2000"/>
 	
 	<!-- B200 project -->
-	<csvDemux logFile="CSVDemuxB200.log" inputDT="localhost:3333" outputDT="localhost:3333" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" inputName="B200/B200_ASR_reduced.txt" xmlFile="B200.xml" cacheFrames="200" archiveFrames="1000000" createNewArchive="true"/>
+	<csvDemux logFile="CSVDemuxB200.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="B200.xml">
+	    <input type="rbnb" port="localhost:3333" name="B200/B200_ASR_reduced.txt"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	</csvDemux>
 	<sleep duration_ms="1000"/>
 	
 	<!-- NOAA P3 project -->
-	<csvDemux logFile="CSVDemuxNOAAP3.log" inputDT="localhost:3333" outputDT="localhost:3333" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" inputName="NOAA_P3/WP3D.txt" xmlFile="NOAA_P3.xml" cacheFrames="200" archiveFrames="1000000" createNewArchive="true"/>
+	<csvDemux logFile="CSVDemuxNOAAP3.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="NOAA_P3.xml">
+	    <input type="rbnb" port="localhost:3333" name="NOAA_P3/WP3D.txt"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	</csvDemux>
 	<sleep duration_ms="1000"/>
 	
 	<!-- CV580 project -->
-	<csvDemux logFile="CSVDemuxCV580.log" inputDT="localhost:3333" outputDT="localhost:3333" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" inputName="CV580/_CSV" xmlFile="CV580.xml" cacheFrames="200" archiveFrames="1000000" createNewArchive="true" outputSource="CV580_IWG1"/>
+	<csvDemux logFile="CSVDemuxCV580.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="CV580.xml">
+	    <input type="rbnb" port="localhost:3333" name="CV580/_CSV"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="CV580_IWG1"/>
+	</csvDemux>
 	<sleep duration_ms="1000"/>
 	
 	<!-- Twin Otter project -->
-	<csvDemux logFile="TwinOtterDemux.log" inputDT="localhost:3333" outputDT="localhost:3333" dateFormat="yyyy-MM-dd\'T\'HH:mm:ss\'Z\'" silentMode="true" checkEmbeddedTimestamp="true" inputName="P3B-5800-cap/UDP" xmlFile="TwinOtter.xml" cacheFrames="200" archiveFrames="1000000" createNewArchive="true"/>
+	<csvDemux logFile="TwinOtterDemux.log" dateFormat="yyyy-MM-dd\'T\'HH:mm:ss\'Z\'" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="TwinOtter.xml">
+	    <input type="rbnb" port="localhost:3333" name="P3B-5800-cap/UDP"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	</csvDemux>
 	<deadReckoning logFile="DeadReckoning.log" maxLatency_sec="1800"/>
 	
 	<sleep duration_ms="5000"/>
@@ -86,12 +141,22 @@
 	<sleep duration_ms="1000"/>
 	
 	<!-- Capture, UDPcapture -->
-	<udpCapture logFile="P3B-5700-cap.log" listenPort="5700" cacheFrames="10" archiveFrames="8640000" createNewArchive="true" name="P3B-5700-cap"/>
-	<udpCapture logFile="P3B-5750-cap.log" listenPort="5750" cacheFrames="10" archiveFrames="8640000" createNewArchive="true" name="P3B-5750-cap"/>
-	<udpCapture logFile="P3B-5800-cap.log" listenPort="5800" cacheFrames="10" archiveFrames="8640000" createNewArchive="true" name="P3B-5800-cap"/>
+	<udpCapture logFile="P3B-5700-cap.log">
+	    <input type="udp" port="5700"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="P3B-5700-cap"/>
+	</udpCapture>
+	<udpCapture logFile="P3B-5750-cap.log">
+	    <input type="udp" port="5750"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="P3B-5750-cap"/>
+	</udpCapture>
+	<udpCapture logFile="P3B-5800-cap.log">
+	    <input type="udp" port="5800"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="P3B-5800-cap"/>
+	</udpCapture>
 	<sleep duration_ms="1000"/>
 
 </startup>
+
 
 
 
