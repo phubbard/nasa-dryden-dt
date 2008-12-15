@@ -49,7 +49,33 @@ public class Tomcat extends ExternalCommand
 		else setExecutablePath(exeDir + "\\catalina.sh");
 		
 		addArgument("run");
+		
+		tomcatShutdown = new TomcatShutdown(attr);
+		tomcatShutdown.addEnvironment("CATALINA_HOME", homeDir);
+		tomcatShutdown.setExecutablePath(getExecutablePath());
+		tomcatShutdown.addArgument("stop");
 	}
+	
+	protected void doKill()
+	{
+		try {
+			tomcatShutdown.doExecute();
+		} catch (java.io.IOException ioe) {
+			System.err.println("WARNING: Could not stop "+this);
+			ioe.printStackTrace();
+		}
+	}
+	private final TomcatShutdown tomcatShutdown;
 }
+
+class TomcatShutdown extends ExternalCommand
+{
+	public TomcatShutdown(Attributes attr) throws java.io.IOException
+	{
+		super(attr);
+	}
+	
+}
+		
 
 

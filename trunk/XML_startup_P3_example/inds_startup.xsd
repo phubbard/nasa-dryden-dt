@@ -9,20 +9,44 @@
 	</xsd:sequence>
 </xsd:complexType>
 
+<xsd:complexType name="PortType" >
+	<xsd:attribute name="type" type="xsd:string" />
+	<xsd:attribute name="port" type="xsd:string" />
+	<!-- type="rbnb" specific attributes, grouped here for simplicity. -->
+	<xsd:attribute name="name" type="xsd:string" />
+	<xsd:attribute name="cacheFrames" type="xsd:nonNegativeInteger"/>
+	<xsd:attribute name="archiveFrames" type="xsd:nonNegativeInteger"/>
+	<xsd:attribute name="overwriteArchive" type="boolean" />
+</xsd:complexType>
+
 <xsd:complexType name="CommandType" abstract="true">
-	<!-- JPW: Add jvmMaxHeap attribute -->
-	<xsd:attribute name="jvmMaxHeap" type="xsd:string"/>
+	<xsd:sequence>
+		<xsd:element name="input" type="PortType" 
+				minOccurs="0" maxOccurs="unbounded"/>
+		<xsd:element name="output" type="PortType" 
+				minOccurs="0" maxOccurs="unbounded" />
+	</xsd:sequence>
 	<xsd:attribute name="initialDirectory" type="xsd:string"/>
 	<xsd:attribute name="logFile" type="xsd:string"/>
 	<!-- WHF: Added tag to help in documentation, as per Paul Hubbard. -->
-	<xsd:attribute name="tag" type="xsd:string"/>
+	<xsd:attribute name="tag" type="xsd:string"/>	
+</xsd:complexType>
+
+<xsd:complexType name="JavaCommandType" abstract="true">
+	<xsd:complexContent>
+		<xsd:extension base="CommandType">
+			<!-- JPW: Add jvmMaxHeap attribute -->
+			<xsd:attribute name="jvmMaxHeap" type="xsd:string"/>
+		</xsd:extension>
+	</xsd:complexContent>
 </xsd:complexType>
 
 <xsd:complexType name="PluginType" abstract="true">
 	<xsd:complexContent>
-		<xsd:extension base="CommandType">
-			<xsd:attribute name="name" type="xsd:string"/>
-			<xsd:attribute name="hostAddress" type="xsd:string"/>
+		<xsd:extension base="JavaCommandType">
+			<xsd:element name="plugin" type="PortType" />
+<!--			<xsd:attribute name="name" type="xsd:string"/>
+			<xsd:attribute name="hostAddress" type="xsd:string"/> -->
 		</xsd:extension>
 	</xsd:complexContent>
 </xsd:complexType>
@@ -55,7 +79,7 @@
 <xsd:element name="dataTurbine" substitutionGroup="command">
 	<xsd:complexType>
 		<xsd:complexContent>
-			<xsd:extension base="CommandType">
+			<xsd:extension base="JavaCommandType">
 				<xsd:attribute name="name" type="xsd:string"/>
 				<xsd:attribute name="address" type="xsd:string"/>
 				<xsd:attribute name="parent" type="xsd:string"/>
@@ -68,17 +92,15 @@
 <xsd:element name="xmlDemux" substitutionGroup="command">
 	<xsd:complexType>
 		<xsd:complexContent>
-			<xsd:extension base="CommandType">
+			<xsd:extension base="JavaCommandType">
 				<!-- JPW: Added inputDT, outputDT, silentMode, chanNameFromID, and createNewArchive attributes -->
-				<xsd:attribute name="inputDT" type="xsd:string"/>
-				<xsd:attribute name="outputDT" type="xsd:string"/>
+			<!--	<xsd:attribute name="inputDT" type="xsd:string"/>
+				<xsd:attribute name="outputDT" type="xsd:string"/> -->
 				<xsd:attribute name="silentMode" type="xsd:boolean"/>
 				<xsd:attribute name="chanNameFromID" type="xsd:boolean"/>
-				<xsd:attribute name="inputName" type="xsd:string"/>
+			<!--	<xsd:attribute name="inputName" type="xsd:string"/> -->
 				<xsd:attribute name="xmlFile" type="xsd:string"/>
-				<xsd:attribute name="cacheFrames" type="xsd:nonNegativeInteger"/>
-				<xsd:attribute name="archiveFrames" type="xsd:nonNegativeInteger"/>
-				<xsd:attribute name="createNewArchive" type="xsd:boolean"/>
+			<!--	<xsd:attribute name="createNewArchive" type="xsd:boolean"/> -->
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -88,19 +110,19 @@
 <xsd:element name="csvDemux" substitutionGroup="command">
 	<xsd:complexType>
 		<xsd:complexContent>
-			<xsd:extension base="CommandType">
-				<xsd:attribute name="inputDT" type="xsd:string"/>
-				<xsd:attribute name="outputDT" type="xsd:string"/>
+			<xsd:extension base="JavaCommandType">
+			<!--	<xsd:attribute name="inputDT" type="xsd:string"/>
+				<xsd:attribute name="outputDT" type="xsd:string"/> -->
 				<xsd:attribute name="dateFormat" type="xsd:string"/>
-				<xsd:attribute name="inputName" type="xsd:string"/>
+		<!--	<xsd:attribute name="inputName" type="xsd:string"/> -->
 				<xsd:attribute name="xmlFile" type="xsd:string"/>
-				<xsd:attribute name="cacheFrames" type="xsd:nonNegativeInteger"/>
+		<!--		<xsd:attribute name="cacheFrames" type="xsd:nonNegativeInteger"/>
 				<xsd:attribute name="archiveFrames" type="xsd:nonNegativeInteger"/>
-				<xsd:attribute name="createNewArchive" type="xsd:boolean"/>
+				<xsd:attribute name="createNewArchive" type="xsd:boolean"/> -->
 				<xsd:attribute name="checkEmbeddedTimestamp" type="xsd:boolean"/>
 				<xsd:attribute name="silentMode" type="xsd:boolean"/>
 				<xsd:attribute name="chanNameFromID" type="xsd:boolean"/>
-				<xsd:attribute name="outputSource" type="xsd:string"/>
+		<!--	<xsd:attribute name="outputSource" type="xsd:string"/> -->
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -109,14 +131,14 @@
 <xsd:element name="udpCapture" substitutionGroup="command">
 	<xsd:complexType>
 		<xsd:complexContent>
-			<xsd:extension base="CommandType">
+			<xsd:extension base="JavaCommandType">
 				<!-- JPW: Added cacheFrames and createNewArchive attributes -->
-				<xsd:attribute name="name" type="xsd:string"/>
+		<!--		<xsd:attribute name="name" type="xsd:string"/>
 				<xsd:attribute name="hostAddress" type="xsd:string"/>
 				<xsd:attribute name="listenPort" type="xsd:unsignedShort"/>
 				<xsd:attribute name="cacheFrames" type="xsd:nonNegativeInteger"/>
 				<xsd:attribute name="archiveFrames" type="xsd:nonNegativeInteger"/>
-				<xsd:attribute name="createNewArchive" type="xsd:boolean"/>
+				<xsd:attribute name="createNewArchive" type="xsd:boolean"/>  -->
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -125,7 +147,7 @@
 <xsd:element name="httpMonitor" substitutionGroup="command">
 	<xsd:complexType>
 		<xsd:complexContent>
-			<xsd:extension base="CommandType">
+			<xsd:extension base="JavaCommandType">
 				<xsd:attribute name="configFile" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -143,11 +165,11 @@
 <xsd:element name="timeDrive" substitutionGroup="command">
 	<xsd:complexType>
 		<xsd:complexContent>
-			<xsd:extension base="CommandType">
+			<xsd:extension base="JavaCommandType">
 				<!-- JPW: Added multiUserMode attribute -->
 				<xsd:attribute name="multiUserMode" type="xsd:positiveInteger"/>
-				<xsd:attribute name="listenPort" type="xsd:string"/>
-				<xsd:attribute name="webserverAddress" type="xsd:string"/>
+	<!--			<xsd:attribute name="listenPort" type="xsd:string"/>
+				<xsd:attribute name="webserverAddress" type="xsd:string"/>  -->
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>

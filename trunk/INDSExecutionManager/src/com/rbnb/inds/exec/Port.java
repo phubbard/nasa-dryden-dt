@@ -1,5 +1,5 @@
 /*
-	ExecutionManager.java
+	Port.java
 	
 	Copyright 2008 Creare Inc.
 	
@@ -16,7 +16,7 @@
 	limitations under the License.
 	
 	---  History  ---
-	2008/12/02  WHF  Created.
+	2008/12/15  WHF  Created.
 */
 
 package com.rbnb.inds.exec;
@@ -34,16 +34,22 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.SAXException;
 
 /**
-  * Primary class of the INDS Execution Manager system.
-  *
-  * <p>This class is not inherently multi-thread safe.  External multithreading
-  *  protection is required.
+  * Defines network connections.  They are created from XML attributes using
+  *  {@link #createPort(Attributes) }.
   */
-public class ExecutionManager
+public abstract class Port
 {
-	public ExecutionManager()
+	private Port()
+	{		
+	}
+	
+	/**
+	  * Factory method.
+	  */
+	public static Port createPort(Attributes attr)
 	{
-		Runtime.getRuntime().addShutdownHook(new Thread(shutdownRunner));
+		String type = attr.getValue("type");	
+		
 	}
 	
 	/**

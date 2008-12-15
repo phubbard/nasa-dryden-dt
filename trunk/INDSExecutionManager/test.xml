@@ -10,7 +10,10 @@
 	
 	<!-- Server -->
 	<del initialDirectory="Server" file="rbnb.log"/>
-	<dataTurbine jvmMaxHeap="1024M" initialDirectory="Server" logFile="rbnb.log" name="INDS" address=":3333"/>
+	<dataTurbine 
+			jvmMaxHeap="1024M" 
+			initialDirectory="Server" 
+			logFile="rbnb.log" name="INDS" address=":3333"/>
 	<sleep duration_ms="1500"/>
 	
 	<!-- Delete all the log files -->
@@ -44,7 +47,13 @@
 	<sleep duration_ms="500"/>
 	
 	<!-- DC8 project -->
-	<xmlDemux logFile="IWG1DemuxDC8.log" inputDT="localhost:3333" outputDT="localhost:3333" silentMode="true" chanNameFromID="true" inputName="DC8-5000-cap/UDP" xmlFile="IWG1_GTR_OUT_DC8.XML" cacheFrames="200" archiveFrames="1000000" createNewArchive="true"/>
+	<xmlDemux logFile="IWG1DemuxDC8.log"  silentMode="true" 
+			chanNameFromID="true" xmlFile="IWG1_GTR_OUT_DC8.XML"  >
+		<input type="rbnb" port="localhost:3333" name="DC8-5000-cap/UDP" />
+		<output type="rbnb" port="localhost:3333"
+				cacheFrames="200" archiveFrames="1000000" 
+				overwriteArchive="true" />
+	</xmlDemux>
 	<sleep duration_ms="100"/>
 	
 	<!-- P3B project -->

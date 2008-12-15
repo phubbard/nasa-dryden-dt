@@ -1,5 +1,5 @@
 /*
-	DataTurbine.java
+	XmlDemux.java
 	 
 	Copyright 2008 Creare Inc.
 	
@@ -16,7 +16,7 @@
 	limitations under the License.
 	
 	---  History  ---
-	2008/12/04  WHF  Created.
+	2008/12/15  WHF  Created.
 */
 
 package com.rbnb.inds.exec.commands;
@@ -27,9 +27,9 @@ import org.xml.sax.Attributes;
 /**
   * Class which implements commands to run in new operating system processes.
   */
-public class DataTurbine extends JavaCommand
+public class XmlDemux extends JavaCommand
 {
-	public DataTurbine(Attributes attr) throws java.io.IOException
+	public XmlDemux(Attributes attr) throws java.io.IOException
 	{
 		super(attr);
 		
