@@ -15,8 +15,9 @@
 		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/bin</executableDirectory>
 	</command>
 	<command>
-		<name>bogus</name>
-		<class>java.lang.String</class>
+		<name>dataTurbine</name>
+		<class>com.rbnb.inds.exec.commands.DataTurbine</class>
+		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/bin</executableDirectory>
 	</command>
 </commands>
 

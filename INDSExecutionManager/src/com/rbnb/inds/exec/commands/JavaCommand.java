@@ -36,8 +36,11 @@ public abstract class JavaCommand extends ExternalCommand
 		
 		setExecutablePath(javaExePath);
 		
-		String temp;
-		jvmMaxHeap = (temp = attr.getValue("jvmMaxHeap")) == null ? "" : temp;
+		//String temp;
+		//jvmMaxHeap = (temp = attr.getValue("jvmMaxHeap")) == null ? "" : temp;
+		jvmMaxHeap = attr.getValue("jvmMaxHeap");
+		
+		addArgument("-Xmx"+jvmMaxHeap);
 	}
 	
 	public final String getJvmMaxHeap() { return jvmMaxHeap; }
@@ -47,7 +50,8 @@ public abstract class JavaCommand extends ExternalCommand
 		try {
 			String javaHome = System.getenv("JAVA_HOME");
 			if (javaHome != null)
-				return javaHome + System.getProperty("file.separator") + "java";
+				return javaHome + //System.getProperty("file.separator") + "java";
+						"/bin/java";
 		} catch (Throwable t) {
 			System.err.println("Warning: error while resolving JVM path:");
 			t.printStackTrace();

@@ -61,6 +61,12 @@ public abstract class ExternalCommand extends com.rbnb.inds.exec.Command
 		return false;
 	}
 	
+	protected void doKill()
+	{
+		process.destroy();
+		process = null;
+	}
+	
 	public InputStream getStdOut() { return process.getInputStream(); }
 	public InputStream getStdErr() { return process.getErrorStream(); }
 	

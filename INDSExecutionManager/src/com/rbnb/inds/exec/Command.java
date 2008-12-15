@@ -60,6 +60,16 @@ public abstract class Command
 		executionComplete = doExecute();
 	}
 	
+	/**
+	  * If the command has already stopped this fucntion does nothing.
+	  */
+	public final void stopExecution()
+	{
+		if (executionComplete) return;
+		doKill();
+		executionComplete = true;
+	}
+	
 	public InputStream getStdOut() { return null; }
 	public InputStream getStdErr() { return null; }
 	
@@ -70,6 +80,8 @@ public abstract class Command
 	}
 
 	protected abstract boolean doExecute() throws java.io.IOException;
+	// TODO: get thread of non-process commands, and interrupt/terminate
+	protected void doKill() {} //  throws java.io.IOException;
 	protected void doWaitFor() throws InterruptedException
 	{}	
 	
