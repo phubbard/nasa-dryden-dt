@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.ErrorHandler;
@@ -119,6 +120,15 @@ class CommandConfiguration
 	private final BasicSaxHandler commandPropertiesHandler
 			= new BasicSaxHandler()
 	{
+		public void startElement(
+				String uri,
+				String localName,
+				String qName,
+				Attributes attributes) throws SAXException
+		{
+			super.startElement(uri, localName, qName, attributes);
+			if ("global".equals(qName)) inGlobal = true;
+		}
 		public void endElement(String uri, String localName, String qName)
 			throws SAXException
 		{
@@ -127,22 +137,30 @@ class CommandConfiguration
 			if ("name".equals(qName)) name = getCharacters().toString();
 			else if ("class".equals(qName)) clas = getCharacters().toString();
 			else if ("command".equals(qName)) { 
+				cmdProps.putAll(globalProps);
 				createCommand(
 						name,
 						clas, 
 						java.util.Collections.unmodifiableMap(cmdProps)
-				);			
+				);
 				name = clas = null;
 				cmdProps = new HashMap<String, String> ();
-			} else if ("commands".equals(qName)) return;
+			} else if ("commands".equals(qName)) ; // do nothing
+			else if ("global".equals(qName)) inGlobal = false;
 			else { // all others put in hash-table.
-				cmdProps.put(qName, getCharacters().toString());
+				if (inGlobal)
+					globalProps.put(qName, getCharacters().toString());
+				else
+					cmdProps.put(qName, getCharacters().toString());
 			}
 		}
 		
 		private String name, clas;
 		private HashMap<String, String> cmdProps 
 				= new HashMap<String, String>();
+		private boolean inGlobal = false;
+		private final HashMap<String, String> 
+				globalProps = new HashMap<String, String>();
 	};
 	
 	private Map<String, Class<? extends Command> > commandMap 

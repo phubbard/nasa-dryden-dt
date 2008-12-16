@@ -84,6 +84,12 @@ public abstract class ExternalCommand extends com.rbnb.inds.exec.Command
 		argList.add(arg);
 	}
 	
+	protected final void addArguments(String ... args)
+	{
+		for (String arg : args)
+			argList.add(arg);
+	}
+	
 	protected final void addEnvironment(String key, String value)
 	{
 		env.put(key, value);

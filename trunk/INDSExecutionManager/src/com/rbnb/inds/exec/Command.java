@@ -25,6 +25,8 @@ package com.rbnb.inds.exec;
 import java.io.InputStream;
 import java.io.FileOutputStream;
 
+import java.util.ArrayList;
+
 import org.xml.sax.Attributes;
 
 /**
@@ -70,14 +72,40 @@ public abstract class Command
 		executionComplete = true;
 	}
 	
-	public InputStream getStdOut() { return null; }
-	public InputStream getStdErr() { return null; }
-	
 	public final void waitFor() throws InterruptedException
 	{
 		doWaitFor();
 		executionComplete = true;
 	}
+	
+	public final void addInput(Port p)
+	{
+		inputs.add(p);
+	}
+	
+	public final void addOutput(Port p)
+	{
+		outputs.add(p);
+	}
+
+	/**
+	  * Returns an unmodifiable view of the input connections.
+	  */
+	public final java.util.List<Port> getInputs()
+	{
+		return java.util.Collections.unmodifiableList(inputs);
+	}
+
+	/**
+	  * Returns an unmodifiable view of the input connections.
+	  */
+	public final java.util.List<Port> getOutputs()
+	{
+		return java.util.Collections.unmodifiableList(outputs);
+	}	
+	
+	public InputStream getStdOut() { return null; }
+	public InputStream getStdErr() { return null; }
 
 	protected abstract boolean doExecute() throws java.io.IOException;
 	// TODO: get thread of non-process commands, and interrupt/terminate
@@ -112,7 +140,10 @@ public abstract class Command
 //**************************  Private Member Data  **************************//	
 	private final String initialDirectory, logFile, tag;
 	private String xmlSnippet;
-	private java.io.OutputStream logStream; 
+	private java.io.OutputStream logStream;
+	private final ArrayList<Port> 
+		inputs = new ArrayList<Port>(),
+		outputs = new ArrayList<Port>();
 
 	private boolean executionComplete = false;
 	

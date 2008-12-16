@@ -21,6 +21,8 @@
 
 package com.rbnb.inds.exec.commands;
 
+import com.rbnb.inds.exec.Port;
+
 import java.io.File;
 import org.xml.sax.Attributes;
 
@@ -33,29 +35,68 @@ public class XmlDemux extends JavaCommand
 	{
 		super(attr);
 		
-		String name = attr.getValue("name"),
-			address = attr.getValue("address");
-			
 		File rbnbJarFile = new File(getCommandProperties().get(
-				"executableDirectory")+"/rbnb.jar");
+				"dataTurbineDirectory")+"/rbnb.jar"),
+			demuxDir = new File(
+				getCommandProperties().get("executableDirectory"));
 
 		// Add arguments for Java executable here (see also JavaCommand):
-		addArgument("-jar");
-		addArgument(rbnbJarFile.getCanonicalPath());
+		addArgument("-classpath");
+		String classPath = 
+				  rbnbJarFile.getCanonicalPath()
+				+ System.getProperty("path.separator")
+				+ demuxDir.getCanonicalPath();
+		addArgument(classPath);
+		
+		addArgument("XMLDemux");
+		
+		// Parse attributes:
+		String silentMode = attr.getValue("silentMode"),
+			chanNameFromID = attr.getValue("chanNameFromID"),
+			xmlFile = attr.getValue("xmlFile");
+			
+		if ("true".equals(silentMode)) addArgument("-S");
+		if ("true".equals(chanNameFromID)) addArgument("-I");
+		if (xmlFile != null) {
+			addArgument("-x");
+			addArgument(new File(xmlFile).getCanonicalPath());
+		}
+
+		// Inputs / Outputs handled on execution.		
+	}
 					
-		// Add server specific arguments below:
-		if (address != null) {
+	protected boolean doExecute() throws java.io.IOException
+	{
+		if (!getInputs().isEmpty()) {
+			Port.RbnbPort rbnbPort = (Port.RbnbPort) getInputs().get(0);
 			addArgument("-a");
-			addArgument(address);
+			addArgument(rbnbPort.getPort());
+System.err.println(rbnbPort.getChannel());
+			addArgument("-i");
+			addArgument(rbnbPort.getChannel());
 		}
-		
-		if (name != null) {
-			addArgument("-n");
-			addArgument(name);
+
+		if (!getOutputs().isEmpty()) {
+			Port.RbnbPort rbnbPort = (Port.RbnbPort) getOutputs().get(0);
+			addArguments("-A", rbnbPort.getPort());
+			if (rbnbPort.getName() != null)
+				addArguments("-o", rbnbPort.getName());
+			if (rbnbPort.getCacheFrames() > 0)
+				addArguments("-c", String.valueOf(rbnbPort.getCacheFrames()));
+			if (rbnbPort.getArchiveFrames() > 0) {
+				if ("create".equals(rbnbPort.getArchiveMode()))
+					addArguments(
+							"-K",
+							String.valueOf(rbnbPort.getArchiveFrames())
+					);
+				else addArguments(
+						"-k",
+						String.valueOf(rbnbPort.getArchiveFrames())
+				);
+			}
 		}
-		
-		if ("true".equals(attr.getValue("loadArchivesAtStart")))
-			addArgument("-F");
+
+		return super.doExecute();		
 	}
 }
 
