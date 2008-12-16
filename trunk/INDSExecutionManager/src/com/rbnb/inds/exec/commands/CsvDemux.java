@@ -1,5 +1,5 @@
 /*
-	XmlDemux.java
+	CsvDemux.java
 	 
 	Copyright 2008 Creare Inc.
 	
@@ -16,7 +16,7 @@
 	limitations under the License.
 	
 	---  History  ---
-	2008/12/15  WHF  Created.
+	2008/12/16  WHF  Created.
 */
 
 package com.rbnb.inds.exec.commands;
@@ -27,14 +27,20 @@ import java.io.File;
 import org.xml.sax.Attributes;
 
 /**
-  * Channel demultiplexing application, from XML configuration file.
+  * Comma separated value processing command.
   */
-public class XmlDemux extends Demux
+public class CsvDemux extends Demux
 {
-	public XmlDemux(Attributes attr) throws java.io.IOException
+	public CsvDemux(Attributes attr) throws java.io.IOException
 	{
-		super("XMLDemux", attr);
+		super("CSVDemux", attr);
+
+		String dateFormat = attr.getValue("dateFormat");
+		if (dateFormat != null) 
+			addArguments("-d", dateFormat);
 		
+		if ("true".equals(attr.getValue("checkEmbeddedTimestamp")))
+			addArgument("-p");				
 	}					
 }
 
