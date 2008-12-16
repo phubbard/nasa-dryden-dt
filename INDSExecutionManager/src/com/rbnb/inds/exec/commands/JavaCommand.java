@@ -40,7 +40,7 @@ public abstract class JavaCommand extends ExternalCommand
 		//jvmMaxHeap = (temp = attr.getValue("jvmMaxHeap")) == null ? "" : temp;
 		jvmMaxHeap = attr.getValue("jvmMaxHeap");
 		
-		addArgument("-Xmx"+jvmMaxHeap);
+		if (jvmMaxHeap != null) addArgument("-Xmx"+jvmMaxHeap);
 	}
 	
 	public final String getJvmMaxHeap() { return jvmMaxHeap; }

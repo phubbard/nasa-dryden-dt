@@ -79,19 +79,19 @@
 	
 	<!-- DC8 project -->
 	<xmlDemux logFile="IWG1DemuxDC8.log" silentMode="true" chanNameFromID="true" xmlFile="IWG1_GTR_OUT_DC8.XML">
-	    <input type="rbnb" port="localhost:3333" name="DC8-5000-cap/UDP"/>
+	    <input type="rbnb" port="localhost:3333" channel="DC8-5000-cap/UDP"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</xmlDemux>
 	<sleep duration_ms="1000"/>
 	
 	<!-- P3B project -->
 	<xmlDemux logFile="IWG1DemuxP3B.log" silentMode="true" chanNameFromID="true" xmlFile="IWG1_INDS_OUT_P3B.XML">
-	    <input type="rbnb" port="localhost:3333" name="P3B-5700-cap/UDP"/>
+	    <input type="rbnb" port="localhost:3333" channel="P3B-5700-cap/UDP"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</xmlDemux>
 	<sleep duration_ms="1000"/>
 	<xmlDemux logFile="HskpngDemuxP3B.log" silentMode="true" chanNameFromID="true" xmlFile="SCAN_GTR_OUT_P3B.XML">
-	    <input type="rbnb" port="localhost:3333" name="P3B-5750-cap/UDP"/>
+	    <input type="rbnb" port="localhost:3333" channel="P3B-5750-cap/UDP"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</xmlDemux>
 	<sleep duration_ms="2000"/>

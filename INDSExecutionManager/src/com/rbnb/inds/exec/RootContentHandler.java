@@ -48,6 +48,10 @@ class RootContentHandler extends BasicSaxHandler
 	public java.util.ArrayList<Command> getCommandList() { return commandList; } 
 	
 //************************  ContentHandler Overrides  ***********************//
+	public void startDocument() throws SAXException
+	{
+		inStartup = false;
+	}
 	public void startElement(
 			String uri,
 			String localName,
@@ -56,12 +60,33 @@ class RootContentHandler extends BasicSaxHandler
 	{
 		super.startElement(uri, localName, qName, attributes);
 		
-		if (qName.equals("startup")) {
-			commandList.clear();
+		if (!inStartup){
+			if (qName.equals("startup")) {
+				commandList.clear();
+				command = null;
+				inStartup = true;
+				inCommand = false;				
+			}
 			return;
 		}
 		
-		xmlSnippet.setLength(0);
+		if (!inCommand) {
+			inCommand = true;
+			hasChildren = false;
+			currCommand = qName;
+			xmlSnippet.setLength(0);
+			createCommandInstance(qName, attributes);
+		} else {
+			hasChildren = true;
+			// Child (port)
+if (command != null) { // WHF Remove!!!
+			Port port = Port.createPort(attributes);
+			if ("input".equals(qName)) command.addInput(port);
+			else if ("output".equals(qName)) command.addOutput(port);
+			//else ((PlugIn) command).setPlugin(port);
+}
+		}
+		
 		xmlSnippet.append('<');
 		xmlSnippet.append(qName);
 		for (int ii = 0; ii < attributes.getLength(); ++ii) {
@@ -73,10 +98,44 @@ class RootContentHandler extends BasicSaxHandler
 		}
 		xmlSnippet.append('>');
 		
+	}
+	public void characters(char[] ch, int start, int length) throws SAXException
+	{
+		super.characters(ch, start, length);
+		xmlSnippet.append(ch, start, length);
+	}
+	public void endElement(String uri, String localName, String qName)
+	 throws SAXException
+	{
+		super.endElement(uri, localName, qName);
+		
+		boolean commandEnd = inCommand && qName.equals(currCommand);
+
+		if (getCharacters().length() > 0 || commandEnd && hasChildren) {
+			xmlSnippet.append("</");
+			xmlSnippet.append(qName);
+			xmlSnippet.append('>');
+		} else xmlSnippet.insert(xmlSnippet.length()-1, '/');
+		
+		if (commandEnd) {			
+if (command != null) { // WHF added for testing, REMOVE!! 
+			// (A missing command should fail the script)
+			command.setXmlSnippet(xmlSnippet.toString());
+			commandList.add(command);
+			command = null;
+}
+			inCommand = false;
+		}
+	}
+	
+//*************************  Private Methods  *******************************//	
+	private void createCommandInstance(String qName, Attributes attributes)
+		throws SAXException
+	{
 		Class<? extends Command> cmdClass 
 				= commandConfiguration.mapNameToCommand(qName);
 		if (cmdClass == null) {
-			if (true) return;
+if (true) return; // WHF testing, REMOVE!!
 			throw new SAXException(
 					"No class found for command \""+qName+"\"."
 			);
@@ -91,28 +150,7 @@ class RootContentHandler extends BasicSaxHandler
 					t
 			);
 		}
-	}
-	public void characters(char[] ch, int start, int length) throws SAXException
-	{
-		super.characters(ch, start, length);
-		xmlSnippet.append(ch, start, length);
-	}
-	public void endElement(String uri, String localName, String qName)
-	 throws SAXException
-	{
-		super.endElement(uri, localName, qName);
-		if (getCharacters().length() > 0) {
-			xmlSnippet.append("</");
-			xmlSnippet.append(qName);
-			xmlSnippet.append('>');
-		} else xmlSnippet.insert(xmlSnippet.length()-1, '/');
-		
-if (command != null) { // WHF added for testing, REMOVE!!
-		command.setXmlSnippet(xmlSnippet.toString());
-		commandList.add(command);
-		command = null;
-}
-	}
+	}		
 	
 //***************************  Private Member Data  *************************//
 	private final CommandConfiguration commandConfiguration
@@ -124,5 +162,7 @@ if (command != null) { // WHF added for testing, REMOVE!!
 			= new java.util.ArrayList<Command>();
 			
 	private Command command;
+	private String currCommand;
+	private boolean inStartup, inCommand, hasChildren;
 }
 

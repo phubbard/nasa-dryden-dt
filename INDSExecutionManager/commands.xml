@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <commands>
+	<global>
+		<dataTurbineDirectory>../INDS/Utility/RBNB/V3.1B3/bin</dataTurbineDirectory>
+	</global>
 	<command>
 		<name>del</name>
 		<class>com.rbnb.inds.exec.commands.Del</class>
@@ -18,6 +21,11 @@
 		<name>dataTurbine</name>
 		<class>com.rbnb.inds.exec.commands.DataTurbine</class>
 		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/bin</executableDirectory>
+	</command>
+	<command>
+		<name>xmlDemux</name>
+		<class>com.rbnb.inds.exec.commands.XmlDemux</class>
+		<executableDirectory>../INDS/Utility/XMLDemux</executableDirectory>
 	</command>
 </commands>
 
