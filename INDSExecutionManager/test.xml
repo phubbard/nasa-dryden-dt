@@ -104,28 +104,28 @@
 	
 	<!-- B200 project -->
 	<csvDemux logFile="CSVDemuxB200.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="B200.xml">
-	    <input type="rbnb" port="localhost:3333" name="B200/B200_ASR_reduced.txt"/>
+	    <input type="rbnb" port="localhost:3333" channel="B200/B200_ASR_reduced.txt"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</csvDemux>
 	<sleep duration_ms="100"/>
 	
 	<!-- NOAA P3 project -->
 	<csvDemux logFile="CSVDemuxNOAAP3.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="NOAA_P3.xml">
-	    <input type="rbnb" port="localhost:3333" name="NOAA_P3/WP3D.txt"/>
+	    <input type="rbnb" port="localhost:3333" channel="NOAA_P3/WP3D.txt"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</csvDemux>
 	<sleep duration_ms="100"/>
 	
 	<!-- CV580 project -->
 	<csvDemux logFile="CSVDemuxCV580.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="CV580.xml">
-	    <input type="rbnb" port="localhost:3333" name="CV580/_CSV"/>
+	    <input type="rbnb" port="localhost:3333" channel="CV580/_CSV"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="CV580_IWG1"/>
 	</csvDemux>
 	<sleep duration_ms="100"/>
 	
 	<!-- Twin Otter project -->
 	<csvDemux logFile="TwinOtterDemux.log" dateFormat="yyyy-MM-dd\'T\'HH:mm:ss\'Z\'" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="TwinOtter.xml">
-	    <input type="rbnb" port="localhost:3333" name="P3B-5800-cap/UDP"/>
+	    <input type="rbnb" port="localhost:3333" channel="P3B-5800-cap/UDP"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</csvDemux>
 	<deadReckoning logFile="DeadReckoning.log" maxLatency_sec="1800"/>

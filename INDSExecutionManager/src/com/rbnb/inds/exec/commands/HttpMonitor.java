@@ -1,5 +1,5 @@
 /*
-	XmlDemux.java
+	HttpMonitor.java
 	 
 	Copyright 2008 Creare Inc.
 	
@@ -16,26 +16,32 @@
 	limitations under the License.
 	
 	---  History  ---
-	2008/12/15  WHF  Created.
+	2008/12/16  WHF  Created.
 */
 
 package com.rbnb.inds.exec.commands;
 
-import com.rbnb.inds.exec.Port;
-
 import java.io.File;
+
 import org.xml.sax.Attributes;
 
 /**
-  * Channel demultiplexing application, from XML configuration file.
+  * Class which implements commands to run in new operating system processes.
   */
-public class XmlDemux extends Demux
+public class HttpMonitor extends JavaCommand
 {
-	public XmlDemux(Attributes attr) throws java.io.IOException
+	public HttpMonitor(Attributes attr) throws java.io.IOException
 	{
-		super("XMLDemux", attr);
+		super(attr);
 		
-	}					
+		File jarFile = new File(getCommandProperties().get(
+				"executableDirectory")+"/HttpMonitor.jar");
+
+		// Add arguments for Java executable here (see also JavaCommand):
+		addArgument("-jar");
+		addArgument(jarFile.getCanonicalPath());
+
+		// Delegate to configuration file:
+		addArgument(attr.getValue("configFile"));
+	}
 }
-
-

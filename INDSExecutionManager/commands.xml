@@ -18,6 +18,11 @@
 		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/bin</executableDirectory>
 	</command>
 	<command>
+		<name>httpMonitor</name>
+		<class>com.rbnb.inds.exec.commands.HttpMonitor</class>
+		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/bin</executableDirectory>
+	</command>
+	<command>
 		<name>dataTurbine</name>
 		<class>com.rbnb.inds.exec.commands.DataTurbine</class>
 		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/bin</executableDirectory>
@@ -26,6 +31,16 @@
 		<name>xmlDemux</name>
 		<class>com.rbnb.inds.exec.commands.XmlDemux</class>
 		<executableDirectory>../INDS/Utility/XMLDemux</executableDirectory>
+	</command>
+	<command>
+		<name>csvDemux</name>
+		<class>com.rbnb.inds.exec.commands.CsvDemux</class>
+		<executableDirectory>../INDS/Utility/CSVDemux</executableDirectory>
+	</command>
+	<command>
+		<name>udpCapture</name>
+		<class>com.rbnb.inds.exec.commands.UdpCapture</class>
+		<executableDirectory>../INDS/Utility/UDPCapture</executableDirectory>
 	</command>
 </commands>
 
