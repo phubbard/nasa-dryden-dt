@@ -115,7 +115,8 @@ System.err.println(cmd);
 				nRead = is.read(buffer, 0, toRead);
 			
 			if (nRead > 0) {
-				cmd.getLogStream().write(buffer, 0, nRead);
+				if (cmd.getLogStream() != null)
+					cmd.getLogStream().write(buffer, 0, nRead);
 				return true;
 			}
 			return false;
@@ -143,7 +144,7 @@ System.err.println(cmd);
 					{}
 				}
 			
-				if (cmd.isExecutionComplete() || cmd.getLogStream() == null)
+				if (cmd.isExecutionComplete()) // || cmd.getLogStream() == null)
 					continue;
 				try {
 					if (flushStream(cmd, cmd.getStdErr())
