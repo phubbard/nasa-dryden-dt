@@ -1,0 +1,21 @@
+	0: id = Marker, info (used in chan registration) = Frame Header Text, skip = false
+	1: id = TimeStamp, info (used in chan registration) = Timestamp for data frame: YYYYMMDDTHHMMSS, skip = false
+	2: id = Latitude, info (used in chan registration) = Latitude (deg), skip = false
+	3: id = Longitude, info (used in chan registration) = Longitude (deg), skip = false
+	4: id = GPS_Alt_MSL, info (used in chan registration) = Altitude, GPS MSL, meters, skip = false
+	5: id = Pitch, info (used in chan registration) = Pitch (deg), skip = false
+	6: id = Roll, info (used in chan registration) = Roll (deg), skip = false
+marker: "HASR"
+Adding Channel "TimeStamp"
+Adding Channel "Latitude"
+Adding Channel "Longitude"
+Adding Channel "GPS_Alt_MSL"
+Adding Channel "Pitch"
+Adding Channel "Roll"
+Adding Channel "_Latency"
+Adding Channel "_CSV"
+Output to: HASR
+Connected to Source: localhost:3333
+Connected to Sink: localhost:3333
+Running subscribe-by-frame newest mode
+.

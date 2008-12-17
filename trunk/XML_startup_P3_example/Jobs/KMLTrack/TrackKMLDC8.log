@@ -1,0 +1,16 @@
+
+
+
+Input Options:
+RBNB server address: localhost:3333
+Viewpoint elevation offset: 5000.0
+Desired PlugIn name: TrackKML_DC8
+Tracks will be returned in a consolidated fashion (in 1 KML file; no NetworkLinks)
+RBNB Fetch timeout: 60000
+
+Open PlugIn and Sink connections to localhost:3333...Connections are open
+Error in execution loop: com.rbnb.sapi.SAPIException: Nesting java.io.EOFException
+Exception in thread "main" java.lang.NullPointerException
+	at TrackKMLPlugIn.exitAction(TrackKMLPlugIn.java:1726)
+	at TrackKMLPlugIn.exec(TrackKMLPlugIn.java:2251)
+	at TrackKMLPlugIn.main(TrackKMLPlugIn.java:389)

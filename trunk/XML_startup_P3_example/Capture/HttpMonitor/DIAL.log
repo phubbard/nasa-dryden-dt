@@ -1,0 +1,6 @@
+Using SAX parser: com.sun.org.apache.xerces.internal.parsers.SAXParser
+MKCOL response = 200
+Local Date,Source URL,Dest URL,GET Code,PUT Code,Server Date,Server LastMod,Server Expires,Next Copy Date
+Fri Oct 31 08:22:58 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,200,201,Fri Oct 31 08:22:58 GMT-05:00 2008,Sun Jul 13 17:26:05 GMT-05:00 2008,---,Fri Oct 31 08:23:58 GMT-05:00 2008
+Fri Oct 31 08:23:58 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Oct 31 08:24:58 GMT-05:00 2008
+Fri Oct 31 08:24:58 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Oct 31 08:25:58 GMT-05:00 2008
