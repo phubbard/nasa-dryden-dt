@@ -13,152 +13,153 @@
 	<dataTurbine jvmMaxHeap="1024M" initialDirectory="Server" logFile="rbnb.log" name="INDS" address=":3333"/>
 	<sleep duration_ms="15000"/>
 	
-	<!-- Delete all the log files -->
-	<del file="*.log"/>
-	
 	<!-- Jobs/KMLTrack -->
-	<trackKML logFile="TrackKMLDC8.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigDC8.txt">
+	<del initialDirectory="Jobs/KMLTrack" file="*.log"/>
+	<trackKML initialDirectory="Jobs/KMLTrack" logFile="TrackKMLDC8.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigDC8.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_DC8" />
 	</trackKML>
-	<trackKML logFile="TrackKMLP3B.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigP3B.txt">
+	<trackKML initialDirectory="Jobs/KMLTrack" logFile="TrackKMLP3B.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigP3B.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_P3B" />
 	</trackKML>
-	<trackKML logFile="TrackKMLB200.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigB200.txt">
+	<trackKML initialDirectory="Jobs/KMLTrack" logFile="TrackKMLB200.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigB200.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_B200" />
 	</trackKML>
-	<trackKML logFile="TrackKMLNOAAP3.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigNOAAP3.txt">
+	<trackKML initialDirectory="Jobs/KMLTrack" logFile="TrackKMLNOAAP3.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigNOAAP3.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_NOAAP3" />
 	</trackKML>
-	<trackKML logFile="TrackKMLCV580.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigCV580.txt">
+	<trackKML initialDirectory="Jobs/KMLTrack" logFile="TrackKMLCV580.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigCV580.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_CV580" />
 	</trackKML>
-	<trackKML logFile="TrackKMLTwinOtter.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigTwinOtter.txt">
+	<trackKML initialDirectory="Jobs/KMLTrack" logFile="TrackKMLTwinOtter.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigTwinOtter.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_TwinOtter" />
 	</trackKML>
-	<trackData logFile="TrackDataDC8.log" noGUI="true" configFile="TrackDataConfigDC8.txt">
+	<trackData initialDirectory="Jobs/KMLTrack" logFile="TrackDataDC8.log" noGUI="true" configFile="TrackDataConfigDC8.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackData_DC8" />
 	</trackData>
-	<trackData logFile="TrackDataP3B.log" noGUI="true" configFile="TrackDataConfigP3B.txt">
+	<trackData initialDirectory="Jobs/KMLTrack" logFile="TrackDataP3B.log" noGUI="true" configFile="TrackDataConfigP3B.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackData_P3B" />
 	</trackData>
-	<trackData logFile="TrackDataB200.log" noGUI="true" configFile="TrackDataConfigB200.txt">
+	<trackData initialDirectory="Jobs/KMLTrack" logFile="TrackDataB200.log" noGUI="true" configFile="TrackDataConfigB200.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackData_B200" />
 	</trackData>
-	<trackData logFile="TrackDataNOAAP3.log" noGUI="true" configFile="TrackDataConfigNOAAP3.txt">
+	<trackData initialDirectory="Jobs/KMLTrack" logFile="TrackDataNOAAP3.log" noGUI="true" configFile="TrackDataConfigNOAAP3.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackData_NOAAP3" />
 	</trackData>
-	<trackData logFile="TrackDataCV580.log" noGUI="true" configFile="TrackDataConfigCV580.txt">
+	<trackData initialDirectory="Jobs/KMLTrack" logFile="TrackDataCV580.log" noGUI="true" configFile="TrackDataConfigCV580.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackData_CV580" />
 	</trackData>
-	<trackData logFile="TrackDataTwinOtter.log" noGUI="true" configFile="TrackDataConfigTwinOtter.txt">
+	<trackData initialDirectory="Jobs/KMLTrack" logFile="TrackDataTwinOtter.log" noGUI="true" configFile="TrackDataConfigTwinOtter.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackData_TwinOtter" />
 	</trackData>
 	<sleep duration_ms="2000"/>
 	
 	<!-- Jobs/TimeDrive -->
-	<timeDrive logFile="timedrive.log" multiUserMode="ip">
+	<del initialDirectory="Jobs/TimeDrive" file="*.log"/>
+	<timeDrive initialDirectory="Jobs/TimeDrive" logFile="timedrive.log" multiUserMode="ip">
 	    <input type="tcp" port="4000"/>
 	    <output type="tomcat" port="localhost:80"/>
 	</timeDrive>
 	<sleep duration_ms="2000"/>
 	
 	<!-- Jobs/PlugIns -->
-	<png width="320" height="200">
+	<del initialDirectory="Jobs/PlugIns" file="*.log"/>
+	<png initialDirectory="Jobs/PlugIns" logFile="png.log" width="320" height="200">
 	    <plugin type="rbnb" port="localhost:3333" name="PNGPlugIn" />
 	</png>
 	<sleep duration_ms="1000"/>
-	<toString>
+	<toString initialDirectory="Jobs/PlugIns" logFile="toString.log">
 	    <plugin type="rbnb" port="localhost:3333" name="ToString" />
 	</toString>
 	<sleep duration_ms="1000"/>
-	<thumbNail scale="0.5" quality="0.9" maxImages="10">
+	<thumbNail initialDirectory="Jobs/PlugIns" logFile="thumbNail.log" scale="0.5" quality="0.9" maxImages="10">
 	    <plugin type="rbnb" port="localhost:3333" name="ThumbNail" />
 	</thumbNail>
 	<sleep duration_ms="5000"/>
 	
 	<!-- DC8 project -->
-	<xmlDemux logFile="IWG1DemuxDC8.log" silentMode="true" chanNameFromID="true" xmlFile="IWG1_GTR_OUT_DC8.XML">
+	<del initialDirectory="Projects/DC8" file="*.log"/>
+	<xmlDemux initialDirectory="Projects/DC8" logFile="IWG1Demux.log" silentMode="true" chanNameFromID="true" xmlFile="IWG1_GTR_OUT.XML">
 	    <input type="rbnb" port="localhost:3333" channel="DC8-5000-cap/UDP"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</xmlDemux>
 	<sleep duration_ms="1000"/>
 	
 	<!-- P3B project -->
-	<xmlDemux logFile="IWG1DemuxP3B.log" silentMode="true" chanNameFromID="true" xmlFile="IWG1_INDS_OUT_P3B.XML">
+	<del initialDirectory="Projects/P3B" file="*.log"/>
+	<xmlDemux initialDirectory="Projects/P3B" logFile="IWG1Demux.log" silentMode="true" chanNameFromID="true" xmlFile="IWG1_INDS_OUT.XML">
 	    <input type="rbnb" port="localhost:3333" channel="P3B-5700-cap/UDP"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</xmlDemux>
 	<sleep duration_ms="1000"/>
-	<xmlDemux logFile="HskpngDemuxP3B.log" silentMode="true" chanNameFromID="true" xmlFile="SCAN_GTR_OUT_P3B.XML">
+	<xmlDemux initialDirectory="Projects/P3B" logFile="HskpngDemux.log" silentMode="true" chanNameFromID="true" xmlFile="SCAN_GTR_OUT.XML">
 	    <input type="rbnb" port="localhost:3333" channel="P3B-5750-cap/UDP"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</xmlDemux>
 	<sleep duration_ms="2000"/>
 	
 	<!-- B200 project -->
-	<csvDemux logFile="CSVDemuxB200.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="B200.xml">
+	<del initialDirectory="Projects/B200" file="*.log"/>
+	<csvDemux initialDirectory="Projects/B200" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="B200.xml">
 	    <input type="rbnb" port="localhost:3333" name="B200/B200_ASR_reduced.txt"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</csvDemux>
 	<sleep duration_ms="1000"/>
 	
 	<!-- NOAA P3 project -->
-	<csvDemux logFile="CSVDemuxNOAAP3.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="NOAA_P3.xml">
+	<del initialDirectory="Projects/NOAA_P3" file="*.log"/>
+	<csvDemux initialDirectory="Projects/NOAA_P3" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="NOAA_P3.xml">
 	    <input type="rbnb" port="localhost:3333" name="NOAA_P3/WP3D.txt"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</csvDemux>
 	<sleep duration_ms="1000"/>
 	
 	<!-- CV580 project -->
-	<csvDemux logFile="CSVDemuxCV580.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="CV580.xml">
+	<del initialDirectory="Projects/CV580" file="*.log"/>
+	<csvDemux initialDirectory="Projects/CV580" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="CV580.xml">
 	    <input type="rbnb" port="localhost:3333" name="CV580/_CSV"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="CV580_IWG1"/>
 	</csvDemux>
 	<sleep duration_ms="1000"/>
 	
 	<!-- Twin Otter project -->
-	<csvDemux logFile="TwinOtterDemux.log" dateFormat="yyyy-MM-dd\'T\'HH:mm:ss\'Z\'" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="TwinOtter.xml">
+	<del initialDirectory="Projects/TwinOtter" file="*.log"/>
+	<csvDemux initialDirectory="Projects/TwinOtter" logFile="TwinOtterDemux.log" dateFormat="yyyy-MM-dd\'T\'HH:mm:ss\'Z\'" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="TwinOtter.xml">
 	    <input type="rbnb" port="localhost:3333" name="P3B-5800-cap/UDP"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</csvDemux>
-	<deadReckoning logFile="DeadReckoning.log" maxLatency_sec="1800"/>
+	<deadReckoning initialDirectory="Projects/TwinOtter" logFile="DeadReckoning.log" maxLatency_sec="1800"/>
 	
 	<sleep duration_ms="5000"/>
 	
-	<!-- Capture, HttpMonitor -->
-	<httpMonitor logFile="HttpMon_MSFC.log" configFile="HttpMon_MSFC.xml"/>
+	<!-- Capture/HttpMonitor -->
+	<del initialDirectory="Capture/HttpMonitor" file="*.log"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="MSFC.log" configFile="MSFC.xml"/>
 	<sleep duration_ms="1000"/>
-	<httpMonitor logFile="HttpMon_B200.log" configFile="HttpMon_B200.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="B200.log" configFile="B200.xml"/>
 	<sleep duration_ms="1000"/>
-	<httpMonitor logFile="HttpMon_DC8.log" configFile="HttpMon_DC8.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="DC8.log" configFile="DC8.xml"/>
 	<sleep duration_ms="1000"/>
-	<httpMonitor logFile="HttpMon_DIAL.log" configFile="HttpMon_DIAL.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="DIAL.log" configFile="DIAL.xml"/>
 	<sleep duration_ms="1000"/>
-	<httpMonitor logFile="HttpMon_CV580.log" configFile="HttpMon_CV580.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="CV580.log" configFile="CV580.xml"/>
 	<sleep duration_ms="1000"/>
-	<httpMonitor logFile="HttpMon_NOAA_P3.log" configFile="HttpMon_NOAA_P3.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="NOAA_P3.log" configFile="NOAA_P3.xml"/>
 	<sleep duration_ms="1000"/>
 	
-	<!-- Capture, UDPcapture -->
-	<udpCapture logFile="P3B-5700-cap.log">
+	<!-- Capture/UDPCapture -->
+	<del initialDirectory="Capture/UDPCapture" file="*.log"/>
+	<udpCapture initialDirectory="Capture/UDPCapture" logFile="P3B-5700-cap.log">
 	    <input type="udp" port="5700"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="P3B-5700-cap"/>
 	</udpCapture>
-	<udpCapture logFile="P3B-5750-cap.log">
+	<udpCapture initialDirectory="Capture/UDPCapture" logFile="P3B-5750-cap.log">
 	    <input type="udp" port="5750"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="P3B-5750-cap"/>
 	</udpCapture>
-	<udpCapture logFile="P3B-5800-cap.log">
+	<udpCapture initialDirectory="Capture/UDPCapture" logFile="P3B-5800-cap.log">
 	    <input type="udp" port="5800"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="P3B-5800-cap"/>
 	</udpCapture>
 	<sleep duration_ms="1000"/>
 
 </startup>
-
-
-
-
-
-
-
