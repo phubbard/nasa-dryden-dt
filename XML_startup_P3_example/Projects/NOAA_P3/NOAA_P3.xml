@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- NOAA P3 WP_3D data from ARCTAS 2008 mission -->
+<output_format xmlns="urn:xmlns:reveal">
+  <target>udp://130.134.183.40:53001</target>
+  <parameter id="Marker"><type>marker</type><skip>0</skip><format>WP3D</format></parameter>
+  <parameter id="TimeStamp"><type>string</type><skip>0</skip><label>Time (UTC)</label><info xmlns="urn:xmlns:noaa_p3">Timestamp for data frame: YYYYMMDDTHHMMSS</info></parameter>
+  <parameter id="numParams"><type>float</type><skip>0</skip></parameter>
+  <parameter id="AOC_GPSlat"><type>float</type><skip>0</skip></parameter>
+  <parameter id="AOC_GPSlon"><type>float</type><skip>0</skip></parameter>
+  <parameter id="AOC_GPSalt"><type>float</type><skip>0</skip></parameter>
+  <parameter id="AOC_AmbTemp"><type>float</type><skip>0</skip></parameter>
+  <parameter id="AOC_DewPtTemp"><type>float</type><skip>0</skip></parameter>
+  <parameter id="AOC_H2Omr"><type>float</type><skip>0</skip></parameter>
+  <parameter id="AOC_DewPtTempTDL"><type>float</type><skip>0</skip></parameter>
+  <parameter id="AOC_WindDir"><type>float</type><skip>0</skip></parameter>
+  <parameter id="AOC_WindSpd"><type>float</type><skip>0</skip></parameter>
+  <parameter id="AOC_DryExtinction"><type>float</type><skip>0</skip></parameter>
+  <parameter id="NO"><type>float</type><skip>0</skip></parameter>
+  <parameter id="NOy"><type>float</type><skip>0</skip></parameter>
+  <parameter id="O3"><type>float</type><skip>0</skip></parameter>
+  <parameter id="CO2"><type>float</type><skip>0</skip></parameter>
+  <parameter id="CO"><type>float</type><skip>0</skip></parameter>
+  <parameter id="SO2"><type>float</type><skip>0</skip></parameter>
+  <parameter id="NMASS"><type>float</type><skip>0</skip></parameter>
+  <parameter id="WLOPC"><type>float</type><skip>0</skip></parameter>
+</output_format>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- A first cut at describing the P3 INDS system using Bill Finger's INDS Execution Manager schema.                 -->
-<!-- Only the RBNB Server is started in a separate directory; all other processes are started in the base directory. -->
+<!-- Describe the P3 INDS system using Bill Finger's INDS Execution Manager schema. -->
 
-<startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://whf/schema/inds_startup.xsd">
-<!--startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/user/DryScan/nasa-dryden-dt/XML_startup_P3_example/inds_startup.xsd"-->
+<!--startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://whf/schema/inds_startup.xsd"-->
+<startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/user/DryScan/nasa-dryden-dt/XML_startup_P3_example/inds_startup.xsd">
 	
 	<!-- Tomcat -->
 	<tomcat/>
