@@ -57,7 +57,7 @@
 	<sleep duration_ms="2000"/>
 	
 	<!-- Jobs/TimeDrive -->
-	<timeDrive logFile="timedrive.log" multiUserMode="2">
+	<timeDrive logFile="timedrive.log" multiUserMode="ip">
 	    <input type="tcp" port="4000"/>
 	    <output type="tomcat" port="localhost:80"/>
 	</timeDrive>

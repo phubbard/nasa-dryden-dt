@@ -10,7 +10,7 @@
 </xsd:complexType>
 
 <xsd:complexType name="PortType" >
-	<xsd:attribute name="type" type="xsd:string" />
+	<xsd:attribute name="type" type="xsd:string" use="required" />
 	<xsd:attribute name="port" type="xsd:string" />
 	<!-- type="rbnb" specific attributes, grouped here for simplicity. -->
 	<xsd:attribute name="name" type="xsd:string" /> <!-- of Source or Sink -->
@@ -170,7 +170,17 @@
 		<xsd:complexContent>
 			<xsd:extension base="JavaCommandType">
 				<!-- JPW: Added multiUserMode attribute -->
-				<xsd:attribute name="multiUserMode" type="xsd:positiveInteger"/>
+	<!--			<xsd:attribute name="multiUserMode" type="xsd:positiveInteger"/> -->
+				<xsd:attribute name="multiUserMode">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="off"/>
+							<xsd:enumeration value="ip"/>
+							<xsd:enumeration value="username_password"/>
+							<xsd:enumeration value="combination"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
 	<!--			<xsd:attribute name="listenPort" type="xsd:string"/>
 				<xsd:attribute name="webserverAddress" type="xsd:string"/>  -->
 			</xsd:extension>

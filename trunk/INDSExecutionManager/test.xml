@@ -6,7 +6,9 @@
 <startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://whf/schema/inds_startup.xsd">
 	
 	<!-- Tomcat -->
-	<tomcat logFile="tommy.log" />
+	<tomcat logFile="tommy.log">
+		<input type="tcp" port="localhost:80" />
+	</tomcat>
 	
 	<!-- Server -->
 	<del initialDirectory="Server" file="rbnb.log"/>
@@ -19,7 +21,6 @@
 	<!-- Delete all the log files -->
 	<del file="*.log"/>
 	
-	<!-- Jobs/KMLTrack -->
 	<!-- Jobs/KMLTrack -->
 	<trackKML logFile="TrackKMLDC8.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfigDC8.txt">
 	    <plugin type="rbnb" port="localhost:3333" name="TrackKML_DC8" />
@@ -60,9 +61,9 @@
 	<sleep duration_ms="200"/>
 	
 	<!-- Jobs/TimeDrive -->
-	<timeDrive logFile="timedrive.log" multiUserMode="2">
+	<timeDrive logFile="timedrive.log" multiUserMode="ip">
 	    <input type="tcp" port="4000"/>
-	    <output type="tomcat" port="localhost:80"/>
+	    <output type="tcp" port="localhost:80"/>
 	</timeDrive>
 	<sleep duration_ms="200"/>
 	
