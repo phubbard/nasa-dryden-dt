@@ -21,6 +21,9 @@
 
 package com.rbnb.inds.exec;
 
+import com.rbnb.inds.exec.commands.DtPlugIn;
+
+
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -83,7 +86,8 @@ if (command != null) { // WHF Remove!!!
 			Port port = Port.createPort(attributes);
 			if ("input".equals(qName)) command.addInput(port);
 			else if ("output".equals(qName)) command.addOutput(port);
-			//else ((PlugIn) command).setPlugin(port);
+			else if ("plugin".equals(qName))
+				((DtPlugIn) command).setPlugIn((Port.RbnbPort) port);
 }
 		}
 		

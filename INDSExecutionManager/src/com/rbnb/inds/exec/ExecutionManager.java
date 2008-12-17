@@ -55,7 +55,6 @@ public class ExecutionManager
 		XMLReader xmlReader 
 				= org.xml.sax.helpers.XMLReaderFactory.createXMLReader();
 		
-
 		// Set parsing features:
 		//  Turn on validation.  The XML document will be compared against the
 		//     schema.

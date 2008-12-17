@@ -29,29 +29,14 @@ import org.xml.sax.Attributes;
 /**
   * Root class of Demultiplexing commands.
   */
-public abstract class Demux extends JavaCommand
+public abstract class Demux extends DtCommand
 {
 	/**
 	  * @param demuxClass  The fully qualified demux Java class.
 	  */
 	public Demux(String demuxClass, Attributes attr) throws java.io.IOException
 	{
-		super(attr);
-		
-		File rbnbJarFile = new File(getCommandProperties().get(
-				"dataTurbineDirectory")+"/rbnb.jar"),
-			demuxDir = new File(
-				getCommandProperties().get("executableDirectory"));
-
-		// Add arguments for Java executable here (see also JavaCommand):
-		addArgument("-classpath");
-		String classPath = 
-				  rbnbJarFile.getCanonicalPath()
-				+ System.getProperty("path.separator")
-				+ demuxDir.getCanonicalPath();
-		addArgument(classPath);
-		
-		addArgument(demuxClass);
+		super(demuxClass, attr);
 		
 		// Parse attributes:
 		String silentMode = attr.getValue("silentMode"),

@@ -42,5 +42,40 @@
 		<class>com.rbnb.inds.exec.commands.UdpCapture</class>
 		<executableDirectory>../INDS/Utility/UDPCapture</executableDirectory>
 	</command>
+	<command>
+		<name>timeDrive</name>
+		<class>com.rbnb.inds.exec.commands.TimeDrive</class>
+		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/bin</executableDirectory>
+	</command>
+	<command>
+		<name>png</name>
+		<class>com.rbnb.inds.exec.commands.plugins.PngPlugIn</class>
+		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+	</command>	
+	<command>
+		<name>thumbNail</name>
+		<class>com.rbnb.inds.exec.commands.plugins.ThumbNailPlugIn</class>
+		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+	</command>	
+	<command>
+		<name>toString</name>
+		<class>com.rbnb.inds.exec.commands.plugins.ToStringPlugIn</class>
+		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+	</command>	
+	<command>
+		<name>trackData</name>
+		<class>com.rbnb.inds.exec.commands.plugins.TrackDataPlugIn</class>
+		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+	</command>	
+	<command>
+		<name>trackKML</name>
+		<class>com.rbnb.inds.exec.commands.plugins.TrackKmlPlugIn</class>
+		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+	</command>	
+	<command>
+		<name>deadReckoning</name>
+		<class>com.rbnb.inds.exec.commands.plugins.DeadReckoningPlugIn</class>
+		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+	</command>	
 </commands>
 
