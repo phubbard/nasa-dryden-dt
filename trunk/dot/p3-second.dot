@@ -1,0 +1,27 @@
+digraph p3second {
+	// Graph defines
+	size = "8,10.5" // Full-page with .5" margins
+	
+	// Node definitions
+	port5700 [shape=box];
+	port5750 [shape=box]
+	port5800 [shape=box];
+	httpmon1 [shape=box, label="httpMon (httpmon_MSFC.xml)"];
+	port4000 [shape=box];
+	portXXXX [shape=record,label="<f0>port 1220|<f1>UDPCapture"];
+	
+	portXXXX -> RBNB;
+	port5700 -> udpcapture1 -> RBNB;
+	port5750-> udpcapture2 -> RBNB;
+	port5800 -> udpcapture3 -> RBNB;
+	httpmon1 -> RBNB;
+	xmldemux1 -> RBNB;
+	RBNB -> RDV1;
+	RBNB -> RDV2;
+	RBNB -> DeadReckoning;
+	RBNB -> tomcat;
+	RBNB -> PNG;
+	RBNB -> ToString;
+	port4000 -> TimeDrive;
+	RBNB -> TimeDrive;
+}
