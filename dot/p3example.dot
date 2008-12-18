@@ -1,0 +1,15 @@
+digraph p3example {
+	port5700 -> udpcapture1 -> RBNB;
+	port5750 -> udpcapture2 -> RBNB;
+	port5800 -> udpcapture3 -> RBNB;
+	httpmon1 -> RBNB;
+	xmldemux1 -> RBNB;
+	RBNB -> RDV1;
+	RBNB -> RDV2;
+	RBNB -> DeadReckoning;
+	RBNB -> tomcat;
+	RBNB -> PNG;
+	RBNB -> ToString;
+	port4000 -> TimeDrive;
+	RBNB -> TimeDrive;
+}
