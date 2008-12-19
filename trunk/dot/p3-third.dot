@@ -1,0 +1,71 @@
+digraph p3third {
+	// Graph defines
+	center="true";
+	orientation="portrait";
+//	page="8.5,11";
+	margin="0.5";
+	URL="http://nasa-dryden-dt.googlecode.com/";
+	
+	// Node definitions
+	port5700 [shape=box, label="5700"];
+	port5750 [shape=box, label="5750"]
+	port5800 [shape=box, label="5800"];
+	httpmon1 [shape=box, label="HttpMonitor\n(HttpMon_MSFC.xml)"];
+	httpmon2 [shape=box, label="HttpMonitor\n(HttpMon_B200.xml)"];
+	httpmon3 [shape=box, label="HttpMonitor\n(HttpMon_DC8.xml)"];
+	httpmon4 [shape=box, label="HttpMonitor\n(HttpMon_DIAL.xml)"];
+	httpmon5 [shape=box, label="HttpMonitor\n(HttpMon_C4580.xml)"];
+	httpmon6 [shape=box, label="HttpMonitor\n(HttpMon_NOAA_P3.xml)"];
+
+	port4000 [shape=box, label="4000"];
+	portXXXX [shape=record,label="<f0>1220|<f1>UDPCapture"];
+	udpcapture1 [label="UDPCapture"];
+	udpcapture2 [label="UDPCapture"];
+	udpcapture3 [label="UDPCapture"];
+	xmldemux1 [label="XMLDemux\n(IWG1_GTR_out_DC8.xml)"]
+	xmldemux2 [label="XMLDemux\n(IWG1_GTR_out_DC8.xml)"]
+	xmldemux3 [label="XMLDemux\n(IWG1_GTR_out_DC8.xml)"]
+	csndemux1 [label="CSNDemux\n (B200.xml)"]
+	csndemux2 [label="CSNDemux\n (NOAA_P3.xml)"]
+	csndemux3 [label="CSNDemux\n (C4580.xml)"]
+	csndemux4 [label="CSNDemux\n (Twin_Otter.xml)"]
+	
+	// Define the graph
+	// Input-only links (into rbnb)
+	portXXXX -> RBNB;
+	port5700 -> udpcapture1 -> RBNB;
+	port5750-> udpcapture2 -> RBNB;
+	port5800 -> udpcapture3 -> RBNB;
+	httpmon1 -> RBNB;
+	httpmon2 -> RBNB;
+	httpmon3 -> RBNB;
+	httpmon4 -> RBNB;
+	httpmon5 -> RBNB;
+	httpmon6 -> RBNB;
+	port4000 ->  TimeDrive;
+	
+	// Denote bidirectional links
+	edge [dir="both"];
+	RBNB -> DeadReckoning;
+	RBNB -> Tomcat;
+	RBNB -> PNG;
+	RBNB -> ToString;
+	RBNB -> TimeDrive;
+	RBNB -> TrackKML_DC8;
+	RBNB -> TrackKML_P3B;
+	RBNB -> TrackData_DC8;
+	RBNB -> TrackKML_P3B;
+	
+	xmldemux1 -> RBNB;
+	xmldemux2 -> RBNB;
+	xmldemux3 -> RBNB;
+	csndemux1 -> RBNB;
+	csndemux2 -> RBNB;
+	csndemux3 -> RBNB;
+	csndemux4 -> RBNB;
+	
+	// RDV links are sink-only, show differently
+	edge [dir="head"];
+	RBNB -> RDV1 [style=dotted];
+	RBNB -> RDV2;
+}
