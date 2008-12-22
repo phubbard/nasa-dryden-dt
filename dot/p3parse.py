@@ -10,8 +10,6 @@ from xml.dom.minidom import parse, parseString
 # Hardwired input file!
 dom1 = parse('/tmp/p3.xml');
 
-idx = 0;
-
 # ---------------------------------------------------------------------------
 # Most-basic test - this should be the top-level element in an INDS file
 assert dom1.documentElement.tagName == "startup";
@@ -24,8 +22,18 @@ def getText(nodelist):
             rc = rc + node.data
     return rc
 
+# ---------------------------------------------------------------------------
+# This function returns a glob int, used to make nodes unique
+idx = 0;
+def nameIndex():
+	global idx;
+	idx = idx + 1
+	return idx
+
+# ---------------------------------------------------------------------------
+# Each of these functions is responsible for serializing their node type.	
 def handleTrackKml(node):
-	idx = 0
+	idx = nameIndex()
 	nodeName = 'trackKML%d' % idx
 	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
 
@@ -33,7 +41,7 @@ def handleTrackKml(node):
 	print 'RBNB -> ' + nodeName
 	
 def handleTrackData(node):
-	idx = 0
+	idx = nameIndex()
 	nodeName = 'TrackData%d' % idx
 	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
 
@@ -42,7 +50,7 @@ def handleTrackData(node):
 
 
 def handleTimeDrive(node):
-	idx = 0
+	idx = nameIndex()
 	nodeName = 'TimeDrive%d' % idx
 	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
 
@@ -50,7 +58,7 @@ def handleTimeDrive(node):
 	print 'RBNB -> ' + nodeName
 	
 def handlePng(node):
-	idx = 0
+	idx = nameIndex()
 	nodeName = 'PNG%d' % idx
 	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
 
@@ -58,7 +66,7 @@ def handlePng(node):
 	print 'RBNB -> ' + nodeName
 
 def handleToString(node):
-	idx = 0
+	idx = nameIndex()
 	nodeName = 'toString%d' % idx
 	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
 
@@ -66,7 +74,7 @@ def handleToString(node):
 	print 'RBNB -> ' + nodeName
 	
 def handleThumbNail(node):
-	idx = 0
+	idx = nameIndex()
 	nodeName = 'Thumbnail%d' % idx
 	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
 
@@ -74,7 +82,7 @@ def handleThumbNail(node):
 	print 'RBNB -> ' + nodeName
 	
 def handleXmlDemux(node):
-	idx = 0
+	idx = nameIndex()
 	nodeName = 'XmlDemux%d' % idx
 	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
 
@@ -82,7 +90,7 @@ def handleXmlDemux(node):
 	print 'RBNB -> ' + nodeName
 	
 def handleCsvDemux(node):
-	idx = 0
+	idx = nameIndex()
 	nodeName = 'CsvDemux%d' % idx
 	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
 
@@ -90,7 +98,7 @@ def handleCsvDemux(node):
 	print 'RBNB -> ' + nodeName
 
 def handleHttpMonitor(node):
-	idx = 0
+	idx = nameIndex()
 	nodeName = 'HttpMonitor%d' % idx
 	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
 
@@ -98,14 +106,16 @@ def handleHttpMonitor(node):
 	print 'RBNB -> ' + nodeName
 	
 def handleUdpCapture(node):
-	idx = 0
+	idx = nameIndex()
 	nodeName = 'udpCap%d' % idx
 	portString = 'port%s' % node.getAttribute("port")
 	
+	# TODO: Need to parse child nodes and attributes
 	print portString + ' [label="%s"]' % node.getAttribute("port")
 	print nodeName + ' [label="%s"]' % node.getAttribute("logFile")
 	print portString + ' -> ' + nodeName
-
+	print nodeName + ' -> RBNB'
+	
 def handleTomcat(node):
 	print 'tomcat [label="tomcat"]'
 	print 'RBNB -> tomcat'
@@ -113,6 +123,8 @@ def handleTomcat(node):
 def handleDataTurbine(node):
 	print 'RBNB [label="RBNB (%s)"]' % node.getAttribute("name")
 	
+# ---------------------------------------------------------------------------
+# Loop over DOM tree, calling each handler as many times as needed
 def bigNodeMapper(inds):
 
 	dts = inds.getElementsByTagName("dataTurbine")
@@ -158,7 +170,9 @@ def bigNodeMapper(inds):
 	udps = inds.getElementsByTagName("udpCapture")
 	for udp in udps:
 		handleUdpCapture(udp)	
-	
+
+# ---------------------------------------------------------------------------
+# Main routine, emit header and call main loop/mapper	
 def handleINDS(inds):
 	print "digraph INDS {"
 	print 'center="true"'
@@ -169,4 +183,9 @@ def handleINDS(inds):
 	
 	print "}"
 
+# Top-level call
 handleINDS(dom1)
+
+# Release DOM, not really required but good practice
+dom1.unlink();
+
