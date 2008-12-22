@@ -15,14 +15,6 @@ dom1 = parse('/tmp/p3.xml');
 assert dom1.documentElement.tagName == "startup";
 
 # ---------------------------------------------------------------------------
-def getText(nodelist):
-    rc = ""
-    for node in nodelist:
-        if node.nodeType == node.TEXT_NODE:
-            rc = rc + node.data
-    return rc
-
-# ---------------------------------------------------------------------------
 # This function returns a glob int, used to make nodes unique
 idx = 0;
 def nameIndex():
@@ -30,90 +22,74 @@ def nameIndex():
 	idx = idx + 1
 	return idx
 
+# Handle the common case of a node whose label is its logfile name
+def nodeLabelLogfile(node, nodeType):
+	idx = nameIndex()
+	nodeName = 'nodeType%d' % idx
+	nodeString = nodeName + ' [label="' + nodeType + '(%s)"]' % node.getAttribute("logFile")
+
+	print nodeString
+	print 'RBNB -> ' + nodeName
+	
 # ---------------------------------------------------------------------------
 # Each of these functions is responsible for serializing their node type.	
 def handleTrackKml(node):
-	idx = nameIndex()
-	nodeName = 'trackKML%d' % idx
-	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
-
-	print nodeString
-	print 'RBNB -> ' + nodeName
+	nodeType = 'TrackKML'
+	nodeLabelLogfile(node, nodeType)
 	
 def handleTrackData(node):
-	idx = nameIndex()
-	nodeName = 'TrackData%d' % idx
-	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
-
-	print nodeString
-	print 'RBNB -> ' + nodeName
-
+	nodeType = 'TrackData'
+	nodeLabelLogfile(node, nodeType)
 
 def handleTimeDrive(node):
-	idx = nameIndex()
-	nodeName = 'TimeDrive%d' % idx
-	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
+	nodeType = 'TimeDrive'
+	nodeLabelLogfile(node, nodeType)
 
-	print nodeString
-	print 'RBNB -> ' + nodeName
-	
 def handlePng(node):
-	idx = nameIndex()
-	nodeName = 'PNG%d' % idx
-	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
-
-	print nodeString
-	print 'RBNB -> ' + nodeName
+	nodeType = 'png'
+	nodeLabelLogfile(node, nodeType)
 
 def handleToString(node):
-	idx = nameIndex()
-	nodeName = 'toString%d' % idx
-	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
+	nodeType = 'png'
+	nodeLabelLogfile(node, nodeType)
 
-	print nodeString
-	print 'RBNB -> ' + nodeName
-	
 def handleThumbNail(node):
-	idx = nameIndex()
-	nodeName = 'Thumbnail%d' % idx
-	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
+	nodeType = 'Thumbnail'
+	nodeLabelLogfile(node, nodeType)
 
-	print nodeString
-	print 'RBNB -> ' + nodeName
-	
 def handleXmlDemux(node):
-	idx = nameIndex()
-	nodeName = 'XmlDemux%d' % idx
-	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
+	nodeType = 'XMLDemux'
+	nodeLabelLogfile(node, nodeType)
 
-	print nodeString
-	print 'RBNB -> ' + nodeName
-	
 def handleCsvDemux(node):
-	idx = nameIndex()
-	nodeName = 'CsvDemux%d' % idx
-	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
-
-	print nodeString
-	print 'RBNB -> ' + nodeName
+	nodeType = 'CSVDemux'
+	nodeLabelLogfile(node, nodeType)
 
 def handleHttpMonitor(node):
-	idx = nameIndex()
-	nodeName = 'HttpMonitor%d' % idx
-	nodeString = nodeName + ' [label="%s"]' % node.getAttribute("logFile")
+	nodeType = 'HTTPMonitor'
+	nodeLabelLogfile(node, nodeType)
 
-	print nodeString
-	print 'RBNB -> ' + nodeName
+# This returns the node def for a UDPcapture input port	
+def handleUdpInput(node):
+	idx = nameIndex()
+	portString = 'udpCapture%d' % idx
+	return "hui"
+#	portDef = portString + ' [label="(%s)"]' % node.getAttribute("port")
+#	return portDef
 	
 def handleUdpCapture(node):
 	idx = nameIndex()
 	nodeName = 'udpCap%d' % idx
-	portString = 'port%s' % node.getAttribute("port")
 	
-	# TODO: Need to parse child nodes and attributes
-	print portString + ' [label="%s"]' % node.getAttribute("port")
-	print nodeName + ' [label="%s"]' % node.getAttribute("logFile")
+	# Parse child input node to determine listener port
+	portString = handleUdpInput(node.getElementsByTagName("input"))
+	# Port input box
 	print portString + ' -> ' + nodeName
+
+	# Define UDPcap node
+	print nodeName + ' [label="(%s)"]' % node.getAttribute("logFile")
+
+	# ...which feeds to DT
 	print nodeName + ' -> RBNB'
 	
 def handleTomcat(node):
