@@ -35,6 +35,8 @@
 		</edge>
 		<edge from="RBNB" to="HTTPMonitor6" isdirected="true" id="RBNB--HTTPMonitor6">
 		</edge>
+		<edge from="RBNB" to="tomcat" isdirected="true" id="RBNB--tomcat">
+		</edge>
 		<edge from="RBNB" to="TrackKML11" isdirected="true" id="RBNB--TrackKML11">
 		</edge>
 		<edge from="RBNB" to="TrackKML12" isdirected="true" id="RBNB--TrackKML12">
@@ -172,6 +174,11 @@
 		</node>
 		<edge from="timeDrive10" to="RBNB" isdirected="true" id="timeDrive10--RBNB">
 		</edge>
+		<node id="tomcat">
+			<attr name="label">
+				<string>tomcat</string>
+			</attr>
+		</node>
 		<node id="TrackKML11">
 			<attr name="label">
 				<string>TrackKML (TrackKMLDC8.log)</string>
