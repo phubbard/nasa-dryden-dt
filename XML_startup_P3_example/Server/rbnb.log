@@ -1,412 +1,56 @@
-<31-Oct-2008 GMT-05:00 08:22:07.558> <INDS>
-   RBNB (Ring Buffered Network Bus) V3.1B3 build 2877 (built Tue Mar 04 17:31:36 GMT-05:00 2008)
+<23-Dec-2008 EST 11:35:46.942> <INDS>
+   RBNB (Ring Buffered Network Bus) V3.1B3 build 2877 (built Tue Mar 04 17:31:36 EST 2008)
    Copyright 2006 Creare Inc.
-   Started at address tcp://192.168.2.60:3333.
+   Started at address tcp://whf.creare.com:3333.
    Archive home directory: "."
-<31-Oct-2008 GMT-05:00 08:22:31.669> <TrackKMLSink>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.000> <TrackDataSink_3>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.102> <TrackKMLSink_5>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.066> <TrackDataSink_4>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.103> <TrackDataSink_1>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.263> <TrackKML_DC8>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.266> <TrackKML_B200>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.268> <TrackKML_CV580>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.504> <TrackKML_P3B>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.505> <TrackDataSink_5>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.516> <TrackKML_NOAAP3>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.818> <TrackData_CV580>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.819> <TrackData_DC8>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.822> <TrackData_TwinOtter>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.847> <TrackData_P3B>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.849> <TrackKML_TwinOtter>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.919> <TrackData_NOAAP3>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:32.993> <TrackData_B200>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:33.745> <PNGPlugIn>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:33.787> <TSsink>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:33.847> <ToString>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:34.030> <ThumbNail>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:40.094> <DC8-817-TC4_IWG1>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:40.445> <DC8-817-TC4_IWG1>
-   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
-   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<31-Oct-2008 GMT-05:00 08:22:40.518> <DemuxSink>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:41.161> <GTR_P3orion_IWG1>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:41.161> <GTR_P3orion_IWG1>
-   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
-   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<31-Oct-2008 GMT-05:00 08:22:41.208> <DemuxSink_1>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:42.029> <GTR MONITOR TM STREAM P3B ARCTAS>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:42.030> <GTR MONITOR TM STREAM P3B ARCTAS>
-   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
-   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<31-Oct-2008 GMT-05:00 08:22:42.090> <DemuxSink_2>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:44.038> <HASR>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:44.112> <HASR>
-   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
-   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<31-Oct-2008 GMT-05:00 08:22:44.147> <DemuxSink_3>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:45.116> <WP3D>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:45.363> <WP3D>
-   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
-   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<31-Oct-2008 GMT-05:00 08:22:45.410> <DemuxSink_4>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:46.119> <CV580_IWG1>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:46.120> <CV580_IWG1>
-   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
-   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<31-Oct-2008 GMT-05:00 08:22:46.164> <DemuxSink_5>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:47.627> <DRSink>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:47.676> <DRPI>
-   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:47.737> <N255SA>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:47.809> <N255SA>
-   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
-   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<31-Oct-2008 GMT-05:00 08:22:47.843> <DemuxSink_6>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:55.683> <rbnbWebDavSink>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:56.111> <rtmm>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:56.447> <rtmm>
+<23-Dec-2008 EST 11:36:03.176> <TrackKMLSink_3>
+   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:03.192> <TrackKMLSink_4>
+   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:03.176> <TrackKMLSink_1>
+   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:29.192> <CV580>
+   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:29.192> <CV580>
    Set up cache with 4 framesets of 3 frames/set (total frames = 12).
    Set up archive with 10 filesets of 288000 framesets/set (total frames = 8640000)
-<31-Oct-2008 GMT-05:00 08:22:56.779> <B200>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:56.899> <B200>
+<23-Dec-2008 EST 11:36:30.176> <NOAA_P3>
+   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:30.176> <NOAA_P3>
    Set up cache with 4 framesets of 3 frames/set (total frames = 12).
    Set up archive with 10 filesets of 288000 framesets/set (total frames = 8640000)
-<31-Oct-2008 GMT-05:00 08:22:57.659> <DC8-5000-cap>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:57.690> <rbnbWebDavSink_1>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:57.692> <DC8-5000-cap>
-   Set up cache with 4 framesets of 3 frames/set (total frames = 12).
-   Set up archive with 10 filesets of 288000 framesets/set (total frames = 8640000)
-<31-Oct-2008 GMT-05:00 08:22:58.845> <DC8-5001-DIAL-cap>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:58.882> <DC8-5001-DIAL-cap>
-   Set up cache with 4 framesets of 3 frames/set (total frames = 12).
-   Set up archive with 10 filesets of 288000 framesets/set (total frames = 8640000)
-<31-Oct-2008 GMT-05:00 08:22:59.676> <CV580>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:22:59.676> <CV580>
-   Set up cache with 4 framesets of 3 frames/set (total frames = 12).
-   Set up archive with 10 filesets of 288000 framesets/set (total frames = 8640000)
-<31-Oct-2008 GMT-05:00 08:23:00.632> <NOAA_P3>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:23:00.677> <NOAA_P3>
-   Set up cache with 4 framesets of 3 frames/set (total frames = 12).
-   Set up archive with 10 filesets of 288000 framesets/set (total frames = 8640000)
-<31-Oct-2008 GMT-05:00 08:23:03.225> <P3B-5800-cap>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:23:03.249> <P3B-5800-cap>
+<23-Dec-2008 EST 11:36:31.458> <P3B-5750-cap>
+   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:31.458> <P3B-5750-cap>
    Set up cache with 10 framesets of 10 frames/set (total frames = 100).
    Set up archive with 10 filesets of 86400 framesets/set (total frames = 8640000)
-<31-Oct-2008 GMT-05:00 08:23:03.307> <P3B-5750-cap>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:23:03.307> <P3B-5750-cap>
+<23-Dec-2008 EST 11:36:31.505> <P3B-5700-cap>
+   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:31.505> <P3B-5700-cap>
    Set up cache with 10 framesets of 10 frames/set (total frames = 100).
    Set up archive with 10 filesets of 86400 framesets/set (total frames = 8640000)
-<31-Oct-2008 GMT-05:00 08:23:03.333> <P3B-5700-cap>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 GMT-05:00 2008.
-<31-Oct-2008 GMT-05:00 08:23:03.333> <P3B-5700-cap>
+<23-Dec-2008 EST 11:36:31.520> <P3B-5800-cap>
+   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:31.520> <P3B-5800-cap>
    Set up cache with 10 framesets of 10 frames/set (total frames = 100).
    Set up archive with 10 filesets of 86400 framesets/set (total frames = 8640000)
-<31-Oct-2008 GMT-05:00 08:24:59.181> <GTR_P3orion_IWG1>
-   Is shutting down with the following channels:
-   	ADC_Baro_Altitude
-   	Acceleration_X
-   	Acceleration_Y
-   	Acceleration_Z
-   	Aircraft_Sun_Azimuth
-   	Aircraft_Sun_Elevation
-   	Attack_Angle
-   	Cabin_Humidity
-   	Cabin_Pressure
-   	Cabin_Temp
-   	Dew_Point
-   	Drift_Angle
-   	Dynamic_Pressure
-   	GPS_Alt_MSL
-   	GPS_Altitude
-   	GPS_Vertical_Speed
-   	Ground_Speed
-   	Indicated_Air_Speed
-   	Latitude
-   	Longitude
-   	Mach_Number
-   	Pitch_Angle
-   	Potential_Temp
-   	Pressure_Altitude
-   	RADAR_Altitude
-   	Roll_Angle
-   	Slip_Angle
-   	Solar_Zenith_Angle
-   	Static_Air_Temp
-   	Static_Pressure
-   	Sun_Azimuth
-   	TimeStamp
-   	Total_Air_Temp
-   	Track_Angle
-   	True_Air_Speed
-   	True_Heading
-   	Vert_Wind_Speed
-   	Vertical_Speed
-   	Wind_Direction
-   	Wind_Speed
-   	_IWG1
-   	_Latency
-<31-Oct-2008 GMT-05:00 08:24:59.181> <GTR_P3orion_IWG1>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:24:59.184> <DemuxSink>
-   Is shutting down.
-<31-Oct-2008 GMT-05:00 08:24:59.186> <DemuxSink>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:24:59.187> <DemuxSink_1>
-   Is shutting down.
-<31-Oct-2008 GMT-05:00 08:24:59.188> <DemuxSink_1>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:24:59.193> <GTR MONITOR TM STREAM P3B ARCTAS>
-   Is shutting down with the following channels:
-   	ADC_Altitude
-   	ADC_Baro_Altitude
-   	ADC_IAS
-   	ADC_Mach
-   	ADC_SAT
-   	ADC_TAS
-   	ADC_TAT
-   	ADC_VSpd
-   	Accel_X
-   	Accel_Y
-   	Accel_Z
-   	Aircraft_Sun_Azimuth
-   	Aircraft_Sun_Elevation
-   	Cabin_Pressure
-   	Cabin_RH
-   	Cabin_Temp
-   	GPS_Altitude
-   	GPS_Date
-   	GPS_Fix_Mode
-   	GPS_Heading
-   	GPS_Latitude
-   	GPS_Longitude
-   	GPS_Num_Sats
-   	GPS_Speed
-   	GPS_Status
-   	GPS_UTC_Time
-   	Heater_Temp
-   	Laseref_Accel_Lateral
-   	Laseref_Accel_Longitudinal
-   	Laseref_Accel_Normal
-   	Laseref_Altitude_Inertial
-   	Laseref_GPS_IRS_Status
-   	Laseref_Ground_Speed
-   	Laseref_Latitude
-   	Laseref_Longitude
-   	Laseref_Pitch_Angle
-   	Laseref_Platform_Heading
-   	Laseref_Roll_Angle
-   	Laseref_TTNR
-   	Laseref_Track_Angle_True
-   	Laseref_True_Heading
-   	Laseref_Vertical_Speed_Inertial
-   	Laseref_Wind_Direction
-   	Laseref_Wind_Speed
-   	MIDG_Accel_X
-   	MIDG_Accel_Y
-   	MIDG_Accel_Z
-   	MIDG_Altitude
-   	MIDG_GPS_PV_Flags
-   	MIDG_Latitude
-   	MIDG_Longitude
-   	MIDG_NAV_PV_Flags
-   	MIDG_NAV_SENSOR_Flags
-   	MIDG_Pitch_Angle
-   	MIDG_Roll_Angle
-   	MIDG_STATUS_Flags
-   	MIDG_Temp
-   	MIDG_Yaw_Angle
-   	Sensor_Temp_1
-   	Sensor_Temp_2
-   	Solar_Zenith_Angle
-   	Sun_Azimuth
-   	System_Timestamp
-   	Tilt_X
-   	Tilt_Y
-   	UNS-1B_Cross_Track
-   	UNS-1B_Drift_Angle
-   	UNS-1B_Ground_Speed
-   	UNS-1B_Head_Wind
-   	UNS-1B_Latitude
-   	UNS-1B_Longitude
-   	UNS-1B_Nav_Status
-   	UNS-1B_Status
-   	UNS-1B_Time_to_Wypt
-   	UNS-1B_Track_Angle
-   	UNS-1B_True_Heading
-   	UNS-1B_Wind_Direction
-   	UNS-1B_Wind_Speed
-   	_IWG1
-   	_Latency
-<31-Oct-2008 GMT-05:00 08:24:59.193> <GTR MONITOR TM STREAM P3B ARCTAS>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:24:59.194> <DemuxSink_2>
-   Is shutting down.
-<31-Oct-2008 GMT-05:00 08:24:59.195> <DemuxSink_2>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:24:59.727> <DC8-817-TC4_IWG1>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:01.194> <N255SA>
-   Is shutting down with the following channels:
-   	Altitude
-   	GroundSpeed
-   	Heading
-   	Latitude
-   	Longitude
-   	TimeStamp
-   	_CSV
-   	_Latency
-<31-Oct-2008 GMT-05:00 08:25:01.194> <N255SA>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:01.196> <DemuxSink_6>
-   Is shutting down.
-<31-Oct-2008 GMT-05:00 08:25:01.198> <DemuxSink_6>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:01.205> <WP3D>
-   Is shutting down with the following channels:
-   	AOC_AmbTemp
-   	AOC_DewPtTemp
-   	AOC_DewPtTempTDL
-   	AOC_DryExtinction
-   	AOC_GPSalt
-   	AOC_GPSlat
-   	AOC_GPSlon
-   	AOC_H2Omr
-   	AOC_WindDir
-   	AOC_WindSpd
-   	CO
-   	CO2
-   	NMASS
-   	NO
-   	NOy
-   	O3
-   	SO2
-   	TimeStamp
-   	WLOPC
-   	_CSV
-   	_Latency
-   	numParams
-<31-Oct-2008 GMT-05:00 08:25:01.208> <DemuxSink_4>
-   Is shutting down.
-<31-Oct-2008 GMT-05:00 08:25:01.218> <DemuxSink_4>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:01.260> <HASR>
-   Is shutting down with the following channels:
-   	GPS_Alt_MSL
-   	Latitude
-   	Longitude
-   	Pitch
-   	Roll
-   	TimeStamp
-   	_CSV
-   	_Latency
-<31-Oct-2008 GMT-05:00 08:25:01.300> <CV580_IWG1>
-   Is shutting down with the following channels:
-   	Airspeed_kts
-   	Eddy_Dissipation
-   	GPS_Altitude_ft
-   	Icing
-   	Latitude
-   	Longitude
-   	Pres_Altitude_ft
-   	Rel_Humidity_Consensus_Value_%
-   	TAMDAR_Serial_Number
-   	Temp_C
-   	TimeStamp
-   	Time_of_Peak_Eddy_Dissipation_Rate
-   	Wind_Direction
-   	Wind_Speed_kts
-   	_CSV
-   	_Latency
-<31-Oct-2008 GMT-05:00 08:25:01.301> <CV580_IWG1>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:01.306> <DemuxSink_3>
-   Is shutting down.
-<31-Oct-2008 GMT-05:00 08:25:01.308> <DemuxSink_3>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:01.312> <DemuxSink_5>
-   Is shutting down.
-<31-Oct-2008 GMT-05:00 08:25:01.313> <DemuxSink_5>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:01.449> <HASR>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:01.556> <WP3D>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:02.939> <INDS>
-   Terminating.
-<31-Oct-2008 GMT-05:00 08:25:03.414> <TrackKML_NOAAP3>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:03.415> <TrackKML_P3B>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:03.415> <TrackKML_TwinOtter>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:03.416> <rbnbWebDavSink>
-   Is shutting down.
-<31-Oct-2008 GMT-05:00 08:25:03.416> <rbnbWebDavSink>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:03.417> <rbnbWebDavSink_1>
-   Is shutting down.
-<31-Oct-2008 GMT-05:00 08:25:03.417> <rbnbWebDavSink_1>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:03.418> <rtmm>
-   Is shutting down with the following channels:
-   	GOES-11_ir3_P3orion.png
-   	GOES-11_ir4_P3orion.png
-   	GOES-11_vis_P3orion.png
-   	GOES-12_ir3_P3orion.png
-   	GOES-12_ir4_P3orion.png
-   	GOES-12_vis_P3orion.png
-   	POLARCAT_P3orion.png
-<31-Oct-2008 GMT-05:00 08:25:03.506> <rtmm>
-   Stopped.
-<31-Oct-2008 GMT-05:00 08:25:03.610> <INDS>
-   Cleaning up (terminating connections and log).
-<31-Oct-2008 GMT-05:00 08:25:05.611> <INDS>
-   Terminated.
+<23-Dec-2008 EST 11:36:32.817> <TrackDataSink_2>
+   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:32.895> <TrackData_DC8>
+   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:32.942> <TrackDataSink_4>
+   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:32.942> <TrackDataSink_3>
+   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:32.989> <TrackData_NOAAP3>
+   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:33.005> <TrackDataSink_5>
+   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:33.005> <TrackData_B200>
+   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:33.051> <TrackData_CV580>
+   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:33.067> <TrackData_TwinOtter>
+   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<23-Dec-2008 EST 11:36:33.083> <TrackData_P3B>
+   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.

@@ -1,8 +1,4 @@
 Using SAX parser: com.sun.org.apache.xerces.internal.parsers.SAXParser
 MKCOL response = 200
 Local Date,Source URL,Dest URL,GET Code,PUT Code,Server Date,Server LastMod,Server Expires,Next Copy Date
-Fri Oct 31 08:23:00 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,200,201,Fri Oct 31 08:23:00 GMT-05:00 2008,Mon Apr 21 18:47:30 GMT-05:00 2008,---,Fri Oct 31 08:23:30 GMT-05:00 2008
-Fri Oct 31 08:23:30 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Oct 31 08:24:00 GMT-05:00 2008
-Fri Oct 31 08:24:00 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Oct 31 08:24:30 GMT-05:00 2008
-Fri Oct 31 08:24:30 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Oct 31 08:25:00 GMT-05:00 2008
-Fri Oct 31 08:25:00 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Oct 31 08:25:30 GMT-05:00 2008
+Tue Dec 23 11:36:30 EST 2008,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,200,201,Tue Dec 23 11:36:30 EST 2008,Mon Apr 21 19:47:30 EDT 2008,---,Tue Dec 23 11:37:00 EST 2008
