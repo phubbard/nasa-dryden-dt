@@ -6,7 +6,9 @@
 <startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/user/DryScan/nasa-dryden-dt/XML_startup_P3_example/inds_startup.xsd">
 	
 	<!-- Tomcat -->
-	<tomcat/>
+	<tomcat logFile="tommy.log">
+		<input type="tcp" port="localhost:80" />
+	</tomcat>
 	
 	<!-- Server -->
 	<del initialDirectory="Server" file="rbnb.log"/>
@@ -57,7 +59,7 @@
 	<del initialDirectory="Jobs/TimeDrive" file="*.log"/>
 	<timeDrive initialDirectory="Jobs/TimeDrive" logFile="timedrive.log" multiUserMode="ip">
 	    <input type="tcp" port="4000"/>
-	    <output type="tomcat" port="localhost:80"/>
+	    <output type="tcp" port="localhost:80"/>
 	</timeDrive>
 	<sleep duration_ms="2000"/>
 	
@@ -100,7 +102,7 @@
 	<!-- B200 project -->
 	<del initialDirectory="Projects/B200" file="*.log"/>
 	<csvDemux initialDirectory="Projects/B200" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="B200.xml">
-	    <input type="rbnb" port="localhost:3333" name="B200/B200_ASR_reduced.txt"/>
+	    <input type="rbnb" port="localhost:3333" channel="B200/B200_ASR_reduced.txt"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</csvDemux>
 	<sleep duration_ms="1000"/>
@@ -108,7 +110,7 @@
 	<!-- NOAA P3 project -->
 	<del initialDirectory="Projects/NOAA_P3" file="*.log"/>
 	<csvDemux initialDirectory="Projects/NOAA_P3" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="NOAA_P3.xml">
-	    <input type="rbnb" port="localhost:3333" name="NOAA_P3/WP3D.txt"/>
+	    <input type="rbnb" port="localhost:3333" channel="NOAA_P3/WP3D.txt"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</csvDemux>
 	<sleep duration_ms="1000"/>
@@ -116,7 +118,7 @@
 	<!-- CV580 project -->
 	<del initialDirectory="Projects/CV580" file="*.log"/>
 	<csvDemux initialDirectory="Projects/CV580" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="CV580.xml">
-	    <input type="rbnb" port="localhost:3333" name="CV580/_CSV"/>
+	    <input type="rbnb" port="localhost:3333" channel="CV580/_CSV"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="CV580_IWG1"/>
 	</csvDemux>
 	<sleep duration_ms="1000"/>
@@ -124,7 +126,7 @@
 	<!-- Twin Otter project -->
 	<del initialDirectory="Projects/TwinOtter" file="*.log"/>
 	<csvDemux initialDirectory="Projects/TwinOtter" logFile="TwinOtterDemux.log" dateFormat="yyyy-MM-dd\'T\'HH:mm:ss\'Z\'" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="TwinOtter.xml">
-	    <input type="rbnb" port="localhost:3333" name="P3B-5800-cap/UDP"/>
+	    <input type="rbnb" port="localhost:3333" channel="P3B-5800-cap/UDP"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
 	</csvDemux>
 	<deadReckoning initialDirectory="Projects/TwinOtter" logFile="DeadReckoning.log" maxLatency_sec="1800"/>
