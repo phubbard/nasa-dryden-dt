@@ -17,6 +17,7 @@
 	
 	---  History  ---
 	2008/12/02  WHF  Created.
+	2008/12/19  WHF  Added check for null in waitFor().
 */
 
 package com.rbnb.inds.exec.commands;
@@ -72,7 +73,8 @@ public abstract class ExternalCommand extends com.rbnb.inds.exec.Command
 	
 	protected void doWaitFor() throws InterruptedException
 	{
-		process.waitFor();
+		if (process != null) 
+			process.waitFor();
 	}
 
 	protected final String getExecutablePath() { return argList.get(0); }

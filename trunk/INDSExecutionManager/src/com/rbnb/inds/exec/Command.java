@@ -17,6 +17,7 @@
 	
 	---  History  ---
 	2008/12/02  WHF  Created.
+	2008/12/23  WHF  Added name field, and ByteArrayOutputStreams.
 */
 
 package com.rbnb.inds.exec;
@@ -24,6 +25,7 @@ package com.rbnb.inds.exec;
 
 import java.io.InputStream;
 import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 
 import java.util.ArrayList;
 
@@ -45,6 +47,8 @@ public abstract class Command
 		logFile = attr.getValue("logFile");
 
 		tag = (temp = attr.getValue("tag")) == null ? "" : temp;
+		
+		name = getClass().getSimpleName() + '_' + (++commandCount);
 	}
 	
 	/**
@@ -106,6 +110,11 @@ public abstract class Command
 	
 	public InputStream getStdOut() { return null; }
 	public InputStream getStdErr() { return null; }
+	
+	public final ByteArrayOutputStream getLocalStdOutStream() 
+			{ return localStdOutStream; }
+	public final ByteArrayOutputStream getLocalStdErrStream()
+	{ return localStdErrStream; }
 
 	protected abstract boolean doExecute() throws java.io.IOException;
 	// TODO: get thread of non-process commands, and interrupt/terminate
@@ -115,6 +124,7 @@ public abstract class Command
 	
 	public final String getInitialDirectory() { return initialDirectory; }
 	public final String getLogfile() { return logFile; }
+	public final String getName() { return name; }
 	public final String getTag() { return tag; }
 	public final boolean isExecutionComplete() { return executionComplete; }
 	
@@ -138,12 +148,15 @@ public abstract class Command
 	}
 
 //**************************  Private Member Data  **************************//	
-	private final String initialDirectory, logFile, tag;
+	private final String initialDirectory, logFile, name, tag;
 	private String xmlSnippet;
 	private java.io.OutputStream logStream;
 	private final ArrayList<Port> 
 		inputs = new ArrayList<Port>(),
 		outputs = new ArrayList<Port>();
+	private final ByteArrayOutputStream 
+		localStdOutStream = new ByteArrayOutputStream(), 
+		localStdErrStream = new ByteArrayOutputStream();
 
 	private boolean executionComplete = false;
 	
@@ -155,6 +168,11 @@ public abstract class Command
 	}
 	
 //****************************  Static Data  ********************************//
+	/**
+	  * Incremented with each new command to generate unique names.
+	  */
+	private static int commandCount = 0;
+	
 	/**
 	  * Messy, isn't it?  This is why C++ has typedefs.
 	  */	  

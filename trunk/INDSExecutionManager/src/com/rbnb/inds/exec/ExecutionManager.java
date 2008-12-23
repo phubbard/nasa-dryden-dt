@@ -17,6 +17,8 @@
 	
 	---  History  ---
 	2008/12/02  WHF  Created.
+	2008/12/23  WHF  Remote interface added.  
+			Shutdown processes in reverse order from startup.
 */
 
 package com.rbnb.inds.exec;
@@ -24,6 +26,7 @@ package com.rbnb.inds.exec;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import org.xml.sax.ContentHandler;
 import org.xml.sax.EntityResolver;
@@ -41,9 +44,17 @@ import org.xml.sax.SAXException;
   */
 public class ExecutionManager
 {
-	public ExecutionManager()
+	public ExecutionManager() throws java.rmi.RemoteException
 	{
 		Runtime.getRuntime().addShutdownHook(new Thread(shutdownRunner));
+		
+		try {
+			java.rmi.registry.Registry reg 
+					= java.rmi.registry.LocateRegistry.createRegistry(1099);
+			reg.bind("IndsExecutionManager", remoteHandler);
+		} catch (Throwable t) {
+			t.printStackTrace();
+		} 
 	}
 	
 	/**
@@ -106,7 +117,10 @@ System.err.println(cmd);
 	}
 	
 	private Runnable logRunner = new Runnable() {
-		private boolean flushStream(Command cmd, java.io.InputStream is)
+		private boolean flushStream(
+				Command cmd,
+				java.io.InputStream is,
+				java.io.OutputStream localCopy)
 			throws IOException
 		{
 			int nAvail = is.available(), 
@@ -117,6 +131,7 @@ System.err.println(cmd);
 			if (nRead > 0) {
 				if (cmd.getLogStream() != null)
 					cmd.getLogStream().write(buffer, 0, nRead);
+				localCopy.write(buffer, 0, nRead);
 				return true;
 			}
 			return false;
@@ -127,7 +142,7 @@ System.err.println(cmd);
 			Command cmd = null;
 			boolean noUpdates = true, doWait = false;
 			for (;;) {
-				synchronized (currentCommands) {
+				synchronized (currentCommands) {				
 					int len = currentCommands.size();
 					if (len == 0) break; // no more commands to log
 					if (index == len) {
@@ -147,8 +162,10 @@ System.err.println(cmd);
 				if (cmd.isExecutionComplete()) // || cmd.getLogStream() == null)
 					continue;
 				try {
-					if (flushStream(cmd, cmd.getStdErr())
-							|| flushStream(cmd, cmd.getStdOut()))
+					if (flushStream(cmd, cmd.getStdErr(),
+								cmd.getLocalStdErrStream())
+							|| flushStream(cmd, cmd.getStdOut(),
+								cmd.getLocalStdOutStream()))
 						noUpdates = false;
 				} catch (IOException ioe) {
 					System.err.println("ERROR writing logfile:");
@@ -164,11 +181,16 @@ System.err.println(cmd);
 		public void run()
 		{
 			synchronized (currentCommands) {
-				for (Command cmd : currentCommands)
+				//for (Command cmd : currentCommands) {
+				for (ListIterator<Command> iter = currentCommands.listIterator(
+						currentCommands.size());
+						iter.hasPrevious(); ) {
+					Command cmd = iter.previous();
 					if (!cmd.isExecutionComplete()) {
 System.err.println("Stopping command "+cmd);						
 						cmd.stopExecution();
 					}
+				}
 			}
 		}
 	};
@@ -189,7 +211,76 @@ System.err.println(" complete.");
 			// TODO: Check for quit condition
 		}
 	}
+
+//*******************  Remote Interface Implementation  *********************//
+	/**
+	  * Implementation of Remote methods.
+	  */
+	private class RemoteHandler 
+		extends java.rmi.server.UnicastRemoteObject
+		implements Remote
+	{
+		RemoteHandler() throws java.rmi.RemoteException
+		{
+			super();		
+		}
+		
+		public String[] getCommandList() throws java.rmi.RemoteException
+		{
+			synchronized (currentCommands) {
+				String[] cmdList = new String[currentCommands.size()];
+				for (int ii = 0; ii < cmdList.length; ++ii)
+					cmdList[ii] = currentCommands.get(ii).getName();
+				
+				return cmdList;
+			}
+		}
 	
+		public String getCommandOut(String cmd) throws java.rmi.RemoteException
+		{
+			return new String(
+					getCommand(cmd).getLocalStdOutStream().toByteArray()
+			);
+		}
+	
+		public String getCommandError(String cmd) throws java.rmi.RemoteException
+		{
+			return new String(
+					getCommand(cmd).getLocalStdErrStream().toByteArray()
+			);
+		}
+	
+		public String getConfiguration(String cmd) throws java.rmi.RemoteException
+		{
+			return getCommand(cmd).getXmlSnippet();
+		}
+		
+		public boolean isComplete(String cmd) throws java.rmi.RemoteException
+		{
+			return getCommand(cmd).isExecutionComplete();
+		}
+		
+		private static final long serialVersionUID = 3348353995890377784L;	
+	}
+	
+	/**
+	  * @throws IllegalArgumentException  if no command matching the name is
+	  *    found.
+	  */
+	private Command getCommand(String cmdName)
+	{
+		synchronized (currentCommands) {
+			for (Command cmd : currentCommands) {
+				if (cmd.getName().equals(cmdName)) return cmd;
+			}
+		}
+		
+		throw new IllegalArgumentException(
+				"No command named \""+cmdName+"\" found."
+		);
+	}				
+	
+//***************************  Static Methods  ******************************//
 	/**
 	  * Interface for starting the ExecutionManager from the command line.
 	  * It accepts one argument, the filename or URL of the configuration file.
@@ -220,8 +311,8 @@ System.err.println(" complete.");
 	private final EntityResolver builtInSchemaResolver 
 			= new BuiltInSchemaResolver();
 	private final ErrorHandler errorHandler = rootContentHandler;
-	
 	private final ArrayList<Command> currentCommands = new ArrayList<Command>();
+	private final RemoteHandler remoteHandler = new RemoteHandler();
 	
 	private Thread logRunnerThread;
 }
