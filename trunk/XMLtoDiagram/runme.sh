@@ -5,5 +5,7 @@
 
 dot -Tpng -Nfontname="/System/Library/Fonts/Times.dfont" test.dot -o test.png
 
+dot -Tsvg -Nfontname="/System/Library/Fonts/Times.dfont" test.dot -o test.svg
+
 dot2gxl test.dot > test.gxl
 
