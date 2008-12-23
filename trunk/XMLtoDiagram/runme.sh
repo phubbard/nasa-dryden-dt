@@ -1,7 +1,7 @@
 #!/bin/sh
 # pfh 12/22/08, script before I rewrite as a makefile
 
-./xmlToDot.py > test.dot
+./xmlToDot.py P3_startup.xml > test.dot
 
 dot -Tpng -Nfontname="/System/Library/Fonts/Times.dfont" test.dot -o test.png
 
