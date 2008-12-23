@@ -37,33 +37,12 @@ def nodeByLogfile(node, nodeType):
 	return(nodeSimpleLabel(node, nodeType, 'logFile'))
 	
 # ---------------------------------------------------------------------------
-# udpCapture has a child node that feeds into it, so is a bit more complex.
-def handleUdpCapture(node):
+# twoBox is for timedrive and UDP capture, where we want a second box node
+# feeding into the main node.
+def handleTwoBox(node, prefix, label):
 	idx = nameIndex()
 	
-	uNodeName = 'udpCap%d' % idx
-	pNodeName = uNodeName + 'port%d' % idx
-	
-	# Parse child input node to determine listener port
-	inputElement = node.getElementsByTagName("input")
-	
-	# Define port node
-	print pNodeName + ' [shape="box" label="%s"]' % inputElement[0].getAttribute("port")
-
-	# Define udpcapture node
-	print uNodeName + ' [label="UDP Capture (%s)"]' % node.getAttribute("logFile")
-
-	# port -> udpCapture
-	print pNodeName + ' -> ' + uNodeName
-	
-	# ...which feeds to DT
-	print uNodeName + ' -> RBNB'
-
-# timedrive has a client node also, very similar to udpcapture
-def handleTimeDrive(node):
-	idx = nameIndex()
-	
-	uNodeName = 'timeDrive%d' % idx
+	uNodeName = '%s%d' % (prefix, idx)	
 	pNodeName = uNodeName + 'port%d' % idx
 	
 	# Parse child node to get listener port
@@ -72,11 +51,11 @@ def handleTimeDrive(node):
 	# Define port name
 	print pNodeName + ' [shape="box" label="%s"]' % inputElement[0].getAttribute("port")
 	
-	print uNodeName + ' [label="TimeDrive"]'
+	print uNodeName + ' [label="%s"]' % label
 	
 	print pNodeName + ' -> ' + uNodeName
 	print uNodeName + ' -> RBNB'
-		
+	
 def handleTomcat(node):
 	print 'tomcat [label="tomcat"]'
 	print 'RBNB -> tomcat'
@@ -95,11 +74,11 @@ def bigNodeMapper(inds):
 		
 	udps = inds.getElementsByTagName("udpCapture")
 	for udp in udps:
-		handleUdpCapture(udp)	
+		handleTwoBox(udp, 'udpCap', 'UDPCapture')
 
 	tds = inds.getElementsByTagName("timeDrive")
 	for td in tds:
-		handleTimeDrive(td)
+		handleTwoBox(td, 'timeDrive', 'TimeDrive')
 
 	# Now switch to dual-direction arrows
 	print 'edge [dir="both"]'
@@ -108,8 +87,10 @@ def bigNodeMapper(inds):
 	for dt in dts:
 		handleRBNB(dt)
 		
-	#--------------------------------------------------------------------
-	# Elements using the simple logfile-as-label method
+	tcs = inds.getElementsByTagName("tomcat")
+	for tc in tcs:
+		handleTomcat(tc)
+
 	tkps = inds.getElementsByTagName("trackKML")
 	for tkp in tkps:
 		nodeByLogfile(tkp, 'TrackKML')
@@ -137,7 +118,6 @@ def bigNodeMapper(inds):
 	cds = inds.getElementsByTagName("csvDemux")
 	for cd in cds:
 		nodeByLogfile(cd, "CSVDemux")
-		
 # ---------------------------------------------------------------------------
 # Main routine, emit header and call main loop/mapper	
 def handleINDS(inds):
