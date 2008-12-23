@@ -88,19 +88,25 @@ def handleRBNB(node):
 # Loop over DOM tree, calling each handler as many times as needed
 def bigNodeMapper(inds):
 
-	#--------------------------------------------------------------------
-	# Elements requiring different handling
-	dts = inds.getElementsByTagName("dataTurbine")
-	for dt in dts:
-		handleRBNB(dt)
+	# First, input-only elements
+	hms = inds.getElementsByTagName("httpMonitor")
+	for hm in hms:
+		nodeByLogfile(hm, "HTTPMonitor")
 		
+	udps = inds.getElementsByTagName("udpCapture")
+	for udp in udps:
+		handleUdpCapture(udp)	
+
 	tds = inds.getElementsByTagName("timeDrive")
 	for td in tds:
 		handleTimeDrive(td)
 
-	udps = inds.getElementsByTagName("udpCapture")
-	for udp in udps:
-		handleUdpCapture(udp)	
+	# Now switch to dual-direction arrows
+	print 'edge [dir="both"]'
+	
+	dts = inds.getElementsByTagName("dataTurbine")
+	for dt in dts:
+		handleRBNB(dt)
 		
 	#--------------------------------------------------------------------
 	# Elements using the simple logfile-as-label method
@@ -131,10 +137,6 @@ def bigNodeMapper(inds):
 	cds = inds.getElementsByTagName("csvDemux")
 	for cd in cds:
 		nodeByLogfile(cd, "CSVDemux")
-		
-	hms = inds.getElementsByTagName("httpMonitor")
-	for hm in hms:
-		nodeByLogfile(hm, "HTTPMonitor")
 		
 # ---------------------------------------------------------------------------
 # Main routine, emit header and call main loop/mapper	
