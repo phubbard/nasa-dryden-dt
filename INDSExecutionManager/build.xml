@@ -2,6 +2,7 @@
 	INDS Execution Manager build script for Ant.
 	
 	2008/12/02  WHF  Created.
+	2008/12/22  WHF  Added rmic.
 -->
 <project name="INDSExecutionManager" default="compile">
 	<target name="compile">
@@ -32,11 +33,39 @@
 				<attribute name="Class-Path"
 						value="rbnb.jar" />
 			</manifest>
-		</jar>		
+		</jar>
+
+		<!-- Create RMI stubs, and jar file with dependencies: -->
+		<mkdir dir="rmi" />
+<!--		<rmic base="rmi" classpath="out" stubversion="1.2"
+				classname="com.rbnb.inds.exec.RemoteHandler" /> -->
+		<copy todir="rmi/com/rbnb/inds/exec" > 
+			<fileset dir="out/com/rbnb/inds/exec">
+				<include name="Remote.class" />
+<!--				<include name="RemoteHandler.class" /> 
+				<include name="RemoteHandlerImpl.class" /> --> 
+			</fileset>
+		</copy>
+		<copy todir="rmi/com/rbnb/inds/exec/test" > 
+			<fileset dir="out/com/rbnb/inds/exec/test">
+				<include name="RmiTest.class" />
+			</fileset>
+		</copy>
+		<jar 
+				destfile="bin/inds_rmistubs.jar" 
+				basedir="rmi" 
+				includes="**"
+		>
+			<manifest>
+				<attribute name="Main-Class"
+						value="com.rbnb.inds.exec.test.RmiTest" />
+			</manifest>
+		</jar>
 	</target>
 	
 	<target name="clean">
 		<delete dir="out" />
+		<delete dir="rmi" />
 		<delete file="bin/inds_exec.jar" />
 	</target>
 	
