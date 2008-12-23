@@ -1,18 +1,32 @@
 #!/usr/bin/env python
-# pfh 12/22/08, starting from http://docs.python.org/library/xml.dom.minidom.html
-# Test to see if Python is well suited to this sort of parse/process/emit
-# coding, or if I should use another language.
-# pfhubbar@ucsd.edu
+""""
+@file xmlToDot.py
+@author Paul Hubbard pfhubbar@ucsd.edu
+@date 12/22/08
+@brief Parse INDS XML file into graphviz DOT language graph.
+@note Simply uses print to output, so redirect into output file to save.
+@todo Write node defs and graph into separate queues, then write output
+all at once in two chunks.
+@todo Add URLs to nodes for multi-system graphs
+"""
 
-# Using the minidom parser, might want to see about validating
+# Using the minidom parser, also sys for command line
 from xml.dom.minidom import parse, parseString
+import sys
 
-# Hardwired input file!
-dom1 = parse('P3_startup.xml');
+# Check for required argument
+if len(sys.argv) < 2:
+	print 'No input file specified, exiting.'
+	print 'Syntax: ' + sys.argv[0] + ' filename {> output.dot}'
+	sys.exit()
+	
+# Open first argument and parse into DOM
+dom1 = parse(open(sys.argv[1]))
 
-# ---------------------------------------------------------------------------
 # Most-basic test - this should be the top-level element in an INDS file
 assert dom1.documentElement.tagName == "startup";
+
+# Now off into functions, code to invoke is last in the file.
 
 # ---------------------------------------------------------------------------
 # This function returns a global integer, used to make nodes unique
@@ -135,4 +149,3 @@ handleINDS(dom1)
 
 # Release DOM, not really required but good practice
 dom1.unlink();
-
