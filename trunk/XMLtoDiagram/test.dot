@@ -32,6 +32,8 @@ timeDrive10port10 -> timeDrive10
 timeDrive10 -> RBNB
 edge [dir="both"]
 RBNB [label="INDS"]
+tomcat [label="tomcat"]
+RBNB -> tomcat
 TrackKML11 [label="TrackKML (TrackKMLDC8.log)"]
 RBNB -> TrackKML11
 TrackKML12 [label="TrackKML (TrackKMLP3B.log)"]
@@ -76,6 +78,4 @@ CSVDemux31 [label="CSVDemux (CSVDemux.log)"]
 RBNB -> CSVDemux31
 CSVDemux32 [label="CSVDemux (TwinOtterDemux.log)"]
 RBNB -> CSVDemux32
-tomcat [label="tomcat"]
-RBNB -> tomcat
 }
