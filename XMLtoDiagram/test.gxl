@@ -116,7 +116,7 @@
 		</edge>
 		<node id="udpCap7">
 			<attr name="label">
-				<string>UDP Capture (P3B-5700-cap.log)</string>
+				<string>UDPCapture</string>
 			</attr>
 		</node>
 		<edge from="udpCap7" to="RBNB" isdirected="true" id="udpCap7--RBNB">
@@ -133,7 +133,7 @@
 		</edge>
 		<node id="udpCap8">
 			<attr name="label">
-				<string>UDP Capture (P3B-5750-cap.log)</string>
+				<string>UDPCapture</string>
 			</attr>
 		</node>
 		<edge from="udpCap8" to="RBNB" isdirected="true" id="udpCap8--RBNB">
@@ -150,7 +150,7 @@
 		</edge>
 		<node id="udpCap9">
 			<attr name="label">
-				<string>UDP Capture (P3B-5800-cap.log)</string>
+				<string>UDPCapture</string>
 			</attr>
 		</node>
 		<edge from="udpCap9" to="RBNB" isdirected="true" id="udpCap9--RBNB">

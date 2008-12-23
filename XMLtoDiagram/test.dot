@@ -15,15 +15,15 @@ RBNB -> HTTPMonitor5
 HTTPMonitor6 [label="HTTPMonitor (NOAA_P3.log)"]
 RBNB -> HTTPMonitor6
 udpCap7port7 [shape="box" label="5700"]
-udpCap7 [label="UDP Capture (P3B-5700-cap.log)"]
+udpCap7 [label="UDPCapture"]
 udpCap7port7 -> udpCap7
 udpCap7 -> RBNB
 udpCap8port8 [shape="box" label="5750"]
-udpCap8 [label="UDP Capture (P3B-5750-cap.log)"]
+udpCap8 [label="UDPCapture"]
 udpCap8port8 -> udpCap8
 udpCap8 -> RBNB
 udpCap9port9 [shape="box" label="5800"]
-udpCap9 [label="UDP Capture (P3B-5800-cap.log)"]
+udpCap9 [label="UDPCapture"]
 udpCap9port9 -> udpCap9
 udpCap9 -> RBNB
 timeDrive10port10 [shape="box" label="4000"]
@@ -76,4 +76,6 @@ CSVDemux31 [label="CSVDemux (CSVDemux.log)"]
 RBNB -> CSVDemux31
 CSVDemux32 [label="CSVDemux (TwinOtterDemux.log)"]
 RBNB -> CSVDemux32
+tomcat [label="tomcat"]
+RBNB -> tomcat
 }
