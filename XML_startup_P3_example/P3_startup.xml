@@ -82,7 +82,7 @@
 	<del initialDirectory="Projects/DC8" file="*.log"/>
 	<xmlDemux initialDirectory="Projects/DC8" logFile="IWG1Demux.log" silentMode="true" chanNameFromID="true" xmlFile="IWG1_GTR_OUT.XML">
 	    <input type="rbnb" port="localhost:3333" channel="DC8-5000-cap/UDP"/>
-	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="DC8-817-TC4_IWG1"/>
 	</xmlDemux>
 	<sleep duration_ms="1000"/>
 	
@@ -90,12 +90,12 @@
 	<del initialDirectory="Projects/P3B" file="*.log"/>
 	<xmlDemux initialDirectory="Projects/P3B" logFile="IWG1Demux.log" silentMode="true" chanNameFromID="true" xmlFile="IWG1_INDS_OUT.XML">
 	    <input type="rbnb" port="localhost:3333" channel="P3B-5700-cap/UDP"/>
-	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="GTR_P3orion_IWG1"/>
 	</xmlDemux>
 	<sleep duration_ms="1000"/>
 	<xmlDemux initialDirectory="Projects/P3B" logFile="HskpngDemux.log" silentMode="true" chanNameFromID="true" xmlFile="SCAN_GTR_OUT.XML">
 	    <input type="rbnb" port="localhost:3333" channel="P3B-5750-cap/UDP"/>
-	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="GTR_MONITOR_TM_STREAM_P3B_ARCTAS"/>
 	</xmlDemux>
 	<sleep duration_ms="2000"/>
 	
@@ -103,7 +103,7 @@
 	<del initialDirectory="Projects/B200" file="*.log"/>
 	<csvDemux initialDirectory="Projects/B200" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="B200.xml">
 	    <input type="rbnb" port="localhost:3333" channel="B200/B200_ASR_reduced.txt"/>
-	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="HASR"/>
 	</csvDemux>
 	<sleep duration_ms="1000"/>
 	
@@ -111,7 +111,7 @@
 	<del initialDirectory="Projects/NOAA_P3" file="*.log"/>
 	<csvDemux initialDirectory="Projects/NOAA_P3" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="NOAA_P3.xml">
 	    <input type="rbnb" port="localhost:3333" channel="NOAA_P3/WP3D.txt"/>
-	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="WP3D"/>
 	</csvDemux>
 	<sleep duration_ms="1000"/>
 	
@@ -127,7 +127,7 @@
 	<del initialDirectory="Projects/TwinOtter" file="*.log"/>
 	<csvDemux initialDirectory="Projects/TwinOtter" logFile="TwinOtterDemux.log" dateFormat="yyyy-MM-dd\'T\'HH:mm:ss\'Z\'" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="TwinOtter.xml">
 	    <input type="rbnb" port="localhost:3333" channel="P3B-5800-cap/UDP"/>
-	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="N255SA"/>
 	</csvDemux>
 	<deadReckoning initialDirectory="Projects/TwinOtter" logFile="DeadReckoning.log" maxLatency_sec="1800"/>
 	
@@ -135,17 +135,29 @@
 	
 	<!-- Capture/HttpMonitor -->
 	<del initialDirectory="Capture/HttpMonitor" file="*.log"/>
-	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="MSFC.log" configFile="MSFC.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="MSFC.log" configFile="MSFC.xml">
+	    <output type="rbnb" name="rtmm"/>
+	</httpMonitor>
 	<sleep duration_ms="1000"/>
-	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="B200.log" configFile="B200.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="B200.log" configFile="B200.xml">
+	    <output type="rbnb" name="B200"/>
+	</httpMonitor>
 	<sleep duration_ms="1000"/>
-	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="DC8.log" configFile="DC8.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="DC8.log" configFile="DC8.xml">
+	    <output type="rbnb" name="DC8-5000-cap"/>
+	</httpMonitor>
 	<sleep duration_ms="1000"/>
-	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="DIAL.log" configFile="DIAL.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="DIAL.log" configFile="DIAL.xml">
+	    <output type="rbnb" name="DC8-5001-DIAL-cap"/>
+	</httpMonitor>
 	<sleep duration_ms="1000"/>
-	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="CV580.log" configFile="CV580.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="CV580.log" configFile="CV580.xml">
+	    <output type="rbnb" name="CV580"/>
+	</httpMonitor>
 	<sleep duration_ms="1000"/>
-	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="NOAA_P3.log" configFile="NOAA_P3.xml"/>
+	<httpMonitor initialDirectory="Capture/HttpMonitor" logFile="NOAA_P3.log" configFile="NOAA_P3.xml">
+	    <output type="rbnb" name="NOAA_P3"/>
+	</httpMonitor>
 	<sleep duration_ms="1000"/>
 	
 	<!-- Capture/UDPCapture -->
