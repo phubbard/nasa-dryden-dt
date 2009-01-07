@@ -51,8 +51,8 @@ def nodeByLogfile(node, nodeType):
 	return(nodeSimpleLabel(node, nodeType, 'logFile'))
 	
 # ---------------------------------------------------------------------------
-# twoBox is for timedrive and UDP capture, where we want a second box node
-# feeding into the main node.
+# twoBox is for timedrive and UDP capture, where we want a second box-shaped node
+# feeding into the main node. This is to show UDP ports
 def handleTwoBox(node, prefix, label):
 	idx = nameIndex()
 	
