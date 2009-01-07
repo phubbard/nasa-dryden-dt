@@ -1,7 +1,7 @@
 #!/bin/sh
 # pfh 12/22/08, script before I rewrite as a makefile
 
-./xmlToDot.py ../XML_startup_P3_example/P3_startup.xml > test.dot
+./invoker.py ../XML_startup_P3_example/P3_startup.xml > test.dot
 
 dot -Nfontname="/System/Library/Fonts/Times.dfont" test.dot -o test.dotlayout
 

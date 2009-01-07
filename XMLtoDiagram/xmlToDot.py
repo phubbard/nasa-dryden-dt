@@ -14,138 +14,166 @@ all at once in two chunks.
 from xml.dom.minidom import parse, parseString
 import sys
 
-# Check for required argument
-if len(sys.argv) < 2:
-	print 'No input file specified, exiting.'
-	print 'Syntax: ' + sys.argv[0] + ' filename {> output.dot}'
-	sys.exit()
-	
-# Open first argument and parse into DOM
-dom1 = parse(open(sys.argv[1]))
+idx = 0
 
-# Most-basic test - this should be the top-level element in an INDS file
-assert dom1.documentElement.tagName == "startup";
-
-# Now off into functions, code to invoke is last in the file.
-
-# ---------------------------------------------------------------------------
-# This function returns a global integer, used to make nodes unique
-idx = 0;
-def nameIndex():
-	global idx;
-	idx = idx + 1
-	return idx
-
-# Handle the common case of a node whose label is a single attribute
-def nodeSimpleLabel(node, nodeType, attribName):
-	idx = nameIndex()
-	nodeName = nodeType + '%d' % idx
-	nodeString = nodeName + ' [label="' + nodeType + ' ('
-	nodeString += node.getAttribute(attribName) + ')"]'
+class IndsToDot:
+	"Converts INDS XML into Graphviz DOT-language graph"
 	
-	print nodeString
-	print 'RBNB -> ' + nodeName
-	
-# Special-purpose, single element whose label is logFile name
-def nodeByLogfile(node, nodeType):
-	return(nodeSimpleLabel(node, nodeType, 'logFile'))
-	
-# ---------------------------------------------------------------------------
-# twoBox is for timedrive and UDP capture, where we want a second box-shaped node
-# feeding into the main node. This is to show UDP ports
-def handleTwoBox(node, prefix, label):
-	idx = nameIndex()
-	
-	uNodeName = '%s%d' % (prefix, idx)	
-	pNodeName = uNodeName + 'port%d' % idx
-	
-	# Parse child node to get listener port
-	inputElement = node.getElementsByTagName("input")
-	
-	# Define port name
-	print pNodeName + ' [shape="box" label="%s"]' % inputElement[0].getAttribute("port")
-	
-	print uNodeName + ' [label="%s"]' % label
-	
-	print pNodeName + ' -> ' + uNodeName
-	print uNodeName + ' -> RBNB'
-	
-def handleTomcat(node):
-	print 'tomcat [label="tomcat"]'
-	print 'RBNB -> tomcat'
-	
-def handleRBNB(node):
-	print 'RBNB [label="%s"]' % node.getAttribute("name")
-	
-# ---------------------------------------------------------------------------
-# Loop over DOM tree, calling each handler as many times as needed
-def bigNodeMapper(inds):
-
-	# First, input-only elements
-	hms = inds.getElementsByTagName("httpMonitor")
-	for hm in hms:
-		nodeByLogfile(hm, "HTTPMonitor")
+	# Empty init method for now
+	def __init__(self):
+		pass
 		
-	udps = inds.getElementsByTagName("udpCapture")
-	for udp in udps:
-		handleTwoBox(udp, 'udpCap', 'UDPCapture')
-
-	tds = inds.getElementsByTagName("timeDrive")
-	for td in tds:
-		handleTwoBox(td, 'timeDrive', 'TimeDrive')
-
-	# Now switch to dual-direction arrows
-	print 'edge [dir="both"]'
+	# Variables
+	fp = ''
+	outputDot = ''
 	
-	dts = inds.getElementsByTagName("dataTurbine")
-	for dt in dts:
-		handleRBNB(dt)
+	# ---------------------------------------------------------------------------
+	def addOutput(self, outStr):
+		self.outputDot += outStr
+		self.outputDot += '\n'
 		
-	tcs = inds.getElementsByTagName("tomcat")
-	for tc in tcs:
-		handleTomcat(tc)
+	def dumpDot(self):
+		print self.outputDot
+		
+	# This function returns a global integer, used to make nodes unique
+	def nameIndex(self):
+		global idx;
+		idx = idx + 1
+		return idx
 
-	tkps = inds.getElementsByTagName("trackKML")
-	for tkp in tkps:
-		nodeByLogfile(tkp, 'TrackKML')
+	# Handle the common case of a node whose label is a single attribute
+	def nodeSimpleLabel(self, node, nodeType, attribName):
+		idx = self.nameIndex()
+		nodeName = nodeType + '%d' % idx
+		nodeString = nodeName + ' [label="' + nodeType + ' ('
+		nodeString += node.getAttribute(attribName) + ')"]'
 
-	tdps = inds.getElementsByTagName("trackData")
-	for tdp in tdps:
-		nodeByLogfile(tdp, 'TrackData')
+		self.addOutput(nodeString)
+		self.addOutput('RBNB -> ' + nodeName)
+		
+	# Special-purpose, single element whose label is logFile name
+	def nodeByLogfile(self, node, nodeType):
+		return(self.nodeSimpleLabel(node, nodeType, 'logFile'))
+	
+	# ---------------------------------------------------------------------------
+	# twoBox is for timedrive and UDP capture, where we want a second box-shaped node
+	# feeding into the main node. This is to show UDP ports
+	def handleTwoBox(self, node, prefix, label):
+		idx = self.nameIndex()
+	
+		uNodeName = '%s%d' % (prefix, idx)	
+		pNodeName = uNodeName + 'port%d' % idx
+	
+		# Parse child node to get listener port
+		inputElement = node.getElementsByTagName("input")
+	
+		# Define port name
+		self.addOutput(pNodeName + ' [shape="box" label="%s"]' % inputElement[0].getAttribute("port"))
+	
+		self.addOutput(uNodeName + ' [label="%s"]' % label)
+
+	
+		self.addOutput(pNodeName + ' -> ' + uNodeName)
+		self.addOutput(uNodeName + ' -> RBNB')
+	
+	def handleTomcat(self, node):
+		self.addOutput('tomcat [label="tomcat"]')
+		self.addOutput('RBNB -> tomcat')
+	
+	def handleRBNB(self, node):
+		self.addOutput('RBNB [label="%s"]' % node.getAttribute("name"))
+	
+	# ---------------------------------------------------------------------------
+	# Loop over DOM tree, calling each handler as many times as needed
+	def bigNodeMapper(self, inds):
+
+		# First, input-only elements
+		hms = inds.getElementsByTagName("httpMonitor")
+		for hm in hms:
+			self.nodeByLogfile(hm, "HTTPMonitor")
+		
+		udps = inds.getElementsByTagName("udpCapture")
+		for udp in udps:
+			self.handleTwoBox(udp, 'udpCap', 'UDPCapture')
+
+		tds = inds.getElementsByTagName("timeDrive")
+		for td in tds:
+			self.handleTwoBox(td, 'timeDrive', 'TimeDrive')
+
+		# Now switch to dual-direction arrows
+		self.addOutput('edge [dir="both"]')
+	
+		dts = inds.getElementsByTagName("dataTurbine")
+		for dt in dts:
+			self.handleRBNB(dt)
+		
+		tcs = inds.getElementsByTagName("tomcat")
+		for tc in tcs:
+			self.handleTomcat(tc)
+
+		tkps = inds.getElementsByTagName("trackKML")
+		for tkp in tkps:
+			self.nodeByLogfile(tkp, 'TrackKML')
+
+		tdps = inds.getElementsByTagName("trackData")
+		for tdp in tdps:
+			self.nodeByLogfile(tdp, 'TrackData')
 			
-	pngs = inds.getElementsByTagName("png")
-	for png in pngs:
-		nodeByLogfile(png, 'png')
+		pngs = inds.getElementsByTagName("png")
+		for png in pngs:
+			self.nodeByLogfile(png, 'png')
 		
-	tss = inds.getElementsByTagName("toString")
-	for ts in tss:
-		nodeByLogfile(ts, "ToString")
+		tss = inds.getElementsByTagName("toString")
+		for ts in tss:
+			self.nodeByLogfile(ts, "ToString")
 
-	tns = inds.getElementsByTagName("thumbNail")
-	for tn in tns:
-		nodeByLogfile(tn, "Thumbnail")
+		tns = inds.getElementsByTagName("thumbNail")
+		for tn in tns:
+			self.nodeByLogfile(tn, "Thumbnail")
 		
-	xds = inds.getElementsByTagName("xmlDemux")
-	for xd in xds:
-		nodeByLogfile(xd, "XMLDemux")
+		xds = inds.getElementsByTagName("xmlDemux")
+		for xd in xds:
+			self.nodeByLogfile(xd, "XMLDemux")
 		
-	cds = inds.getElementsByTagName("csvDemux")
-	for cd in cds:
-		nodeByLogfile(cd, "CSVDemux")
-# ---------------------------------------------------------------------------
-# Main routine, emit header and call main loop/mapper	
-def handleINDS(inds):
-	print "digraph INDS {"
-	print 'center="true"'
-	print 'ratio="auto"'
-	print 'orientation="portrait"'
+		cds = inds.getElementsByTagName("csvDemux")
+		for cd in cds:
+			self.nodeByLogfile(cd, "CSVDemux")
+	# ---------------------------------------------------------------------------
+	# Main routine, emit header and call main loop/mapper	
+	def handleINDS(self, inds):
+		self.addOutput("digraph INDS {")
+		self.addOutput('center="true"')
+		self.addOutput('ratio="auto"')
+		self.addOutput('orientation="portrait"')
 	
-	bigNodeMapper(inds)
+		self.bigNodeMapper(inds)
 	
-	print "}"
+		self.addOutput("}")
 
-# Top-level call
-handleINDS(dom1)
+	# ---------------------------------------------------------------------------
+	# Main work routine, invoked *after* fp is a valid filehandle
+	def main(self):
+		# Parse XML into DOM tree
+		dom1 = parse(self.fp)
 
-# Release DOM, not really required but good practice
-dom1.unlink();
+		# Did it work? Do we have the schema expected?
+		# Most-basic test - this should be the top-level element in an INDS file
+		assert dom1.documentElement.tagName == "startup";
+
+		# Process into DOT language
+		self.handleINDS(dom1)
+
+		# Release DOM, not really required but good practice
+		dom1.unlink();
+
+	# Public interface - takes a file as input
+	def processFilename(self, filename):
+		self.fp = open(filename)
+		self.main()
+
+		
+	# Invoked with file already open
+	def processFilehandle(self, inputFH):
+		self.fp = inputFH
+		self.main()
+		
