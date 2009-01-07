@@ -7,10 +7,13 @@
 @note Evolution of command-line processor, now refactoring to use CGI 
 invocation and HTTP file upload.
 @todo Add URLs to nodes for multi-system graphs
+
+Much help from http://www.diveintopython.org/object_oriented_framework/defining_classes.html
 """
 
 # Using the minidom parser, also sys for command line
 import sys
+import os
 from cgi import FieldStorage
 from os import environ
 from cStringIO import StringIO
@@ -46,9 +49,7 @@ Please select your INDS XML file:
 	# Results page for file data
 	reshtml='''<HTML><HEAD><TITLE>Results</TITLE>
 <BODY>
-<pre>
-%s
-</pre>
+<img src="/%s">
 </BODY></HTML>'''
 
 	# Display input form
@@ -57,12 +58,29 @@ Please select your INDS XML file:
 
 	# Display results page
 	def doResults(self):
-		# Code!
-		print IndsCGI.header
-		
-		indsParser = IndsToDot()
+		# Code!		
+		indsParser = xmlToDot.IndsToDot()
 		indsParser.processFilehandle(self.fp)
 
+		# Hardcoded files in and out for now, ditto command to produce SVG
+		inFile = 'test.dot'
+		outFile = 'test.svg'
+		dotCmd = 'dot -Tsvg -Nfontname="/System/Library/Fonts/Times.dfont" %s -o %s'
+		
+		# dotString is the result of the processed XML
+		dotString = indsParser.outputDot
+
+		# Save DOT as file
+		fout = open(inFile, "w")
+		fout.write(dotString)
+		fout.close()
+
+		# Run it
+		os.system(dotCmd % (inFile, outFile))
+		
+		# DDT
+		print IndsCGI.header + IndsCGI.reshtml % outFile
+		
 	# Show error page
 	def showError(self):
 		print IndsCGI.header + IndsCGI.errhtml % (self.error)
