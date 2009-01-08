@@ -47,7 +47,7 @@ Please select your INDS XML file:
 	<BODY>Error!</BODY></HTML>'''
 	
 	# Results page for file data
-	reshtml='''<HTML><HEAD><TITLE>Results</TITLE>
+	reshtml='''<HTML><HEAD><TITLE>XML to SVG Results</TITLE>
 <BODY>
 <img src="/%s">
 </BODY></HTML>'''
