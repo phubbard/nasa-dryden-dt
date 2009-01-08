@@ -149,6 +149,8 @@ if (true) return; // WHF testing, REMOVE!!
 					cmdClass.getConstructor(Attributes.class);
 			command = constructor.newInstance(attributes);
 		} catch (Exception t) {
+System.err.println("Failed to create command from class "+cmdClass);
+t.printStackTrace();
 			throw new SAXException(
 					"Failed to create command from class "+cmdClass,
 					t

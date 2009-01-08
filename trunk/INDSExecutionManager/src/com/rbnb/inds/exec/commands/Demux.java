@@ -47,7 +47,11 @@ public abstract class Demux extends DtCommand
 		if ("true".equals(chanNameFromID)) addArgument("-I");
 		if (xmlFile != null) {
 			addArgument("-x");
-			addArgument(new File(xmlFile).getCanonicalPath());
+			// 2009/01/08  WHF  Do not use canonical path in this instance, 
+			//  as it will resolve against the CWD of this process, not the
+			//  started process.
+			//addArgument(new File(xmlFile).getCanonicalPath());
+			addArgument(xmlFile);
 		}
 
 		// Inputs / Outputs handled on execution.		
