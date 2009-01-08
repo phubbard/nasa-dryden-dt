@@ -2,11 +2,11 @@ digraph p3third {
 	// Graph defines
 	center="true";
 	orientation="portrait";
-//	ratio="auto";
+	ratio="auto";
 //	page="8.5,11";
 //	nodesep=.05;
 //	fontsize="6";
-//	constraint="false";
+	constraint="false";
 	comment="Third pass at matching the PDF";
 	
 	// Node definitions
@@ -49,6 +49,7 @@ digraph p3third {
 	
 	// Denote bidirectional links
 	edge [dir="both"];
+	
 	RBNB -> DeadReckoning;
 	RBNB -> Tomcat;
 	RBNB -> PNG;
