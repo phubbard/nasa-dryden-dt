@@ -3,9 +3,8 @@ digraph p3third {
 	center="true";
 	orientation="portrait";
 	ratio="auto";
-//	page="8.5,11";
-//	nodesep=.05;
-//	fontsize="6";
+	size="8.10.5";
+	rankdir="LR";
 	constraint="false";
 	comment="Third pass at matching the PDF";
 	
@@ -21,7 +20,6 @@ digraph p3third {
 	httpmon6 [shape=box, label="HttpMonitor\n(HttpMon_NOAA_P3.xml)"];
 
 	port4000 [shape=box, label="4000"];
-	portXXXX [shape=record,label="<f0>1220|<f1>UDPCapture"];
 	udpcapture1 [label="UDPCapture"];
 	udpcapture2 [label="UDPCapture"];
 	udpcapture3 [label="UDPCapture"];
@@ -35,7 +33,6 @@ digraph p3third {
 	
 	// Define the graph
 	// Input-only links (into rbnb)
-	portXXXX -> RBNB;
 	port5700 -> udpcapture1 -> RBNB;
 	port5750-> udpcapture2 -> RBNB;
 	port5800 -> udpcapture3 -> RBNB;

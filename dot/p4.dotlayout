@@ -1,0 +1,34 @@
+digraph p4 {
+	graph [center=true, orientation=portrait, ratio=auto, size="8, 10.5", page="8.5, 11", rankdir=LR, nodesep=".05", fontsize=20];
+	node [fontname="/System/Library/Fonts/Times.dfont", label="\N"];
+	graph [bb="0,0,560,236"];
+	{
+		graph [bb=""];
+		edge [dir=both];
+		TimeDrive [pos="498,218", width="1.22", height="0.50"];
+		Tomcat [pos="498,178", width="0.94", height="0.50"];
+		PNG [pos="498,138", width="0.75", height="0.50"];
+		TrackKML_DC8 [pos="498,98", width="1.72", height="0.50"];
+		TrackData_DC8 [pos="498,58", width="1.64", height="0.50"];
+	}
+	port5700 [label=5700, shape=circle, pos="32,186", width="0.89", height="0.89"];
+	httpmon1 [label="HttpMonitor\n(HttpMon_MSFC.xml)", shape=box, pos="199,144", width="2.06", height="0.56"];
+	port4000 [label=4000, shape=box, pos="367,218", width="0.75", height="0.50"];
+	udpcapture1 [label=UDPCapture, pos="199,186", width="1.36", height="0.50"];
+	xmldemux1 [label="XMLDemux\n(IWG1_GTR_out_DC8.xml)", pos="199,92", width="2.72", height="0.79"];
+	RBNB [pos="367,118", width="0.89", height="0.50"];
+	csndemux1 [pos="199,42", width="1.25", height="0.50"];
+	RDV1 [pos="498,18", width="0.86", height="0.50"];
+	port5700 -> udpcapture1 [pos="e,149,186 64,186 85,186 114,186 139,186"];
+	udpcapture1 -> RBNB [pos="e,350,133 246,181 263,178 282,173 298,166 313,159 330,149 342,139"];
+	httpmon1 -> RBNB [pos="e,336,123 273,133 291,131 310,127 326,125"];
+	port4000 -> TimeDrive [pos="e,454,218 394,218 408,218 427,218 444,218"];
+	RBNB -> TimeDrive [dir=both, pos="s,378,135 e,460,209 384,143 396,162 415,184 436,198 440,201 445,203 450,206"];
+	RBNB -> Tomcat [dir=both, pos="s,388,132 e,467,170 397,137 409,144 423,152 436,158 443,161 450,163 457,166"];
+	RBNB -> PNG [dir=both, pos="s,398,123 e,471,134 408,124 424,126 444,130 461,132"];
+	RBNB -> TrackKML_DC8 [dir=both, pos="s,398,113 e,443,106 408,112 416,111 424,109 433,108"];
+	RBNB -> TrackData_DC8 [dir=both, pos="s,388,104 e,456,71 397,99 409,92 422,84 436,78 439,76 443,75 446,74"];
+	xmldemux1 -> RBNB [dir=both, pos="s,286,105 e,336,113 296,107 306,108 317,110 326,111"];
+	csndemux1 -> RBNB [dir=both, pos="s,243,46 e,352,102 253,48 268,51 284,55 298,62 315,70 332,83 345,95"];
+	RBNB -> RDV1 [dir=head, pos="e,468,24 378,101 390,83 411,55 436,38 443,34 451,30 458,27"];
+}

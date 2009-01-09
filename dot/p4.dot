@@ -1,0 +1,39 @@
+digraph p4 {
+	// Graph defines
+	center="true";
+	orientation="portrait";
+	ratio="auto";
+	size="8, 10.5"
+	page="8.5, 11";
+	rankdir="LR";
+	nodesep=.05;
+	fontsize="20";
+//	constraint="false";
+	
+	// Node definitions
+	port5700 [shape=circle, label="5700"];
+	httpmon1 [shape=box, label="HttpMonitor\n(HttpMon_MSFC.xml)"];
+
+	port4000 [shape=box, label="4000"];
+	udpcapture1 [label="UDPCapture"];
+
+	xmldemux1 [label="XMLDemux\n(IWG1_GTR_out_DC8.xml)"]
+	
+	// Define the graph
+	// Input-only links (into rbnb)
+	port5700 -> udpcapture1 -> RBNB;
+	httpmon1 -> RBNB;
+	port4000 ->  TimeDrive;
+	
+	// Denote bidirectional links
+	edge [dir="both"];
+	
+	RBNB -> { Tomcat; PNG; TimeDrive; TrackKML_DC8; TrackData_DC8}
+	
+	xmldemux1 -> RBNB;
+	csndemux1 -> RBNB;
+	
+	// RDV links are sink-only, show differently
+	edge [dir="head"];
+	RBNB -> RDV1;
+}
