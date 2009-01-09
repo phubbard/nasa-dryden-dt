@@ -41,18 +41,20 @@ public abstract class Demux extends DtCommand
 		// Parse attributes:
 		String silentMode = attr.getValue("silentMode"),
 			chanNameFromID = attr.getValue("chanNameFromID"),
-			xmlFile = attr.getValue("xmlFile");
+			xmlFileStr = attr.getValue("xmlFile");
 			
 		if ("true".equals(silentMode)) addArgument("-S");
 		if ("true".equals(chanNameFromID)) addArgument("-I");
-		if (xmlFile != null) {
+		if (xmlFileStr != null) {
 			addArgument("-x");
 			// 2009/01/08  WHF  Do not use canonical path in this instance, 
 			//  as it will resolve against the CWD of this process, not the
 			//  started process.
 			//addArgument(new File(xmlFile).getCanonicalPath());
-			addArgument(xmlFile);
-		}
+			addArgument(xmlFileStr);
+			// For this, we do want the full path:
+			xmlFile = new File(getInitialDirectory()+'/'+xmlFileStr);
+		} else xmlFile = null;
 
 		// Inputs / Outputs handled on execution.		
 	}
@@ -89,6 +91,26 @@ public abstract class Demux extends DtCommand
 
 		return super.doExecute();		
 	}
+	
+	public String getChildConfiguration()
+	{		
+		if (xmlFile == null || !xmlFile.canRead())
+			return super.getChildConfiguration();
+	
+		return file2string(xmlFile);
+	}
+	
+	public String getPrettyName()
+	{ 
+		String pretty = getClass().getSimpleName();
+		
+		if (!getOutputs().isEmpty())
+			pretty += " (" + getOutputs().get(0).getName() + ')';
+		
+		return pretty;
+	}
+	
+	private final File xmlFile;
 }
 
 

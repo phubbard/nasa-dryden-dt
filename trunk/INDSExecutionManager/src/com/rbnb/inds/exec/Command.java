@@ -48,7 +48,7 @@ public abstract class Command
 
 		tag = (temp = attr.getValue("tag")) == null ? "" : temp;
 		
-		name = getClass().getSimpleName() + '_' + (++commandCount);
+		id = getClass().getSimpleName() + '_' + (++commandCount);
 	}
 	
 	/**
@@ -91,7 +91,8 @@ public abstract class Command
 	{
 		outputs.add(p);
 	}
-
+	
+//*************************  Accessors (final)  *****************************//
 	/**
 	  * Returns an unmodifiable view of the input connections.
 	  */
@@ -108,23 +109,14 @@ public abstract class Command
 		return java.util.Collections.unmodifiableList(outputs);
 	}	
 	
-	public InputStream getStdOut() { return null; }
-	public InputStream getStdErr() { return null; }
-	
 	public final ByteArrayOutputStream getLocalStdOutStream() 
-			{ return localStdOutStream; }
+	{ return localStdOutStream; }
 	public final ByteArrayOutputStream getLocalStdErrStream()
 	{ return localStdErrStream; }
 
-	protected abstract boolean doExecute() throws java.io.IOException;
-	// TODO: get thread of non-process commands, and interrupt/terminate
-	protected void doKill() {} //  throws java.io.IOException;
-	protected void doWaitFor() throws InterruptedException
-	{}	
-	
 	public final String getInitialDirectory() { return initialDirectory; }
 	public final String getLogfile() { return logFile; }
-	public final String getName() { return name; }
+	public final String getId() { return id; }
 	public final String getTag() { return tag; }
 	public final boolean isExecutionComplete() { return executionComplete; }
 	
@@ -133,14 +125,28 @@ public abstract class Command
 	public final String getXmlSnippet() { return xmlSnippet; }
 	final void setXmlSnippet(String xmlSnippet) 
 	{ this.xmlSnippet = xmlSnippet; }
-	
+
 	/**
 	  * Obtain the map of keys to values for the specified Command subclass.
 	  */
-	protected java.util.Map<String, String> getCommandProperties()
+	protected final java.util.Map<String, String> getCommandProperties()
 	{
 		return commandProperties.get().get(getClass());
 	}
+	
+
+//***************************  Overrideables  *******************************//
+	protected abstract boolean doExecute() throws java.io.IOException;
+	// TODO: get thread of non-process commands, and interrupt/terminate
+	protected void doKill() {} //  throws java.io.IOException;
+	protected void doWaitFor() throws InterruptedException
+	{}	
+	
+	public InputStream getStdOut() { return null; }
+	public InputStream getStdErr() { return null; }
+	
+	public abstract String getPrettyName();
+	public String getChildConfiguration() { return ""; }
 	
 	public String toString()
 	{
@@ -148,7 +154,7 @@ public abstract class Command
 	}
 
 //**************************  Private Member Data  **************************//	
-	private final String initialDirectory, logFile, name, tag;
+	private final String initialDirectory, logFile, id, tag;
 	private String xmlSnippet;
 	private java.io.OutputStream logStream;
 	private final ArrayList<Port> 
@@ -166,6 +172,23 @@ public abstract class Command
 	{
 		commandProperties.get().put(c, props);
 	}
+	
+	protected static String file2string(java.io.File file) 
+	{		
+		java.io.StringWriter sw = new java.io.StringWriter();
+		char buff[] = new char[1024];
+		
+		try {
+			java.io.FileReader fr = new java.io.FileReader(file);
+			int nRead;
+			while ((nRead = fr.read(buff)) > 0)
+				sw.write(buff, 0, nRead);
+			fr.close();
+		} catch (java.io.IOException ioe) {
+			return "CONFIG FILE READ FAILED!!!";
+		}
+		return sw.toString();
+	}		
 	
 //****************************  Static Data  ********************************//
 	/**

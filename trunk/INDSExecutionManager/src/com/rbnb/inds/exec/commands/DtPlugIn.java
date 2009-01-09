@@ -55,6 +55,15 @@ public class DtPlugIn extends DtCommand
 		return super.doExecute();
 	}
 	
+	public String getPrettyName()
+	{
+		String pretty = getClass().getSimpleName();
+		if (piPort != null && piPort.getName() != null)
+			pretty += " (" + piPort.getName()+")";
+
+		return pretty;
+	}
+	
 	
 	private Port.RbnbPort piPort;	
 }

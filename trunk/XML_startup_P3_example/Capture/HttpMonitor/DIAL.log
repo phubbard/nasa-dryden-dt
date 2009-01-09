@@ -1,6 +1,7 @@
 Using SAX parser: com.sun.org.apache.xerces.internal.parsers.SAXParser
 MKCOL response = 200
 Local Date,Source URL,Dest URL,GET Code,PUT Code,Server Date,Server LastMod,Server Expires,Next Copy Date
-Thu Jan 08 09:20:52 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,200,201,Thu Jan 08 09:20:52 EST 2009,Sun Jul 13 18:26:05 EDT 2008,---,Thu Jan 08 09:21:52 EST 2009
-Thu Jan 08 09:21:52 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Thu Jan 08 09:22:52 EST 2009
-Thu Jan 08 09:22:52 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Thu Jan 08 09:23:52 EST 2009
+Fri Jan 09 12:51:36 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,200,201,Fri Jan 09 12:51:36 EST 2009,Sun Jul 13 18:26:05 EDT 2008,---,Fri Jan 09 12:52:36 EST 2009
+Fri Jan 09 12:52:36 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 12:53:36 EST 2009
+Fri Jan 09 12:53:36 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 12:54:36 EST 2009
+Fri Jan 09 12:54:36 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 12:55:36 EST 2009

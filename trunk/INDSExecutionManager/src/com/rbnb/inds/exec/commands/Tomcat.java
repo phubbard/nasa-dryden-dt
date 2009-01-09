@@ -65,6 +65,9 @@ public class Tomcat extends ExternalCommand
 			ioe.printStackTrace();
 		}
 	}
+	
+	public String getPrettyName() { return "Tomcat Web Server"; }
+	
 	private final TomcatShutdown tomcatShutdown;
 }
 
@@ -75,6 +78,7 @@ class TomcatShutdown extends ExternalCommand
 		super(attr);
 	}
 	
+	public String getPrettyName() { return "TomcatShutdown"; }
 }
 		
 

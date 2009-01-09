@@ -84,6 +84,9 @@ public class UdpCapture extends JavaCommand
 
 		return super.doExecute();		
 	}
+	
+	public String getPrettyName() 
+	{ return getClass().getSimpleName()+" ("+getOutputs().get(0).getName()+')';}
 }
 
 
