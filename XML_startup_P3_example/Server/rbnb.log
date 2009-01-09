@@ -1,85 +1,71 @@
-<08-Jan-2009 EST 09:20:11.083> <INDS>
+<09-Jan-2009 EST 12:50:54.347> <INDS>
    RBNB (Ring Buffered Network Bus) V3.1B3 build 2877 (built Tue Mar 04 17:31:36 EST 2008)
    Copyright 2006 Creare Inc.
    Started at address tcp://whf.creare.com:3333.
    Archive home directory: "."
-<08-Jan-2009 EST 09:20:27.365> <TrackKMLSink_1>
+<09-Jan-2009 EST 12:51:10.612> <TrackKMLSink_1>
    Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:27.349> <TrackKMLSink_2>
+<09-Jan-2009 EST 12:51:10.659> <TrackKMLSink_3>
    Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:27.412> <TrackKMLSink_4>
+<09-Jan-2009 EST 12:51:10.659> <TrackKMLSink_4>
    Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:53.693> <CV580>
+<09-Jan-2009 EST 12:51:37.191> <CV580>
    Started for source running Dev build 2926 from Fri Oct 31 16:52:23 EDT 2008.
-<08-Jan-2009 EST 09:20:53.693> <CV580>
+<09-Jan-2009 EST 12:51:37.191> <CV580>
    Set up cache with 4 framesets of 3 frames/set (total frames = 12).
    Set up archive with 10 filesets of 288000 framesets/set (total frames = 8640000)
-<08-Jan-2009 EST 09:20:54.709> <NOAA_P3>
+<09-Jan-2009 EST 12:51:38.238> <NOAA_P3>
    Started for source running Dev build 2926 from Fri Oct 31 16:52:23 EDT 2008.
-<08-Jan-2009 EST 09:20:54.709> <NOAA_P3>
+<09-Jan-2009 EST 12:51:38.238> <NOAA_P3>
    Set up cache with 4 framesets of 3 frames/set (total frames = 12).
    Set up archive with 10 filesets of 288000 framesets/set (total frames = 8640000)
-<08-Jan-2009 EST 09:20:55.959> <P3B-5700-cap>
+<09-Jan-2009 EST 12:51:39.456> <P3B-5750-cap>
    Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:55.959> <P3B-5700-cap>
+<09-Jan-2009 EST 12:51:39.456> <P3B-5750-cap>
    Set up cache with 10 framesets of 10 frames/set (total frames = 100).
    Set up archive with 10 filesets of 86400 framesets/set (total frames = 8640000)
-<08-Jan-2009 EST 09:20:56.006> <P3B-5750-cap>
+<09-Jan-2009 EST 12:51:39.566> <P3B-5800-cap>
    Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:56.006> <P3B-5750-cap>
+<09-Jan-2009 EST 12:51:39.566> <P3B-5800-cap>
    Set up cache with 10 framesets of 10 frames/set (total frames = 100).
    Set up archive with 10 filesets of 86400 framesets/set (total frames = 8640000)
-<08-Jan-2009 EST 09:20:56.084> <P3B-5800-cap>
+<09-Jan-2009 EST 12:51:39.581> <P3B-5700-cap>
    Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:56.084> <P3B-5800-cap>
+<09-Jan-2009 EST 12:51:39.581> <P3B-5700-cap>
    Set up cache with 10 framesets of 10 frames/set (total frames = 100).
    Set up archive with 10 filesets of 86400 framesets/set (total frames = 8640000)
-<08-Jan-2009 EST 09:20:57.568> <TrackDataSink_1>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:57.568> <TrackDataSink>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:57.584> <TrackDataSink_2>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:57.600> <TrackDataSink_3>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:57.615> <TrackDataSink_4>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:57.615> <TrackDataSink_5>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:57.631> <HASR>
+<09-Jan-2009 EST 12:51:40.863> <N255SA>
    Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:57.693> <N255SA>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:57.631> <HASR>
+<09-Jan-2009 EST 12:51:40.863> <N255SA>
    Set up cache with 15 framesets of 14 frames/set (total frames = 210).
    Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<08-Jan-2009 EST 09:20:57.693> <N255SA>
+<09-Jan-2009 EST 12:51:40.988> <HASR>
+   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<09-Jan-2009 EST 12:51:40.988> <HASR>
    Set up cache with 15 framesets of 14 frames/set (total frames = 210).
    Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<08-Jan-2009 EST 09:20:57.881> <TrackData_CV580>
+<09-Jan-2009 EST 12:51:42.113> <GTR_MONITOR_TM_STREAM_P3B_ARCTAS>
+   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<09-Jan-2009 EST 12:51:42.128> <GTR_MONITOR_TM_STREAM_P3B_ARCTAS>
+   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
+   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
+<09-Jan-2009 EST 12:51:42.159> <TrackData_TwinOtter>
    Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:57.975> <TrackData_TwinOtter>
+<09-Jan-2009 EST 12:51:42.191> <TrackData_B200>
    Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:58.365> <GTR_P3orion_IWG1>
-   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
-   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<08-Jan-2009 EST 09:20:58.412> <GTR_MONITOR_TM_STREAM_P3B_ARCTAS>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:58.412> <GTR_MONITOR_TM_STREAM_P3B_ARCTAS>
-   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
-   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<08-Jan-2009 EST 09:20:58.475> <DemuxSink_2>
+<09-Jan-2009 EST 12:51:42.222> <TrackData_NOAAP3>
+   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<09-Jan-2009 EST 12:51:42.253> <TrackData_CV580>
+   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<09-Jan-2009 EST 12:51:42.316> <TrackData_DC8>
+   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<09-Jan-2009 EST 12:51:42.331> <DemuxSink_3>
    Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:58.521> <DemuxSink_3>
+<09-Jan-2009 EST 12:51:42.363> <DemuxSink_5>
    Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:58.568> <CV580_IWG1>
-   Started for source running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:58.568> <CV580_IWG1>
-   Set up cache with 15 framesets of 14 frames/set (total frames = 210).
-   Set up archive with 10 filesets of 7143 framesets/set (total frames = 1000020)
-<08-Jan-2009 EST 09:20:58.600> <DemuxSink_4>
+<09-Jan-2009 EST 12:51:42.363> <DemuxSink_4>
    Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:58.615> <DemuxSink_5>
+<09-Jan-2009 EST 12:51:42.378> <DemuxSink_6>
    Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
-<08-Jan-2009 EST 09:20:58.678> <DemuxSink_6>
-   Started for sink running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.
+<09-Jan-2009 EST 12:51:42.409> <TrackData_P3B>
+   Started for client running V3.1B3 build 2877 from Tue Mar 04 17:31:36 EST 2008.

@@ -46,6 +46,8 @@ public class Sleep extends com.rbnb.inds.exec.Command
 	}
 
 	public int getDuration_ms() { return duration_ms; }
+	
+	public String getPrettyName() { return "Sleep ("+duration_ms+"ms)"; }  
 
 	private final int duration_ms;
 }

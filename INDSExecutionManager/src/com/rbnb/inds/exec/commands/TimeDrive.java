@@ -58,6 +58,9 @@ public class TimeDrive extends JavaCommand
 		return super.doExecute();
 	}
 	
+	public String getPrettyName()
+	{ return "TimeDrive ("+getInputs().get(0)+")"; }
+	
 	private static TreeMap<String, String> mumMap 
 			= new TreeMap<String, String>();
 	static {

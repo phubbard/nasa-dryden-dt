@@ -30,6 +30,7 @@ public class RmiTest
 		String[] commands = rem.getCommandList();
 		for (String cmd : commands) {
 			System.err.print(cmd);
+			System.err.print(" \""+rem.getName(cmd)+'"');
 			if (rem.isComplete(cmd)) System.err.println("  X");
 			else System.err.println();
 		}
@@ -46,6 +47,9 @@ public class RmiTest
 			
 			System.err.println("\n----  Configuration  ----");
 			System.err.println(rem.getConfiguration(cmd));
+
+			System.err.println("\n----  Child Configuration  ----");
+			System.err.println(rem.getChildConfiguration(cmd));
 		}
 	}
 }

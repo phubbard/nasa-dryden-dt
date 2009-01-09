@@ -230,7 +230,7 @@ System.err.println(" complete.");
 			synchronized (currentCommands) {
 				String[] cmdList = new String[currentCommands.size()];
 				for (int ii = 0; ii < cmdList.length; ++ii)
-					cmdList[ii] = currentCommands.get(ii).getName();
+					cmdList[ii] = currentCommands.get(ii).getId();
 				
 				return cmdList;
 			}
@@ -260,6 +260,17 @@ System.err.println(" complete.");
 			return getCommand(cmd).isExecutionComplete();
 		}
 		
+		public String getChildConfiguration(String cmd) 
+			throws java.rmi.RemoteException
+		{
+			return getCommand(cmd).getChildConfiguration();
+		}
+			
+		public String getName(String cmd) throws java.rmi.RemoteException
+		{
+			return getCommand(cmd).getPrettyName();			
+		}
+		
 		private static final long serialVersionUID = 3348353995890377784L;	
 	}
 	
@@ -271,7 +282,7 @@ System.err.println(" complete.");
 	{
 		synchronized (currentCommands) {
 			for (Command cmd : currentCommands) {
-				if (cmd.getName().equals(cmdName)) return cmd;
+				if (cmd.getId().equals(cmdName)) return cmd;
 			}
 		}
 		

@@ -33,7 +33,7 @@ public class DataTurbine extends JavaCommand
 	{
 		super(attr);
 		
-		String name = attr.getValue("name"),
+		String _name = attr.getValue("name"),
 			address = attr.getValue("address");
 			
 		File rbnbJarFile = new File(getCommandProperties().get(
@@ -49,14 +49,20 @@ public class DataTurbine extends JavaCommand
 			addArgument(address);
 		}
 		
-		if (name != null) {
+		if (_name != null) {
 			addArgument("-n");
-			addArgument(name);
-		}
+			addArgument(_name);
+			name = _name;
+		} else if (address != null) name = address;
+		else name = "localhost:3333";		
 		
 		if ("true".equals(attr.getValue("loadArchivesAtStart")))
 			addArgument("-F");
 	}
+	
+	public String getPrettyName() { return "DataTurbine ("+name+")"; }
+	
+	private final String name;
 }
 
 

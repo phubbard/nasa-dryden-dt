@@ -73,6 +73,9 @@ public class Del extends com.rbnb.inds.exec.Command
 	}
 
 	public String getFile() { return file; }
+	
+	public String getPrettyName()
+	{ return "Del (" + getInitialDirectory() + '/' + file + ')'; }
 
 	private final String file;
 }

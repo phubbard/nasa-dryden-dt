@@ -42,6 +42,15 @@ public class HttpMonitor extends JavaCommand
 		addArgument(jarFile.getCanonicalPath());
 
 		// Delegate to configuration file:
-		addArgument(attr.getValue("configFile"));
+		configFileStr = attr.getValue("configFile"); 
+		addArgument(configFileStr);
+		
+		confFile = new File(getInitialDirectory() + '/' + configFileStr);
 	}
+	
+	public String getChildConfiguration() { return file2string(confFile); }
+	public String getPrettyName() { return "HttpMonitor ("+configFileStr+")"; }
+	
+	private final String configFileStr;
+	private final File confFile; 
 }

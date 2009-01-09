@@ -65,8 +65,7 @@ Adding Channel 63 Laseref_Altitude_Inertial
 Adding Channel 64 Laseref_Vertical_Speed_Inertial
 Adding Channel 65 Laseref_GPS_IRS_Status
 Adding Channel 66 Laseref_TTNR
-Adding Channel 67 ADC_AltitudeOutput to: GTR_MONITOR_TM_STREAM_P3B_ARCTAS
-
+Adding Channel 67 ADC_Altitude
 Adding Channel 68 ADC_Baro_Altitude
 Adding Channel 69 ADC_IAS
 Adding Channel 70 ADC_Mach
@@ -78,6 +77,7 @@ Adding Channel 75 Solar_Zenith_Angle
 Adding Channel 76 Aircraft_Sun_Elevation
 Adding Channel 77 Sun_Azimuth
 Adding Channel 78 Aircraft_Sun_Azimuth
+Output to: GTR_MONITOR_TM_STREAM_P3B_ARCTAS
 Connected to Source: localhost:3333
 Connected to Sink: localhost:3333
 Running subscribe-by-frame newest mode

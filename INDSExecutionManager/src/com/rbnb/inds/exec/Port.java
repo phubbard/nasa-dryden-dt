@@ -40,6 +40,10 @@ public abstract class Port
 	
 	public final String getType() { return type; }
 	public final String getPort() { return port; }
+	
+	public String getName() { return type+":"+port; }
+	
+	public String toString() { return getName(); }
 
 	private final String type, port;
 	
