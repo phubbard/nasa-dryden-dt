@@ -24,6 +24,7 @@
 package com.rbnb.inds;
 
 import com.rbnb.inds.exec.Remote;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -43,20 +44,23 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class INDSExManGUI extends JFrame implements ListSelectionListener {
+public class INDSExManGUI extends JFrame implements ListSelectionListener, ListCellRenderer  {
     
-    private javax.swing.JList commandLB;
-    private javax.swing.JButton connectB;
-    private javax.swing.JTextField hostNameTF;
-    private javax.swing.JCheckBox showCompletedCommandsCB;
-    private javax.swing.JTextArea stderrTA;
-    private javax.swing.JTextArea stdoutTA;
-    private javax.swing.JTextArea xmlTA;
+    private JList commandLB;
+    private JButton connectB;
+    private JTextField hostNameTF;
+    private JCheckBox showCompletedCommandsCB;
+    private JTextArea stderrTA;
+    private JTextArea stdoutTA;
+    private JTextArea xmlTA;
+    private JTextArea configTA;
     
     private Remote remoteObj = null;
     
@@ -99,6 +103,11 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener {
         JPanel tempP = new JPanel(tempgbl);
         JLabel tempL = new JLabel("Host");
         hostNameTF = new JTextField(20);
+        hostNameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fetchCommandList(evt);
+            }
+        });
         connectB = new JButton("Connect");
         connectB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +125,11 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener {
         add(guiPanel, tempP, gbl, gbc, 0, 0, 2, 1);
 
         //
+        // We will construct a JSplitPane where the left panel contains the
+        // command listbox and the right panel contains the display of
+        // isCompleted, stdout, stderr, and XML snippet.
+
+        //
         // Command listbox
         //
         commandLB = new JList();
@@ -126,20 +140,20 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener {
             }
         });
         commandLB.addListSelectionListener(this);
-        JScrollPane tempSP =
+        commandLB.setCellRenderer(this);
+        JScrollPane commandSP =
             new JScrollPane(
                 commandLB,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        tempSP.setPreferredSize(new Dimension(200, 600));
-        gbc.insets = new Insets(15,15,15,15);
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.weightx = 0;
-        gbc.weighty = 100;
-        add(guiPanel, tempSP, gbl, gbc, 0, 1, 1, 7);
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.weightx = 0;
-        gbc.weighty = 0;
+        commandSP.setMinimumSize(new Dimension(0,0));
+
+        //
+        // Construct the right hand panel which contains:
+        // isCompleted, stdout, stderr, and XML snippet.
+        //
+        tempgbl = new GridBagLayout();
+        JPanel rightPanel = new JPanel(tempgbl);
 
         //
         // Checkbox for displaying/not displaying completed commands
@@ -151,28 +165,28 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener {
                 fetchCommandList(evt);
             }
         });
-        gbc.insets = new Insets(15,0,0,15);
-        add(guiPanel, showCompletedCommandsCB, gbl, gbc, 1, 1, 1, 1);
+        gbc.insets = new Insets(5,5,0,5);
+        add(rightPanel, showCompletedCommandsCB, tempgbl, gbc, 0, 0, 1, 1);
 
         //
         // Std out text area
         //
         tempL = new JLabel("Std out");
-        gbc.insets = new Insets(15,0,0,15);
-        add(guiPanel, tempL, gbl, gbc, 1, 2, 1, 1);
+        gbc.insets = new Insets(5,5,0,5);
+        add(rightPanel, tempL, tempgbl, gbc, 0, 1, 1, 1);
         stdoutTA = new JTextArea();
         stdoutTA.setEditable(false);
-        tempSP =
+        JScrollPane tempSP =
             new JScrollPane(
                 stdoutTA,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        tempSP.setPreferredSize(new Dimension(600, 150));
+        tempSP.setPreferredSize(new Dimension(300, 75));
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 100;
         gbc.weighty = 100;
-        gbc.insets = new Insets(5,0,0,15);
-        add(guiPanel, tempSP, gbl, gbc, 1, 3, 1, 1);
+        gbc.insets = new Insets(0,5,0,5);
+        add(rightPanel, tempSP, tempgbl, gbc, 0, 2, 1, 1);
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 0;
         gbc.weighty = 0;
@@ -181,23 +195,21 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener {
         // Std err text area
         //
         tempL = new JLabel("Std err");
-        gbc.insets = new Insets(15,0,0,15);
-        add(guiPanel, tempL, gbl, gbc, 1, 4, 1, 1);
+        gbc.insets = new Insets(5,5,0,5);
+        add(rightPanel, tempL, tempgbl, gbc, 0, 3, 1, 1);
         stderrTA = new JTextArea();
-        // stderrTA.setColumns(30);
         stderrTA.setEditable(false);
-        // stderrTA.setRows(8);
         tempSP =
             new JScrollPane(
                 stderrTA,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        tempSP.setPreferredSize(new Dimension(600, 150));
+        tempSP.setPreferredSize(new Dimension(300, 75));
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 100;
         gbc.weighty = 100;
-        gbc.insets = new Insets(5,0,0,15);
-        add(guiPanel, tempSP, gbl, gbc, 1, 5, 1, 1);
+        gbc.insets = new Insets(0,5,0,5);
+        add(rightPanel, tempSP, tempgbl, gbc, 0, 4, 1, 1);
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 0;
         gbc.weighty = 0;
@@ -206,27 +218,81 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener {
         // XML text area
         //
         tempL = new JLabel("XML");
-        gbc.insets = new Insets(15,0,0,15);
-        add(guiPanel, tempL, gbl, gbc, 1, 6, 1, 1);
+        gbc.insets = new Insets(5,5,0,5);
+        add(rightPanel, tempL, tempgbl, gbc, 0, 5, 1, 1);
         xmlTA = new JTextArea();
-        // xmlTA.setColumns(30);
         xmlTA.setEditable(false);
-        // xmlTA.setRows(5);
         tempSP =
             new JScrollPane(
                 xmlTA,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        tempSP.setPreferredSize(new Dimension(600, 100));
+        tempSP.setPreferredSize(new Dimension(300, 75));
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 100;
         gbc.weighty = 0;
-        gbc.insets = new Insets(5,0,15,15);
-        add(guiPanel, tempSP, gbl, gbc, 1, 7, 1, 1);
+        gbc.insets = new Insets(0,5,5,5);
+        add(rightPanel, tempSP, tempgbl, gbc, 0, 6, 1, 1);
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 0;
         gbc.weighty = 0;
 
+        //Create the split pane to contain commandSP and rightPanel
+        JSplitPane topSplitPane =
+            new JSplitPane(
+                JSplitPane.HORIZONTAL_SPLIT,
+                commandSP,
+                rightPanel);
+        topSplitPane.setOneTouchExpandable(true);
+        topSplitPane.setDividerLocation(150);
+
+        //
+        // Construct the bottom panel which contains the config file output
+        //
+        tempgbl = new GridBagLayout();
+        JPanel bottomPanel = new JPanel(tempgbl);
+
+        // Config file text area
+        tempL = new JLabel("Config file");
+        gbc.insets = new Insets(5,5,0,5);
+        add(bottomPanel, tempL, tempgbl, gbc, 0, 0, 1, 1);
+        configTA = new JTextArea();
+        configTA.setEditable(false);
+        tempSP =
+            new JScrollPane(
+                configTA,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        tempSP.setPreferredSize(new Dimension(450, 75));
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 100;
+        gbc.weighty = 100;
+        gbc.insets = new Insets(0,5,5,5);
+        add(bottomPanel, tempSP, tempgbl, gbc, 0, 1, 1, 1);
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        
+        //
+        // Create another split pane which contains:
+        //     topSplitPane
+        //     bottomPanel
+        JSplitPane parentSplitPane =
+            new JSplitPane(
+                JSplitPane.VERTICAL_SPLIT,
+                topSplitPane,
+                bottomPanel);
+        parentSplitPane.setOneTouchExpandable(true);
+        parentSplitPane.setDividerLocation(350);
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 100;
+        gbc.weighty = 100;
+        gbc.insets = new Insets(15,15,15,15);
+        add(guiPanel, parentSplitPane, gbl, gbc, 0, 1, 1, 1);
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        
         //
         // Now add guiPanel to the frame
         //
@@ -260,13 +326,14 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener {
             stdoutTA.setText(remoteObj.getCommandOut(command));
             stderrTA.setText(remoteObj.getCommandError(command));
             xmlTA.setText(remoteObj.getConfiguration(command));
+            configTA.setText(remoteObj.getChildConfiguration(command));
         } catch (RemoteException ex) {
             Logger.getLogger(INDSExManGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private void fetchCommandList(java.awt.event.ActionEvent evt) {
-        String[] commands = null;
+        String[] processIDs = null;
         String hostName = hostNameTF.getText().trim();
         DefaultListModel commandModel = new DefaultListModel();
         try {
@@ -276,7 +343,7 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener {
             String[] names = reg.list();
             int index = 0;
             remoteObj = (Remote) reg.lookup(names[index]);
-            commands = remoteObj.getCommandList();
+            processIDs = remoteObj.getCommandList();
         } catch (NotBoundException ex) {
             Logger.getLogger(INDSExManGUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (AccessException ex) {
@@ -284,27 +351,71 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener {
         } catch (RemoteException ex) {
             Logger.getLogger(INDSExManGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (commands != null) {
+        if (processIDs != null) {
             // Clear out the text boxes
             stderrTA.setText("");
             stdoutTA.setText("");
             xmlTA.setText("");
+            configTA.setText("");
             boolean bShowCompletedCommands = showCompletedCommandsCB.isSelected();
-            for (String cmd : commands) {
+            for (String id : processIDs) {
                 if (!bShowCompletedCommands) {
                     try {
-                        if (!remoteObj.isComplete(cmd)) {
-                            commandModel.addElement(cmd);
+                        if (!remoteObj.isComplete(id)) {
+                            commandModel.addElement(id);
                         }
                     } catch (RemoteException ex) {
                         Logger.getLogger(INDSExManGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    commandModel.addElement(cmd);
+                    commandModel.addElement(id);
                 }
             }
             commandLB.setModel(commandModel);
         }
+    }
+
+    /*
+     * A renderer for the JList - we will display the nicely formatted node
+     * name rather than the process ID.
+     */
+    public Component getListCellRendererComponent(
+        JList list,
+        Object value,
+        int index,
+        boolean isSelected,
+        boolean cellHasFocus)
+    {
+        JLabel listBoxLabel = new JLabel();
+        String processIDStr = value.toString();
+        // Get the nicely formatted string associated with this processID
+        String niceName = null;
+        try {
+            niceName = remoteObj.getName(processIDStr);
+        } catch (RemoteException ex) {
+            Logger.getLogger(INDSExManGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        listBoxLabel.setText(niceName);
+        if (isSelected) {
+            listBoxLabel.setBackground(list.getSelectionBackground());
+            listBoxLabel.setForeground(list.getSelectionForeground());
+        } else {
+            listBoxLabel.setBackground(list.getBackground());
+            try {
+                if (remoteObj.isComplete(processIDStr)) {
+                    listBoxLabel.setForeground(Color.RED);
+                } else {
+                    listBoxLabel.setForeground(list.getForeground());
+                }
+            } catch (RemoteException ex) {
+                Logger.getLogger(INDSExManGUI.class.getName()).log(Level.SEVERE, null, ex);
+                listBoxLabel.setForeground(list.getForeground());
+            }
+        }
+        listBoxLabel.setEnabled(list.isEnabled());
+        listBoxLabel.setFont(list.getFont());
+        listBoxLabel.setOpaque(true);
+        return listBoxLabel;
     }
 
     /**************************************************************************
