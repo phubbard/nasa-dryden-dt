@@ -243,6 +243,9 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
                 JSplitPane.HORIZONTAL_SPLIT,
                 commandSP,
                 rightPanel);
+        // To avoid the problem of multiple borders on nested frames
+        // (see http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4131528)
+        topSplitPane.setBorder(null);
         topSplitPane.setOneTouchExpandable(true);
         topSplitPane.setDividerLocation(150);
 
