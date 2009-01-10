@@ -2,6 +2,8 @@ digraph INDS {
 center="true"
 ratio="auto"
 orientation="portrait"
+rankdir="LR"
+size="8,10.5"
 HTTPMonitor1 [label="HTTPMonitor (MSFC.log)"]
 RBNB -> HTTPMonitor1
 HTTPMonitor2 [label="HTTPMonitor (B200.log)"]
