@@ -145,6 +145,8 @@ class IndsToDot:
 		self.addOutput('center="true"')
 		self.addOutput('ratio="auto"')
 		self.addOutput('orientation="portrait"')
+		self.addOutput('rankdir="LR"')
+		self.addOutput('size="8,10.5"')
 	
 		self.bigNodeMapper(inds)
 	
