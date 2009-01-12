@@ -14,13 +14,17 @@ Much help from http://www.diveintopython.org/object_oriented_framework/defining_
 # Using the minidom parser, also sys for command line
 import sys
 import os
+import tempfile
 from cgi import FieldStorage
 from os import environ
 from cStringIO import StringIO
 from urllib import quote, unquote
 from string import capwords, strip, split, join
+
+
 # My code!
 import xmlToDot
+import dotProcessor
 
 # ---------------------------------------------------------------------------
 # CGI class and HTML. Man, I hate mixing code and presentation.
@@ -60,26 +64,19 @@ Please select your INDS XML file:
 	def doResults(self):
 		# Code!		
 		indsParser = xmlToDot.IndsToDot()
+
+		# Crank out XML -> DOT
 		indsParser.processFilehandle(self.fp)
 
-		# Hardcoded files in and out for now, ditto command to produce SVG
-		inFile = 'test.dot'
-		outFile = 'test.svg'
-		dotCmd = 'dot -Tsvg -Nfontname="/System/Library/Fonts/Times.dfont" %s -o %s'
-		
-		# dotString is the result of the processed XML
-		dotString = indsParser.outputDot
+		# Save results to a temporary file
+		inFile = dotProcessor.saveDot(indsParser.outputDot)
 
-		# Save DOT as file
-		fout = open(inFile, "w")
-		fout.write(dotString)
-		fout.close()
-
+		basename = 'inds'
 		# Run it
-		os.system(dotCmd % (inFile, outFile))
+		dotProcessor.runDotDualFN(inFile, basename, 'svg')
 		
-		# DDT
-		print IndsCGI.header + IndsCGI.reshtml % outFile
+		# output
+		print IndsCGI.header + IndsCGI.reshtml % 'inds.svg'
 		
 	# Show error page
 	def showError(self):
@@ -95,7 +92,8 @@ Please select your INDS XML file:
 		if form.keys() == []:
 			self.showForm()
 			return
-	
+		
+		# Which state are we in? Presence of infile indicates post-POST.
 		if form.has_key('upfile'):
 			upfile = form["upfile"]
 			self.fn = upfile.filename or ''
