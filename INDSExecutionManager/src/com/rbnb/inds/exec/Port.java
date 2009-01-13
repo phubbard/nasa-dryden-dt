@@ -77,7 +77,7 @@ public abstract class Port
 			cacheFrames = temp != null && temp.length() != 0 
 					? Integer.parseInt(temp) : 0;
 			temp = attr.getValue("archiveFrames");		
-			archiveFrames = temp != null && temp.length != 0 
+			archiveFrames = temp != null && temp.length() != 0 
 					? Integer.parseInt(temp) : 0;
 			archiveMode = "true".equals(attr.getValue("overwriteArchive"))
 					? "create" : "append";			

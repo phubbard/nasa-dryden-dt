@@ -46,7 +46,7 @@ public abstract class ExternalCommand extends com.rbnb.inds.exec.Command
 	protected boolean doExecute() throws java.io.IOException
 	{
 		String initDirName = getInitialDirectory();
-		final File initDir = initDirName != null && initDirName.length != 0
+		final File initDir = initDirName != null && initDirName.length() != 0
 				? new File(initDirName) : null;
 				
 		String[] environment = new String[env.size()];
