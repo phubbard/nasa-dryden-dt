@@ -52,8 +52,10 @@ Please select your INDS XML file:
 	
 	# Results page for file data
 	reshtml='''<HTML><HEAD><TITLE>XML to SVG Results</TITLE>
-<BODY>
-<img src="/%s">
+</HEAD><BODY>
+<object type="image/svg+xml" data="/%s"
+name="output" alt="SVG drawing of submitted INDS XML system">
+</object>
 </BODY></HTML>'''
 
 	# Display input form

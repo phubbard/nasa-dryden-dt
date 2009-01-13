@@ -22,10 +22,12 @@ digraph p4 {
 	httpmon1 -> RBNB;
 	port4000 ->  TimeDrive;
 	
+	TimeDrive -> RBNB;
+	
 	// Denote bidirectional links
 	edge [dir="both"];
 	
-	RBNB -> { Tomcat; PNG; TimeDrive; TrackKML_DC8; TrackData_DC8}
+	RBNB -> { Tomcat; PNG; TrackKML_DC8; TrackData_DC8}
 	
 	xmldemux1 -> RBNB;
 	csndemux1 -> RBNB;

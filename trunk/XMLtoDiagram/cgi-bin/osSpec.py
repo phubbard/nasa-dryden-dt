@@ -21,22 +21,22 @@ class indsDot:
 		logging.basicConfig(level=logging.DEBUG)
 
 		if os.name == 'posix':
-			logging.info('OS is POSIX')
+			logging.debug('OS is POSIX')
 			pass
 			
 		# uname only works on posix systems
 		longName = os.uname()
 		
-		logging.info('uname is ' + longName[0])
+		logging.debug('uname is ' + longName[0])
 	
 		# OSX requires specifying where to find TimesRoman
 		if longName[0] == 'Darwin':
 			self.dotParams = '-Nfontname=/System/Library/Fonts/Times.dfont'
-			logging.info('Font name param set for OSX')
+			logging.debug('Font name param set for OSX')
 		else:
-			logging.info('Other POSIX OS, no params set for dot')
+			logging.debug('Other POSIX OS, no params set for dot')
 	
 		# Anything windows-specific
 		if os.name == 'nt':
-			logging.info('OS is NT, no paramaters set')
+			logging.debug('OS is NT, no paramaters set')
 

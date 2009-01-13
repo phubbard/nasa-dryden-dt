@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Wrapper code to invoke the INDS-XML -> DOT/GXL program. I've modularized
-# the xmlToDot, so this 3-liner just invokes it.
+# the xmlToDot, so this harness just invokes it.
 # pfh 1/10/09
 
 import sys
@@ -37,4 +37,4 @@ logging.info('Basename is ' + basename[0])
 dotProcessor.runDotDualFN(dotFile, basename[0], 'svg')
 
 # DOT -> PNG
-#dotProcessor.runDotDualFN(sys.argv[1], basename, 'png')
+dotProcessor.runDotDualFN(sys.argv[1], basename[0], 'png')
