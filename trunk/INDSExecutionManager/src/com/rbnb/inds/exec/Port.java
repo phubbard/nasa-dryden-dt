@@ -17,6 +17,7 @@
 	
 	---  History  ---
 	2008/12/15  WHF  Created.
+	2009/01/13  WHF  Changed calls to String.isEmpty() to String.length() == 0.
 */
 
 package com.rbnb.inds.exec;
@@ -73,10 +74,10 @@ public abstract class Port
 			
 			String temp;
 			temp = attr.getValue("cacheFrames");
-			cacheFrames = temp != null && !temp.isEmpty() 
+			cacheFrames = temp != null && temp.length() != 0 
 					? Integer.parseInt(temp) : 0;
 			temp = attr.getValue("archiveFrames");		
-			archiveFrames = temp != null && !temp.isEmpty() 
+			archiveFrames = temp != null && temp.length != 0 
 					? Integer.parseInt(temp) : 0;
 			archiveMode = "true".equals(attr.getValue("overwriteArchive"))
 					? "create" : "append";			

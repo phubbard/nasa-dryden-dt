@@ -30,7 +30,8 @@ Adding Channel 28 Vert_Wind_Speed
 Adding Channel 29 Solar_Zenith_Angle
 Adding Channel 30 Aircraft_Sun_Elevation
 Adding Channel 31 Sun_Azimuth
-Adding Channel 32 Aircraft_Sun_Azimuth
+Adding Channel 32 Aircraft_Sun_AzimuthOutput to: DC8-817-TC4_IWG1
+
 Adding Channel 33 GPS_Vertical_Speed
 Adding Channel 34 ADC_Baro_Altitude
 Adding Channel 35 Potential_Temp
@@ -38,8 +39,8 @@ Adding Channel 36 Cabin_Temp
 Adding Channel 37 Cabin_Humidity
 Adding Channel 38 Acceleration_X
 Adding Channel 39 Acceleration_Y
-Output to: DC8-817-TC4_IWG1
 Adding Channel 40 Acceleration_Z
 Connected to Source: localhost:3333
 Connected to Sink: localhost:3333
 Running subscribe-by-frame newest mode
+xxxxxxxx

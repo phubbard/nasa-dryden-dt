@@ -30,6 +30,7 @@ Adding Channel "AOC_DewPtTemp"
 Adding Channel "AOC_H2Omr"
 Adding Channel "AOC_DewPtTempTDL"
 Adding Channel "AOC_WindDir"
+Output to: WP3D
 Adding Channel "AOC_WindSpd"
 Adding Channel "AOC_DryExtinction"
 Adding Channel "NO"
@@ -38,11 +39,11 @@ Adding Channel "O3"
 Adding Channel "CO2"
 Adding Channel "CO"
 Adding Channel "SO2"
-Adding Channel "NMASS"Output to: WP3D
-
+Adding Channel "NMASS"
 Adding Channel "WLOPC"
 Adding Channel "_Latency"
 Adding Channel "_CSV"
 Connected to Source: localhost:3333
 Connected to Sink: localhost:3333
 Running subscribe-by-frame newest mode
+xxxxxxxx

@@ -18,6 +18,7 @@
 	---  History  ---
 	2008/12/02  WHF  Created.
 	2008/12/23  WHF  Added name field, and ByteArrayOutputStreams.
+	2009/01/13  WHF  Changed calls to String.isEmpty() to String.length() == 0.	
 */
 
 package com.rbnb.inds.exec;
@@ -41,7 +42,7 @@ public abstract class Command
 		String temp;
 
 		temp = attr.getValue("initialDirectory");
-		if (temp == null || temp.isEmpty())
+		if (temp == null || temp.length() == 0)
 			initialDirectory = ".";
 		else initialDirectory = temp;
 		logFile = attr.getValue("logFile");

@@ -18,6 +18,7 @@
 	---  History  ---
 	2008/12/02  WHF  Created.
 	2008/12/19  WHF  Added check for null in waitFor().
+	2009/01/13  WHF  Changed calls to String.isEmpty() to String.length() == 0	
 */
 
 package com.rbnb.inds.exec.commands;
@@ -45,7 +46,7 @@ public abstract class ExternalCommand extends com.rbnb.inds.exec.Command
 	protected boolean doExecute() throws java.io.IOException
 	{
 		String initDirName = getInitialDirectory();
-		final File initDir = initDirName != null && !initDirName.isEmpty()
+		final File initDir = initDirName != null && initDirName.length != 0
 				? new File(initDirName) : null;
 				
 		String[] environment = new String[env.size()];
