@@ -1,7 +1,47 @@
 Using SAX parser: com.sun.org.apache.xerces.internal.parsers.SAXParser
 MKCOL response = 200
 Local Date,Source URL,Dest URL,GET Code,PUT Code,Server Date,Server LastMod,Server Expires,Next Copy Date
-Fri Jan 09 12:51:36 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,200,201,Fri Jan 09 12:51:36 EST 2009,Sun Jul 13 18:26:05 EDT 2008,---,Fri Jan 09 12:52:36 EST 2009
-Fri Jan 09 12:52:36 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 12:53:36 EST 2009
-Fri Jan 09 12:53:36 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 12:54:36 EST 2009
-Fri Jan 09 12:54:36 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 12:55:36 EST 2009
+Fri Jan 09 13:47:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,200,201,Fri Jan 09 13:47:49 EST 2009,Sun Jul 13 18:26:05 EDT 2008,---,Fri Jan 09 13:48:49 EST 2009
+Fri Jan 09 13:48:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 13:49:49 EST 2009
+Fri Jan 09 13:49:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 13:50:49 EST 2009
+Fri Jan 09 13:50:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 13:51:49 EST 2009
+Fri Jan 09 13:51:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 13:52:49 EST 2009
+Fri Jan 09 13:52:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 13:54:49 EST 2009
+Fri Jan 09 13:54:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 13:56:49 EST 2009
+Fri Jan 09 13:56:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 13:58:49 EST 2009
+Fri Jan 09 13:58:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:00:49 EST 2009
+Fri Jan 09 14:00:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:02:49 EST 2009
+Fri Jan 09 14:02:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:04:49 EST 2009
+Fri Jan 09 14:04:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:06:49 EST 2009
+Fri Jan 09 14:06:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:08:49 EST 2009
+Fri Jan 09 14:08:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:10:49 EST 2009
+Fri Jan 09 14:10:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:12:49 EST 2009
+Fri Jan 09 14:12:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:14:49 EST 2009
+Fri Jan 09 14:14:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:16:49 EST 2009
+Fri Jan 09 14:16:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:18:49 EST 2009
+Fri Jan 09 14:18:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:20:49 EST 2009
+Fri Jan 09 14:20:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:22:49 EST 2009
+Fri Jan 09 14:22:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:24:49 EST 2009
+Fri Jan 09 14:24:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:26:49 EST 2009
+Fri Jan 09 14:26:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:28:49 EST 2009
+Fri Jan 09 14:28:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:30:49 EST 2009
+Fri Jan 09 14:30:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:32:49 EST 2009
+Fri Jan 09 14:32:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:34:49 EST 2009
+Fri Jan 09 14:34:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:36:49 EST 2009
+Fri Jan 09 14:36:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:38:49 EST 2009
+Fri Jan 09 14:38:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:40:49 EST 2009
+Fri Jan 09 14:40:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:42:49 EST 2009
+Fri Jan 09 14:42:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:44:49 EST 2009
+Fri Jan 09 14:44:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:46:49 EST 2009
+Fri Jan 09 14:46:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:48:49 EST 2009
+Fri Jan 09 14:48:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:50:49 EST 2009
+Fri Jan 09 14:50:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:52:49 EST 2009
+Fri Jan 09 14:52:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:54:49 EST 2009
+Fri Jan 09 14:54:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:56:49 EST 2009
+Fri Jan 09 14:56:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 14:58:49 EST 2009
+Fri Jan 09 14:58:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 15:00:49 EST 2009
+Fri Jan 09 15:00:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 15:02:49 EST 2009
+Fri Jan 09 15:02:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 15:04:49 EST 2009
+Fri Jan 09 15:04:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 15:06:49 EST 2009
+Fri Jan 09 15:06:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 15:08:49 EST 2009
+Fri Jan 09 15:08:49 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/DC8-5001-DIAL-cap/UDP,http://localhost/RBNB/DC8-5001-DIAL-cap/UDP,304,---,---,---,---,Fri Jan 09 15:10:49 EST 2009

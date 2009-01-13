@@ -29,8 +29,9 @@ Adding Channel "Time_of_Peak_Eddy_Dissipation_Rate"
 Adding Channel "Icing"
 Adding Channel "Rel_Humidity_Consensus_Value_%"
 Adding Channel "_Latency"
-Adding Channel "_CSV"
-Output to: CV580_IWG1
+Adding Channel "_CSV"Output to: CV580_IWG1
+
 Connected to Source: localhost:3333
 Connected to Sink: localhost:3333
 Running subscribe-by-frame newest mode
+xxxxxxxx

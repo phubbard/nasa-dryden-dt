@@ -6,7 +6,6 @@
 	5: id = Pitch, info (used in chan registration) = Pitch (deg), skip = false
 	6: id = Roll, info (used in chan registration) = Roll (deg), skip = false
 marker: "HASR"
-Output to: HASR
 Adding Channel "TimeStamp"
 Adding Channel "Latitude"
 Adding Channel "Longitude"
@@ -15,6 +14,8 @@ Adding Channel "Pitch"
 Adding Channel "Roll"
 Adding Channel "_Latency"
 Adding Channel "_CSV"
+Output to: HASR
 Connected to Source: localhost:3333
 Connected to Sink: localhost:3333
 Running subscribe-by-frame newest mode
+xxxxxxxx

@@ -1,11 +1,195 @@
 Using SAX parser: com.sun.org.apache.xerces.internal.parsers.SAXParser
 MKCOL response = 200
 Local Date,Source URL,Dest URL,GET Code,PUT Code,Server Date,Server LastMod,Server Expires,Next Copy Date
-Fri Jan 09 12:51:37 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 12:52:07 EST 2009
-Fri Jan 09 12:52:07 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 12:52:37 EST 2009
-Fri Jan 09 12:52:37 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 12:53:07 EST 2009
-Fri Jan 09 12:53:07 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 12:53:37 EST 2009
-Fri Jan 09 12:53:37 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 12:54:07 EST 2009
-Fri Jan 09 12:54:07 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 12:54:37 EST 2009
-Fri Jan 09 12:54:37 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 12:55:07 EST 2009
-Fri Jan 09 12:55:07 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 12:55:37 EST 2009
+Fri Jan 09 13:47:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:48:20 EST 2009
+Fri Jan 09 13:48:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:48:50 EST 2009
+Fri Jan 09 13:48:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:49:20 EST 2009
+Fri Jan 09 13:49:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:49:50 EST 2009
+Fri Jan 09 13:49:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:50:20 EST 2009
+Fri Jan 09 13:50:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:50:50 EST 2009
+Fri Jan 09 13:50:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:51:20 EST 2009
+Fri Jan 09 13:51:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:51:50 EST 2009
+Fri Jan 09 13:51:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:52:20 EST 2009
+Fri Jan 09 13:52:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:52:50 EST 2009
+Fri Jan 09 13:52:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:53:20 EST 2009
+Fri Jan 09 13:53:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:53:50 EST 2009
+Fri Jan 09 13:53:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:54:20 EST 2009
+Fri Jan 09 13:54:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:54:50 EST 2009
+Fri Jan 09 13:54:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:55:20 EST 2009
+Fri Jan 09 13:55:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:55:50 EST 2009
+Fri Jan 09 13:55:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:56:20 EST 2009
+Fri Jan 09 13:56:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:56:50 EST 2009
+Fri Jan 09 13:56:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:57:20 EST 2009
+Fri Jan 09 13:57:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:57:50 EST 2009
+Fri Jan 09 13:57:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:58:20 EST 2009
+Fri Jan 09 13:58:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:58:50 EST 2009
+Fri Jan 09 13:58:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:59:20 EST 2009
+Fri Jan 09 13:59:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 13:59:50 EST 2009
+Fri Jan 09 13:59:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:00:20 EST 2009
+Fri Jan 09 14:00:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:00:50 EST 2009
+Fri Jan 09 14:00:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:01:20 EST 2009
+Fri Jan 09 14:01:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:01:50 EST 2009
+Fri Jan 09 14:01:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:02:20 EST 2009
+Fri Jan 09 14:02:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:02:50 EST 2009
+Fri Jan 09 14:02:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:03:20 EST 2009
+Fri Jan 09 14:03:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:03:50 EST 2009
+Fri Jan 09 14:03:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:04:20 EST 2009
+Fri Jan 09 14:04:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:04:50 EST 2009
+Fri Jan 09 14:04:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:05:20 EST 2009
+Fri Jan 09 14:05:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:05:50 EST 2009
+Fri Jan 09 14:05:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:06:20 EST 2009
+Fri Jan 09 14:06:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:06:50 EST 2009
+Fri Jan 09 14:06:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:07:20 EST 2009
+Fri Jan 09 14:07:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:07:50 EST 2009
+Fri Jan 09 14:07:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:08:20 EST 2009
+Fri Jan 09 14:08:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:08:50 EST 2009
+Fri Jan 09 14:08:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:09:20 EST 2009
+Fri Jan 09 14:09:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:09:50 EST 2009
+Fri Jan 09 14:09:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:10:20 EST 2009
+Fri Jan 09 14:10:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:10:50 EST 2009
+Fri Jan 09 14:10:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:11:20 EST 2009
+Fri Jan 09 14:11:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:11:50 EST 2009
+Fri Jan 09 14:11:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:12:20 EST 2009
+Fri Jan 09 14:12:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:12:50 EST 2009
+Fri Jan 09 14:12:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:13:20 EST 2009
+Fri Jan 09 14:13:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:13:50 EST 2009
+Fri Jan 09 14:13:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:14:20 EST 2009
+Fri Jan 09 14:14:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:14:50 EST 2009
+Fri Jan 09 14:14:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:15:20 EST 2009
+Fri Jan 09 14:15:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:15:50 EST 2009
+Fri Jan 09 14:15:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:16:20 EST 2009
+Fri Jan 09 14:16:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:16:50 EST 2009
+Fri Jan 09 14:16:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:17:20 EST 2009
+Fri Jan 09 14:17:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:17:50 EST 2009
+Fri Jan 09 14:17:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:18:20 EST 2009
+Fri Jan 09 14:18:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:18:50 EST 2009
+Fri Jan 09 14:18:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:19:20 EST 2009
+Fri Jan 09 14:19:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:19:50 EST 2009
+Fri Jan 09 14:19:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:20:20 EST 2009
+Fri Jan 09 14:20:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:20:50 EST 2009
+Fri Jan 09 14:20:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:21:20 EST 2009
+Fri Jan 09 14:21:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:21:50 EST 2009
+Fri Jan 09 14:21:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:22:20 EST 2009
+Fri Jan 09 14:22:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:22:50 EST 2009
+Fri Jan 09 14:22:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:23:20 EST 2009
+Fri Jan 09 14:23:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:23:50 EST 2009
+Fri Jan 09 14:23:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:24:20 EST 2009
+Fri Jan 09 14:24:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:24:50 EST 2009
+java.net.ConnectException: Connection timed out: connect
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+	at java.net.Socket.connect(Socket.java:519)
+	at java.net.Socket.connect(Socket.java:469)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:157)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:388)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:515)
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:233)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:306)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:318)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:792)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:733)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:658)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:981)
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:373)
+	at com.rbnb.web.HttpMonitor$Resource.get(HttpMonitor.java:224)
+	at com.rbnb.web.HttpMonitor.loadNextResource(HttpMonitor.java:1197)
+	at com.rbnb.web.HttpMonitor.loadResources(HttpMonitor.java:1145)
+	at com.rbnb.web.HttpMonitor.main(HttpMonitor.java:1241)
+Error copying:
+	http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV
+to:
+	http://localhost/RBNB/CV580/_CSV:
+Fri Jan 09 14:24:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,---,---,---,---,---,Fri Jan 09 14:25:20 EST 2009
+Fri Jan 09 14:25:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:25:50 EST 2009
+Fri Jan 09 14:25:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:26:20 EST 2009
+Fri Jan 09 14:26:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:26:50 EST 2009
+Fri Jan 09 14:26:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:27:20 EST 2009
+Fri Jan 09 14:27:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:27:50 EST 2009
+Fri Jan 09 14:27:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:28:20 EST 2009
+Fri Jan 09 14:28:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:28:50 EST 2009
+Fri Jan 09 14:28:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:29:20 EST 2009
+Fri Jan 09 14:29:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:29:50 EST 2009
+Fri Jan 09 14:29:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:30:20 EST 2009
+Fri Jan 09 14:30:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:30:50 EST 2009
+Fri Jan 09 14:30:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:31:20 EST 2009
+Fri Jan 09 14:31:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:31:50 EST 2009
+Fri Jan 09 14:31:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:32:20 EST 2009
+Fri Jan 09 14:32:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:32:50 EST 2009
+Fri Jan 09 14:32:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:33:20 EST 2009
+Fri Jan 09 14:33:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:33:50 EST 2009
+Fri Jan 09 14:33:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:34:20 EST 2009
+Fri Jan 09 14:34:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:34:50 EST 2009
+Fri Jan 09 14:34:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:35:20 EST 2009
+Fri Jan 09 14:35:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:35:50 EST 2009
+Fri Jan 09 14:35:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:36:20 EST 2009
+Fri Jan 09 14:36:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:36:50 EST 2009
+Fri Jan 09 14:36:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:37:20 EST 2009
+Fri Jan 09 14:37:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:37:50 EST 2009
+Fri Jan 09 14:37:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:38:20 EST 2009
+Fri Jan 09 14:38:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:38:50 EST 2009
+Fri Jan 09 14:38:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:39:20 EST 2009
+Fri Jan 09 14:39:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:39:50 EST 2009
+Fri Jan 09 14:39:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:40:20 EST 2009
+Fri Jan 09 14:40:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:40:50 EST 2009
+Fri Jan 09 14:40:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:41:20 EST 2009
+Fri Jan 09 14:41:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:41:50 EST 2009
+Fri Jan 09 14:41:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:42:20 EST 2009
+Fri Jan 09 14:42:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:42:50 EST 2009
+Fri Jan 09 14:42:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:43:20 EST 2009
+Fri Jan 09 14:43:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:43:50 EST 2009
+Fri Jan 09 14:43:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:44:20 EST 2009
+Fri Jan 09 14:44:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:44:50 EST 2009
+Fri Jan 09 14:44:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:45:20 EST 2009
+Fri Jan 09 14:45:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:45:50 EST 2009
+Fri Jan 09 14:45:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:46:20 EST 2009
+Fri Jan 09 14:46:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:46:50 EST 2009
+Fri Jan 09 14:46:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:47:20 EST 2009
+Fri Jan 09 14:47:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:47:50 EST 2009
+Fri Jan 09 14:47:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:48:20 EST 2009
+Fri Jan 09 14:48:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:48:50 EST 2009
+Fri Jan 09 14:48:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:49:20 EST 2009
+Fri Jan 09 14:49:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:49:50 EST 2009
+Fri Jan 09 14:49:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:50:20 EST 2009
+Fri Jan 09 14:50:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:50:50 EST 2009
+Fri Jan 09 14:50:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:51:20 EST 2009
+Fri Jan 09 14:51:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:51:50 EST 2009
+Fri Jan 09 14:51:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:52:20 EST 2009
+Fri Jan 09 14:52:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:52:50 EST 2009
+Fri Jan 09 14:52:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:53:20 EST 2009
+Fri Jan 09 14:53:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:53:50 EST 2009
+Fri Jan 09 14:53:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:54:20 EST 2009
+Fri Jan 09 14:54:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:54:50 EST 2009
+Fri Jan 09 14:54:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:55:20 EST 2009
+Fri Jan 09 14:55:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:55:50 EST 2009
+Fri Jan 09 14:55:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:56:20 EST 2009
+Fri Jan 09 14:56:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:56:50 EST 2009
+Fri Jan 09 14:56:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:57:20 EST 2009
+Fri Jan 09 14:57:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:57:50 EST 2009
+Fri Jan 09 14:57:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:58:20 EST 2009
+Fri Jan 09 14:58:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:58:50 EST 2009
+Fri Jan 09 14:58:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:59:20 EST 2009
+Fri Jan 09 14:59:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 14:59:50 EST 2009
+Fri Jan 09 14:59:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:00:20 EST 2009
+Fri Jan 09 15:00:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:00:50 EST 2009
+Fri Jan 09 15:00:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:01:20 EST 2009
+Fri Jan 09 15:01:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:01:50 EST 2009
+Fri Jan 09 15:01:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:02:20 EST 2009
+Fri Jan 09 15:02:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:02:50 EST 2009
+Fri Jan 09 15:02:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:03:20 EST 2009
+Fri Jan 09 15:03:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:03:50 EST 2009
+Fri Jan 09 15:03:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:04:20 EST 2009
+Fri Jan 09 15:04:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:04:50 EST 2009
+Fri Jan 09 15:04:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:05:20 EST 2009
+Fri Jan 09 15:05:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:05:50 EST 2009
+Fri Jan 09 15:05:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:06:20 EST 2009
+Fri Jan 09 15:06:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:06:50 EST 2009
+Fri Jan 09 15:06:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:07:20 EST 2009
+Fri Jan 09 15:07:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:07:50 EST 2009
+Fri Jan 09 15:07:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:08:20 EST 2009
+Fri Jan 09 15:08:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:08:50 EST 2009
+Fri Jan 09 15:08:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:09:20 EST 2009
+Fri Jan 09 15:09:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:09:50 EST 2009
+Fri Jan 09 15:09:50 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:10:20 EST 2009
+Fri Jan 09 15:10:20 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/INDS5/CV580/_CSV,http://localhost/RBNB/CV580/_CSV,404,---,---,---,---,Fri Jan 09 15:10:50 EST 2009

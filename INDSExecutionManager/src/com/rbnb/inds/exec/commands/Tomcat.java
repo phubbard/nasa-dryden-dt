@@ -17,6 +17,7 @@
 	
 	---  History  ---
 	2008/12/04  WHF  Created.
+	2009/01/13  WHF  Changed backslashes into forward slashes.
 */
 
 package com.rbnb.inds.exec.commands;
@@ -45,8 +46,8 @@ public class Tomcat extends ExternalCommand
 		
 		
 		if (System.getProperty("os.name").contains("Windows"))
-			setExecutablePath(exeDir + "\\catalina.bat");
-		else setExecutablePath(exeDir + "\\catalina.sh");
+			setExecutablePath(exeDir + "/catalina.bat");
+		else setExecutablePath(exeDir + "/catalina.sh");
 		
 		addArgument("run");
 		
