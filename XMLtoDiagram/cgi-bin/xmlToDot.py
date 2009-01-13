@@ -45,7 +45,7 @@ class IndsToDot:
 	def nodeSimpleLabel(self, node, nodeType, attribName, isSource):
 		idx = self.nameIndex()
 		nodeName = nodeType + '%d' % idx
-		nodeString = nodeName + ' [label="' + nodeType + ' ('
+		nodeString = nodeName + ' [label="' + nodeType + '\\n ('
 		nodeString += node.getAttribute(attribName) + ')"]'
 
 		self.addOutput(nodeString)
