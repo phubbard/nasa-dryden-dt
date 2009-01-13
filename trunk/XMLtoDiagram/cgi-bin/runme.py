@@ -15,7 +15,7 @@ inFile = '../../XML_startup_P3_example/P3_startup.xml'
 
 ##################################################################
 # Log everything, and send it to stderr.
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 logging.info(sys.argv[0] + ' starting up, file is ' + inFile)
 
