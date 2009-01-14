@@ -7,10 +7,10 @@
 	6: id = GroundSpeed, info (used in chan registration) = Ground Speed (m/s), skip = false
 marker: "N255SA"
 Adding Channel "TimeStamp"
-Output to: N255SA
 Adding Channel "Latitude"
 Adding Channel "Longitude"
 Adding Channel "Altitude"
+Output to: N255SA
 Adding Channel "Heading"
 Adding Channel "GroundSpeed"
 Adding Channel "_Latency"
@@ -18,4 +18,4 @@ Adding Channel "_CSV"
 Connected to Source: localhost:3333
 Connected to Sink: localhost:3333
 Running subscribe-by-frame newest mode
-xxxxxxxx
+x
