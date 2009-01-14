@@ -6,9 +6,10 @@
 <startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/user/DryScan/nasa-dryden-dt/XML_startup_P3_example/inds_startup.xsd">
 	
 	<!-- Tomcat -->
-	<tomcat logFile="tommy.log">
+	<!-- JPW 01/14/09: Don't start Tomcat under the Execution Manager -->
+	<!--tomcat logFile="tommy.log">
 		<input type="tcp" port="localhost:80" />
-	</tomcat>
+	</tomcat-->
 	
 	<!-- Server -->
 	<del initialDirectory="Server" file="rbnb.log"/>
