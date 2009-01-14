@@ -1,0 +1,8 @@
+#! /bin/sh
+
+export JAVA_OPTS=-mx384M
+export CATALINA_HOME=/Users/INDS/ExecutionManagerTest/trunk/INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12
+# export CATALINA_HOME=/Users/INDS/INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12
+export JAVA_HOME=/usr
+$CATALINA_HOME/bin/startup.sh
+
