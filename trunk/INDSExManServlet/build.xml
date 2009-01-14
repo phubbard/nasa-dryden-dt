@@ -1,0 +1,61 @@
+<!-- Name: build.xml
+     By:   Bill Finger / Jesse Norris
+	 
+-->
+
+<project name="INDS Execution Manager Servlet" default="library" basedir=".">
+	
+	<!-- Set this to the INDS Execution Manager path  -->  
+	<property name="indsExecPath"
+			value="../INDSExecutionManager" />
+	<property name="rmiStubPath"
+			value = "${indsExecPath}/bin/inds_rmistubs.jar" />
+	<path id = "rmistubscp" >
+		<pathelement location="${rmiStubPath}" />
+	</path>
+	
+	<!-- Set this to your web server path  -->  
+	<property name="jakartadir" 
+			value="../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12" />			
+	<path id = "servletcp" >
+		<pathelement location="${jakartadir}/common/lib/servlet-api.jar"/>
+		<pathelement location="${jakartadir}/common/lib/jsp-api.jar" />
+	</path>
+
+	<!--*****  Targets *****-->
+	<target name="init" description="Initialize build environment.">
+		<mkdir dir="out" />
+		<mkdir dir="out/WEB-INF/classes" />
+		<mkdir dir="out/WEB-INF/lib" />
+	</target>
+	
+	<target name="compile" depends="init">
+		<!-- Build ChartServlet into the WebTurbine web application: -->
+		<javac destdir="out/WEB-INF/classes"
+				deprecation = "on"
+				debug = "on"
+				srcdir = "src" 
+				includes = "*.java" >
+			<classpath refid = "servletcp" />
+			<classpath refid = "rmistubscp" />
+			<compilerarg value="-Xlint:all"/>
+		</javac>
+		<copy todir = "out/WEB-INF" file="src/web.xml" />			
+		<copy todir = "out/WEB-INF/lib" file="${rmiStubPath}" />			
+	</target>
+
+	<target name="library" depends="compile" description 
+			= "Build necessary war (Web Application Resource) files.">			
+		<jar destfile = "indsExec.war">
+			<fileset dir = "out" />
+		</jar>
+		<!--  Copy this file to the INDS web server area: -->
+		<copy todir = "${jakartadir}/webapps" file="indsExec.war" />
+	</target>
+
+	<target name="clean" description = "Delete binary files.">
+		<delete dir="out" />
+		<delete dir="indsExec.war" />
+	</target>
+ 
+</project>

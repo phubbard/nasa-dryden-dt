@@ -25,13 +25,13 @@ Adding Channel "Temp_C"
 Adding Channel "Wind_Direction"
 Adding Channel "Wind_Speed_kts"
 Adding Channel "Eddy_Dissipation"
-Adding Channel "Time_of_Peak_Eddy_Dissipation_Rate"
+Adding Channel "Time_of_Peak_Eddy_Dissipation_Rate"Output to: CV580_IWG1
+
 Adding Channel "Icing"
 Adding Channel "Rel_Humidity_Consensus_Value_%"
 Adding Channel "_Latency"
-Adding Channel "_CSV"Output to: CV580_IWG1
-
+Adding Channel "_CSV"
 Connected to Source: localhost:3333
 Connected to Sink: localhost:3333
 Running subscribe-by-frame newest mode
-xxxxxxxx
+x

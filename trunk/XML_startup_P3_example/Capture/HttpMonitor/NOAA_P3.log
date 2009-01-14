@@ -1,195 +1,34 @@
 Using SAX parser: com.sun.org.apache.xerces.internal.parsers.SAXParser
+MKCOL response = -1
 MKCOL response = 200
 Local Date,Source URL,Dest URL,GET Code,PUT Code,Server Date,Server LastMod,Server Expires,Next Copy Date
-Fri Jan 09 13:47:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,200,201,Fri Jan 09 13:47:50 EST 2009,Mon Apr 21 19:47:30 EDT 2008,---,Fri Jan 09 13:48:21 EST 2009
-Fri Jan 09 13:48:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:48:51 EST 2009
-Fri Jan 09 13:48:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:49:21 EST 2009
-Fri Jan 09 13:49:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:49:51 EST 2009
-Fri Jan 09 13:49:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:50:21 EST 2009
-Fri Jan 09 13:50:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:50:51 EST 2009
-Fri Jan 09 13:50:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:51:21 EST 2009
-Fri Jan 09 13:51:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:51:51 EST 2009
-Fri Jan 09 13:51:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:52:21 EST 2009
-Fri Jan 09 13:52:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:52:51 EST 2009
-Fri Jan 09 13:52:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:53:21 EST 2009
-Fri Jan 09 13:53:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:53:51 EST 2009
-Fri Jan 09 13:53:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:54:21 EST 2009
-Fri Jan 09 13:54:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:54:51 EST 2009
-Fri Jan 09 13:54:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:55:21 EST 2009
-Fri Jan 09 13:55:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:55:51 EST 2009
-Fri Jan 09 13:55:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:56:21 EST 2009
-Fri Jan 09 13:56:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:56:51 EST 2009
-Fri Jan 09 13:56:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:57:21 EST 2009
-Fri Jan 09 13:57:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:57:51 EST 2009
-Fri Jan 09 13:57:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:58:21 EST 2009
-java.net.ConnectException: Connection timed out: connect
-	at java.net.PlainSocketImpl.socketConnect(Native Method)
-	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
-	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
-	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
-	at java.net.Socket.connect(Socket.java:519)
-	at java.net.Socket.connect(Socket.java:469)
-	at sun.net.NetworkClient.doConnect(NetworkClient.java:157)
-	at sun.net.www.http.HttpClient.openServer(HttpClient.java:388)
-	at sun.net.www.http.HttpClient.openServer(HttpClient.java:515)
-	at sun.net.www.http.HttpClient.<init>(HttpClient.java:233)
-	at sun.net.www.http.HttpClient.New(HttpClient.java:306)
-	at sun.net.www.http.HttpClient.New(HttpClient.java:318)
-	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:792)
-	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:733)
-	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:658)
-Error copying:
-	http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt
-to:
-	http://localhost/RBNB/NOAA_P3/WP3D.txt:
-	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:981)
-	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:373)
-	at com.rbnb.web.HttpMonitor$Resource.get(HttpMonitor.java:224)
-	at com.rbnb.web.HttpMonitor.loadNextResource(HttpMonitor.java:1197)
-	at com.rbnb.web.HttpMonitor.loadResources(HttpMonitor.java:1145)
-	at com.rbnb.web.HttpMonitor.main(HttpMonitor.java:1241)
-Fri Jan 09 13:58:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,---,---,---,---,---,Fri Jan 09 13:58:51 EST 2009
-Fri Jan 09 13:58:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:59:21 EST 2009
-Fri Jan 09 13:59:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 13:59:51 EST 2009
-Fri Jan 09 13:59:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:00:21 EST 2009
-Fri Jan 09 14:00:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:00:51 EST 2009
-Fri Jan 09 14:00:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:01:21 EST 2009
-Fri Jan 09 14:01:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:01:51 EST 2009
-Fri Jan 09 14:01:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:02:21 EST 2009
-Fri Jan 09 14:02:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:02:51 EST 2009
-Fri Jan 09 14:02:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:03:21 EST 2009
-Fri Jan 09 14:03:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:03:51 EST 2009
-Fri Jan 09 14:03:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:04:21 EST 2009
-Fri Jan 09 14:04:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:04:51 EST 2009
-Fri Jan 09 14:04:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:05:21 EST 2009
-Fri Jan 09 14:05:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:05:51 EST 2009
-Fri Jan 09 14:05:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:06:21 EST 2009
-Fri Jan 09 14:06:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:06:51 EST 2009
-Fri Jan 09 14:06:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:07:21 EST 2009
-Fri Jan 09 14:07:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:07:51 EST 2009
-Fri Jan 09 14:07:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:08:21 EST 2009
-Fri Jan 09 14:08:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:08:51 EST 2009
-Fri Jan 09 14:08:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:09:21 EST 2009
-Fri Jan 09 14:09:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:09:51 EST 2009
-Fri Jan 09 14:09:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:10:21 EST 2009
-Fri Jan 09 14:10:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:10:51 EST 2009
-Fri Jan 09 14:10:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:11:21 EST 2009
-Fri Jan 09 14:11:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:11:51 EST 2009
-Fri Jan 09 14:11:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:12:21 EST 2009
-Fri Jan 09 14:12:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:12:51 EST 2009
-Fri Jan 09 14:12:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:13:21 EST 2009
-Fri Jan 09 14:13:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:13:51 EST 2009
-Fri Jan 09 14:13:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:14:21 EST 2009
-Fri Jan 09 14:14:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:14:51 EST 2009
-Fri Jan 09 14:14:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:15:21 EST 2009
-Fri Jan 09 14:15:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:15:51 EST 2009
-Fri Jan 09 14:15:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:16:21 EST 2009
-Fri Jan 09 14:16:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:16:51 EST 2009
-Fri Jan 09 14:16:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:17:21 EST 2009
-Fri Jan 09 14:17:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:17:51 EST 2009
-Fri Jan 09 14:17:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:18:21 EST 2009
-Fri Jan 09 14:18:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:18:51 EST 2009
-Fri Jan 09 14:18:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:19:21 EST 2009
-Fri Jan 09 14:19:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:19:51 EST 2009
-Fri Jan 09 14:19:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:20:21 EST 2009
-Fri Jan 09 14:20:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:20:51 EST 2009
-Fri Jan 09 14:20:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:21:21 EST 2009
-Fri Jan 09 14:21:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:21:51 EST 2009
-Fri Jan 09 14:21:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:22:21 EST 2009
-Fri Jan 09 14:22:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:22:51 EST 2009
-Fri Jan 09 14:22:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:23:21 EST 2009
-Fri Jan 09 14:23:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:23:51 EST 2009
-Fri Jan 09 14:23:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:24:21 EST 2009
-Fri Jan 09 14:24:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:24:51 EST 2009
-Fri Jan 09 14:24:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:25:21 EST 2009
-Fri Jan 09 14:25:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:25:51 EST 2009
-Fri Jan 09 14:25:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:26:21 EST 2009
-Fri Jan 09 14:26:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:26:51 EST 2009
-Fri Jan 09 14:26:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:27:21 EST 2009
-Fri Jan 09 14:27:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:27:51 EST 2009
-Fri Jan 09 14:27:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:28:21 EST 2009
-Fri Jan 09 14:28:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:28:51 EST 2009
-Fri Jan 09 14:28:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:29:21 EST 2009
-Fri Jan 09 14:29:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:29:51 EST 2009
-Fri Jan 09 14:29:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:30:21 EST 2009
-Fri Jan 09 14:30:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:30:51 EST 2009
-Fri Jan 09 14:30:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:31:21 EST 2009
-Fri Jan 09 14:31:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:31:51 EST 2009
-Fri Jan 09 14:31:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:32:21 EST 2009
-Fri Jan 09 14:32:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:32:51 EST 2009
-Fri Jan 09 14:32:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:33:21 EST 2009
-Fri Jan 09 14:33:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:33:51 EST 2009
-Fri Jan 09 14:33:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:34:21 EST 2009
-Fri Jan 09 14:34:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:34:51 EST 2009
-Fri Jan 09 14:34:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:35:21 EST 2009
-Fri Jan 09 14:35:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:35:51 EST 2009
-Fri Jan 09 14:35:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:36:21 EST 2009
-Fri Jan 09 14:36:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:36:51 EST 2009
-Fri Jan 09 14:36:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:37:21 EST 2009
-Fri Jan 09 14:37:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:37:51 EST 2009
-Fri Jan 09 14:37:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:38:21 EST 2009
-Fri Jan 09 14:38:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:38:51 EST 2009
-Fri Jan 09 14:38:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:39:21 EST 2009
-Fri Jan 09 14:39:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:39:51 EST 2009
-Fri Jan 09 14:39:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:40:21 EST 2009
-Fri Jan 09 14:40:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:40:51 EST 2009
-Fri Jan 09 14:40:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:41:21 EST 2009
-Fri Jan 09 14:41:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:41:51 EST 2009
-Fri Jan 09 14:41:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:42:21 EST 2009
-Fri Jan 09 14:42:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:42:51 EST 2009
-Fri Jan 09 14:42:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:43:21 EST 2009
-Fri Jan 09 14:43:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:43:51 EST 2009
-Fri Jan 09 14:43:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:44:21 EST 2009
-Fri Jan 09 14:44:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:44:51 EST 2009
-Fri Jan 09 14:44:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:45:21 EST 2009
-Fri Jan 09 14:45:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:45:51 EST 2009
-Fri Jan 09 14:45:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:46:21 EST 2009
-Fri Jan 09 14:46:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:46:51 EST 2009
-Fri Jan 09 14:46:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:47:21 EST 2009
-Fri Jan 09 14:47:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:47:51 EST 2009
-Fri Jan 09 14:47:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:48:21 EST 2009
-Fri Jan 09 14:48:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:48:51 EST 2009
-Fri Jan 09 14:48:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:49:21 EST 2009
-Fri Jan 09 14:49:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:49:51 EST 2009
-Fri Jan 09 14:49:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:50:21 EST 2009
-Fri Jan 09 14:50:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:50:51 EST 2009
-Fri Jan 09 14:50:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:51:21 EST 2009
-Fri Jan 09 14:51:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:51:51 EST 2009
-Fri Jan 09 14:51:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:52:21 EST 2009
-Fri Jan 09 14:52:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:52:51 EST 2009
-Fri Jan 09 14:52:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:53:21 EST 2009
-Fri Jan 09 14:53:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:53:51 EST 2009
-Fri Jan 09 14:53:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:54:21 EST 2009
-Fri Jan 09 14:54:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:54:51 EST 2009
-Fri Jan 09 14:54:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:55:21 EST 2009
-Fri Jan 09 14:55:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:55:51 EST 2009
-Fri Jan 09 14:55:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:56:21 EST 2009
-Fri Jan 09 14:56:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:56:51 EST 2009
-Fri Jan 09 14:56:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:57:21 EST 2009
-Fri Jan 09 14:57:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:57:51 EST 2009
-Fri Jan 09 14:57:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:58:21 EST 2009
-Fri Jan 09 14:58:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:58:51 EST 2009
-Fri Jan 09 14:58:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:59:21 EST 2009
-Fri Jan 09 14:59:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 14:59:51 EST 2009
-Fri Jan 09 14:59:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:00:21 EST 2009
-Fri Jan 09 15:00:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:00:51 EST 2009
-Fri Jan 09 15:00:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:01:21 EST 2009
-Fri Jan 09 15:01:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:01:51 EST 2009
-Fri Jan 09 15:01:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:02:21 EST 2009
-Fri Jan 09 15:02:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:02:51 EST 2009
-Fri Jan 09 15:02:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:03:21 EST 2009
-Fri Jan 09 15:03:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:03:51 EST 2009
-Fri Jan 09 15:03:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:04:21 EST 2009
-Fri Jan 09 15:04:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:04:51 EST 2009
-Fri Jan 09 15:04:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:05:21 EST 2009
-Fri Jan 09 15:05:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:05:51 EST 2009
-Fri Jan 09 15:05:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:06:21 EST 2009
-Fri Jan 09 15:06:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:06:51 EST 2009
-Fri Jan 09 15:06:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:07:21 EST 2009
-Fri Jan 09 15:07:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:07:51 EST 2009
-Fri Jan 09 15:07:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:08:21 EST 2009
-Fri Jan 09 15:08:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:08:51 EST 2009
-Fri Jan 09 15:08:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:09:21 EST 2009
-Fri Jan 09 15:09:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:09:51 EST 2009
-Fri Jan 09 15:09:51 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:10:21 EST 2009
-Fri Jan 09 15:10:21 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Fri Jan 09 15:10:51 EST 2009
+Wed Jan 14 09:15:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,200,201,Wed Jan 14 09:15:24 EST 2009,Mon Apr 21 19:47:30 EDT 2008,---,Wed Jan 14 09:15:53 EST 2009
+Wed Jan 14 09:15:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:16:23 EST 2009
+Wed Jan 14 09:16:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:16:53 EST 2009
+Wed Jan 14 09:16:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:17:23 EST 2009
+Wed Jan 14 09:17:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:17:53 EST 2009
+Wed Jan 14 09:17:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:18:23 EST 2009
+Wed Jan 14 09:18:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:18:53 EST 2009
+Wed Jan 14 09:18:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:19:23 EST 2009
+Wed Jan 14 09:19:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:19:53 EST 2009
+Wed Jan 14 09:19:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:20:23 EST 2009
+Wed Jan 14 09:20:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:20:53 EST 2009
+Wed Jan 14 09:20:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:21:23 EST 2009
+Wed Jan 14 09:21:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:21:53 EST 2009
+Wed Jan 14 09:21:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:22:23 EST 2009
+Wed Jan 14 09:22:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:22:53 EST 2009
+Wed Jan 14 09:22:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:23:23 EST 2009
+Wed Jan 14 09:23:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:23:53 EST 2009
+Wed Jan 14 09:23:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:24:23 EST 2009
+Wed Jan 14 09:24:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:24:53 EST 2009
+Wed Jan 14 09:24:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:25:23 EST 2009
+Wed Jan 14 09:25:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:25:53 EST 2009
+Wed Jan 14 09:25:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:26:23 EST 2009
+Wed Jan 14 09:26:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:26:53 EST 2009
+Wed Jan 14 09:26:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:27:23 EST 2009
+Wed Jan 14 09:27:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:27:53 EST 2009
+Wed Jan 14 09:27:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:28:23 EST 2009
+Wed Jan 14 09:28:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:28:53 EST 2009
+Wed Jan 14 09:28:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:29:23 EST 2009
+Wed Jan 14 09:29:23 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:29:53 EST 2009
+Wed Jan 14 09:29:53 EST 2009,http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt,http://localhost/RBNB/NOAA_P3/WP3D.txt,304,---,---,---,---,Wed Jan 14 09:30:23 EST 2009

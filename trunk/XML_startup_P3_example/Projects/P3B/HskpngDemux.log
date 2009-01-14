@@ -74,11 +74,11 @@ Adding Channel 72 ADC_SAT
 Adding Channel 73 ADC_VSpd
 Adding Channel 74 ADC_TAT
 Adding Channel 75 Solar_Zenith_Angle
+Output to: GTR_MONITOR_TM_STREAM_P3B_ARCTAS
 Adding Channel 76 Aircraft_Sun_Elevation
 Adding Channel 77 Sun_Azimuth
 Adding Channel 78 Aircraft_Sun_Azimuth
-Output to: GTR_MONITOR_TM_STREAM_P3B_ARCTAS
 Connected to Source: localhost:3333
 Connected to Sink: localhost:3333
 Running subscribe-by-frame newest mode
-xxxxxxxx
+x
