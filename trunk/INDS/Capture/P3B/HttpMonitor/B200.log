@@ -1,14 +1,1 @@
-Using SAX parser: com.sun.org.apache.xerces.internal.parsers.SAXParser
-MKCOL response = 200
-Local Date,Source URL,Dest URL,GET Code,PUT Code,Server Date,Server LastMod,Server Expires,Next Copy Date
-Fri Oct 31 08:22:56 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/HASR/_CSV,http://localhost/RBNB/B200/B200_ASR_reduced.txt,200,201,Fri Oct 31 08:22:56 GMT-05:00 2008,Thu Oct 30 16:03:47 GMT-05:00 2008,---,Fri Oct 31 08:23:16 GMT-05:00 2008
-Fri Oct 31 08:22:57 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/B200/B200_DEP.txt,http://localhost/RBNB/B200/B200_DEP.txt,200,201,Fri Oct 31 08:22:56 GMT-05:00 2008,Thu Oct 30 16:03:47 GMT-05:00 2008,---,Fri Oct 31 08:24:57 GMT-05:00 2008
-Fri Oct 31 08:22:57 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/B200/B200_ASR.txt,http://localhost/RBNB/B200/B200_ASR.txt,200,201,Fri Oct 31 08:22:56 GMT-05:00 2008,Thu Oct 30 16:03:47 GMT-05:00 2008,---,Fri Oct 31 08:24:57 GMT-05:00 2008
-Fri Oct 31 08:23:16 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/HASR/_CSV,http://localhost/RBNB/B200/B200_ASR_reduced.txt,304,---,---,---,---,Fri Oct 31 08:23:36 GMT-05:00 2008
-Fri Oct 31 08:23:37 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/HASR/_CSV,http://localhost/RBNB/B200/B200_ASR_reduced.txt,304,---,---,---,---,Fri Oct 31 08:23:57 GMT-05:00 2008
-Fri Oct 31 08:23:57 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/HASR/_CSV,http://localhost/RBNB/B200/B200_ASR_reduced.txt,304,---,---,---,---,Fri Oct 31 08:24:17 GMT-05:00 2008
-Fri Oct 31 08:24:17 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/HASR/_CSV,http://localhost/RBNB/B200/B200_ASR_reduced.txt,304,---,---,---,---,Fri Oct 31 08:24:37 GMT-05:00 2008
-Fri Oct 31 08:24:37 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/HASR/_CSV,http://localhost/RBNB/B200/B200_ASR_reduced.txt,304,---,---,---,---,Fri Oct 31 08:24:57 GMT-05:00 2008
-Fri Oct 31 08:24:57 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/INDS5/HASR/_CSV,http://localhost/RBNB/B200/B200_ASR_reduced.txt,304,---,---,---,---,Fri Oct 31 08:25:17 GMT-05:00 2008
-Fri Oct 31 08:24:57 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/B200/B200_DEP.txt,http://localhost/RBNB/B200/B200_DEP.txt,304,---,---,---,---,Fri Oct 31 08:26:57 GMT-05:00 2008
-Fri Oct 31 08:24:57 GMT-05:00 2008,http://indscore.dfrc.nasa.gov/RBNB/B200/B200_ASR.txt,http://localhost/RBNB/B200/B200_ASR.txt,304,---,---,---,---,Fri Oct 31 08:26:57 GMT-05:00 2008
+Unable to access jarfile /home/fedora/INDS/Utility/RBNB/V3.1B3/bin/HttpMonitor.jar

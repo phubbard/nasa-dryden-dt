@@ -1,13 +1,1 @@
-Starting DeadReckoningPlugIn connected to host localhost:3333, PlugIn name = DRPI
-com.rbnb.sapi.SAPIException: Nesting java.io.EOFException
-	at com.rbnb.sapi.PlugIn.Fetch(PlugIn.java:234)
-	at com.rbnb.plugins.PlugInTemplate$Slave.run(PlugInTemplate.java:457)
-	at java.lang.Thread.run(Thread.java:675)
-
-Nested exception:
-java.io.EOFException: The server closed the connection.
-	at com.rbnb.api.ACO.fetch(ACO.java:683)
-	at com.rbnb.api.PlugInHandle.fetch(PlugInHandle.java:346)
-	at com.rbnb.sapi.PlugIn.Fetch(PlugIn.java:206)
-	at com.rbnb.plugins.PlugInTemplate$Slave.run(PlugInTemplate.java:457)
-	at java.lang.Thread.run(Thread.java:675)
+Exception in thread "main" java.lang.NoClassDefFoundError: DeadReckoningPlugIn

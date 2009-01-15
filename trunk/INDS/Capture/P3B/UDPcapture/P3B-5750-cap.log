@@ -1,11 +1,1 @@
-
-
-Datagram Socket: 5750
-RBNB Server: localhost:3333
-Source name: P3B-5750-cap
-Cache size: 100
-Archive mode: create
-Archive size: 8640000
-
-UDPCapture opened RBNB connection to /INDS
-
+Exception in thread "main" java.lang.NoClassDefFoundError: UDPCapture

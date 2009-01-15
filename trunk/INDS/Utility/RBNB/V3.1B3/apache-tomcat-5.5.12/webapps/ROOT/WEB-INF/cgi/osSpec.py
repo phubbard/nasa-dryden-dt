@@ -42,11 +42,14 @@ class indsDot:
 		fn = config.read(self.configFile)
 		if fn:
 			logging.debug('config file %s opened ok', self.configFile)
-			logging.debug('dot is: ' + config.get('dot', 'dotcmd'))
-			logging.debug('dotparams are: ' + config.get('dot', 'dotparams'))
 			
-			self.dotCmd = config.get('dot', 'dotcmd')
-			self.dotParams = config.get('dot', 'dotparams')
+			if(config.has_option('dot', 'dotcmd')):
+				logging.debug('dot is: ' + config.get('dot', 'dotcmd'))
+				self.dotCmd = config.get('dot', 'dotcmd')
+				
+			if(config.has_option('dot', 'dotparams')):
+				logging.debug('dotparams are: ' + config.get('dot', 'dotparams'))
+				self.dotParams = config.get('dot', 'dotparams')
 		else:
-			logging.warn('Unable to open configuration file')
+			logging.warn('Unable to open configuration file %s' % self.configFile)
 		

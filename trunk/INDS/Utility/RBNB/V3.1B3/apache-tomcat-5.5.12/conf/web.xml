@@ -301,8 +301,9 @@
   <!-- IMPORTANT: To use the CGI servlet, you also need to rename the       -->
   <!--            $CATALINA_HOME/server/lib/servlets-cgi.renametojar file   -->
   <!--            to $CATALINA_HOME/server/lib/servlets-cgi.jar             -->
-
-<!--
+  <!-- pfh enabled 1/14/09 to run XML->dot code, help from 
+	http://blogs.sun.com/martin/entry/glassfish_and_mercurial_how_to 
+  -->
     <servlet>
         <servlet-name>cgi</servlet-name>
         <servlet-class>org.apache.catalina.servlets.CGIServlet</servlet-class>
@@ -310,14 +311,20 @@
           <param-name>debug</param-name>
           <param-value>6</param-value>
         </init-param>
+		<init-param>
+			<param-name>executable</param-name>
+			<param-value>python</param-value>
+		</init-param>
         <init-param>
           <param-name>cgiPathPrefix</param-name>
           <param-value>WEB-INF/cgi</param-value>
         </init-param>
-         <load-on-startup>5</load-on-startup>
+         <load-on-startup>10</load-on-startup>
     </servlet>
--->
-
+	<servlet-mapping>
+	        <servlet-name>cgi</servlet-name>
+	        <url-pattern>/cgi-bin/*</url-pattern>
+	    </servlet-mapping>
 
   <!-- ================ Built In Servlet Mappings ========================= -->
 

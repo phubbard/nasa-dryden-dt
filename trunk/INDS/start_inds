@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 is_running=`ps axww | grep java | grep INDS`
 
