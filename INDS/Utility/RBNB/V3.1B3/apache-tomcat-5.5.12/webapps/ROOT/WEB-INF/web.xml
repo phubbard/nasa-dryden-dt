@@ -37,6 +37,16 @@
         <url-pattern>/index.jsp</url-pattern>
     </servlet-mapping>
 
+	<mime-mapping>
+	   <extension>svg</extension>
+	   <mime-type>image/svg+xml</mime-type>
+	</mime-mapping>
+
+	<mime-mapping>
+	   <extension>svgz</extension>
+	   <mime-type>image/svg+xml</mime-type>
+	</mime-mapping>
+	
 <!-- JSPC servlet mappings end -->
 
 </web-app>

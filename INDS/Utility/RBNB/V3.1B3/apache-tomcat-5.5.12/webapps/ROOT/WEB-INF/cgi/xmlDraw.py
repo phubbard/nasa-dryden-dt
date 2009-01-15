@@ -53,10 +53,17 @@ Please select your INDS XML file:
 	# Results page for file data
 	reshtml='''<HTML><HEAD><TITLE>XML to SVG Results</TITLE>
 </HEAD><BODY>
-<object type="image/svg+xml" data="/%s"
+<iframe src="/inds-svg/%s" width="%s" height="%s" 
+frameborder="0" marginwidth="0" marginheight="0">
+<object type="image/svg+xml" data="/inds-svg/%s" width="%s" height="%s"
 name="output" alt="SVG drawing of submitted INDS XML system">
+<embed src="/inds-svg/%s" type="image/svg+xml"
+    palette="foreground">
+</embed>
 </object>
+</iframe>
 </BODY></HTML>'''
+
 
 	# Display input form
 	def showForm(self):
@@ -78,7 +85,12 @@ name="output" alt="SVG drawing of submitted INDS XML system">
 		dotProcessor.runDotDualFN(inFile, basename, 'svg')
 		
 		# output
-		print IndsCGI.header + IndsCGI.reshtml % 'inds.svg'
+		outName = 'inds.svg'
+		sizeStr = '100%'
+		intHtml = IndsCGI.reshtml % (outName, sizeStr, sizeStr, \
+		outName, sizeStr, sizeStr, outName)
+		print IndsCGI.header + intHtml
+#		print IndsCGI.header + IndsCGI.DDTreshtml % indsParser.outputDot
 		
 	# Show error page
 	def showError(self):

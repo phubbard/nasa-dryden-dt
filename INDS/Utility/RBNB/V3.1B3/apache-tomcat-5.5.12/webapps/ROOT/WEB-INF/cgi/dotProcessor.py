@@ -16,7 +16,7 @@ import osSpec
 
 # Build a string suitable for execution via os.system
 def buildDotCmdDualFN(inputFilename, basename, outputType):
-	outputFilename = '%s.%s' % (basename, outputType)
+	outputFilename = '../../inds-svg/%s.%s' % (basename, outputType)
 	
 	myOS = osSpec.indsDot()
 	
@@ -35,12 +35,15 @@ def buildSimpleDotCmd(basename, outputType):
 	
 # Run dot, check error code returned
 def runDotCmd(cmdStr):
-	logging.debug(cmdStr)
+	logging.debug('command string is "%s"' % cmdStr)
 	return(os.system(cmdStr))
 
 # Build filenames and exec
 def runDotDualFN(inputFilename, basename, outputType):
 	cmdStr = buildDotCmdDualFN(inputFilename, basename, outputType)
+	
+	logging.debug('command string is "%s"' % cmdStr)
+
 	rc = runDotCmd(cmdStr)
 	
 	if rc != 0:
