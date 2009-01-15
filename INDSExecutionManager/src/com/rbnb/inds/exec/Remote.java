@@ -19,6 +19,7 @@
 	---  History  ---
 	2008/12/19  WHF  Created.
 	2009/01/09  WHF  Added getChildConfiguration and getName.
+	2009/01/15  WHF  Added getRootConfiguration and getCommandClassification.
 */
 
 package com.rbnb.inds.exec;
@@ -40,6 +41,15 @@ public interface Remote extends java.rmi.Remote
 	  * Get the current error log for this command.
 	  */
 	public String getCommandError(String cmd) throws java.rmi.RemoteException;
+	
+	/**
+	  * Get the display classification assigned to this command type.
+	  *
+	  * @since 2009/01/15
+	  */
+	public String getCommandClassification(String cmd)
+		throws java.rmi.RemoteException;
+	
 	/**
 	  * Get a portion of the configuration document that generated this 
 	  *   command.
@@ -60,6 +70,13 @@ public interface Remote extends java.rmi.Remote
 	  */
 	public String getChildConfiguration(String cmd) 
 			throws java.rmi.RemoteException;
+			
+	/**
+	  * Gets a copy of the initial configuration file in its entirety.
+	  *
+	  * @since 2009/01/15
+	  */
+	public String getRootConfiguration() throws java.rmi.RemoteException;		
 			
 	/**
 	  * Gets a user-friendly yet concise description of the command.  It is 

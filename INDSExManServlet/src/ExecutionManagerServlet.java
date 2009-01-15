@@ -17,13 +17,11 @@
 	
 	---  History  ---
 	2009/01/12  JAN  Created.
+	2009/01/15  JAN  Added support for getCommandList (default response) and isComplete
 	
 	--- To Do ---
-	(1) Add support for:
-			String[] getCommandList()
-			boolean isComplete(String cmd)
 	(2) Improve error handling and parameter checking
-	(3) Determine how to best pass data to/from a jsp page for a clean http interface
+	(3) Low priority - Determine how to best pass data to/from a jsp page for a clean http interface
 */
 
 
@@ -34,6 +32,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletConfig;
 import javax.servlet.http.*;
 import java.lang.reflect.Method;
+import java.lang.StringBuffer;
 
 /**
   * Servlet for connecting to a remote INDS Execution manager, 
@@ -83,8 +82,8 @@ public class ExecutionManagerServlet extends HttpServlet
 		// queryAction
 		String queryAction  = request.getParameter("action");
 		
-		// queryContentType
-		String queryContentType = "text/html"; // Default to HTML output
+		// queryContentType (Default: text/plain)
+		String queryContentType = "text/plain"; 
 		if (request.getParameter("contentType")!=null)
 			queryContentType = request.getParameter("contentType");
 		
@@ -93,24 +92,45 @@ public class ExecutionManagerServlet extends HttpServlet
 		java.io.Writer w=response.getWriter();
 		
 		// Try to invoke method (queryCommand) on the remoteIndsObject
-		String commandResults = null;
+		String remoteResult = null;
+		String[] remoteResultList;
+		StringBuffer buffer = new StringBuffer();
 		try
 		{
-			// Make it thread-safe
-			synchronized (this) 
+			// If no action is supplied, simply return the list of commands
+			if (queryAction==null)
 			{
-				Method action = remoteClass.getMethod(queryAction,Class.forName("java.lang.String"));
-				commandResults = (String) action.invoke(remoteIndsObject,queryCommand);
+				remoteResultList = remoteIndsObject.getCommandList();
+				
+				// Convert to a string with new lines inserted between commands
+				for (String remoteResponse : remoteResultList)
+					buffer.append(remoteResponse+"\n");
+				remoteResult = buffer.toString();
+			} 
+			else 
+			{
+				// Command supplied, invoke method matching queryAction
+				if (queryCommand!=null)
+				{
+					Method action = remoteClass.getMethod(queryAction,queryCommand.getClass());
+					remoteResult = action.invoke(remoteIndsObject,queryCommand).toString();
+				}
+				
+				// No query command supplied (i.e. null)
+				// This supports any of the methods that have no arguments
+				// provided they return String
+				else
+				{
+					Method action = remoteClass.getMethod(queryAction);
+					remoteResult = action.invoke(remoteIndsObject).toString();
+				}
 			}
 		}
 		
 		// Need to update with meaningful responses
 		catch (java.lang.NoSuchMethodException e) 
 		{
-			w.write("Query action="+queryAction+" is not a method of com.rbnb.inds.exec.Remote\nException: "+e.getMessage());
-		}
-		catch (java.lang.ClassNotFoundException e) 
-		{
+			w.write("Query action="+queryAction+" is not a method of com.rbnb.inds.exec.Remote\nException:\n\t"+e.getMessage());
 		}
 		catch (java.lang.IllegalAccessException e) 
 		{
@@ -122,15 +142,16 @@ public class ExecutionManagerServlet extends HttpServlet
 		// Handle appropriate response
 		if (queryContentType.equals("text/plain")) 
 		{
-			if (commandResults!=null)
-				w.write(commandResults);
+			if (remoteResult!=null)
+				w.write(remoteResult);
 		} 
 		else
 		{
-			// Write your result
-			w.write("<html><body>Version 0.5<br /> queryCommand: "+queryCommand+"<br /> queryAction: "+queryAction+"<br />");
-			if (commandResults!=null)
-				w.write("Response:<br /><code><pre>"+commandResults.replaceAll("<","&lt;").replaceAll(">","&gt;")+"</pre></code>");
+			// Write simple html response
+			w.write("<html><body><br />INDS Execution Manager Servlet Version 0.6<br />");
+			w.write("queryCommand: "+queryCommand+"<br /> queryAction: "+queryAction+"<br />");
+			if (remoteResult!=null)
+				w.write("Response:<code><pre>"+remoteResult.replaceAll("<","&lt;").replaceAll(">","&gt;")+"</pre></code>");
 			w.write("</body></html>");
 		}
 	}

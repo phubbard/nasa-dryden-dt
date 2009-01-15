@@ -1,6 +1,10 @@
 <!-- Name: build.xml
      By:   Bill Finger / Jesse Norris
-	 
+	
+	***  History  ***
+	2009/01/13  JAN  Created.
+	2009/01/14  WHF  Integrated into INDS distribution.
+	2009/01/15  WHF  Added viewer servlet.
 -->
 
 <project name="INDS Execution Manager Servlet" default="library" basedir=".">
@@ -42,6 +46,7 @@
 		</javac>
 		<copy todir = "out/WEB-INF" file="src/web.xml" />			
 		<copy todir = "out/WEB-INF/lib" file="${rmiStubPath}" />			
+		<copy todir = "viewerJsp/WEB-INF/lib" file="${rmiStubPath}" />			
 	</target>
 
 	<target name="library" depends="compile" description 
@@ -49,8 +54,13 @@
 		<jar destfile = "indsExec.war">
 			<fileset dir = "out" />
 		</jar>
-		<!--  Copy this file to the INDS web server area: -->
-		<copy todir = "${jakartadir}/webapps" file="indsExec.war" />
+		<jar destfile = "indsViewer.war">
+			<fileset dir = "viewerJsp" />
+		</jar>
+		<!--  Copy these files to the INDS web server area: -->
+		<copy todir = "${jakartadir}/webapps" >
+			<fileset dir="." includes="indsExec.war,indsViewer.war" />
+		</copy>
 	</target>
 
 	<target name="clean" description = "Delete binary files.">

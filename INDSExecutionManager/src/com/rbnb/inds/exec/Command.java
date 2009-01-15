@@ -50,6 +50,9 @@ public abstract class Command
 		tag = (temp = attr.getValue("tag")) == null ? "" : temp;
 		
 		id = getClass().getSimpleName() + '_' + (++commandCount);
+		
+		// We copy this property out of thread local storage.
+		classification = getCommandProperties().get("classification");
 	}
 	
 	/**
@@ -120,6 +123,7 @@ public abstract class Command
 	public final String getId() { return id; }
 	public final String getTag() { return tag; }
 	public final boolean isExecutionComplete() { return executionComplete; }
+	public final String getClassification() { return classification; }
 	
 	final java.io.OutputStream getLogStream() { return logStream; } 
 	
@@ -155,7 +159,7 @@ public abstract class Command
 	}
 
 //**************************  Private Member Data  **************************//	
-	private final String initialDirectory, logFile, id, tag;
+	private final String initialDirectory, logFile, id, tag, classification;
 	private String xmlSnippet;
 	private java.io.OutputStream logStream;
 	private final ArrayList<Port> 
