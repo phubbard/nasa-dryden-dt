@@ -57,12 +57,33 @@ public class ExecutionManager
 		} 
 	}
 	
+	private InputSource copyRootConfiguration(java.io.InputStream input)
+		throws IOException
+	{
+		java.io.ByteArrayOutputStream baos 
+				= new java.io.ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		int nRead;
+
+		while ((nRead = input.read(buffer)) > 0)
+			baos.write(buffer, 0, nRead);
+		
+		buffer = baos.toByteArray();
+		
+		rootConfiguration = new String(buffer);
+		
+		return new InputSource(new java.io.ByteArrayInputStream(buffer));
+	}		
+	
 	/**
 	  * Ingest the provided XML document, building a list of processes, which
 	  *  are started sequentially.
 	  */
 	public void parse(InputSource is) throws IOException, SAXException
 	{
+		if (rootConfiguration == null) 
+			is = copyRootConfiguration(is.getByteStream());
+		
 		XMLReader xmlReader 
 				= org.xml.sax.helpers.XMLReaderFactory.createXMLReader();
 		
@@ -249,6 +270,12 @@ System.err.println(" complete.");
 					getCommand(cmd).getLocalStdErrStream().toByteArray()
 			);
 		}
+		
+		public String getCommandClassification(String cmd)
+			throws java.rmi.RemoteException
+		{
+			return getCommand(cmd).getClassification();			
+		}
 	
 		public String getConfiguration(String cmd) throws java.rmi.RemoteException
 		{
@@ -264,6 +291,11 @@ System.err.println(" complete.");
 			throws java.rmi.RemoteException
 		{
 			return getCommand(cmd).getChildConfiguration();
+		}
+		
+		public String getRootConfiguration() throws java.rmi.RemoteException
+		{
+			return rootConfiguration;
 		}
 			
 		public String getName(String cmd) throws java.rmi.RemoteException
@@ -326,6 +358,7 @@ System.err.println(" complete.");
 	private final RemoteHandler remoteHandler = new RemoteHandler();
 	
 	private Thread logRunnerThread;
+	private String rootConfiguration;
 }
 
 

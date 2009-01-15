@@ -25,6 +25,7 @@ import com.rbnb.inds.exec.Port;
 import com.rbnb.inds.exec.commands.DtPlugIn;
 
 import java.io.IOException;
+import java.io.File;
 
 import org.xml.sax.Attributes;
 
@@ -44,5 +45,11 @@ public class TrackDataPlugIn extends DtPlugIn
 			compression = attr.getValue("compression");
 		if (config != null) addArguments("-f", config);
 		if (compression != null) addArgument(compression);
+	
+		confFile = new File(getInitialDirectory() + '/' + config);
 	}
+	
+	public String getChildConfiguration() { return file2string(confFile); }
+	
+	private final File confFile; 		
 }

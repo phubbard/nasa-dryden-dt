@@ -27,10 +27,12 @@ public class RmiTest
 		int index = 0;
 		
 		Remote rem = (Remote) reg.lookup(names[index]);
+//System.err.print(rem.getRootConfiguration());		
 		String[] commands = rem.getCommandList();
 		for (String cmd : commands) {
 			System.err.print(cmd);
 			System.err.print(" \""+rem.getName(cmd)+'"');
+			System.err.print(" ["+rem.getCommandClassification(cmd)+']');
 			if (rem.isComplete(cmd)) System.err.println("  X");
 			else System.err.println();
 		}

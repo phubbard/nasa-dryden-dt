@@ -19,6 +19,8 @@
 				this package. -->
 		<copy file="../XML_startup_P3_example/inds_startup.xsd"
 				todir="out/com/rbnb/schema" />
+		<copy file="commands.xml"
+				todir="../XML_startup_P3_example/" />
 				
 		<!-- Build Jar files: -->
 		<mkdir dir="bin" />
