@@ -53,6 +53,28 @@ name="output" alt="SVG drawing of INDS XML system">
 </iframe>
 </BODY></HTML>	
 	'''
+	# Error HTML for config file errors
+	exManErrHtml = 	'''<HTML><HEAD><TITLE>
+	Error loading configuration file</TITLE></HEAD>
+	<BODY>
+	An error occurred while loading the configuration file.
+	</BODY></HTML>	
+	'''	
+	# HTML to display if unable to poll INDS execution manager
+	exManErrHtml = 	'''<HTML><HEAD><TITLE>
+	Error running INDS Execution Manager query</TITLE></HEAD>
+	<BODY>
+	An error occurred while querying the INDS execution manager.<p>Query URL was %s.
+	</BODY></HTML>	
+	'''	
+	# HTML to display if dot fails to run correctly
+	dotErrHtml = '''<HTML><HEAD><TITLE>
+	CGI to process INDS XML into SVG</TITLE></HEAD>
+	<BODY>
+An error occurred while running 'dot' to convert the graph into an SVG graphic. Error code was %d.
+</BODY></HTML>	
+'''
+
 	# Routine to pull the INDS URL from config file. Name of config file
 	# is queried from osSpec.
 	def findUrl(self):
@@ -64,20 +86,29 @@ name="output" alt="SVG drawing of INDS XML system">
 			
 			if(config.has_option('inds', 'XML_URL')):
 				self.indsUrl = config.get('inds', 'XML_URL')
+				return 0
 		else:
 			logging.error('Unable to open config file!')
+			self.indsUrl = "unknown"
+			return 1
 		
 	# Display results page
 	def doResults(self):
 		# Code!		
 		indsParser = xmlToDot.IndsToDot()
 
-		# @TODO nice error handling and messages for these steps!
-		# Pull XML from webservice
-		self.findUrl()
+		# Look up query URL from configuration file, should be something like http://localhost/indsExec/?action=getRootConfiguration
+		rc = self.findUrl()
+		if (rc != 0):
+			print IndsCGIRender.header + IndsCGIRender.cfgErrHtml
+			return
+
+		# Pull XML from webservice, pass as file pointer		
 		self.fp = urllib.urlopen(self.indsUrl)
+		logging.debug("INDS URL is %s" % self.indsUrl)
 
 		# Crank out XML -> DOT
+		logging.debug("Converting INDS XML into DOT")
 		indsParser.processFilehandle(self.fp)
 
 		# Save results to a temporary file
@@ -85,17 +116,21 @@ name="output" alt="SVG drawing of INDS XML system">
 
 		basename = 'inds'
 		# Run it
-		dotProcessor.runDotDualFN(inFile, basename, 'svg')
+		logging.debug("Running DOT to generate SVG")
+		rc = dotProcessor.runDotDualFN(inFile, basename, 'svg')
 		
-		# Build output HTML. We have to do this in two steps because
-		# python gets confused by 100% in a format string, even escaped.
-		outName = 'inds.svg'
-		sizeStr = '100%'
-		intHtml = IndsCGIRender.mainhtml % (outName, \
-		sizeStr, sizeStr, outName, sizeStr, sizeStr, outName)
+		if(rc == 0):
+			# Build output HTML. We have to do this in two steps because
+			# python gets confused by 100% in a format string, even escaped.
+			outName = 'inds.svg'
+			sizeStr = '100%'
+			intHtml = IndsCGIRender.mainhtml % (outName, \
+			sizeStr, sizeStr, outName, sizeStr, sizeStr, outName)
 
-		print IndsCGIRender.header + intHtml
-		
+			print IndsCGIRender.header + intHtml
+		else:
+			print IndsCGIRender.header + IndsCGIRender.dotErrHtml % rc
+			
 # End of class IndsCGIRender
 		
 # CGI magic
