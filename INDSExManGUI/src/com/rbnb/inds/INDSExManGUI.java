@@ -28,6 +28,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -52,11 +53,13 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class INDSExManGUI extends JFrame implements ListSelectionListener, ListCellRenderer  {
-    
-    private JList commandLB;
-    private JButton connectB;
+
     private JTextField hostNameTF;
+    private JButton connectB;
+    private JList commandLB;
     private JCheckBox showCompletedCommandsCB;
+    private JLabel processIDLabel;
+    private JLabel classificationLabel;
     private JTextArea stderrTA;
     private JTextArea stdoutTA;
     private JTextArea xmlTA;
@@ -134,11 +137,15 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
         //
         commandLB = new JList();
         commandLB.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        /*
+         * Use the list selection listener instead of mouse listener
+         *
         commandLB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 commandListMouseClickCallback(evt);
             }
         });
+        */
         commandLB.addListSelectionListener(this);
         commandLB.setCellRenderer(this);
         JScrollPane commandSP =
@@ -150,7 +157,7 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
 
         //
         // Construct the right hand panel which contains:
-        // isCompleted, stdout, stderr, and XML snippet.
+        // processID, classification string, isCompleted, stdout, stderr, and XML snippet.
         //
         tempgbl = new GridBagLayout();
         JPanel rightPanel = new JPanel(tempgbl);
@@ -169,39 +176,38 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
         add(rightPanel, showCompletedCommandsCB, tempgbl, gbc, 0, 0, 1, 1);
 
         //
+        // label for displaying the process ID
+        //
+        JPanel labelPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        tempL = new JLabel("Process ID:  ");
+        labelPanel.add(tempL);
+        processIDLabel = new JLabel();
+        labelPanel.add(processIDLabel);
+        gbc.insets = new Insets(5,5,0,5);
+        add(rightPanel, labelPanel, tempgbl, gbc, 0, 1, 1, 1);
+        
+        //
+        // label for displaying the process classification
+        //
+        labelPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        tempL = new JLabel("Classification:  ");
+        labelPanel.add(tempL);
+        classificationLabel = new JLabel();
+        labelPanel.add(classificationLabel);
+        gbc.insets = new Insets(5,5,0,5);
+        add(rightPanel, labelPanel, tempgbl, gbc, 0, 2, 1, 1);
+
+        //
         // Std out text area
         //
         tempL = new JLabel("Std out");
         gbc.insets = new Insets(5,5,0,5);
-        add(rightPanel, tempL, tempgbl, gbc, 0, 1, 1, 1);
+        add(rightPanel, tempL, tempgbl, gbc, 0, 3, 1, 1);
         stdoutTA = new JTextArea();
         stdoutTA.setEditable(false);
         JScrollPane tempSP =
             new JScrollPane(
                 stdoutTA,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        tempSP.setPreferredSize(new Dimension(300, 75));
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 100;
-        gbc.weighty = 100;
-        gbc.insets = new Insets(0,5,0,5);
-        add(rightPanel, tempSP, tempgbl, gbc, 0, 2, 1, 1);
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.weightx = 0;
-        gbc.weighty = 0;
-
-        //
-        // Std err text area
-        //
-        tempL = new JLabel("Std err");
-        gbc.insets = new Insets(5,5,0,5);
-        add(rightPanel, tempL, tempgbl, gbc, 0, 3, 1, 1);
-        stderrTA = new JTextArea();
-        stderrTA.setEditable(false);
-        tempSP =
-            new JScrollPane(
-                stderrTA,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         tempSP.setPreferredSize(new Dimension(300, 75));
@@ -215,11 +221,34 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
         gbc.weighty = 0;
 
         //
+        // Std err text area
+        //
+        tempL = new JLabel("Std err");
+        gbc.insets = new Insets(5,5,0,5);
+        add(rightPanel, tempL, tempgbl, gbc, 0, 5, 1, 1);
+        stderrTA = new JTextArea();
+        stderrTA.setEditable(false);
+        tempSP =
+            new JScrollPane(
+                stderrTA,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        tempSP.setPreferredSize(new Dimension(300, 75));
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 100;
+        gbc.weighty = 100;
+        gbc.insets = new Insets(0,5,0,5);
+        add(rightPanel, tempSP, tempgbl, gbc, 0, 6, 1, 1);
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+
+        //
         // XML text area
         //
         tempL = new JLabel("XML");
         gbc.insets = new Insets(5,5,0,5);
-        add(rightPanel, tempL, tempgbl, gbc, 0, 5, 1, 1);
+        add(rightPanel, tempL, tempgbl, gbc, 0, 7, 1, 1);
         xmlTA = new JTextArea();
         xmlTA.setEditable(false);
         tempSP =
@@ -232,7 +261,7 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
         gbc.weightx = 100;
         gbc.weighty = 0;
         gbc.insets = new Insets(0,5,5,5);
-        add(rightPanel, tempSP, tempgbl, gbc, 0, 6, 1, 1);
+        add(rightPanel, tempSP, tempgbl, gbc, 0, 8, 1, 1);
         gbc.fill = GridBagConstraints.NONE;
         gbc.weightx = 0;
         gbc.weighty = 0;
@@ -311,12 +340,18 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
         pack();
         
     }
-
+    
+    /*
     private void commandListMouseClickCallback(java.awt.event.MouseEvent evt) {
         fetchCommandData();
     }
+    */
 
     public void valueChanged(ListSelectionEvent e) {
+        if (e.getValueIsAdjusting()) {
+            // wait until no more adjusting and then fetch the command data
+            return;
+        }
         fetchCommandData();
     }
 
@@ -326,6 +361,12 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
             // information via the RMI interface.
             // int index = commandLB.locationToIndex(evt.getPoint());
             String command = (String) commandLB.getSelectedValue();
+            // System.err.println("command = " + command);
+            if ( (command == null) || (command.trim().equals("")) ) {
+                return;
+            }
+            processIDLabel.setText(command);
+            classificationLabel.setText(remoteObj.getCommandClassification(command));
             stdoutTA.setText(remoteObj.getCommandOut(command));
             stderrTA.setText(remoteObj.getCommandError(command));
             xmlTA.setText(remoteObj.getConfiguration(command));
@@ -355,7 +396,9 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
             Logger.getLogger(INDSExManGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (processIDs != null) {
-            // Clear out the text boxes
+            // Clear out the labels and text boxes
+            processIDLabel.setText("");
+            classificationLabel.setText("");
             stderrTA.setText("");
             stdoutTA.setText("");
             xmlTA.setText("");
