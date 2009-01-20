@@ -83,7 +83,9 @@
 				<h1><%= queryCommand %></h1>
 				<ul>
 				<% for (int i=0; i<actions.length; i++) { 
-					if ((actions[i].getName().compareTo("isComplete")!=0) && (actions[i].getName().compareTo("getCommandList")!=0)) { %>
+					if ((actions[i].getName().compareTo("isComplete")!=0) && 
+						(actions[i].getName().compareTo("getCommandList")!=0) && 
+						(actions[i].getName().compareTo("getRootConfiguration")!=0)) { %>
 						<li><a href="<%= "index.jsp?command="+queryCommand+"&action="+actions[i].getName() %>">
 								<%= actions[i].getName() %>
 							</a>
