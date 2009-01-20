@@ -37,6 +37,8 @@
 		<!-- Build ChartServlet into the WebTurbine web application: -->
 		<javac destdir="out/WEB-INF/classes"
 				deprecation = "on"
+				source = "1.5"
+				target = "1.5"
 				debug = "on"
 				srcdir = "src" 
 				includes = "*.java" >
