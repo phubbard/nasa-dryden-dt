@@ -31,7 +31,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>XML Scan</title>
+	<title>IndsViewer Version 0.1</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="default.css" type="text/css" />
 </head>
@@ -108,6 +108,15 @@
 						commandResults = (String) actions[i].invoke(rem,queryCommand);
 					}
 				}
+				java.util.Date clock = new java.util.Date(); 
+		%>
+		<!-- Add a header to the response with time stamp and size of response -->
+		<code>
+			</br>
+			Server Timestamp: <%= clock.toString() %><br />
+			Response Length: &nbsp;<%= commandResults.length() %> (characters)<br /><br />
+		</code>
+		<%
 				if (commandResults!=null) {
 		%>
 					<code>
