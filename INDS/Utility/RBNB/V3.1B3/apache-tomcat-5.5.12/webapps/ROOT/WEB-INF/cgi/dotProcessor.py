@@ -16,7 +16,9 @@ import osSpec
 
 # Build a string suitable for execution via os.system
 def buildDotCmdDualFN(inputFilename, basename, outputType):
-	outputFilename = '../../inds-svg/%s.%s' % (basename, outputType)
+	
+	outputFilename = '..' + os.sep + '..' + os.sep + 'inds-svg' + os.sep \
+	 + '%s.%s' % (basename, outputType)
 	
 	myOS = osSpec.indsDot()
 	
