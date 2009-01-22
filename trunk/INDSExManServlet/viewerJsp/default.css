@@ -71,10 +71,15 @@ div.list {
 	}
 
 /* */
-div#commandResults {
+div#actionResults {
 		clear: left;
 		height: 500px;
 		width: 100%;
 		overflow: auto;	
 		border-top: solid 1px #000000;
 	}
+
+div#actionResults td {
+		font-family: Arial, sans-serif;
+		font-size: 12px;
+}
