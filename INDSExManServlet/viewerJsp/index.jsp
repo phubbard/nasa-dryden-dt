@@ -31,7 +31,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.1</title>
+	<title>IndsViewer Version 0.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="default.css" type="text/css" />
 </head>
@@ -97,10 +97,9 @@
 	</div> <!-- right -->
 	
 	<!-- Set up the div for the interface command results -->
-	<div id="commandResults">
-		<h1>Command Result:</h1>
+	<div id="actionResults">
 		<%
-			if (queryAction!=null) {
+		    if (queryAction!=null) {
 				String commandResults = null;
 				Method action = c.getMethod(queryAction,Class.forName("java.lang.String"));
 				for (int i=0; i<actions.length; i++) {
@@ -110,19 +109,30 @@
 				}
 				java.util.Date clock = new java.util.Date(); 
 		%>
-		<!-- Add a header to the response with time stamp and size of response -->
-		<code>
-			</br>
-			Server Timestamp: <%= clock.toString() %><br />
-			Response Length: &nbsp;<%= commandResults.length() %> (characters)<br /><br />
-		</code>
-		<%
-				if (commandResults!=null) {
-		%>
-					<code>
-						<pre><%= commandResults.replaceAll("<","&lt;").replaceAll(">","&gt;") %></pre>
-					</code>
-				<% } %>
+				<h1>Action Response:</h1>
+				<!-- Add a header to the response with time stamp and size of response -->
+				</br>
+				<table>
+					<tr>
+						<td>Command:</td>
+						<td><%= queryCommand %></td>
+					</tr>
+					<tr>
+						<td>Action:</td>
+						<td><%= queryAction %></td>
+					</tr>
+					<tr>
+						<td>Server Timestamp:</td>
+						<td><%= clock.toString() %></td>
+					</tr>
+					<tr>
+						<td>Response Length:</td>
+						<td><%= commandResults.length() %> (characters)</td>
+					</tr>
+				</table>
+				<br /><br />&lt;&lt;&lt; <i>response start</i> &gt;&gt;&gt;<br />
+				<code><pre><%= commandResults.replaceAll("<","&lt;").replaceAll(">","&gt;") %></pre></code>
+				<br />&lt;&lt;&lt; <i>response end</i> &gt;&gt;&gt;
 		<% } %>
 	</div> <!-- commandResults -->
 </div> <!-- main -->
