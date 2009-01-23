@@ -26,7 +26,7 @@ from string import capwords, strip, split, join
 
 
 # My code!
-import xmlToDot
+import dictToDot
 import dotProcessor
 import osSpec
 
@@ -73,46 +73,15 @@ name="output" alt="SVG drawing of INDS XML system">
 	<BODY>
 An error occurred while running 'dot' to convert the graph into an SVG graphic. Error code was %d.
 </BODY></HTML>	
-'''
-
-	# Routine to pull the INDS URL from config file. Name of config file
-	# is queried from osSpec.
-	def findUrl(self):
-		myOS = osSpec.indsDot()
-		config = ConfigParser.ConfigParser()
-		fn = config.read(myOS.configFile)
-		if fn:
-			logging.debug('config file opened ok')
-			
-			if(config.has_option('inds', 'XML_URL')):
-				self.indsUrl = config.get('inds', 'XML_URL')
-				return 0
-		else:
-			logging.error('Unable to open config file!')
-			self.indsUrl = "unknown"
-			return 1
-		
+'''		
 	# Display results page
 	def doResults(self):
-		# Code!		
-		indsParser = xmlToDot.IndsToDot()
 
-		# Look up query URL from configuration file, should be something like http://localhost/indsExec/?action=getRootConfiguration
-		rc = self.findUrl()
-		if (rc != 0):
-			print IndsCGIRender.header + IndsCGIRender.cfgErrHtml
-			return
-
-		# Pull XML from webservice, pass as file pointer		
-		self.fp = urllib.urlopen(self.indsUrl)
-		logging.debug("INDS URL is %s" % self.indsUrl)
-
-		# Crank out XML -> DOT
-		logging.debug("Converting INDS XML into DOT")
-		indsParser.processFilehandle(self.fp)
-
+		md = dictToDot.dotMaker()
+		md.main()
+		
 		# Save results to a temporary file
-		inFile = dotProcessor.saveDot(indsParser.outputDot)
+		inFile = dotProcessor.saveDot(md.outputDot)
 
 		basename = 'inds'
 		# Run it
@@ -135,5 +104,7 @@ An error occurred while running 'dot' to convert the graph into an SVG graphic. 
 		
 # CGI magic
 if __name__ == '__main__':
+	logging.basicConfig(level=logging.DEBUG)	
+	
 	page = IndsCGIRender()
 	page.doResults()

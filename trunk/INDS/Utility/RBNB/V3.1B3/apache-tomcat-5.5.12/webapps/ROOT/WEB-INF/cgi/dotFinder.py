@@ -56,8 +56,9 @@ INDS is at: "%s"
 		if fn:
 			logging.debug('config file opened ok')
 			
-			if(config.has_option('inds', 'XML_URL')):
-				self.indsUrl = config.get('inds', 'XML_URL')
+			# Build URL of format http://localhost/indsExec/?action=getRootConfiguration
+			if(config.has_option('inds', 'hostname')):
+				self.indsUrl = 'http://%s/indsExec/?action=getRootConfiguration' % config.get('inds', 'hostname')
 		else:
 			logging.error('Unable to open config file!')
 		
