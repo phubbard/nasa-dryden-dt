@@ -15,23 +15,34 @@ from xml.dom.minidom import parse, parseString, Node
 import sys
 import logging
 
+import osSpec
 import indsInterface
 
 class dotMaker:
 	"Converts INDS dictionary into Graphviz DOT-language graph"
 	
-	# Empty init method for now
+	# Constructor just initializes
 	def __init__(self):
-		pass
+		outputDot = ''
+		dt = ''
+		colors = dict()
+		edgeColors = dict()
 		
 	# Variables
 	outputDot = ''
 	dt = ''
+	colors = dict()
+	edgeColors = dict()
 	
 	# ---------------------------------------------------------------------------
 	def main(self):
 		# Instantiate webservices interface class
 		md = indsInterface.indsInterface()
+		
+		# Load up graph colors from configuration file
+		mc = osSpec.osSpec()
+		self.colors = mc.colors
+		self.edgeColors = mc.edgeColors
 		
 		logging.debug('Pull INDS and process into dictionary')
 		# Read WS data, parse and create dictionaries
@@ -50,9 +61,12 @@ class dotMaker:
 				if self.getElementName(md.xml[x]) == 'dataTurbine':	
 					logging.info('DT name is %s' % x)			
 					self.dt = x
-					
+
+		# I've considered rolling this into a loop indexed by command type, but the
+		# code started getting much harder to read and alter, so I'm leaving it unrolled.
+		
 		# Sources -> RBNB
-		self.addOutput('edge [dir="tail"]')
+		self.addOutput('edge [dir="tail", color="%s"]' % self.edgeColors['source'])
 		
 		# Do this in three passes - sources, servers and plugins
 		for x in md.cmdIds:
@@ -66,8 +80,8 @@ class dotMaker:
 					self.addOutput('%s [label="%s" shape="box"]' % (portName, portNum))
 				
 					# Define the udpCapture node
-					self.addOutput('%s [label="%s", URL="%s"]' % \
-					(x, md.niceName[x], md.getConfigUrl(x)))
+					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
+					(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
 				
 					# Define the link from node -> udpCap
 					self.addOutput('%s -> %s' % (portName, x))
@@ -76,12 +90,12 @@ class dotMaker:
 					self.addOutput('%s -> %s' % (x, self.dt))
 				else:
 					# Handle all other sources uniformly
-					self.addOutput('%s [label="%s", URL="%s"]' % \
-					(x, md.niceName[x], md.getConfigUrl(x)))
+					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
+					(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
 					self.addOutput('%s -> %s' % (x, self.dt))
 
 		logging.debug('Processing servers...')
-		self.addOutput('edge [dir="both"]')
+		self.addOutput('edge [dir="both", color="%s"]' % self.edgeColors['server'])
 
 		# Next pass is servers
 		for x in md.cmdIds:
@@ -96,8 +110,8 @@ class dotMaker:
 					self.addOutput('%s [label="%s", shape="box"]' % (portName, portNum))
 				
 					# Node for timeDrive
-					self.addOutput('%s [label="%s", URL="%s"]' % \
-					(x, md.niceName[x], md.getConfigUrl(x)))
+					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
+					(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
 				
 					# Define link from port to timeDrive
 					self.addOutput('%s -> %s' % (portName, x))
@@ -106,37 +120,41 @@ class dotMaker:
 					self.addOutput('%s -> %s' % (self.dt, x))
 				else:
 						
-					self.addOutput('%s [label="%s", URL="%s"]' % \
-					(x, md.niceName[x], md.getConfigUrl(x)))
+					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
+					(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
 			
 					if md.niceName[x] == 'tomcat':
 						self.addOutput('%s -> %s', self.dt, x)
-				
+
+		self.addOutput('edge [color="%s"]' % self.edgeColors['plugin'])
+		
 		logging.debug('Plugins...')		
 		for x in md.cmdIds:
 			if md.cmdType[x] == 'plugin':				
-				self.addOutput('%s [label="%s", URL="%s"]' % \
-				(x, md.niceName[x], md.getConfigUrl(x)))
+				self.addOutput('%s [label="%s", URL="%s", color=%s]' % \
+				(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
 
 				self.addOutput('%s -> %s' % (self.dt, x))
+
+		self.addOutput('edge [color="%s"]' % self.edgeColors['converter'])
 
 		logging.debug('converters...')
 		# xmldemux, csvdemux
 		for x in md.cmdIds:
 			if md.cmdType[x] == 'converter':
-				self.addOutput('%s [label="%s", URL="%s"]' % \
-				(x, md.niceName[x], md.getConfigUrl(x)))
+				self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
+				(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
 
 				self.addOutput('%s -> %s' % (self.dt, x))
 
 		logging.debug('Sinks...')
-		# Pure sinks
-		self.addOutput('edge [dir="head"]')
+		# Pure sinks - presently unused, so edge output is unused and harmless.
+		self.addOutput('edge [dir="head", color="%s"]' % self.edgeColors['sink'])
 
 		for x in md.cmdIds:
 			if md.cmdType[x] == 'sink':
-				self.addOutput('%s [label="%s", URL="%s"]' % \
-				(x, md.niceName[x], md.getConfigUrl(x)))
+				self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
+				(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
 
 				self.addOutput('%s -> %s' % (self.dt, x))
 			
@@ -144,7 +162,9 @@ class dotMaker:
 		logging.debug('All cmd IDs processed!')	
 		
 		self.addFooter()
-
+	
+	# End of main routine #######################################################
+		
 	# Parse XML and dig out port number here... Assumes child node named 'input' with
 	# port attribute inside.
 	def getInputPortnum(self, cmdXml):
@@ -195,8 +215,12 @@ class dotMaker:
 		print self.outputDot
 		
 # Test harness	
-#logging.basicConfig(level=logging.DEBUG)	
-#md = dotMaker()
-#md.main()
+logging.basicConfig(level=logging.DEBUG)	
 
-#md.dumpDot()
+try:
+	md = dotMaker()
+	md.main()
+	
+	logging.debug(md.outputDot)
+except:
+	logging.error('Exception running dotMaker!')

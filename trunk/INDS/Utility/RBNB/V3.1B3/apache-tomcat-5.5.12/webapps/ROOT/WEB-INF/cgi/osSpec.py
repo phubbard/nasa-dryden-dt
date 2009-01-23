@@ -10,12 +10,14 @@ import os
 import logging
 import ConfigParser
 
-class indsDot:
+class osSpec:
 
 	# Variables and defaults
 	dotCmd = 'dot'
 	dotParams = ''
 	configFile = 'defaults.cfg'
+	colors = dict()
+	edgeColors = dict()
 	
 	def __init__(self):		
 		
@@ -50,6 +52,17 @@ class indsDot:
 			if(config.has_option('dot', 'dotparams')):
 				logging.debug('dotparams are: ' + config.get('dot', 'dotparams'))
 				self.dotParams = config.get('dot', 'dotparams')
+				
+			# Load up colors for each node type	
+			cmdTypes = ['source', 'sink', 'server', 'plugin', 'converter']
+			for x in cmdTypes:
+				if config.has_option('dotcolors', x):
+					self.colors[x] = config.get('dotcolors', x)	
+					
+			# Load up colors for each each edge type
+			for x in cmdTypes:
+				if config.has_option('edgecolors', x):
+					self.edgeColors[x] = config.get('edgecolors', x)		
 		else:
 			logging.warn('Unable to open configuration file %s' % self.configFile)
 		
