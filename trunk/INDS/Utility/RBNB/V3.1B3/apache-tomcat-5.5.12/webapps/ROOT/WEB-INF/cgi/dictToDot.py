@@ -3,10 +3,10 @@
 @file dictToDot.py
 @author Paul Hubbard pfhubbar@ucsd.edu
 @date 1/21/09
-@brief Parse INDS into graphviz DOT language graph from dictionary input
-@note Simply uses print to output, so redirect into output file to save.
-@todo Write node defs and graph into separate queues, then write output
-all at once in two chunks.
+@brief Generates a DOT-language graph from an INDS deployment. It creates and uses
+an indsInterface object to query the INDS server and build dictionaries for us to navigate.
+Output is accumulated in the outputDot string for the caller/parent to save/parse/print.
+Colors and such are pulled from the configuration file via the osSpec object instance.
 @todo Add URLs to nodes for multi-system graphs
 """
 
@@ -213,14 +213,15 @@ class dotMaker:
 			
 	def dumpDot(self):
 		print self.outputDot
-		
-# Test harness	
-logging.basicConfig(level=logging.DEBUG)	
 
-try:
-	md = dotMaker()
-	md.main()
+if __name__ == '__main__':		
+	# Test harness	
+	logging.basicConfig(level=logging.DEBUG, \
+	                    format='%(asctime)s %(levelname)s %(message)s')
+	try:
+		md = dotMaker()
+		md.main()
 	
-	logging.debug(md.outputDot)
-except:
-	logging.error('Exception running dotMaker!')
+		logging.debug(md.outputDot)
+	except BaseException, e:
+		logging.exception(e)

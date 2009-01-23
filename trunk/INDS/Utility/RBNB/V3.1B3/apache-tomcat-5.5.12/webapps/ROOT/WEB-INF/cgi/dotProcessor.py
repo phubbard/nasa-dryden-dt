@@ -20,12 +20,11 @@ def buildDotCmdDualFN(inputFilename, basename, outputType):
 	outputFilename = '..' + os.sep + '..' + os.sep + 'inds-svg' + os.sep \
 	 + '%s.%s' % (basename, outputType)
 	
-	myOS = osSpec.indsDot()
+	# Use osSpec to determine local configuration
+	myOS = osSpec.osSpec()
 	
 	cmdStr = '%s %s -T%s %s -o %s' % (myOS.dotCmd, myOS.dotParams, \
 	outputType, inputFilename, outputFilename)
-
-	logging.debug(cmdStr)
 
 	return cmdStr
 	
@@ -44,8 +43,6 @@ def runDotCmd(cmdStr):
 def runDotDualFN(inputFilename, basename, outputType):
 	cmdStr = buildDotCmdDualFN(inputFilename, basename, outputType)
 	
-	logging.debug('command string is "%s"' % cmdStr)
-
 	rc = runDotCmd(cmdStr)
 	
 	if rc != 0:

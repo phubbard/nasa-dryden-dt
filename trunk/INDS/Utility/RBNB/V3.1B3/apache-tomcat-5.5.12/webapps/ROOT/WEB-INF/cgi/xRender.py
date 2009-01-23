@@ -21,7 +21,6 @@ import os
 import tempfile
 import urllib
 import logging
-import ConfigParser
 import cgi
 from cStringIO import StringIO
 from string import capwords, strip, split, join
@@ -65,7 +64,12 @@ name="output" alt="SVG drawing of INDS XML system">
 	exManErrHtml = 	'''<HTML><HEAD><TITLE>
 	Error running INDS Execution Manager query</TITLE></HEAD>
 	<BODY>
-	An error occurred while querying the INDS execution manager.<p>.
+	An error occurred while querying the INDS execution manager.<p>
+	Error message:
+	<pre>
+	%s
+	</pre>
+	%s
 	</BODY></HTML>	
 	'''	
 	# HTML to display if dot fails to run correctly
@@ -73,6 +77,7 @@ name="output" alt="SVG drawing of INDS XML system">
 	CGI to process INDS XML into SVG</TITLE></HEAD>
 	<BODY>
 An error occurred while running 'dot' to convert the graph into an SVG graphic. Error code was %d.
+%s
 </BODY></HTML>	
 '''		
 	# HTML to display if dot throws an exception
@@ -80,16 +85,41 @@ An error occurred while running 'dot' to convert the graph into an SVG graphic. 
 	CGI to process INDS XML into SVG</TITLE></HEAD>
 	<BODY>
 An exception occurred while trying to run the 'dot' program.
+<p>Error message:
+<pre>
+%s
+</pre>
+%s
 </BODY></HTML>	
 '''		
+	# Dump of configuration variables for debugging
+	configHtml = '''
+<h3>Configuration</h3>
+<pre>
+ INDS hostname: %s
+ INDS viewer hostname: %s
+ dot command: %s
+ dot parameters: %s
+</pre>
+'''
+	def fillConfigSnippet(self):
+		mc = osSpec.osSpec()
+		
+		intHtml = self.configHtml % \
+		(mc.indsHostname, mc.viewHostname, mc.dotCmd, mc.dotParams)
+		
+		return intHtml
+		
 	# Display results page
 	def doResults(self):
 
+
 		try:
+			cfgHtml = self.fillConfigSnippet()
 			md = dictToDot.dotMaker()
 			md.main()
-		except:
-			intHtml = indsRender.header + indsRender.exManErrHtml
+		except BaseException, e:
+			intHtml = indsRender.header + indsRender.exManErrHtml % (str(e), cfgHtml)
 			print intHtml
 			return
 
@@ -104,8 +134,8 @@ An exception occurred while trying to run the 'dot' program.
 			# Run it
 			logging.debug("Running DOT to generate SVG")
 			rc = dotProcessor.runDotDualFN(inFile, basename, 'svg')
-		except:
-			print indsRender.header + indsRender.dotExceptHtml
+		except BaseException, e:
+			print indsRender.header + indsRender.dotExceptHtml % (str(e), cfgHtml)
 			return
 		
 		if(rc == 0):
@@ -118,13 +148,13 @@ An exception occurred while trying to run the 'dot' program.
 
 			print indsRender.header + intHtml
 		else:
-			print indsRender.header + indsRender.dotErrHtml % rc
+			print indsRender.header + indsRender.dotErrHtml % (rc, cfgHtml)
 			
 # End of class indsRender
 		
 # CGI magic
 if __name__ == '__main__':
-	logging.basicConfig(level=logging.DEBUG)	
-	
+	logging.basicConfig(level=logging.DEBUG, \
+	                    format='%(asctime)s %(levelname)s %(message)s')
 	page = indsRender()
 	page.doResults()
