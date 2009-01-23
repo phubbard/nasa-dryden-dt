@@ -84,7 +84,7 @@ class indsInterface:
 		return self.getFromUrl(cmdUrl)
 
 	# For a given command, return the URL to associate with the graph node. 
-	# USed to be getConfigUrl, now via indsViewer
+	# Used to be getConfigUrl, now via indsViewer
 	def getInfoUrl(self, cmdId):
 		infoUrl = 'http://%s/indsViewer/index.jsp?command=%s' % \
 		(self.viewerHostname, cmdId)
@@ -101,11 +101,11 @@ class indsInterface:
 		cmdUrl = self.makeUrl('?action=getCommandClassification&cmd=%s' % cmdId)
 		return self.getFromUrl(cmdUrl)
 
-	# Return the URL of the configuration file.
+	# Return the URL of the configuration file. Not presently used.
 	def getConfigUrl(self, cmdId):
 		return self.makeUrl('?action=getChildConfiguration&cmd=%s' % cmdId)
 	
-	# Get config file for a command ID
+	# Get config file for a command ID. Not presently used.
 	def getConfigFile(self, cmdId):
 		return self.getFromUrl(self.getConfigUrl(cmdId))
 			
