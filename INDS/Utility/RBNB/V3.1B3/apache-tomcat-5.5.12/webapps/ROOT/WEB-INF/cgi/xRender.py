@@ -53,13 +53,6 @@ name="output" alt="SVG drawing of INDS XML system">
 </iframe>
 </BODY></HTML>	
 	'''
-	# Error HTML for config file errors
-	exManErrHtml = 	'''<HTML><HEAD><TITLE>
-	Error loading configuration file</TITLE></HEAD>
-	<BODY>
-	An error occurred while loading the configuration file.
-	</BODY></HTML>	
-	'''	
 	# HTML to display if unable to poll INDS execution manager
 	exManErrHtml = 	'''<HTML><HEAD><TITLE>
 	Error running INDS Execution Manager query</TITLE></HEAD>
@@ -81,8 +74,8 @@ An error occurred while running 'dot' to convert the graph into an SVG graphic. 
 </BODY></HTML>	
 '''		
 	# HTML to display if dot throws an exception
-	dotExceptHtml = '''<HTML><HEAD><TITLE>
-	CGI to process INDS XML into SVG</TITLE></HEAD>
+	dotExceptHtml = '''<HTML><HEAD>
+	<TITLE>CGI to process INDS XML into SVG</TITLE></HEAD>
 	<BODY>
 An exception occurred while trying to run the 'dot' program.
 <p>Error message:
@@ -102,6 +95,19 @@ An exception occurred while trying to run the 'dot' program.
  dot parameters: %s
 </pre>
 '''
+	# HTML to display if errors in configuration file or object creation
+	initErrHtml = '''
+	<HTML><HEAD>
+	<TITLE>CGI to process INDS XML into SVG</TITLE></HEAD>
+	<BODY>
+An error occurred in initialization.
+<p>Error message:
+<pre>
+%s
+</pre>
+%s
+</BODY></HTML>	
+'''	
 	def fillConfigSnippet(self):
 		mc = osSpec.osSpec()
 		
@@ -114,9 +120,14 @@ An exception occurred while trying to run the 'dot' program.
 	def doResults(self):
 
 
+		# Parse configuration, instantiate dotMaker object
 		try:
 			cfgHtml = self.fillConfigSnippet()
 			md = dictToDot.dotMaker()
+		except BaseException, e:
+			intHtml = indsRender.header + indsRender.initErrHtml % (str(e), cfgHtml)
+			
+		try:
 			md.main()
 		except BaseException, e:
 			intHtml = indsRender.header + indsRender.exManErrHtml % (str(e), cfgHtml)
