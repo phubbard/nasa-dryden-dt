@@ -25,7 +25,6 @@ import os
 import tempfile
 import urllib2
 import logging
-import ConfigParser
 import cgi
 
 # My code!
@@ -56,32 +55,13 @@ class indsInterface:
 	# Also look up hostname of INDS viewer, which may be separate
 	def findHostnames(self):
 		myOS = osSpec.osSpec()
-		config = ConfigParser.ConfigParser()
-		fn = config.read(myOS.configFile)
-		if fn:
-			logging.debug('config file opened ok')
-		
-			if(config.has_option('inds', 'hostname')):
-				self.hostname = config.get('inds', 'hostname')
-				
-			if config.has_option('inds', 'viewhost'):
-				self.viewerHostname = config.get('inds', 'viewhost')	
-		else:
-			logging.error('Unable to open config file!')
+
+		self.hostname = myOS.indsHostname
+		self.viewerHostname = myOS.viewHostname
 	
 	# Routine to create a URL from an INDS command.
 	def makeUrl(self, cmdString):
-		return 'http://%s/indsExec/%s' % (self.hostname, cmdString)
-	
-	# Read process list from HTML into Python-language array
-	# TODO: Rewrite this!
-	def plToArray(self, fp):
-		a = []
-		for line in fp.readlines():
-			col1 = line.split('\n')
-			a.append(col1)
-		
-		return a
+		return 'http://%s/indsExec/%s' % (self.hostname, cmdString)	
 
 	# Subroutine to fetch text via HTTP from a URL
 	def getFromUrl(self, cmdUrl):
@@ -90,13 +70,13 @@ class indsInterface:
 			hText = fp.read()
 			fp.close()
 		except urllib2.HTTPError, e:
-		    print 'The server couldn\'t fulfill the request.'
-		    print 'Error code: ', e.code
+			logging.exception(e)
+			raise
 		except urllib2.URLError, e:
-		    print 'We failed to reach a server.'
-		    print 'Reason: ', e.reason
+			logging.exception(e)
+			raise 
 		else:
-			return hText
+			return hText		
 	
 	# Get config XML for a given command ID
 	def getCmdXML(self, cmdName):
@@ -121,7 +101,7 @@ class indsInterface:
 		cmdUrl = self.makeUrl('?action=getCommandClassification&cmd=%s' % cmdId)
 		return self.getFromUrl(cmdUrl)
 
-	# Return the URL of the configuration file. Also used in creating graph nodes' URLs.
+	# Return the URL of the configuration file.
 	def getConfigUrl(self, cmdId):
 		return self.makeUrl('?action=getChildConfiguration&cmd=%s' % cmdId)
 	
@@ -134,20 +114,10 @@ class indsInterface:
 		plUrl = self.makeUrl('')
 		logging.info('Trying to get process list from "%s" ...' % plUrl)
 
-		pList = []
-		try:
-			fp = urllib2.urlopen(self.makeUrl(''))
-		except urllib2.HTTPError, e:
-			logging.error('The server couldn\'t fulfill the request.')
-			return
-		except urllib2.URLError, e:
-		    logging.error('We failed to reach a server.')
-		else:
-			logging.info('Process list opened OK')
-
-			# Convert into native array
-			pList = self.plToArray(fp)
-
+		pText = self.getFromUrl(plUrl)
+		
+		# Convert into native array
+		pList = pText.split()
 		return pList
 
 	# Build a list entry for the dictionary	
@@ -178,7 +148,23 @@ class indsInterface:
 
 		logging.debug('Building dictionaries')
 		for x in pList:
-			self.buildEntry(x[0])
+			self.buildEntry(x)
 
 		logging.debug('Dictionaries created OK.')
 		
+
+# Test harness	
+if __name__ == '__main__':		
+	logging.basicConfig(level=logging.DEBUG, \
+	                    format='%(asctime)s %(levelname)s %(message)s')
+
+	ii = indsInterface()
+
+	try:
+		ii.main()
+	except BaseException, e:
+		logging.exception(e)
+	
+	for x in ii.cmdIds:
+		logging.debug('handled command ' + x)		
+	
