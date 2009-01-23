@@ -62,3 +62,11 @@ def saveDot(dotString):
 	os.close(mTmp[0])
 
 	return(mTmp[1])
+	
+if __name__ == '__main__':		
+	# Test harness	
+	logging.basicConfig(level=logging.DEBUG, \
+	                    format='%(asctime)s %(levelname)s %(message)s')
+	
+	logging.debug("Here's what would be run:")
+	logging.debug(buildDotCmdDualFN('foo', 'basename', 'svg'))
