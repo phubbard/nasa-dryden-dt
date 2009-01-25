@@ -47,6 +47,8 @@ class dotMaker:
 		logging.debug('Pull INDS and process into dictionary')
 		# Read WS data, parse and create dictionaries
 		md.main()
+		# Done with connection
+		md.close()
 		
 		logging.debug('Processing sources...')
 		

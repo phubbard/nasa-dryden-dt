@@ -57,6 +57,7 @@ class indsInterface:
 	def close(self):
 		if self.connected == True:
 			self.conn.close()
+			self.connected = False
 				
 	# Variables
 	cmdIds = []
