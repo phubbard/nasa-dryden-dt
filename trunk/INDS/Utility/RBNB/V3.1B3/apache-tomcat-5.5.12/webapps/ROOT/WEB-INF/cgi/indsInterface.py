@@ -9,6 +9,8 @@ into graphviz dot. I tried to make it efficient - the config file is loaded once
 URL is only fetched once, transient commands are ignored, and config files aren't loaded
 unless (not used at present) the parent asks for them.
 
+This version is reworked to use httplib instead of urllib2.
+
 Pseudo code looks like:
 Look up INDS hostname
 Get list of commands from INDS
@@ -23,7 +25,7 @@ end
 import sys
 import os
 import tempfile
-import urllib2
+import httplib
 import logging
 import cgi
 
@@ -32,7 +34,7 @@ import osSpec
 
 class indsInterface:
 	"Routines to pull data from the INDS webservice and reformat it"
-	# Constructor just creates empty objects
+	# Constructor creates objects and opens the connection
 	def __init__(self):
 		cmdIds = []
 		niceName = dict()
@@ -42,6 +44,20 @@ class indsInterface:
 		hostname = 'localhost' 
 		viewerHostname = 'localhost'
 		
+		self.findHostnames()
+		
+		try:
+			self.conn = httplib.HTTPConnection(self.hostname)
+		except httplib.HTTPException, e:
+			self.connected = False;
+			logging.exception(e)
+		else:
+			self.connected = True	
+		
+	def close(self):
+		if self.connected == True:
+			self.conn.close()
+				
 	# Variables
 	cmdIds = []
 	niceName = dict()
@@ -49,6 +65,7 @@ class indsInterface:
 	cmdType = dict()
 	hostname = 'localhost' 
 	viewerHostname = 'localhost'
+	connected = False
 	
 	# ## Methods ##
 	# Look up INDS hostname from config file 'defaults.cfg'
@@ -61,22 +78,28 @@ class indsInterface:
 	
 	# Routine to create a URL from an INDS command.
 	def makeUrl(self, cmdString):
-		return 'http://%s/indsExec/%s' % (self.hostname, cmdString)	
+		return '/indsExec/%s' % cmdString
 
 	# Subroutine to fetch text via HTTP from a URL
 	def getFromUrl(self, cmdUrl):
+		if self.connected == False:
+			logging.error('Cannot fetch "%s", disconnected' % cmdUrl)
+			return ''
+		
 		try:
-			fp = urllib2.urlopen(cmdUrl)
-			hText = fp.read()
-			fp.close()
-		except urllib2.HTTPError, e:
-			logging.exception(e)
-			raise
-		except urllib2.URLError, e:
+			self.conn.request("GET", cmdUrl)	
+			r1 = self.conn.getresponse()
+
+			# Request OK?
+			if r1.status == 200:
+				hText = r1.read()
+				return hText
+			else:
+				logging.error('HTTP error %d (%s) on "%s"' % \
+				(r1.status, r1.reason, cmdUrl))
+		except httplib.HTTPException, e:
 			logging.exception(e)
 			raise 
-		else:
-			return hText		
 	
 	# Get config XML for a given command ID
 	def getCmdXML(self, cmdName):
@@ -139,7 +162,6 @@ class indsInterface:
 	# #####################################################################
 	# Main code entry point
 	def main(self):
-		self.findHostnames()
 	
 		pList = self.getCmdList()
 		if pList == []:
@@ -158,13 +180,12 @@ if __name__ == '__main__':
 	logging.basicConfig(level=logging.DEBUG, \
 	                    format='%(asctime)s %(levelname)s %(message)s')
 
-	ii = indsInterface()
-
 	try:
+		ii = indsInterface()
 		ii.main()
+		ii.close()
 	except BaseException, e:
 		logging.exception(e)
 	
 	for x in ii.cmdIds:
-		logging.debug('handled command ' + x)		
-	
+		print x
