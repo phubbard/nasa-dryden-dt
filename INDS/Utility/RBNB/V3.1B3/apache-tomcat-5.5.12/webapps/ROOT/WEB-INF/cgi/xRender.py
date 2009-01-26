@@ -9,7 +9,7 @@ information from INDS via HTTP and builds a dot-language graph from it.
 Phase two, via dotProcessor, saves the graph to a temporary file and runs the
 dot binary to generate SVG.
 
-See also the default.cfg configuration file!
+See also the defaults.cfg configuration file!
 
 @todo Add URLs to nodes for multi-system graphs
 @todo Consider moving to webdot instead of binary dot
@@ -35,7 +35,7 @@ class indsRender(object):
 	# DDT URL of XML file to get
 	indsUrl = "http://localhost/"
 	
-	# HTML
+	# HTML. Note that we simply return a link to the static SVG file,
 	mainhtml = '''<HTML><HEAD><TITLE>
 xRender INDS visualizer</TITLE></HEAD>
 <BODY>
@@ -125,12 +125,14 @@ An error occurred in initialization.
 		try:
 			# Load up config file
 			mc = osSpec.osSpec()
-			# Instantiate the dict-to-dot. 
-			grapher = dictToDot.dotMaker()
 			
 			# Read the system config and create HTML snippet for same
 			cfgHtml = self.configHtml % \
 			(mc.indsHostname, mc.viewHostname, mc.dotCmd, mc.dotParams, mc.hexDigest)
+			
+			# Instantiate the dict-to-dot. 
+			grapher = dictToDot.dotMaker()	
+			
 		except BaseException, e:
 			intHtml = indsRender.header + indsRender.initErrHtml % (cgi.escape(str(e)), cfgHtml)
 			
