@@ -15,11 +15,6 @@ See also the default.cfg configuration file!
 @todo Consider moving to webdot instead of binary dot
 """
 
-# Using the minidom parser, also sys for command line
-import sys
-import os
-import tempfile
-import urllib
 import logging
 import cgi
 from cStringIO import StringIO
@@ -125,12 +120,12 @@ An error occurred in initialization.
 			cfgHtml = self.fillConfigSnippet()
 			md = dictToDot.dotMaker()
 		except BaseException, e:
-			intHtml = indsRender.header + indsRender.initErrHtml % (str(e), cfgHtml)
+			intHtml = indsRender.header + indsRender.initErrHtml % (cgi.escape(str(e)), cfgHtml)
 			
 		try:
 			md.main()
 		except BaseException, e:
-			intHtml = indsRender.header + indsRender.exManErrHtml % (str(e), cfgHtml)
+			intHtml = indsRender.header + indsRender.exManErrHtml % (cgi.escape(str(e)), cfgHtml)
 			print intHtml
 			return
 
@@ -146,7 +141,7 @@ An error occurred in initialization.
 			logging.debug("Running DOT to generate SVG")
 			rc = dotProcessor.runDotDualFN(inFile, basename, 'svg')
 		except BaseException, e:
-			print indsRender.header + indsRender.dotExceptHtml % (str(e), cfgHtml)
+			print indsRender.header + indsRender.dotExceptHtml % (cgi.escape(str(e)), cfgHtml)
 			return
 		
 		if(rc == 0):
