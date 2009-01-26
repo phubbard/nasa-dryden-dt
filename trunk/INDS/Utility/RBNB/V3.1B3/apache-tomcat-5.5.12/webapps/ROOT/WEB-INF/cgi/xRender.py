@@ -20,6 +20,8 @@ import cgi
 from cStringIO import StringIO
 from string import capwords, strip, split, join
 
+import cgitb; cgitb.enable()
+
 # My code!
 import dictToDot
 import dotProcessor
@@ -35,7 +37,7 @@ class indsRender(object):
 	
 	# HTML
 	mainhtml = '''<HTML><HEAD><TITLE>
-CGI to process INDS XML into SVG</TITLE></HEAD>
+xRender INDS visualizer</TITLE></HEAD>
 <BODY>
 <iframe src="/inds-svg/%s" width="%s" height="%s" 
 frameborder="0" marginwidth="0" marginheight="0">
@@ -62,7 +64,7 @@ name="output" alt="SVG drawing of INDS XML system">
 	'''	
 	# HTML to display if dot fails to run correctly
 	dotErrHtml = '''<HTML><HEAD><TITLE>
-	CGI to process INDS XML into SVG</TITLE></HEAD>
+	xRender INDS visualizer</TITLE></HEAD>
 	<BODY>
 An error occurred while running 'dot' to convert the graph into an SVG graphic. Error code was %d.
 %s
@@ -70,7 +72,7 @@ An error occurred while running 'dot' to convert the graph into an SVG graphic. 
 '''		
 	# HTML to display if dot throws an exception
 	dotExceptHtml = '''<HTML><HEAD>
-	<TITLE>CGI to process INDS XML into SVG</TITLE></HEAD>
+	<TITLE>xRender INDS visualizer</TITLE></HEAD>
 	<BODY>
 An exception occurred while trying to run the 'dot' program.
 <p>Error message:
@@ -88,12 +90,13 @@ An exception occurred while trying to run the 'dot' program.
  INDS viewer hostname: %s
  dot command: %s
  dot parameters: %s
+ Last checksum: %s
 </pre>
 '''
 	# HTML to display if errors in configuration file or object creation
 	initErrHtml = '''
 	<HTML><HEAD>
-	<TITLE>CGI to process INDS XML into SVG</TITLE></HEAD>
+	<TITLE>xRender INDS visualizer</TITLE></HEAD>
 	<BODY>
 An error occurred in initialization.
 <p>Error message:
@@ -103,36 +106,54 @@ An error occurred in initialization.
 %s
 </BODY></HTML>	
 '''	
-	def fillConfigSnippet(self):
-		mc = osSpec.osSpec()
-		
-		intHtml = self.configHtml % \
-		(mc.indsHostname, mc.viewHostname, mc.dotCmd, mc.dotParams)
-		
-		return intHtml
+
+	
+	def doNormalOutput(self):
+		# Build output HTML. We have to do this in two steps because
+		# python gets confused by 100% in a format string, even escaped.
+		outName = 'inds.svg'
+		sizeStr = '100%'
+		intHtml = indsRender.mainhtml % (outName, \
+		sizeStr, sizeStr, outName, sizeStr, sizeStr, outName)
+
+		print indsRender.header + intHtml
 		
 	# Display results page
 	def doResults(self):
 
-
 		# Parse configuration, instantiate dotMaker object
 		try:
-			cfgHtml = self.fillConfigSnippet()
-			md = dictToDot.dotMaker()
+			# Load up config file
+			mc = osSpec.osSpec()
+			# Instantiate the dict-to-dot. 
+			grapher = dictToDot.dotMaker()
+			
+			# Read the system config and create HTML snippet for same
+			cfgHtml = self.configHtml % \
+			(mc.indsHostname, mc.viewHostname, mc.dotCmd, mc.dotParams, mc.hexDigest)
 		except BaseException, e:
 			intHtml = indsRender.header + indsRender.initErrHtml % (cgi.escape(str(e)), cfgHtml)
 			
+		# Run the INDS->dot	
 		try:
-			md.main()
+			grapher.main()
+			
+			# Same configuration as last run, as evinced by digest of command list?
+			if grapher.isStale == True:
+				logging.info('Returning previous SVG, no change in command list.')
+				self.doNormalOutput()
+				return
+				
 		except BaseException, e:
 			intHtml = indsRender.header + indsRender.exManErrHtml % (cgi.escape(str(e)), cfgHtml)
 			print intHtml
 			return
 
+		# Save results to a temporary file and then run dot to generate the SVG
 		try:
 			logging.debug('Saving dot to tempfile')
 			# Save results to a temporary file
-			inFile = dotProcessor.saveDot(md.outputDot)
+			inFile = dotProcessor.saveDot(grapher.outputDot)
 
 			logging.debug('dot saved to ' + inFile)
 			
@@ -145,14 +166,7 @@ An error occurred in initialization.
 			return
 		
 		if(rc == 0):
-			# Build output HTML. We have to do this in two steps because
-			# python gets confused by 100% in a format string, even escaped.
-			outName = 'inds.svg'
-			sizeStr = '100%'
-			intHtml = indsRender.mainhtml % (outName, \
-			sizeStr, sizeStr, outName, sizeStr, sizeStr, outName)
-
-			print indsRender.header + intHtml
+			self.doNormalOutput()
 		else:
 			print indsRender.header + indsRender.dotErrHtml % (rc, cfgHtml)
 			

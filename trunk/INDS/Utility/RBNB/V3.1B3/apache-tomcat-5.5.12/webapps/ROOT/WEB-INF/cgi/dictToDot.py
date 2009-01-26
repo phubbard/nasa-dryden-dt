@@ -27,29 +27,39 @@ class dotMaker:
 		dt = ''
 		colors = dict()
 		edgeColors = dict()
+		isStale = False
 		
 	# Variables
 	outputDot = ''
 	dt = ''
 	colors = dict()
 	edgeColors = dict()
+	isStale = False
 	
 	# ---------------------------------------------------------------------------
 	def main(self):
 		# Instantiate webservices interface class
-		md = indsInterface.indsInterface()
+		inds = indsInterface.indsInterface()
 		
+		logging.debug('Checking for changes in configuration...')
+		# If command list is unchanged, just return
+		self.isStale = inds.isStale()
+		if self.isStale == True:
+			return
+		
+		logging.debug('Loading colors from config file')
 		# Load up graph colors from configuration file
 		mc = osSpec.osSpec()
 		self.colors = mc.colors
 		self.edgeColors = mc.edgeColors
 		
 		logging.debug('Pull INDS and process into dictionary')
+
 		# Read WS data, parse and create dictionaries
-		md.main()
+		inds.main()
 		# Done with connection
-		md.close()
-		
+		inds.close()		
+	
 		logging.debug('Processing sources...')
 		
 		# Start with graph definition
@@ -57,10 +67,10 @@ class dotMaker:
 		
 		# First of all, we need the name of the data turbine server.
 		# This quick search assumes there's only one in the system!
-		for x in md.cmdIds:
-			if md.cmdType[x] == 'server':
+		for x in inds.cmdIds:
+			if inds.cmdType[x] == 'server':
 				# To get name, we have to peek into the XML element name. Kinda weak.
-				if self.getElementName(md.xml[x]) == 'dataTurbine':	
+				if self.getElementName(inds.xml[x]) == 'dataTurbine':	
 					logging.info('DT name is %s' % x)			
 					self.dt = x
 
@@ -71,19 +81,19 @@ class dotMaker:
 		self.addOutput('edge [dir="tail", color="%s"]' % self.edgeColors['source'])
 		
 		# Do this in three passes - sources, servers and plugins
-		for x in md.cmdIds:
-			if md.cmdType[x] == 'source':
+		for x in inds.cmdIds:
+			if inds.cmdType[x] == 'source':
 				# UDP cap has another node to represent its listen port
 				# Again, we have to parse the XML to get the element name.
-				if self.getElementName(md.xml[x]) == 'udpCapture':
+				if self.getElementName(inds.xml[x]) == 'udpCapture':
 					# Define the port node
-					portNum = self.getInputPortnum(md.xml[x])
+					portNum = self.getInputPortnum(inds.xml[x])
 					portName = '%sport%s' % (x, portNum)
 					self.addOutput('%s [label="%s" shape="box"]' % (portName, portNum))
 				
 					# Define the udpCapture node
 					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
-					(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
+					(x, inds.niceName[x], inds.getInfoUrl(x), self.colors[inds.cmdType[x]]))
 				
 					# Define the link from node -> udpCap
 					self.addOutput('%s -> %s' % (portName, x))
@@ -93,19 +103,19 @@ class dotMaker:
 				else:
 					# Handle all other sources uniformly
 					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
-					(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
+					(x, inds.niceName[x], inds.getInfoUrl(x), self.colors[inds.cmdType[x]]))
 					self.addOutput('%s -> %s' % (x, self.dt))
 
 		logging.debug('Processing servers...')
 		self.addOutput('edge [dir="both", color="%s"]' % self.edgeColors['server'])
 
 		# Next pass is servers
-		for x in md.cmdIds:
-			if md.cmdType[x] == 'server':			
+		for x in inds.cmdIds:
+			if inds.cmdType[x] == 'server':			
 				# TimeDrive has a second node to denote its listening port
-				if self.getElementName(md.xml[x]) == 'timeDrive':
+				if self.getElementName(inds.xml[x]) == 'timeDrive':
 					# define the port node
-					portNum = self.getInputPortnum(md.xml[x])
+					portNum = self.getInputPortnum(inds.xml[x])
 					portName = '%sport%s' % (x, portNum)
 				
 					# Node for port
@@ -113,7 +123,7 @@ class dotMaker:
 				
 					# Node for timeDrive
 					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
-					(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
+					(x, inds.niceName[x], inds.getInfoUrl(x), self.colors[inds.cmdType[x]]))
 				
 					# Define link from port to timeDrive
 					self.addOutput('%s -> %s' % (portName, x))
@@ -123,18 +133,18 @@ class dotMaker:
 				else:
 						
 					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
-					(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
+					(x, inds.niceName[x], inds.getInfoUrl(x), self.colors[inds.cmdType[x]]))
 			
-					if md.niceName[x] == 'tomcat':
+					if inds.niceName[x] == 'tomcat':
 						self.addOutput('%s -> %s', self.dt, x)
 
 		self.addOutput('edge [color="%s"]' % self.edgeColors['plugin'])
 		
 		logging.debug('Plugins...')		
-		for x in md.cmdIds:
-			if md.cmdType[x] == 'plugin':				
+		for x in inds.cmdIds:
+			if inds.cmdType[x] == 'plugin':				
 				self.addOutput('%s [label="%s", URL="%s", color=%s]' % \
-				(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
+				(x, inds.niceName[x], inds.getInfoUrl(x), self.colors[inds.cmdType[x]]))
 
 				self.addOutput('%s -> %s' % (self.dt, x))
 
@@ -142,10 +152,10 @@ class dotMaker:
 
 		logging.debug('converters...')
 		# xmldemux, csvdemux
-		for x in md.cmdIds:
-			if md.cmdType[x] == 'converter':
+		for x in inds.cmdIds:
+			if inds.cmdType[x] == 'converter':
 				self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
-				(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
+				(x, inds.niceName[x], inds.getInfoUrl(x), self.colors[inds.cmdType[x]]))
 
 				self.addOutput('%s -> %s' % (self.dt, x))
 
@@ -153,10 +163,10 @@ class dotMaker:
 		# Pure sinks - presently unused, so edge output is unused and harmless.
 		self.addOutput('edge [dir="head", color="%s"]' % self.edgeColors['sink'])
 
-		for x in md.cmdIds:
-			if md.cmdType[x] == 'sink':
+		for x in inds.cmdIds:
+			if inds.cmdType[x] == 'sink':
 				self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
-				(x, md.niceName[x], md.getInfoUrl(x), self.colors[md.cmdType[x]]))
+				(x, inds.niceName[x], inds.getInfoUrl(x), self.colors[inds.cmdType[x]]))
 
 				self.addOutput('%s -> %s' % (self.dt, x))
 			
