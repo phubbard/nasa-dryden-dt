@@ -23,6 +23,7 @@ class osSpec:
 	viewHostname = 'localhost'
 	colors = dict()
 	edgeColors = dict()
+	hexDigest = ''
 	
 	def __init__(self):		
 		
@@ -70,6 +71,10 @@ class osSpec:
 				self.viewHostname = config.get('inds', 'viewhost')
 				logging.debug('inds viewer hostname is ' + self.viewHostname)
 				
+			# Checksum of cmdList from last run	
+			if config.has_option('inds', 'last-run-checksum'):
+				self.hexDigest = config.get('inds', 'last-run-checksum')
+				logging.debug('Loaded last checksum: ' + self.hexDigest)	
 				
 			# Load up colors for each node type	
 			cmdTypes = ['source', 'sink', 'server', 'plugin', 'converter']
@@ -84,6 +89,18 @@ class osSpec:
 		else:
 			logging.warn('Unable to open configuration file %s' % self.configFile)
 		
+	def updateHexDigest(self, hexDigest):
+		config = ConfigParser.RawConfigParser()
+		fn = config.read(self.configFile)
+		if fn:
+			logging.debug('config file %s opened ok', self.configFile)		
+			config.set('inds', 'last-run-checksum', hexDigest)
+			configfile = open(self.configFile, 'w')
+			if configfile:
+				config.write(configfile)
+			else:
+				logging.error('Unable to update checksum in configuration file!')
+			
 if __name__ == '__main__':		
 	# Test harness	
 	logging.basicConfig(level=logging.DEBUG, \

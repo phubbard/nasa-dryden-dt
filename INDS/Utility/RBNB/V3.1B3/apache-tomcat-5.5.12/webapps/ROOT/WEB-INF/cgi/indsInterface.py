@@ -27,7 +27,8 @@ import os
 import tempfile
 import httplib
 import logging
-import cgi
+import ConfigParser
+import md5
 
 # My code!
 import osSpec
@@ -40,11 +41,12 @@ class indsInterface:
 		niceName = dict()
 		xml = dict()
 		cmdType = dict()
-		# Defaults, overriden by findHostnames
+		
+		# Defaults, overriden by loadConfig
 		hostname = 'localhost' 
 		viewerHostname = 'localhost'
 		
-		self.findHostnames()
+		self.loadConfig()
 		
 		try:
 			self.conn = httplib.HTTPConnection(self.hostname)
@@ -67,15 +69,17 @@ class indsInterface:
 	hostname = 'localhost' 
 	viewerHostname = 'localhost'
 	connected = False
+	hexDigest = ''
 	
 	# ## Methods ##
 	# Look up INDS hostname from config file 'defaults.cfg'
 	# Also look up hostname of INDS viewer, which may be separate
-	def findHostnames(self):
+	def loadConfig(self):
 		myOS = osSpec.osSpec()
 
 		self.hostname = myOS.indsHostname
 		self.viewerHostname = myOS.viewHostname
+		self.hexDigest = myOS.hexDigest
 	
 	# Routine to create a URL from an INDS command.
 	def makeUrl(self, cmdString):
@@ -132,7 +136,30 @@ class indsInterface:
 	# Get config file for a command ID. Not presently used.
 	def getConfigFile(self, cmdId):
 		return self.getFromUrl(self.getConfigUrl(cmdId))
-			
+	
+	# Get the complete XML config document		
+	def getCompleteXml(self):
+		return self.getFromUrl(self.makeUrl('?action=getRootConfiguration'))
+	
+	# Speed optimization - checks to see if the XML configuration has changed since the last run.
+	# Uses an MD5 hash of the XML document, saved as the hex digest in the configuration file.
+	# Note that this will also save the new digest when called!			
+	def isStale(self):
+		# Compute the MD5 hash of the XML document
+		md = md5.new()
+		pText = self.getCompleteXml()
+		md.update(pText)
+		
+		# Compare it to the last-run hash saved in the config file
+		if md.hexdigest() == self.hexDigest:
+			logging.debug('Hex digest matches last run from config file')
+			return True
+		else:
+			logging.debug('New hex digest: %s Old: %s' % (md.hexdigest(), self.hexDigest))
+			mc = osSpec.osSpec()
+			mc.updateHexDigest(md.hexdigest())
+			return False
+				
 	# Build array of command IDs
 	def getCmdList(self):
 		plUrl = self.makeUrl('')
@@ -140,6 +167,7 @@ class indsInterface:
 
 		pText = self.getFromUrl(plUrl)
 		
+			
 		# Convert into native array
 		pList = pText.split()
 		return pList
@@ -162,13 +190,13 @@ class indsInterface:
 		
 	# #####################################################################
 	# Main code entry point
-	def main(self):
-	
+	def main(self):	
 		pList = self.getCmdList()
 		if pList == []:
 			logging.error('An error occurred fetching the list of commands!')
 			return		
 
+			
 		logging.debug('Building dictionaries')
 		for x in pList:
 			self.buildEntry(x)
