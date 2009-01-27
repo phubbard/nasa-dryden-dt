@@ -114,11 +114,16 @@
 			<h1>Execute action:</h1>
 			<div id="actionlist">
 				<ul>
-				<% for (int i=0; i<actions.length; i++) { 
+				<% 
+					queryString = "";
+					if (queryDisplay!=null)
+						queryString = queryString+"&display="+queryDisplay;
+					
+					for (int i=0; i<actions.length; i++) { 
 					if ((actions[i].getName().compareTo("isComplete")!=0) && 
 						(actions[i].getName().compareTo("getCommandList")!=0) && 
 						(actions[i].getName().compareTo("getRootConfiguration")!=0)) { %>
-						<li><a href="<%= "index.jsp?command="+queryCommand+"&action="+actions[i].getName() %>">
+						<li><a href="<%= "index.jsp?command="+queryCommand+"&action="+actions[i].getName()+queryString %>">
 								<%= actions[i].getName() %>
 							</a>
 				<%   } %>
