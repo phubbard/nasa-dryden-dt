@@ -65,7 +65,7 @@ class dotMaker:
 		
 		logging.debug('Pull INDS and process into dictionary')
 
-		# Read WS data, parse and create dictionaries
+		# Read INDS via HTTP webservices, parse and create dictionaries
 		inds.main()
 		# Done with connection
 		inds.close()		
@@ -76,7 +76,7 @@ class dotMaker:
 		self.addHeader()
 		
 		# First of all, we need the name of the data turbine server.
-		# This quick search assumes there's only one in the system!
+		# @note This quick search assumes there's only one in the system!
 		for x in inds.cmdIds:
 			if inds.cmdType[x] == 'server':
 				# To get name, we have to peek into the XML element name. Kinda weak.
@@ -84,13 +84,36 @@ class dotMaker:
 					logging.info('DT name is %s' % x)			
 					self.dt = x
 
-		# I've considered rolling this into a loop indexed by command type, but the
+		## @note I've considered rolling this into a loop indexed by command type, but the
 		# code started getting much harder to read and alter, so I'm leaving it unrolled.
 		
+		# Do this in three passes - sources, servers and plugins
+		# Change 1/27/08 - As per MJM, move timedrive to leftmost column.
+		self.addOutput('edge [dir="both", color="%s"]' % self.edgeColors['server'])
+		for x in inds.cmdIds:
+			if inds.cmdType[x] == 'server':			
+				# TimeDrive has a second node to denote its listening port
+				if self.getElementName(inds.xml[x]) == 'timeDrive':
+					# define the port node
+					portNum = self.getInputPortnum(inds.xml[x])
+					portName = '%sport%s' % (x, portNum)
+				
+					# Node for port
+					self.addOutput('%s [label="%s", shape="box"]' % (portName, portNum))
+				
+					# Node for timeDrive
+					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
+					(x, inds.niceName[x], inds.getInfoUrl(x), self.colors[inds.cmdType[x]]))
+				
+					# Define link from port to timeDrive
+					self.addOutput('%s -> %s' % (portName, x))
+
+					# And from TD to dataTurbine
+					self.addOutput('%s -> %s' % (x, self.dt))
+
 		# Sources -> RBNB
 		self.addOutput('edge [dir="tail", color="%s"]' % self.edgeColors['source'])
-		
-		# Do this in three passes - sources, servers and plugins
+
 		for x in inds.cmdIds:
 			if inds.cmdType[x] == 'source':
 				# UDP cap has another node to represent its listen port
@@ -122,26 +145,8 @@ class dotMaker:
 		# Next pass is servers
 		for x in inds.cmdIds:
 			if inds.cmdType[x] == 'server':			
-				# TimeDrive has a second node to denote its listening port
-				if self.getElementName(inds.xml[x]) == 'timeDrive':
-					# define the port node
-					portNum = self.getInputPortnum(inds.xml[x])
-					portName = '%sport%s' % (x, portNum)
-				
-					# Node for port
-					self.addOutput('%s [label="%s", shape="box"]' % (portName, portNum))
-				
-					# Node for timeDrive
-					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
-					(x, inds.niceName[x], inds.getInfoUrl(x), self.colors[inds.cmdType[x]]))
-				
-					# Define link from port to timeDrive
-					self.addOutput('%s -> %s' % (portName, x))
-
-					# And from TD to dataTurbine
-					self.addOutput('%s -> %s' % (self.dt, x))
-				else:
-						
+				# Already did TD, so skip it this time.
+				if self.getElementName(inds.xml[x]) != 'timeDrive':
 					self.addOutput('%s [label="%s", URL="%s", color="%s"]' % \
 					(x, inds.niceName[x], inds.getInfoUrl(x), self.colors[inds.cmdType[x]]))
 			
