@@ -1,32 +1,40 @@
 #!/usr/bin/env python
-#
-# @file osSpec.py
-# @brief OS-specific definitions for invoking graphviz/dot
-# This started out as a 2-line config file and has grown into one with multiple sections.
-# This object tries to load the file and parse it into internal variables and abstract
-# configuration for parent objects that use them.
-# @author Paul Hubbard 
-# @date 1/12/09
 
 import sys
 import os
 import logging
 import ConfigParser
 
-class osSpec:
+## OS-specific definitions for invoking graphviz/dot, and config file contents.
+# This started out as a 2-line config file and has grown into one with multiple sections.
+# This object tries to load the file and parse it into internal variables and abstract
+# configuration for parent objects that use them.
+#
+# @file osSpec.py
+# @author Paul Hubbard 
+# @date 1/12/09
 
-	# Variables and defaults
+## osSpec handles the configuration file and OS-specific stuff.
+class osSpec:		
+	## External dot program
 	dotCmd = 'dot'
+	## Command-line parameters for dot
 	dotParams = ''
+	## Filename of configuration file
 	configFile = 'defaults.cfg'
+	## Hostname running INDS exMan
 	indsHostname = 'localhost'
+	## hostname running inds viewer
 	viewHostname = 'localhost'
+	## Graph colors, indexed by command ID
 	colors = dict()
+	## Edge colors, ditto
 	edgeColors = dict()
+	## Hexadecimal version of MD5 sum of XML configuration document, used as cache signal
 	hexDigest = ''
 	
+	## Constructor does all the work!
 	def __init__(self):		
-		
 		# Anything windows-specific
 		if os.name == 'nt':
 			logging.debug('OS is NT, no paramaters set')
@@ -89,6 +97,7 @@ class osSpec:
 		else:
 			logging.warn('Unable to open configuration file %s' % self.configFile)
 		
+	## This updates the saved MD5 digest in the configuration file.	
 	def updateHexDigest(self, hexDigest):
 		config = ConfigParser.RawConfigParser()
 		fn = config.read(self.configFile)
@@ -101,8 +110,8 @@ class osSpec:
 			else:
 				logging.error('Unable to update checksum in configuration file!')
 			
+## Test harness	
 if __name__ == '__main__':		
-	# Test harness	
 	logging.basicConfig(level=logging.DEBUG, \
 	                    format='%(asctime)s %(levelname)s %(message)s')
 	try:

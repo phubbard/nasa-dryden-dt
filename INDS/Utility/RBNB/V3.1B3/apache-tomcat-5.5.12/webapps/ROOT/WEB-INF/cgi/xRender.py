@@ -1,25 +1,11 @@
 #!/usr/bin/env python
-""""
-@file xRender.py
-@author Paul Hubbard pfhubbar@ucsd.edu
-@date 1/7/09
-@brief Parse INDS into graphviz DOT language graph via CGI
-Now broken into two phases: Phase one, via indsInterface, fetches all the 
-information from INDS via HTTP and builds a dot-language graph from it. 
-Phase two, via dotProcessor, saves the graph to a temporary file and runs the
-dot binary to generate SVG.
-
-See also the defaults.cfg configuration file!
-
-@todo Add URLs to nodes for multi-system graphs
-@todo Consider moving to webdot instead of binary dot
-"""
 
 import logging
 import cgi
 from cStringIO import StringIO
 from string import capwords, strip, split, join
 
+# CGI trackback and logging
 import cgitb; cgitb.enable()
 
 # My code!
@@ -27,15 +13,26 @@ import dictToDot
 import dotProcessor
 import osSpec
 
-# ---------------------------------------------------------------------------
-# CGI class and HTML. Man, I hate mixing code and presentation.
-class indsRender(object):
+##  Parse INDS into graphviz DOT language graph via CGI
+# Now broken into two phases: Phase one, via indsInterface, fetches all the 
+# information from INDS via HTTP and builds a dot-language graph from it. 
+# Phase two, via dotProcessor, saves the graph to a temporary file and runs the
+# dot binary to generate SVG.
+#
+# @file xRender.py
+# @author Paul Hubbard pfhubbar@ucsd.edu
+# @date 1/7/09
+# @todo Add URLs to nodes for multi-system graphs
+# @todo Consider moving to webdot instead of binary dot
+# @note See also the defaults.cfg configuration file
+
+## xRender handles the CGI interface, HTML and invoking the other classes.
+class xRender(object):
+	
+	## Required HTML header
 	header = 'Content-Type: text/html\n\n'
 	
-	# DDT URL of XML file to get
-	indsUrl = "http://localhost/"
-	
-	# HTML. Note that we simply return a link to the static SVG file,
+	## Main output HTML; Note that we simply return a link to the static SVG file.
 	mainhtml = '''<HTML><HEAD><TITLE>
 xRender INDS visualizer</TITLE></HEAD>
 <BODY>
@@ -50,7 +47,7 @@ name="output" alt="SVG drawing of INDS XML system">
 </iframe>
 </BODY></HTML>	
 	'''
-	# HTML to display if unable to poll INDS execution manager
+	## HTML to display if unable to poll INDS execution manager
 	exManErrHtml = 	'''<HTML><HEAD><TITLE>
 	Error running INDS Execution Manager query</TITLE></HEAD>
 	<BODY>
@@ -62,7 +59,7 @@ name="output" alt="SVG drawing of INDS XML system">
 	%s
 	</BODY></HTML>	
 	'''	
-	# HTML to display if dot fails to run correctly
+	## HTML to display if dot fails to run correctly
 	dotErrHtml = '''<HTML><HEAD><TITLE>
 	xRender INDS visualizer</TITLE></HEAD>
 	<BODY>
@@ -70,7 +67,7 @@ An error occurred while running 'dot' to convert the graph into an SVG graphic. 
 %s
 </BODY></HTML>	
 '''		
-	# HTML to display if dot throws an exception
+	## HTML to display if dot throws an exception
 	dotExceptHtml = '''<HTML><HEAD>
 	<TITLE>xRender INDS visualizer</TITLE></HEAD>
 	<BODY>
@@ -82,7 +79,7 @@ An exception occurred while trying to run the 'dot' program.
 %s
 </BODY></HTML>	
 '''		
-	# Dump of configuration variables for debugging
+	## Dump of configuration variables for debugging
 	configHtml = '''
 <h3>Configuration</h3>
 <pre>
@@ -93,7 +90,7 @@ An exception occurred while trying to run the 'dot' program.
  Last checksum: %s
 </pre>
 '''
-	# HTML to display if errors in configuration file or object creation
+	## HTML to display if errors in configuration file or object creation
 	initErrHtml = '''
 	<HTML><HEAD>
 	<TITLE>xRender INDS visualizer</TITLE></HEAD>
@@ -107,18 +104,18 @@ An error occurred in initialization.
 </BODY></HTML>	
 '''	
 
-	
+	## This gets called if no change to XML, or new graph generated OK.
 	def doNormalOutput(self):
 		# Build output HTML. We have to do this in two steps because
 		# python gets confused by 100% in a format string, even escaped.
 		outName = 'inds.svg'
 		sizeStr = '100%'
-		intHtml = indsRender.mainhtml % (outName, \
+		intHtml = xRender.mainhtml % (outName, \
 		sizeStr, sizeStr, outName, sizeStr, sizeStr, outName)
 
-		print indsRender.header + intHtml
+		print xRender.header + intHtml
 		
-	# Display results page
+	## CGI main routine.
 	def doResults(self):
 
 		# Parse configuration, instantiate dotMaker object
@@ -134,7 +131,7 @@ An error occurred in initialization.
 			grapher = dictToDot.dotMaker()	
 			
 		except BaseException, e:
-			intHtml = indsRender.header + indsRender.initErrHtml % (cgi.escape(str(e)), cfgHtml)
+			intHtml = xRender.header + xRender.initErrHtml % (cgi.escape(str(e)), cfgHtml)
 			
 		# Run the INDS->dot	
 		try:
@@ -147,7 +144,7 @@ An error occurred in initialization.
 				return
 				
 		except BaseException, e:
-			intHtml = indsRender.header + indsRender.exManErrHtml % (cgi.escape(str(e)), cfgHtml)
+			intHtml = xRender.header + xRender.exManErrHtml % (cgi.escape(str(e)), cfgHtml)
 			print intHtml
 			return
 
@@ -164,19 +161,19 @@ An error occurred in initialization.
 			logging.debug("Running DOT to generate SVG")
 			rc = dotProcessor.runDotDualFN(inFile, basename, 'svg')
 		except BaseException, e:
-			print indsRender.header + indsRender.dotExceptHtml % (cgi.escape(str(e)), cfgHtml)
+			print xRender.header + xRender.dotExceptHtml % (cgi.escape(str(e)), cfgHtml)
 			return
 		
 		if(rc == 0):
 			self.doNormalOutput()
 		else:
-			print indsRender.header + indsRender.dotErrHtml % (rc, cfgHtml)
+			print xRender.header + xRender.dotErrHtml % (rc, cfgHtml)
 			
-# End of class indsRender
+# End of class xRender
 		
-# CGI magic
+## Test harness/CGI entrypoint
 if __name__ == '__main__':
 	logging.basicConfig(level=logging.DEBUG, \
 	                    format='%(asctime)s %(levelname)s %(message)s')
-	page = indsRender()
+	page = xRender()
 	page.doResults()

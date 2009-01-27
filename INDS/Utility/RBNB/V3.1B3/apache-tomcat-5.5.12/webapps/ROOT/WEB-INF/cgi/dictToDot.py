@@ -1,16 +1,5 @@
 #!/usr/bin/env python
-""""
-@file dictToDot.py
-@author Paul Hubbard pfhubbar@ucsd.edu
-@date 1/21/09
-@brief Generates a DOT-language graph from an INDS deployment. It creates and uses
-an indsInterface object to query the INDS server and build dictionaries for us to navigate.
-Output is accumulated in the outputDot string for the caller/parent to save/parse/print.
-Colors and such are pulled from the configuration file via the osSpec object instance.
-@todo Add URLs to nodes for multi-system graphs
-"""
 
-# Using the minidom parser, also sys for command line
 from xml.dom.minidom import parse, parseString, Node
 import sys
 import logging
@@ -18,10 +7,21 @@ import logging
 import osSpec
 import indsInterface
 
+## Generates a DOT-language graph from an INDS deployment. It creates and uses
+# an indsInterface object to query the INDS server and build dictionaries for us to navigate.
+# Output is accumulated in the outputDot string for the caller/parent to save/parse/print.
+# Colors and such are pulled from the configuration file via the osSpec object instance.
+#
+# @file dictToDot.py
+# @author Paul Hubbard pfhubbar@ucsd.edu
+# @date 1/21/09
+# @todo Add URLs to nodes for multi-system graphs
+# @todo Handle more than one DataTurbine per graph
+
+## Converts INDS dictionary into Graphviz DOT-language graph
 class dotMaker:
-	"Converts INDS dictionary into Graphviz DOT-language graph"
-	
-	# Constructor just initializes
+
+	## Constructor just creates empty objects
 	def __init__(self):
 		outputDot = ''
 		dt = ''
@@ -30,14 +30,21 @@ class dotMaker:
 		isStale = False
 		
 	# Variables
+	## This holds the entire output graph as a big string.
 	outputDot = ''
+	## command ID for the DataTurbine instance
 	dt = ''
+	## Node colors
 	colors = dict()
+	## Edge colors
 	edgeColors = dict()
+	## Has the XML config document changed?
 	isStale = False
 	
 	# ---------------------------------------------------------------------------
+	## dictToDot uses indsInterface to get the commands and then generates the dot graph.
 	def main(self):
+		
 		# Instantiate webservices interface class
 		inds = indsInterface.indsInterface()
 		
@@ -177,7 +184,7 @@ class dotMaker:
 	
 	# End of main routine #######################################################
 		
-	# Parse XML and dig out port number here... Assumes child node named 'input' with
+	## Parse XML and dig out port number here... Assumes child node named 'input' with
 	# port attribute inside.
 	def getInputPortnum(self, cmdXml):
 		# Parse XML into DOM
@@ -199,7 +206,7 @@ class dotMaker:
 		dom.unlink()
 		return portNum
 		
-	# Parse XML and return element name
+	## Parse XML and return element name
 	def getElementName(self, cmdXml):
 		dom = parseString(cmdXml)
 
@@ -208,10 +215,14 @@ class dotMaker:
 		dom.unlink()
 		return foo
 					
+	## Append a string to the output, plus newline character
 	def addOutput(self, outStr):
 		self.outputDot += outStr
 		self.outputDot += '\n'
 
+	## Graph definition.
+	# @todo Make graph/digraph a parameter
+	# @todo Make graph name a parameter
 	def addHeader(self):
 		self.addOutput("digraph INDS {")
 		self.addOutput('center="true"')
@@ -220,14 +231,16 @@ class dotMaker:
 		self.addOutput('rankdir="LR"')
 		self.addOutput('size="8,10.5"')
 		
+	## Graph footer - just close definition	
 	def addFooter(self):
 		self.addOutput('}')
 			
+	## PRint graph to stdout		
 	def dumpDot(self):
 		print self.outputDot
 
+## Test harness	
 if __name__ == '__main__':		
-	# Test harness	
 	logging.basicConfig(level=logging.DEBUG, \
 	                    format='%(asctime)s %(levelname)s %(message)s')
 	try:

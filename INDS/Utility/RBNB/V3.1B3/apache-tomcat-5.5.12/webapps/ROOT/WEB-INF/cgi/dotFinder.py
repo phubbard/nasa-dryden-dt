@@ -1,17 +1,16 @@
 #!/usr/bin/env python
-""""
-@file dotFinder.py
-@author Paul Hubbard pfhubbar@ucsd.edu
-@date 1/7/09
-@brief Simple CGI to dump configuration out for debugging purposes.
-"""
 import cgi
 
 # My code!
 import osSpec
 
-# ---------------------------------------------------------------------------
-# CGI class and HTML. Man, I hate mixing code and presentation.
+## Simple CGI to dump configuration out for debugging purposes. No functional code.
+#
+# @file dotFinder.py
+# @author Paul Hubbard pfhubbar@ucsd.edu
+# @date 1/7/09
+
+## Debugging class to print system configuration; not otherwise used.
 class dotFinder(object):
 	header = 'Content-Type: text/html\n\n'
 	
@@ -29,7 +28,8 @@ class dotFinder(object):
 	</pre>
 	</BODY></HTML>
 	'''
-
+	
+	## Run.
 	def doResults(self):
 		mc = osSpec.osSpec()
 
@@ -40,7 +40,7 @@ class dotFinder(object):
 				
 # End of class dotFinder
 		
-# CGI magic
+## CGI magic
 if __name__ == '__main__':
 	page = dotFinder()
 	page.doResults()

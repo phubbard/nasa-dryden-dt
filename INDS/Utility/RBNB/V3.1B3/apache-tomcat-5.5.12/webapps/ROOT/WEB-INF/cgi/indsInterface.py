@@ -1,27 +1,5 @@
 #!/usr/bin/env python
-""""
-@file indsInterface.py
-@author Paul Hubbard pfhubbar@ucsd.edu
-@date 1/21/09
-@brief Routines for the INDS HTTP interface - URL creation, etc. This code
-creates a set of dictionaries keyed on cmdId for dictToDot to parse and transform
-into graphviz dot. I tried to make it efficient - the config file is loaded once, each
-URL is only fetched once, transient commands are ignored, and config files aren't loaded
-unless (not used at present) the parent asks for them.
 
-This version is reworked to use httplib instead of urllib2.
-
-Pseudo code looks like:
-Look up INDS hostname
-Get list of commands from INDS
-foreach cmd
- if transient next
-
- lookup cmdType, nice name, XML and insert into the dictionaries
-end
-"""
-
-# Using the minidom parser, also sys for command line
 import sys
 import os
 import tempfile
@@ -33,9 +11,21 @@ import md5
 # My code!
 import osSpec
 
+## Routines for the INDS HTTP interface - URL creation, etc. This code
+# creates a set of dictionaries keyed on cmdId for dictToDot to parse and transform
+# into graphviz dot. I tried to make it efficient - the config file is loaded once, each
+# URL is only fetched once, transient commands are ignored, and config files aren't loaded
+#  unless (not used at present) the parent asks for them.
+#
+# @file indsInterface.py
+# @note This version is reworked to use httplib instead of urllib2. Persistent connection == speed.
+# @author Paul Hubbard pfhubbar@ucsd.edu
+# @date 1/21/09
+
+
+## 	Class to pull data from the INDS webservice and reformat it
 class indsInterface:
-	"Routines to pull data from the INDS webservice and reformat it"
-	# Constructor creates objects and opens the connection
+	## Constructor creates objects and opens the connection
 	def __init__(self):
 		cmdIds = []
 		niceName = dict()
@@ -55,13 +45,14 @@ class indsInterface:
 			logging.exception(e)
 		else:
 			self.connected = True	
-		
+	
+	## Close http 1.1 (persistent) connection, if open	
 	def close(self):
 		if self.connected == True:
 			self.conn.close()
 			self.connected = False
 				
-	# Variables
+	## Variables
 	cmdIds = []
 	niceName = dict()
 	xml = dict()
@@ -71,8 +62,7 @@ class indsInterface:
 	connected = False
 	hexDigest = ''
 	
-	# ## Methods ##
-	# Look up INDS hostname from config file 'defaults.cfg'
+	## Look up INDS hostname from config file 'defaults.cfg'
 	# Also look up hostname of INDS viewer, which may be separate
 	def loadConfig(self):
 		myOS = osSpec.osSpec()
@@ -81,11 +71,11 @@ class indsInterface:
 		self.viewerHostname = myOS.viewHostname
 		self.hexDigest = myOS.hexDigest
 	
-	# Routine to create a URL from an INDS command.
+	## Routine to create a URL from an INDS command.
 	def makeUrl(self, cmdString):
 		return '/indsExec/%s' % cmdString
 
-	# Subroutine to fetch text via HTTP from a URL
+	## Subroutine to fetch text via HTTP from a URL
 	def getFromUrl(self, cmdUrl):
 		if self.connected == False:
 			logging.error('Cannot fetch "%s", disconnected' % cmdUrl)
@@ -106,44 +96,44 @@ class indsInterface:
 			logging.exception(e)
 			raise 
 	
-	# Get config XML for a given command ID
+	## Get config XML snippet for a given command ID
 	def getCmdXML(self, cmdName):
 		cmdUrl = self.makeUrl('?action=getConfiguration&cmd=%s' % cmdName)
 		return self.getFromUrl(cmdUrl)
 
-	# For a given command, return the URL to associate with the graph node. 
+	## For a given command, return the URL to associate with the graph node. 
 	# Used to be getConfigUrl, now via indsViewer
 	def getInfoUrl(self, cmdId):
 		infoUrl = 'http://%s/indsViewer/index.jsp?command=%s' % \
 		(self.viewerHostname, cmdId)
 		return infoUrl
 		
-	# Get 'nice' name for a command ID
+	## Get 'nice' name for a command ID
 	def getNiceName(self, cmdId):
 		cmdUrl = self.makeUrl('?action=getName&cmd=%s' % cmdId)
 		return self.getFromUrl(cmdUrl)
 
-	# Get command type for a command ID. Types are source, server, sink, transient or DP
+	## Get command type for a command ID. Types are source, server, sink, transient or DP
 	# DP are plugin and converter
 	def getCmdType(self, cmdId):
 		cmdUrl = self.makeUrl('?action=getCommandClassification&cmd=%s' % cmdId)
 		return self.getFromUrl(cmdUrl)
 
-	# Return the URL of the configuration file. Not presently used.
+	## Return the URL of the configuration file. Not presently used.
 	def getConfigUrl(self, cmdId):
 		return self.makeUrl('?action=getChildConfiguration&cmd=%s' % cmdId)
 	
-	# Get config file for a command ID. Not presently used.
+	## Get config file for a command ID. Not presently used.
 	def getConfigFile(self, cmdId):
 		return self.getFromUrl(self.getConfigUrl(cmdId))
 	
-	# Get the complete XML config document		
+	## Get the complete XML config document		
 	def getCompleteXml(self):
 		return self.getFromUrl(self.makeUrl('?action=getRootConfiguration'))
 	
-	# Speed optimization - checks to see if the XML configuration has changed since the last run.
+	## Speed optimization - checks to see if the XML configuration has changed since the last run.
 	# Uses an MD5 hash of the XML document, saved as the hex digest in the configuration file.
-	# Note that this will also save the new digest when called!			
+	# @note that this will also save the new digest when called!			
 	def isStale(self):
 		# Compute the MD5 hash of the XML document
 		md = md5.new()
@@ -160,7 +150,7 @@ class indsInterface:
 			mc.updateHexDigest(md.hexdigest())
 			return False
 				
-	# Build array of command IDs
+	## Build array of command IDs
 	def getCmdList(self):
 		plUrl = self.makeUrl('')
 		logging.info('Trying to get process list from "%s" ...' % plUrl)
@@ -172,7 +162,7 @@ class indsInterface:
 		pList = pText.split()
 		return pList
 
-	# Build a list entry for the dictionary	
+	## Build a list entry for the dictionary	
 	def buildEntry(self, cmdId):
 
 		# Skip stuff like sleep, del
@@ -188,15 +178,13 @@ class indsInterface:
 		self.xml[cmdId] = self.getCmdXML(cmdId)
 		self.cmdType[cmdId] = self.getCmdType(cmdId)
 		
-	# #####################################################################
-	# Main code entry point
+	## Main code entry point
 	def main(self):	
 		pList = self.getCmdList()
 		if pList == []:
 			logging.error('An error occurred fetching the list of commands!')
 			return		
 
-			
 		logging.debug('Building dictionaries')
 		for x in pList:
 			self.buildEntry(x)
@@ -204,7 +192,7 @@ class indsInterface:
 		logging.debug('Dictionaries created OK.')
 		
 
-# Test harness	
+## Test harness	
 if __name__ == '__main__':		
 	logging.basicConfig(level=logging.DEBUG, \
 	                    format='%(asctime)s %(levelname)s %(message)s')
