@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>xRenderforINDS: dictToDot.py Source File</title>
+<title>xRender for INDS: dictToDot.py Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css">
 <link href="doxygen.css" rel="stylesheet" type="text/css">
 </head><body>
@@ -84,246 +84,249 @@ window.onload = initDynSections;
 <a name="l00012"></a>00012 <span class="comment"># Output is accumulated in the outputDot string for the caller/parent to save/parse/print.</span>
 <a name="l00013"></a>00013 <span class="comment"># Colors and such are pulled from the configuration file via the osSpec object instance.</span>
 <a name="l00014"></a>00014 <span class="comment">#</span>
-<a name="l00015"></a>00015 <span class="comment"># @file dictToDot.py</span>
-<a name="l00016"></a>00016 <span class="comment"># @author Paul Hubbard pfhubbar@ucsd.edu</span>
-<a name="l00017"></a>00017 <span class="comment"># @date 1/21/09</span>
-<a name="l00018"></a>00018 <span class="comment"># @todo Add URLs to nodes for multi-system graphs</span>
-<a name="l00019"></a>00019 <span class="comment"># @todo Handle more than one DataTurbine per graph</span>
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021 <span class="comment">## Converts INDS dictionary into Graphviz DOT-language graph</span>
-<a name="l00022"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html">00022</a> <span class="keyword">class </span><a class="code" href="classdict_to_dot_1_1dot_maker.html" title="Converts INDS dictionary into Graphviz DOT-language graph.">dotMaker</a>:
+<a name="l00015"></a>00015 <span class="comment"># @note Commands are primarily handled via the command type returned from INDS, so if you add, say</span>
+<a name="l00016"></a>00016 <span class="comment"># a new plugin it should just work. There are special cases for DataTurbine, udp and TimeDrive, as noted.</span>
+<a name="l00017"></a>00017 <span class="comment">#</span>
+<a name="l00018"></a>00018 <span class="comment"># @file dictToDot.py</span>
+<a name="l00019"></a>00019 <span class="comment"># @author Paul Hubbard pfhubbar@ucsd.edu</span>
+<a name="l00020"></a>00020 <span class="comment"># @date 1/21/09</span>
+<a name="l00021"></a>00021 <span class="comment"># @todo Add URLs to nodes for multi-system graphs</span>
+<a name="l00022"></a>00022 <span class="comment"># @todo Handle more than one DataTurbine per graph</span>
 <a name="l00023"></a>00023 
-<a name="l00024"></a>00024     <span class="comment">## Constructor just creates empty objects</span>
-<a name="l00025"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#9e26797615bcc728550e1e5283e9b5a8">00025</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#9e26797615bcc728550e1e5283e9b5a8" title="Constructor just creates empty objects.">__init__</a>(self):
-<a name="l00026"></a>00026         outputDot = <span class="stringliteral">''</span>
-<a name="l00027"></a>00027         dt = <span class="stringliteral">''</span>
-<a name="l00028"></a>00028         colors = dict()
-<a name="l00029"></a>00029         edgeColors = dict()
-<a name="l00030"></a>00030         isStale = <span class="keyword">False</span>
-<a name="l00031"></a>00031         
-<a name="l00032"></a>00032     <span class="comment"># Variables</span>
-<a name="l00033"></a>00033     <span class="comment">## This holds the entire output graph as a big string.</span>
-<a name="l00034"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#dcc43e3ea8dc3ddeda9fdddcd250c962">00034</a>     outputDot = <span class="stringliteral">''</span>
-<a name="l00035"></a>00035     <span class="comment">## command ID for the DataTurbine instance</span>
-<a name="l00036"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb">00036</a>     dt = <span class="stringliteral">''</span>
-<a name="l00037"></a>00037     <span class="comment">## Node colors</span>
-<a name="l00038"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a">00038</a>     colors = dict()
-<a name="l00039"></a>00039     <span class="comment">## Edge colors</span>
-<a name="l00040"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860">00040</a>     edgeColors = dict()
-<a name="l00041"></a>00041     <span class="comment">## Has the XML config document changed?</span>
-<a name="l00042"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#bb3a69ffc0ec865443e3ec8563b84577">00042</a>     isStale = <span class="keyword">False</span>
-<a name="l00043"></a>00043     
-<a name="l00044"></a>00044     <span class="comment"># ---------------------------------------------------------------------------</span>
-<a name="l00045"></a>00045     <span class="comment">## dictToDot uses indsInterface to get the commands and then generates the dot graph.</span>
-<a name="l00046"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#aa1a1490d8757c3e68bc734834f0f256">00046</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#aa1a1490d8757c3e68bc734834f0f256" title="dictToDot uses indsInterface to get the commands and then generates the dot graph...">main</a>(self):
-<a name="l00047"></a>00047         
-<a name="l00048"></a>00048         <span class="comment"># Instantiate webservices interface class</span>
-<a name="l00049"></a>00049         inds = indsInterface.indsInterface()
+<a name="l00024"></a>00024 <span class="comment">## Converts INDS dictionary into Graphviz DOT-language graph</span>
+<a name="l00025"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html">00025</a> <span class="keyword">class </span><a class="code" href="classdict_to_dot_1_1dot_maker.html" title="Converts INDS dictionary into Graphviz DOT-language graph.">dotMaker</a>:
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027     <span class="comment">## Constructor just creates empty objects</span>
+<a name="l00028"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#9e26797615bcc728550e1e5283e9b5a8">00028</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#9e26797615bcc728550e1e5283e9b5a8" title="Constructor just creates empty objects.">__init__</a>(self):
+<a name="l00029"></a>00029         outputDot = <span class="stringliteral">''</span>
+<a name="l00030"></a>00030         dt = <span class="stringliteral">''</span>
+<a name="l00031"></a>00031         colors = dict()
+<a name="l00032"></a>00032         edgeColors = dict()
+<a name="l00033"></a>00033         isStale = <span class="keyword">False</span>
+<a name="l00034"></a>00034         
+<a name="l00035"></a>00035     <span class="comment"># Variables</span>
+<a name="l00036"></a>00036     <span class="comment">## This holds the entire output graph as a big string.</span>
+<a name="l00037"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#dcc43e3ea8dc3ddeda9fdddcd250c962">00037</a>     outputDot = <span class="stringliteral">''</span>
+<a name="l00038"></a>00038     <span class="comment">## command ID for the DataTurbine instance</span>
+<a name="l00039"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb">00039</a>     dt = <span class="stringliteral">''</span>
+<a name="l00040"></a>00040     <span class="comment">## Node colors</span>
+<a name="l00041"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a">00041</a>     colors = dict()
+<a name="l00042"></a>00042     <span class="comment">## Edge colors</span>
+<a name="l00043"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860">00043</a>     edgeColors = dict()
+<a name="l00044"></a>00044     <span class="comment">## Has the XML config document changed?</span>
+<a name="l00045"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#bb3a69ffc0ec865443e3ec8563b84577">00045</a>     isStale = <span class="keyword">False</span>
+<a name="l00046"></a>00046     
+<a name="l00047"></a>00047     <span class="comment"># ---------------------------------------------------------------------------</span>
+<a name="l00048"></a>00048     <span class="comment">## dictToDot uses indsInterface to get the commands and then generates the dot graph.</span>
+<a name="l00049"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#aa1a1490d8757c3e68bc734834f0f256">00049</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#aa1a1490d8757c3e68bc734834f0f256" title="dictToDot uses indsInterface to get the commands and then generates the dot graph...">main</a>(self):
 <a name="l00050"></a>00050         
-<a name="l00051"></a>00051         logging.debug(<span class="stringliteral">'Checking for changes in configuration...'</span>)
-<a name="l00052"></a>00052         <span class="comment"># If command list is unchanged, just return</span>
-<a name="l00053"></a>00053         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#bb3a69ffc0ec865443e3ec8563b84577" title="Has the XML config document changed?">isStale</a> = inds.isStale()
-<a name="l00054"></a>00054         <span class="keywordflow">if</span> self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#bb3a69ffc0ec865443e3ec8563b84577" title="Has the XML config document changed?">isStale</a> == <span class="keyword">True</span>:
-<a name="l00055"></a>00055             <span class="keywordflow">return</span>
-<a name="l00056"></a>00056         
-<a name="l00057"></a>00057         logging.debug(<span class="stringliteral">'Loading colors from config file'</span>)
-<a name="l00058"></a>00058         <span class="comment"># Load up graph colors from configuration file</span>
-<a name="l00059"></a>00059         mc = osSpec.osSpec()
-<a name="l00060"></a>00060         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a> = mc.colors
-<a name="l00061"></a>00061         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a> = mc.edgeColors
-<a name="l00062"></a>00062         
-<a name="l00063"></a>00063         logging.debug(<span class="stringliteral">'Pull INDS and process into dictionary'</span>)
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065         <span class="comment"># Read WS data, parse and create dictionaries</span>
-<a name="l00066"></a>00066         inds.main()
-<a name="l00067"></a>00067         <span class="comment"># Done with connection</span>
-<a name="l00068"></a>00068         inds.close()        
-<a name="l00069"></a>00069     
-<a name="l00070"></a>00070         logging.debug(<span class="stringliteral">'Processing sources...'</span>)
-<a name="l00071"></a>00071         
-<a name="l00072"></a>00072         <span class="comment"># Start with graph definition</span>
-<a name="l00073"></a>00073         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#3f480fcb9915ce0d37a6d3a262f1a6a3" title="Graph definition.">addHeader</a>()
+<a name="l00051"></a>00051         <span class="comment"># Instantiate webservices interface class</span>
+<a name="l00052"></a>00052         inds = indsInterface.indsInterface()
+<a name="l00053"></a>00053         
+<a name="l00054"></a>00054         logging.debug(<span class="stringliteral">'Checking for changes in configuration...'</span>)
+<a name="l00055"></a>00055         <span class="comment"># If command list is unchanged, just return</span>
+<a name="l00056"></a>00056         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#bb3a69ffc0ec865443e3ec8563b84577" title="Has the XML config document changed?">isStale</a> = inds.isStale()
+<a name="l00057"></a>00057         <span class="keywordflow">if</span> self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#bb3a69ffc0ec865443e3ec8563b84577" title="Has the XML config document changed?">isStale</a> == <span class="keyword">True</span>:
+<a name="l00058"></a>00058             <span class="keywordflow">return</span>
+<a name="l00059"></a>00059         
+<a name="l00060"></a>00060         logging.debug(<span class="stringliteral">'Loading colors from config file'</span>)
+<a name="l00061"></a>00061         <span class="comment"># Load up graph colors from configuration file</span>
+<a name="l00062"></a>00062         mc = osSpec.osSpec()
+<a name="l00063"></a>00063         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a> = mc.colors
+<a name="l00064"></a>00064         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a> = mc.edgeColors
+<a name="l00065"></a>00065         
+<a name="l00066"></a>00066         logging.debug(<span class="stringliteral">'Pull INDS and process into dictionary'</span>)
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068         <span class="comment"># Read WS data, parse and create dictionaries</span>
+<a name="l00069"></a>00069         inds.main()
+<a name="l00070"></a>00070         <span class="comment"># Done with connection</span>
+<a name="l00071"></a>00071         inds.close()        
+<a name="l00072"></a>00072     
+<a name="l00073"></a>00073         logging.debug(<span class="stringliteral">'Processing sources...'</span>)
 <a name="l00074"></a>00074         
-<a name="l00075"></a>00075         <span class="comment"># First of all, we need the name of the data turbine server.</span>
-<a name="l00076"></a>00076         <span class="comment"># This quick search assumes there's only one in the system!</span>
-<a name="l00077"></a>00077         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
-<a name="l00078"></a>00078             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'server'</span>:
-<a name="l00079"></a>00079                 <span class="comment"># To get name, we have to peek into the XML element name. Kinda weak.</span>
-<a name="l00080"></a>00080                 <span class="keywordflow">if</span> self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#873cdf1c7322cbcc2dc229f05a75c5e8" title="Parse XML and return element name.">getElementName</a>(inds.xml[x]) == <span class="stringliteral">'dataTurbine'</span>:   
-<a name="l00081"></a>00081                     logging.info(<span class="stringliteral">'DT name is %s'</span> % x)           
-<a name="l00082"></a>00082                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a> = x
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084         <span class="comment"># I've considered rolling this into a loop indexed by command type, but the</span>
-<a name="l00085"></a>00085         <span class="comment"># code started getting much harder to read and alter, so I'm leaving it unrolled.</span>
-<a name="l00086"></a>00086         
-<a name="l00087"></a>00087         <span class="comment"># Sources -&gt; RBNB</span>
-<a name="l00088"></a>00088         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'edge [dir="tail", color="%s"]'</span> % self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a>[<span class="stringliteral">'source'</span>])
+<a name="l00075"></a>00075         <span class="comment"># Start with graph definition</span>
+<a name="l00076"></a>00076         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#3f480fcb9915ce0d37a6d3a262f1a6a3" title="Graph definition.">addHeader</a>()
+<a name="l00077"></a>00077         
+<a name="l00078"></a>00078         <span class="comment"># First of all, we need the name of the data turbine server.</span>
+<a name="l00079"></a>00079         <span class="comment"># This quick search assumes there's only one in the system!</span>
+<a name="l00080"></a>00080         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
+<a name="l00081"></a>00081             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'server'</span>:
+<a name="l00082"></a>00082                 <span class="comment"># To get name, we have to peek into the XML element name. Kinda weak.</span>
+<a name="l00083"></a>00083                 <span class="keywordflow">if</span> self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#873cdf1c7322cbcc2dc229f05a75c5e8" title="Parse XML and return element name.">getElementName</a>(inds.xml[x]) == <span class="stringliteral">'dataTurbine'</span>:   
+<a name="l00084"></a>00084                     logging.info(<span class="stringliteral">'DT name is %s'</span> % x)           
+<a name="l00085"></a>00085                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a> = x
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087         <span class="comment"># I've considered rolling this into a loop indexed by command type, but the</span>
+<a name="l00088"></a>00088         <span class="comment"># code started getting much harder to read and alter, so I'm leaving it unrolled.</span>
 <a name="l00089"></a>00089         
-<a name="l00090"></a>00090         <span class="comment"># Do this in three passes - sources, servers and plugins</span>
-<a name="l00091"></a>00091         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
-<a name="l00092"></a>00092             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'source'</span>:
-<a name="l00093"></a>00093                 <span class="comment"># UDP cap has another node to represent its listen port</span>
-<a name="l00094"></a>00094                 <span class="comment"># Again, we have to parse the XML to get the element name.</span>
-<a name="l00095"></a>00095                 <span class="keywordflow">if</span> self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#873cdf1c7322cbcc2dc229f05a75c5e8" title="Parse XML and return element name.">getElementName</a>(inds.xml[x]) == <span class="stringliteral">'udpCapture'</span>:
-<a name="l00096"></a>00096                     <span class="comment"># Define the port node</span>
-<a name="l00097"></a>00097                     portNum = self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#96c10fe507b4bdd922459dea4f7929d5" title="Parse XML and dig out port number here.">getInputPortnum</a>(inds.xml[x])
-<a name="l00098"></a>00098                     portName = <span class="stringliteral">'%sport%s'</span> % (x, portNum)
-<a name="l00099"></a>00099                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s" shape="box"]'</span> % (portName, portNum))
-<a name="l00100"></a>00100                 
-<a name="l00101"></a>00101                     <span class="comment"># Define the udpCapture node</span>
-<a name="l00102"></a>00102                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
-<a name="l00103"></a>00103                     (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
-<a name="l00104"></a>00104                 
-<a name="l00105"></a>00105                     <span class="comment"># Define the link from node -&gt; udpCap</span>
-<a name="l00106"></a>00106                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (portName, x))
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108                     <span class="comment"># Define link from udp -&gt; dt</span>
-<a name="l00109"></a>00109                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (x, self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>))
-<a name="l00110"></a>00110                 <span class="keywordflow">else</span>:
-<a name="l00111"></a>00111                     <span class="comment"># Handle all other sources uniformly</span>
-<a name="l00112"></a>00112                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
-<a name="l00113"></a>00113                     (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
-<a name="l00114"></a>00114                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (x, self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>))
-<a name="l00115"></a>00115 
-<a name="l00116"></a>00116         logging.debug(<span class="stringliteral">'Processing servers...'</span>)
-<a name="l00117"></a>00117         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'edge [dir="both", color="%s"]'</span> % self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a>[<span class="stringliteral">'server'</span>])
+<a name="l00090"></a>00090         <span class="comment"># Sources -&gt; RBNB</span>
+<a name="l00091"></a>00091         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'edge [dir="tail", color="%s"]'</span> % self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a>[<span class="stringliteral">'source'</span>])
+<a name="l00092"></a>00092         
+<a name="l00093"></a>00093         <span class="comment"># Do this in three passes - sources, servers and plugins</span>
+<a name="l00094"></a>00094         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
+<a name="l00095"></a>00095             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'source'</span>:
+<a name="l00096"></a>00096                 <span class="comment"># UDP cap has another node to represent its listen port</span>
+<a name="l00097"></a>00097                 <span class="comment"># Again, we have to parse the XML to get the element name.</span>
+<a name="l00098"></a>00098                 <span class="keywordflow">if</span> self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#873cdf1c7322cbcc2dc229f05a75c5e8" title="Parse XML and return element name.">getElementName</a>(inds.xml[x]) == <span class="stringliteral">'udpCapture'</span>:
+<a name="l00099"></a>00099                     <span class="comment"># Define the port node</span>
+<a name="l00100"></a>00100                     portNum = self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#96c10fe507b4bdd922459dea4f7929d5" title="Parse XML and dig out port number here.">getInputPortnum</a>(inds.xml[x])
+<a name="l00101"></a>00101                     portName = <span class="stringliteral">'%sport%s'</span> % (x, portNum)
+<a name="l00102"></a>00102                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s" shape="box"]'</span> % (portName, portNum))
+<a name="l00103"></a>00103                 
+<a name="l00104"></a>00104                     <span class="comment"># Define the udpCapture node</span>
+<a name="l00105"></a>00105                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
+<a name="l00106"></a>00106                     (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
+<a name="l00107"></a>00107                 
+<a name="l00108"></a>00108                     <span class="comment"># Define the link from node -&gt; udpCap</span>
+<a name="l00109"></a>00109                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (portName, x))
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111                     <span class="comment"># Define link from udp -&gt; dt</span>
+<a name="l00112"></a>00112                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (x, self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>))
+<a name="l00113"></a>00113                 <span class="keywordflow">else</span>:
+<a name="l00114"></a>00114                     <span class="comment"># Handle all other sources uniformly</span>
+<a name="l00115"></a>00115                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
+<a name="l00116"></a>00116                     (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
+<a name="l00117"></a>00117                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (x, self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>))
 <a name="l00118"></a>00118 
-<a name="l00119"></a>00119         <span class="comment"># Next pass is servers</span>
-<a name="l00120"></a>00120         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
-<a name="l00121"></a>00121             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'server'</span>:         
-<a name="l00122"></a>00122                 <span class="comment"># TimeDrive has a second node to denote its listening port</span>
-<a name="l00123"></a>00123                 <span class="keywordflow">if</span> self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#873cdf1c7322cbcc2dc229f05a75c5e8" title="Parse XML and return element name.">getElementName</a>(inds.xml[x]) == <span class="stringliteral">'timeDrive'</span>:
-<a name="l00124"></a>00124                     <span class="comment"># define the port node</span>
-<a name="l00125"></a>00125                     portNum = self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#96c10fe507b4bdd922459dea4f7929d5" title="Parse XML and dig out port number here.">getInputPortnum</a>(inds.xml[x])
-<a name="l00126"></a>00126                     portName = <span class="stringliteral">'%sport%s'</span> % (x, portNum)
-<a name="l00127"></a>00127                 
-<a name="l00128"></a>00128                     <span class="comment"># Node for port</span>
-<a name="l00129"></a>00129                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", shape="box"]'</span> % (portName, portNum))
+<a name="l00119"></a>00119         logging.debug(<span class="stringliteral">'Processing servers...'</span>)
+<a name="l00120"></a>00120         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'edge [dir="both", color="%s"]'</span> % self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a>[<span class="stringliteral">'server'</span>])
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122         <span class="comment"># Next pass is servers</span>
+<a name="l00123"></a>00123         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
+<a name="l00124"></a>00124             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'server'</span>:         
+<a name="l00125"></a>00125                 <span class="comment"># TimeDrive has a second node to denote its listening port</span>
+<a name="l00126"></a>00126                 <span class="keywordflow">if</span> self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#873cdf1c7322cbcc2dc229f05a75c5e8" title="Parse XML and return element name.">getElementName</a>(inds.xml[x]) == <span class="stringliteral">'timeDrive'</span>:
+<a name="l00127"></a>00127                     <span class="comment"># define the port node</span>
+<a name="l00128"></a>00128                     portNum = self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#96c10fe507b4bdd922459dea4f7929d5" title="Parse XML and dig out port number here.">getInputPortnum</a>(inds.xml[x])
+<a name="l00129"></a>00129                     portName = <span class="stringliteral">'%sport%s'</span> % (x, portNum)
 <a name="l00130"></a>00130                 
-<a name="l00131"></a>00131                     <span class="comment"># Node for timeDrive</span>
-<a name="l00132"></a>00132                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
-<a name="l00133"></a>00133                     (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
-<a name="l00134"></a>00134                 
-<a name="l00135"></a>00135                     <span class="comment"># Define link from port to timeDrive</span>
-<a name="l00136"></a>00136                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (portName, x))
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138                     <span class="comment"># And from TD to dataTurbine</span>
-<a name="l00139"></a>00139                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>, x))
-<a name="l00140"></a>00140                 <span class="keywordflow">else</span>:
-<a name="l00141"></a>00141                         
-<a name="l00142"></a>00142                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
-<a name="l00143"></a>00143                     (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
-<a name="l00144"></a>00144             
-<a name="l00145"></a>00145                     <span class="keywordflow">if</span> inds.niceName[x] == <span class="stringliteral">'tomcat'</span>:
-<a name="l00146"></a>00146                         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span>, self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>, x)
-<a name="l00147"></a>00147 
-<a name="l00148"></a>00148         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'edge [color="%s"]'</span> % self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a>[<span class="stringliteral">'plugin'</span>])
-<a name="l00149"></a>00149         
-<a name="l00150"></a>00150         logging.debug(<span class="stringliteral">'Plugins...'</span>)     
-<a name="l00151"></a>00151         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
-<a name="l00152"></a>00152             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'plugin'</span>:             
-<a name="l00153"></a>00153                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color=%s]'</span> % \
-<a name="l00154"></a>00154                 (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>, x))
-<a name="l00157"></a>00157 
-<a name="l00158"></a>00158         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'edge [color="%s"]'</span> % self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a>[<span class="stringliteral">'converter'</span>])
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160         logging.debug(<span class="stringliteral">'converters...'</span>)
-<a name="l00161"></a>00161         <span class="comment"># xmldemux, csvdemux</span>
-<a name="l00162"></a>00162         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
-<a name="l00163"></a>00163             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'converter'</span>:
-<a name="l00164"></a>00164                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
-<a name="l00165"></a>00165                 (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
-<a name="l00166"></a>00166 
-<a name="l00167"></a>00167                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>, x))
-<a name="l00168"></a>00168 
-<a name="l00169"></a>00169         logging.debug(<span class="stringliteral">'Sinks...'</span>)
-<a name="l00170"></a>00170         <span class="comment"># Pure sinks - presently unused, so edge output is unused and harmless.</span>
-<a name="l00171"></a>00171         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'edge [dir="head", color="%s"]'</span> % self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a>[<span class="stringliteral">'sink'</span>])
-<a name="l00172"></a>00172 
-<a name="l00173"></a>00173         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
-<a name="l00174"></a>00174             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'sink'</span>:
-<a name="l00175"></a>00175                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
-<a name="l00176"></a>00176                 (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
-<a name="l00177"></a>00177 
-<a name="l00178"></a>00178                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>, x))
-<a name="l00179"></a>00179             
-<a name="l00180"></a>00180         <span class="comment"># All other types - add here as required</span>
-<a name="l00181"></a>00181         logging.debug(<span class="stringliteral">'All cmd IDs processed!'</span>) 
-<a name="l00182"></a>00182         
-<a name="l00183"></a>00183         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#ebb3cf0a9124ddaf4486815bbe88af1b" title="Graph footer - just close definition.">addFooter</a>()
-<a name="l00184"></a>00184     
-<a name="l00185"></a>00185     <span class="comment"># End of main routine #######################################################</span>
-<a name="l00186"></a>00186         
-<a name="l00187"></a>00187     <span class="comment">## Parse XML and dig out port number here... Assumes child node named 'input' with</span>
-<a name="l00188"></a>00188     <span class="comment"># port attribute inside.</span>
-<a name="l00189"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#96c10fe507b4bdd922459dea4f7929d5">00189</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#96c10fe507b4bdd922459dea4f7929d5" title="Parse XML and dig out port number here.">getInputPortnum</a>(self, cmdXml):
-<a name="l00190"></a>00190         <span class="comment"># Parse XML into DOM</span>
-<a name="l00191"></a>00191         dom = parseString(cmdXml)
-<a name="l00192"></a>00192         
-<a name="l00193"></a>00193         <span class="comment"># Point to root node to start search</span>
-<a name="l00194"></a>00194         node = dom.documentElement
-<a name="l00195"></a>00195 
-<a name="l00196"></a>00196         <span class="comment"># Initialize just in case search fails</span>
-<a name="l00197"></a>00197         portNum = 0
+<a name="l00131"></a>00131                     <span class="comment"># Node for port</span>
+<a name="l00132"></a>00132                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", shape="box"]'</span> % (portName, portNum))
+<a name="l00133"></a>00133                 
+<a name="l00134"></a>00134                     <span class="comment"># Node for timeDrive</span>
+<a name="l00135"></a>00135                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
+<a name="l00136"></a>00136                     (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
+<a name="l00137"></a>00137                 
+<a name="l00138"></a>00138                     <span class="comment"># Define link from port to timeDrive</span>
+<a name="l00139"></a>00139                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (portName, x))
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141                     <span class="comment"># And from TD to dataTurbine</span>
+<a name="l00142"></a>00142                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>, x))
+<a name="l00143"></a>00143                 <span class="keywordflow">else</span>:
+<a name="l00144"></a>00144                         
+<a name="l00145"></a>00145                     self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
+<a name="l00146"></a>00146                     (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
+<a name="l00147"></a>00147             
+<a name="l00148"></a>00148                     <span class="keywordflow">if</span> inds.niceName[x] == <span class="stringliteral">'tomcat'</span>:
+<a name="l00149"></a>00149                         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span>, self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>, x)
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'edge [color="%s"]'</span> % self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a>[<span class="stringliteral">'plugin'</span>])
+<a name="l00152"></a>00152         
+<a name="l00153"></a>00153         logging.debug(<span class="stringliteral">'Plugins...'</span>)     
+<a name="l00154"></a>00154         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
+<a name="l00155"></a>00155             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'plugin'</span>:             
+<a name="l00156"></a>00156                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color=%s]'</span> % \
+<a name="l00157"></a>00157                 (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>, x))
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'edge [color="%s"]'</span> % self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a>[<span class="stringliteral">'converter'</span>])
+<a name="l00162"></a>00162 
+<a name="l00163"></a>00163         logging.debug(<span class="stringliteral">'converters...'</span>)
+<a name="l00164"></a>00164         <span class="comment"># xmldemux, csvdemux</span>
+<a name="l00165"></a>00165         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
+<a name="l00166"></a>00166             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'converter'</span>:
+<a name="l00167"></a>00167                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
+<a name="l00168"></a>00168                 (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
+<a name="l00169"></a>00169 
+<a name="l00170"></a>00170                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>, x))
+<a name="l00171"></a>00171 
+<a name="l00172"></a>00172         logging.debug(<span class="stringliteral">'Sinks...'</span>)
+<a name="l00173"></a>00173         <span class="comment"># Pure sinks - presently unused, so edge output is unused and harmless.</span>
+<a name="l00174"></a>00174         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'edge [dir="head", color="%s"]'</span> % self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860" title="Edge colors.">edgeColors</a>[<span class="stringliteral">'sink'</span>])
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176         <span class="keywordflow">for</span> x <span class="keywordflow">in</span> inds.cmdIds:
+<a name="l00177"></a>00177             <span class="keywordflow">if</span> inds.cmdType[x] == <span class="stringliteral">'sink'</span>:
+<a name="l00178"></a>00178                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s [label="%s", URL="%s", color="%s"]'</span> % \
+<a name="l00179"></a>00179                 (x, inds.niceName[x], inds.getInfoUrl(x), self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#22865339bd30df3e7e08702f68e66a5a" title="Node colors.">colors</a>[inds.cmdType[x]]))
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181                 self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'%s -&gt; %s'</span> % (self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#63164ac31dc927c7567ee4869711aaeb" title="command ID for the DataTurbine instance">dt</a>, x))
+<a name="l00182"></a>00182             
+<a name="l00183"></a>00183         <span class="comment"># All other types - add here as required</span>
+<a name="l00184"></a>00184         logging.debug(<span class="stringliteral">'All cmd IDs processed!'</span>) 
+<a name="l00185"></a>00185         
+<a name="l00186"></a>00186         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#ebb3cf0a9124ddaf4486815bbe88af1b" title="Graph footer - just close definition.">addFooter</a>()
+<a name="l00187"></a>00187     
+<a name="l00188"></a>00188     <span class="comment"># End of main routine #######################################################</span>
+<a name="l00189"></a>00189         
+<a name="l00190"></a>00190     <span class="comment">## Parse XML and dig out port number here... Assumes child node named 'input' with</span>
+<a name="l00191"></a>00191     <span class="comment"># port attribute inside.</span>
+<a name="l00192"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#96c10fe507b4bdd922459dea4f7929d5">00192</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#96c10fe507b4bdd922459dea4f7929d5" title="Parse XML and dig out port number here.">getInputPortnum</a>(self, cmdXml):
+<a name="l00193"></a>00193         <span class="comment"># Parse XML into DOM</span>
+<a name="l00194"></a>00194         dom = parseString(cmdXml)
+<a name="l00195"></a>00195         
+<a name="l00196"></a>00196         <span class="comment"># Point to root node to start search</span>
+<a name="l00197"></a>00197         node = dom.documentElement
 <a name="l00198"></a>00198 
-<a name="l00199"></a>00199         <span class="comment"># Searching child nodes for one named 'input'</span>
-<a name="l00200"></a>00200         <span class="keywordflow">for</span> child <span class="keywordflow">in</span> node.childNodes:
-<a name="l00201"></a>00201             <span class="keywordflow">if</span> child.nodeName == <span class="stringliteral">'input'</span>:
-<a name="l00202"></a>00202                 <span class="keywordflow">for</span> (name, value) <span class="keywordflow">in</span> child.attributes.items():
-<a name="l00203"></a>00203                     <span class="keywordflow">if</span> name == <span class="stringliteral">'port'</span>:
-<a name="l00204"></a>00204                         portNum = value
-<a name="l00205"></a>00205             
-<a name="l00206"></a>00206         dom.unlink()
-<a name="l00207"></a>00207         <span class="keywordflow">return</span> portNum
-<a name="l00208"></a>00208         
-<a name="l00209"></a>00209     <span class="comment">## Parse XML and return element name</span>
-<a name="l00210"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#873cdf1c7322cbcc2dc229f05a75c5e8">00210</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#873cdf1c7322cbcc2dc229f05a75c5e8" title="Parse XML and return element name.">getElementName</a>(self, cmdXml):
-<a name="l00211"></a>00211         dom = parseString(cmdXml)
-<a name="l00212"></a>00212 
-<a name="l00213"></a>00213         foo = dom.documentElement.tagName
-<a name="l00214"></a>00214 
-<a name="l00215"></a>00215         dom.unlink()
-<a name="l00216"></a>00216         <span class="keywordflow">return</span> foo
-<a name="l00217"></a>00217                     
-<a name="l00218"></a>00218     <span class="comment">## Append a string to the output, plus newline character</span>
-<a name="l00219"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376">00219</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(self, outStr):
-<a name="l00220"></a>00220         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#dcc43e3ea8dc3ddeda9fdddcd250c962" title="This holds the entire output graph as a big string.">outputDot</a> += outStr
-<a name="l00221"></a>00221         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#dcc43e3ea8dc3ddeda9fdddcd250c962" title="This holds the entire output graph as a big string.">outputDot</a> += <span class="stringliteral">'\n'</span>
-<a name="l00222"></a>00222 
-<a name="l00223"></a>00223     <span class="comment">## Graph definition.</span>
-<a name="l00224"></a>00224     <span class="comment"># @todo Make graph/digraph a parameter</span>
-<a name="l00225"></a>00225     <span class="comment"># @todo Make graph name a parameter</span>
-<a name="l00226"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#3f480fcb9915ce0d37a6d3a262f1a6a3">00226</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#3f480fcb9915ce0d37a6d3a262f1a6a3" title="Graph definition.">addHeader</a>(self):
-<a name="l00227"></a>00227         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">"digraph INDS {"</span>)
-<a name="l00228"></a>00228         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'center="true"'</span>)
-<a name="l00229"></a>00229         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'ratio="auto"'</span>)
-<a name="l00230"></a>00230         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'orientation="portrait"'</span>)
-<a name="l00231"></a>00231         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'rankdir="LR"'</span>)
-<a name="l00232"></a>00232         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'size="8,10.5"'</span>)
-<a name="l00233"></a>00233         
-<a name="l00234"></a>00234     <span class="comment">## Graph footer - just close definition </span>
-<a name="l00235"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#ebb3cf0a9124ddaf4486815bbe88af1b">00235</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#ebb3cf0a9124ddaf4486815bbe88af1b" title="Graph footer - just close definition.">addFooter</a>(self):
-<a name="l00236"></a>00236         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'}'</span>)
-<a name="l00237"></a>00237             
-<a name="l00238"></a>00238     <span class="comment">## PRint graph to stdout        </span>
-<a name="l00239"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#58ce71aa8a22a31b9abdb41224f872d1">00239</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#58ce71aa8a22a31b9abdb41224f872d1" title="PRint graph to stdout.">dumpDot</a>(self):
-<a name="l00240"></a>00240         <span class="keywordflow">print</span> self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#dcc43e3ea8dc3ddeda9fdddcd250c962" title="This holds the entire output graph as a big string.">outputDot</a>
-<a name="l00241"></a>00241 
-<a name="l00242"></a>00242 <span class="comment">## Test harness </span>
-<a name="l00243"></a>00243 <span class="keywordflow">if</span> __name__ == <span class="stringliteral">'__main__'</span>:      
-<a name="l00244"></a>00244     logging.basicConfig(level=logging.DEBUG, \
-<a name="l00245"></a>00245                         format=<span class="stringliteral">'%(asctime)s %(levelname)s %(message)s'</span>)
-<a name="l00246"></a>00246     <span class="keywordflow">try</span>:
-<a name="l00247"></a>00247         md = dotMaker()
-<a name="l00248"></a>00248         md.main()
-<a name="l00249"></a>00249     
-<a name="l00250"></a>00250         logging.debug(md.outputDot)
-<a name="l00251"></a>00251     <span class="keywordflow">except</span> BaseException, e:
-<a name="l00252"></a>00252         logging.exception(e)
+<a name="l00199"></a>00199         <span class="comment"># Initialize just in case search fails</span>
+<a name="l00200"></a>00200         portNum = 0
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202         <span class="comment"># Searching child nodes for one named 'input'</span>
+<a name="l00203"></a>00203         <span class="keywordflow">for</span> child <span class="keywordflow">in</span> node.childNodes:
+<a name="l00204"></a>00204             <span class="keywordflow">if</span> child.nodeName == <span class="stringliteral">'input'</span>:
+<a name="l00205"></a>00205                 <span class="keywordflow">for</span> (name, value) <span class="keywordflow">in</span> child.attributes.items():
+<a name="l00206"></a>00206                     <span class="keywordflow">if</span> name == <span class="stringliteral">'port'</span>:
+<a name="l00207"></a>00207                         portNum = value
+<a name="l00208"></a>00208             
+<a name="l00209"></a>00209         dom.unlink()
+<a name="l00210"></a>00210         <span class="keywordflow">return</span> portNum
+<a name="l00211"></a>00211         
+<a name="l00212"></a>00212     <span class="comment">## Parse XML and return element name</span>
+<a name="l00213"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#873cdf1c7322cbcc2dc229f05a75c5e8">00213</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#873cdf1c7322cbcc2dc229f05a75c5e8" title="Parse XML and return element name.">getElementName</a>(self, cmdXml):
+<a name="l00214"></a>00214         dom = parseString(cmdXml)
+<a name="l00215"></a>00215 
+<a name="l00216"></a>00216         foo = dom.documentElement.tagName
+<a name="l00217"></a>00217 
+<a name="l00218"></a>00218         dom.unlink()
+<a name="l00219"></a>00219         <span class="keywordflow">return</span> foo
+<a name="l00220"></a>00220                     
+<a name="l00221"></a>00221     <span class="comment">## Append a string to the output, plus newline character</span>
+<a name="l00222"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376">00222</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(self, outStr):
+<a name="l00223"></a>00223         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#dcc43e3ea8dc3ddeda9fdddcd250c962" title="This holds the entire output graph as a big string.">outputDot</a> += outStr
+<a name="l00224"></a>00224         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#dcc43e3ea8dc3ddeda9fdddcd250c962" title="This holds the entire output graph as a big string.">outputDot</a> += <span class="stringliteral">'\n'</span>
+<a name="l00225"></a>00225 
+<a name="l00226"></a>00226     <span class="comment">## Graph definition.</span>
+<a name="l00227"></a>00227     <span class="comment"># @todo Make graph/digraph a parameter</span>
+<a name="l00228"></a>00228     <span class="comment"># @todo Make graph name a parameter</span>
+<a name="l00229"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#3f480fcb9915ce0d37a6d3a262f1a6a3">00229</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#3f480fcb9915ce0d37a6d3a262f1a6a3" title="Graph definition.">addHeader</a>(self):
+<a name="l00230"></a>00230         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">"digraph INDS {"</span>)
+<a name="l00231"></a>00231         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'center="true"'</span>)
+<a name="l00232"></a>00232         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'ratio="auto"'</span>)
+<a name="l00233"></a>00233         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'orientation="portrait"'</span>)
+<a name="l00234"></a>00234         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'rankdir="LR"'</span>)
+<a name="l00235"></a>00235         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'size="8,10.5"'</span>)
+<a name="l00236"></a>00236         
+<a name="l00237"></a>00237     <span class="comment">## Graph footer - just close definition </span>
+<a name="l00238"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#ebb3cf0a9124ddaf4486815bbe88af1b">00238</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#ebb3cf0a9124ddaf4486815bbe88af1b" title="Graph footer - just close definition.">addFooter</a>(self):
+<a name="l00239"></a>00239         self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#9f8e604a36961ea1ad8fedb8a324d376" title="Append a string to the output, plus newline character.">addOutput</a>(<span class="stringliteral">'}'</span>)
+<a name="l00240"></a>00240             
+<a name="l00241"></a>00241     <span class="comment">## PRint graph to stdout        </span>
+<a name="l00242"></a><a class="code" href="classdict_to_dot_1_1dot_maker.html#58ce71aa8a22a31b9abdb41224f872d1">00242</a>     <span class="keyword">def </span><a class="code" href="classdict_to_dot_1_1dot_maker.html#58ce71aa8a22a31b9abdb41224f872d1" title="PRint graph to stdout.">dumpDot</a>(self):
+<a name="l00243"></a>00243         <span class="keywordflow">print</span> self.<a class="code" href="classdict_to_dot_1_1dot_maker.html#dcc43e3ea8dc3ddeda9fdddcd250c962" title="This holds the entire output graph as a big string.">outputDot</a>
+<a name="l00244"></a>00244 
+<a name="l00245"></a>00245 <span class="comment">## Test harness </span>
+<a name="l00246"></a>00246 <span class="keywordflow">if</span> __name__ == <span class="stringliteral">'__main__'</span>:      
+<a name="l00247"></a>00247     logging.basicConfig(level=logging.DEBUG, \
+<a name="l00248"></a>00248                         format=<span class="stringliteral">'%(asctime)s %(levelname)s %(message)s'</span>)
+<a name="l00249"></a>00249     <span class="keywordflow">try</span>:
+<a name="l00250"></a>00250         md = dotMaker()
+<a name="l00251"></a>00251         md.main()
+<a name="l00252"></a>00252     
+<a name="l00253"></a>00253         logging.debug(md.outputDot)
+<a name="l00254"></a>00254     <span class="keywordflow">except</span> BaseException, e:
+<a name="l00255"></a>00255         logging.exception(e)
 </pre></div></div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Tue Jan 27 13:50:33 2009 for xRenderforINDS by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue Jan 27 14:24:42 2009 for xRender for INDS by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

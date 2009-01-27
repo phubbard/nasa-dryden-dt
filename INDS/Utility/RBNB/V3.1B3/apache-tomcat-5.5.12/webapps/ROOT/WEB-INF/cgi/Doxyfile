@@ -25,7 +25,7 @@ DOXYFILE_ENCODING      = UTF-8
 # The PROJECT_NAME tag is a single word (or a sequence of words surrounded 
 # by quotes) that should identify the project.
 
-PROJECT_NAME           = xRender for INDS
+PROJECT_NAME           = "xRender for INDS"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. 
 # This could be handy for archiving the generated documentation or 
@@ -1332,7 +1332,7 @@ MSCGEN_PATH            =
 # inheritance and usage relations if the target is undocumented 
 # or is not a class.
 
-HIDE_UNDOC_RELATIONS   = YES
+HIDE_UNDOC_RELATIONS   = NO
 
 # If you set the HAVE_DOT tag to YES then doxygen will assume the dot tool is 
 # available from the path. This tool is part of Graphviz, a graph visualization 
@@ -1445,7 +1445,7 @@ DOT_IMAGE_FORMAT       = png
 # The tag DOT_PATH can be used to specify the path where the dot tool can be 
 # found. If left blank, it is assumed the dot tool can be found in the path.
 
-DOT_PATH               = 
+DOT_PATH               =
 
 # The DOTFILE_DIRS tag can be used to specify one or more directories that 
 # contain dot files that are included in the documentation (see the 
@@ -1498,7 +1498,7 @@ GENERATE_LEGEND        = YES
 # remove the intermediate dot files that are used to generate 
 # the various graphs.
 
-DOT_CLEANUP            = YES
+DOT_CLEANUP            = NO
 
 #---------------------------------------------------------------------------
 # Options related to the search engine

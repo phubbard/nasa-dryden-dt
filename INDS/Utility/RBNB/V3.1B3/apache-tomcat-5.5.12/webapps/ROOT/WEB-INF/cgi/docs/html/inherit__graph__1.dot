@@ -1,0 +1,11 @@
+digraph G
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  rankdir=LR;
+  Node1 [label="object",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node2 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node2 [label="dotFinder.dotFinder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classdot_finder_1_1dot_finder.html",tooltip="Debugging class to print system configuration; not otherwise used."];
+  Node1 -> Node3 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node3 [label="xRender.xRender",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classx_render_1_1x_render.html",tooltip="xRender handles the CGI interface, HTML and invoking the other classes."];
+}
