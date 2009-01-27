@@ -1,3 +1,27 @@
+<!--
+	viewerJSP\index.jsp
+	
+	Copyright 2008 Creare Inc.
+	
+	Licensed under the Apache License, Version 2.0 (the "License"); 
+	you may not use this file except in compliance with the License. 
+	You may obtain a copy of the License at 
+	
+	http://www.apache.org/licenses/LICENSE-2.0 
+	
+	Unless required by applicable law or agreed to in writing, software 
+	distributed under the License is distributed on an "AS IS" BASIS, 
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+	See the License for the specific language governing permissions and 
+	limitations under the License.
+	
+	---  History  ---
+	2009/01/27  Updated the overall layout as per meeting on 2009/01/26
+	
+	--- To Do ---
+	
+-->
+
 <!-- Import packages -->
 <%@ page import="com.rbnb.inds.exec.*" %>
 <%@ page import="java.lang.reflect.*" %>
@@ -23,6 +47,19 @@
 	// Parse queryAction
 	String queryAction  = request.getParameter("action");
 	
+	// Parse queryDisplay
+	String queryDisplay = request.getParameter("display");
+		
+	// Used for putting together a query string
+	String queryString = "";
+	
+	if (queryCommand!=null)
+		queryString = queryString+"&command="+queryCommand;
+	
+	if (queryAction!=null)
+		queryString = queryString+"&action="+queryAction;
+	
+	
 	//Determine available actions
 	Class c = Class.forName("com.rbnb.inds.exec.Remote");
 	Method actions[] = c.getDeclaredMethods();
@@ -31,56 +68,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.2</title>
+	<title>IndsViewer Version 0.3</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="default.css" type="text/css" />
 </head>
 
 <body>
 <div id="main">
-	<!-- Set up the div for the current commands -->
- 	<div id="left">
-		<h1>Current commands:</h1>
-		<div class="list">
+	<div id="left">
+		<!-- Set up command list -->
+		<h1>Command List:</h1>
+		<% 
+		   // Switch between viewing all and just current commands
+		   if (queryDisplay == null) { %>
+			<a class="display" href="index.jsp?<%= queryString %>&display=current">Display Current</a><br />
+		<% } else { %>
+			<a class="display" href="index.jsp?<%= queryString %>">Display All</a><br />
+		<% } %>
+		<div id="commandlist">
 			<ul>
 			<%
-			  // Build list of commands that are not complete
+			  // Build list of commands
+			  queryString = "";
+			  if (queryAction!=null)
+			  	queryString = queryString+"&action="+queryAction;
+				
+			  if (queryDisplay!=null)
+			  	queryString = queryString+"&display="+queryDisplay;
+			  
 			  for (String command : commands) {
 				if (!rem.isComplete(command)) {
 			%>
-					<li><a href="index.jsp?command=<%= command %>"><%= command %></a><br />
-			<%   } %>
+					<li><a href="index.jsp?command=<%= command %><%= queryString %>"><%= command %></a><br />
+			<%  } else if (queryDisplay == null) { %>
+					<li><a href="index.jsp?command=<%= command %><%= queryString %>" class="complete"><%= command %></a><br />
+			<%  } %>
 			<% } %>
 			</ul>
 		</div> <!-- list -->
-	</div> <!-- left -->
-	
-	<!-- Set up the div for the completed commands -->
-		<div id="center">
-		<h1>Completed commands:</h1>
-		<div class="list">
-			<ul>
-			<%
-			  // Build list of commands that are completed
-			  for (String command : commands) {
-				if (rem.isComplete(command)) {
-			%>
-					<li><a href="index.jsp?command=<%= command %>"><%= command %></a><br />
-				
-			<%   } %>
-			<% } %>
-			</ul>
-		</div> <!-- list -->
-	</div> <!-- center -->
-	
-	<!-- Set up the div for the interface commands -->
-	<div id="right">
-		<h1>Execute action:</h1>
+		
+		<!-- Set up the interface actions -->
 		<%
 		  if (queryCommand!=null) {
 		%>
-			<div class="list">
-				<h1><%= queryCommand %></h1>
+			<h1>Execute action:</h1>
+			<div id="actionlist">
 				<ul>
 				<% for (int i=0; i<actions.length; i++) { 
 					if ((actions[i].getName().compareTo("isComplete")!=0) && 
@@ -94,12 +126,12 @@
 				</ul>
 			</div> <!-- list -->
 		<% } %>
-	</div> <!-- right -->
+	</div> <!-- left -->
 	
 	<!-- Set up the div for the interface command results -->
-	<div id="actionResults">
+	<div id="actionresults">
 		<%
-		    if (queryAction!=null) {
+			if (queryAction!=null) {
 				String commandResults = null;
 				Method action = c.getMethod(queryAction,Class.forName("java.lang.String"));
 				for (int i=0; i<actions.length; i++) {
@@ -130,11 +162,13 @@
 						<td><%= commandResults.length() %> (characters)</td>
 					</tr>
 				</table>
-				<br /><br />&lt;&lt;&lt; <i>response start</i> &gt;&gt;&gt;<br />
-				<code><pre><%= commandResults.replaceAll("<","&lt;").replaceAll(">","&gt;") %></pre></code>
-				<br />&lt;&lt;&lt; <i>response end</i> &gt;&gt;&gt;
+				<div id="actionresponse">
+					<br /><br />&lt;&lt;&lt; <i>response start</i> &gt;&gt;&gt;<br />
+					<code><pre><%= commandResults.replaceAll("<","&lt;").replaceAll(">","&gt;") %></pre></code>
+					<br />&lt;&lt;&lt; <i>response end</i> &gt;&gt;&gt;
+				</div> <!-- actionResponse -->
 		<% } %>
-	</div> <!-- commandResults -->
+	</div> <!-- actionResults -->
 </div> <!-- main -->
 </body>
 

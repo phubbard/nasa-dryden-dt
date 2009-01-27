@@ -24,7 +24,6 @@ h1 {
 		margin-bottom: 0px;
 		padding-bottom: 0px;
 	}
-
 /* ~~~~~~~~~~~~~~~~~~ */
 /* hyperlink defaults */
 /* ~~~~~~~~~~~~~~~~~~ */
@@ -38,6 +37,19 @@ a:hover {
 a:hover {
         color: #0000c9;
     }
+
+a.complete:link, 
+a.complete:visited {
+	color: #990000;
+}
+
+a.complete:hover {
+	color: #ff0000;
+}
+
+a.display {
+	float: right;
+}
 
 /* ~~~~~~~~ */
 /*   main   */
@@ -53,33 +65,39 @@ div#main {
 /* ~~~~~~~~~ */
 /*  columns  */
 /* ~~~~~~~~~ */
-div#left,
-div#center,
-div#right {
+div#left {
 		float: left;
 		margin-top: 5px;
-		margin-bottom: 30px;
+		margin-bottom: 5px;
 		padding-left: 10px;
 		padding-right: 10px;
-		width: 280px;
+		width: 200px;
+	}
+
+div#commandlist,
+div#actionlist,
+div#actionresponse {
+		border-top: solid 1px #000000;
+		height: 500px;
+		overflow: auto;
 	}
 	
-div.list {
-		border-top: solid 1px #000000;
-		height: 200px;
-		overflow: auto;
+div#actionlist {
+		height: 150px;
+	}
+	
+div#actionresponse {
+		height: 650px;
+		width: 640px;
 	}
 
 /* */
-div#actionResults {
-		clear: left;
-		height: 500px;
-		width: 100%;
-		overflow: auto;	
-		border-top: solid 1px #000000;
+div#actionresults {
+		float: left;
+		padding-left: 20px;
 	}
 
-div#actionResults td {
+div#actionresults td {
 		font-family: Arial, sans-serif;
 		font-size: 12px;
 }
