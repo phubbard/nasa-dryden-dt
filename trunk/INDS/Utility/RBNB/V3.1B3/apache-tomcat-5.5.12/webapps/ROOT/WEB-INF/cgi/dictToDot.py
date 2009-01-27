@@ -12,6 +12,9 @@ import indsInterface
 # Output is accumulated in the outputDot string for the caller/parent to save/parse/print.
 # Colors and such are pulled from the configuration file via the osSpec object instance.
 #
+# @note Commands are primarily handled via the command type returned from INDS, so if you add, say
+# a new plugin it should just work. There are special cases for DataTurbine, udp and TimeDrive, as noted.
+#
 # @file dictToDot.py
 # @author Paul Hubbard pfhubbar@ucsd.edu
 # @date 1/21/09
