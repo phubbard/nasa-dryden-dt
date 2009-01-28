@@ -1,0 +1,25 @@
+
+Rebuild the servlets
+====================
+
+cd INDS\Utility\RBNB\V3.1B3\apache-tomcat-5.5.12\webapps
+delete indsExec, indsExec.war, indsViewer, indsViewer.war
+
+cd INDSExManServlet
+delete indsExec.war, indsViewer.war
+
+bring up a command prompt in INDSExManServlet
+ant clean
+ant    (NOTE: A new copy of the two “.war” files is automatically put in Tomcat’s webapps directory)
+
+
+Configure cgi
+=============
+
+cd INDS\Utility\RBNB\V3.1B3\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi
+
+edit defaults.cfg:
+    - enter the path to “dot” command in the “dotcmd” field
+         On Windows: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+         On Erigo’s Macs: /usr/local/bin/dot
+    - set “viewhost” to be the external IP address of the system being configured
