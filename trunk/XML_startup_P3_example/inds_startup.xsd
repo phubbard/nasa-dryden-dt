@@ -29,14 +29,12 @@
 	</xsd:sequence>
 	<xsd:attribute name="initialDirectory" type="xsd:string"/>
 	<xsd:attribute name="logFile" type="xsd:string"/>
-	<!-- WHF: Added tag to help in documentation, as per Paul Hubbard. -->
 	<xsd:attribute name="tag" type="xsd:string"/>	
 </xsd:complexType>
 
 <xsd:complexType name="JavaCommandType" abstract="true">
 	<xsd:complexContent>
 		<xsd:extension base="CommandType">
-			<!-- JPW: Add jvmMaxHeap attribute -->
 			<xsd:attribute name="jvmMaxHeap" type="xsd:string"/>
 		</xsd:extension>
 	</xsd:complexContent>
@@ -48,8 +46,6 @@
 			<xsd:sequence>
 				<xsd:element name="plugin" type="PortType" minOccurs="0" maxOccurs="1"/>
 			</xsd:sequence>
-<!--			<xsd:attribute name="name" type="xsd:string"/>
-			<xsd:attribute name="hostAddress" type="xsd:string"/> -->
 		</xsd:extension>
 	</xsd:complexContent>
 </xsd:complexType>
@@ -96,36 +92,23 @@
 	<xsd:complexType>
 		<xsd:complexContent>
 			<xsd:extension base="JavaCommandType">
-				<!-- JPW: Added inputDT, outputDT, silentMode, chanNameFromID, and createNewArchive attributes -->
-			<!--	<xsd:attribute name="inputDT" type="xsd:string"/>
-				<xsd:attribute name="outputDT" type="xsd:string"/> -->
-				<xsd:attribute name="silentMode" type="xsd:boolean"/>
 				<xsd:attribute name="chanNameFromID" type="xsd:boolean"/>
-			<!--	<xsd:attribute name="inputName" type="xsd:string"/> -->
+				<xsd:attribute name="silentMode" type="xsd:boolean"/>
 				<xsd:attribute name="xmlFile" type="xsd:string"/>
-			<!--	<xsd:attribute name="createNewArchive" type="xsd:boolean"/> -->
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 </xsd:element>
 
-<!-- JPW: Added csvDemux element -->
 <xsd:element name="csvDemux" substitutionGroup="command">
 	<xsd:complexType>
 		<xsd:complexContent>
 			<xsd:extension base="JavaCommandType">
-			<!--	<xsd:attribute name="inputDT" type="xsd:string"/>
-				<xsd:attribute name="outputDT" type="xsd:string"/> -->
-				<xsd:attribute name="dateFormat" type="xsd:string"/>
-		<!--	<xsd:attribute name="inputName" type="xsd:string"/> -->
-				<xsd:attribute name="xmlFile" type="xsd:string"/>
-		<!--		<xsd:attribute name="cacheFrames" type="xsd:nonNegativeInteger"/>
-				<xsd:attribute name="archiveFrames" type="xsd:nonNegativeInteger"/>
-				<xsd:attribute name="createNewArchive" type="xsd:boolean"/> -->
-				<xsd:attribute name="checkEmbeddedTimestamp" type="xsd:boolean"/>
-				<xsd:attribute name="silentMode" type="xsd:boolean"/>
 				<xsd:attribute name="chanNameFromID" type="xsd:boolean"/>
-		<!--	<xsd:attribute name="outputSource" type="xsd:string"/> -->
+				<xsd:attribute name="checkEmbeddedTimestamp" type="xsd:boolean"/>
+				<xsd:attribute name="dateFormat" type="xsd:string"/>
+				<xsd:attribute name="silentMode" type="xsd:boolean"/>
+				<xsd:attribute name="xmlFile" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -135,13 +118,6 @@
 	<xsd:complexType>
 		<xsd:complexContent>
 			<xsd:extension base="JavaCommandType">
-				<!-- JPW: Added cacheFrames and createNewArchive attributes -->
-		<!--		<xsd:attribute name="name" type="xsd:string"/>
-				<xsd:attribute name="hostAddress" type="xsd:string"/>
-				<xsd:attribute name="listenPort" type="xsd:unsignedShort"/>
-				<xsd:attribute name="cacheFrames" type="xsd:nonNegativeInteger"/>
-				<xsd:attribute name="archiveFrames" type="xsd:nonNegativeInteger"/>
-				<xsd:attribute name="createNewArchive" type="xsd:boolean"/>  -->
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -169,8 +145,6 @@
 	<xsd:complexType>
 		<xsd:complexContent>
 			<xsd:extension base="JavaCommandType">
-				<!-- JPW: Added multiUserMode attribute -->
-	<!--			<xsd:attribute name="multiUserMode" type="xsd:positiveInteger"/> -->
 				<xsd:attribute name="multiUserMode">
 					<xsd:simpleType>
 						<xsd:restriction base="xsd:string">
@@ -181,8 +155,6 @@
 						</xsd:restriction>
 					</xsd:simpleType>
 				</xsd:attribute>
-	<!--			<xsd:attribute name="listenPort" type="xsd:string"/>
-				<xsd:attribute name="webserverAddress" type="xsd:string"/>  -->
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -237,7 +209,6 @@
 	<xsd:complexType>
 		<xsd:complexContent>
 			<xsd:extension base="PluginType">
-				<!-- JPW: Added consolidateResponse attribute -->
 				<xsd:attribute name="consolidateResponse" type="xsd:boolean"/>
 				<xsd:attribute name="noGUI" type="xsd:boolean"/>
 				<xsd:attribute name="configFile" type="xsd:string"/>
@@ -246,7 +217,6 @@
 	</xsd:complexType>
 </xsd:element>
 
-<!-- JPW: Added deadReckoning element -->
 <xsd:element name="deadReckoning" substitutionGroup="command">
 	<xsd:complexType>
 		<xsd:complexContent>
