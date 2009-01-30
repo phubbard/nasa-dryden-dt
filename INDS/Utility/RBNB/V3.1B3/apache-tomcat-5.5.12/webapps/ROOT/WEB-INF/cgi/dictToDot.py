@@ -6,6 +6,7 @@ import logging
 
 import osSpec
 import indsInterface
+import dotProcessor
 
 ## Generates a DOT-language graph from an INDS deployment. It creates and uses
 # an indsInterface object to query the INDS server and build dictionaries for us to navigate.
@@ -30,7 +31,6 @@ class dotMaker:
 		dt = ''
 		colors = dict()
 		edgeColors = dict()
-		isStale = False
 		
 	# Variables
 	## This holds the entire output graph as a big string.
@@ -41,21 +41,22 @@ class dotMaker:
 	colors = dict()
 	## Edge colors
 	edgeColors = dict()
-	## Has the XML config document changed?
-	isStale = False
 	
+	## Is the existing hash the same as the current one? If so, we may not need to run.
+	def isStale(self):
+		# Instantiate webservices interface class
+		inds = indsInterface.indsInterface()
+		
+		logging.debug('Checking for changes in configuration...')
+
+		return(inds.isStale())
+		
 	# ---------------------------------------------------------------------------
 	## dictToDot uses indsInterface to get the commands and then generates the dot graph.
 	def main(self):
 		
 		# Instantiate webservices interface class
 		inds = indsInterface.indsInterface()
-		
-		logging.debug('Checking for changes in configuration...')
-		# If command list is unchanged, just return
-		self.isStale = inds.isStale()
-		if self.isStale == True:
-			return
 		
 		logging.debug('Loading colors from config file')
 		# Load up graph colors from configuration file

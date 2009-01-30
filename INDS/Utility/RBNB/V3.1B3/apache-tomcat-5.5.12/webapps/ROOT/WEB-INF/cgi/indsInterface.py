@@ -104,7 +104,7 @@ class indsInterface:
 	## For a given command, return the URL to associate with the graph node. 
 	# Used to be getConfigUrl, now via indsViewer
 	def getInfoUrl(self, cmdId):
-		infoUrl = 'http://%s/indsViewer/index.jsp?command=%s' % \
+		infoUrl = 'http://%s/indsViewer/index.jsp?command=%s&action=getConfiguration' % \
 		(self.viewerHostname, cmdId)
 		return infoUrl
 		
@@ -156,11 +156,9 @@ class indsInterface:
 		logging.info('Trying to get process list from "%s" ...' % plUrl)
 
 		pText = self.getFromUrl(plUrl)
-		
-			
+					
 		# Convert into native array
-		pList = pText.split()
-		return pList
+		return pText.split()		
 
 	## Build a list entry for the dictionary	
 	def buildEntry(self, cmdId):
@@ -191,7 +189,6 @@ class indsInterface:
 
 		logging.debug('Dictionaries created OK.')
 		
-
 ## Test harness	
 if __name__ == '__main__':		
 	logging.basicConfig(level=logging.DEBUG, \

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import logging
 import cgi
 from cStringIO import StringIO
@@ -31,6 +32,16 @@ class xRender(object):
 	
 	## Required HTML header
 	header = 'Content-Type: text/html\n\n'
+
+	## Output filename
+	outputFilename = 'inds.svg'
+	
+	## Output path, relative to CWD. 
+	## @note Also defined in dotProcessor.py
+	outputPath = '../../inds-svg'
+	
+	## Output type - must be lower case
+	outputType = 'svg'
 	
 	## Main output HTML; Note that we simply return a link to the static SVG file.
 	mainhtml = '''<HTML><HEAD><TITLE>
@@ -104,14 +115,25 @@ An error occurred in initialization.
 </BODY></HTML>	
 '''	
 
+	## Check for existence of output file
+	def outputPresent(self):
+		try:
+			statinfo = os.stat('%s/%s' % (self.outputPath, self.outputFilename))
+		except OSError, e:
+			return False
+			
+		if statinfo.st_size > 0:
+			return True
+		else:
+			return False
+			
 	## This gets called if no change to XML, or new graph generated OK.
 	def doNormalOutput(self):
 		# Build output HTML. We have to do this in two steps because
 		# python gets confused by 100% in a format string, even escaped.
-		outName = 'inds.svg'
 		sizeStr = '100%'
-		intHtml = xRender.mainhtml % (outName, \
-		sizeStr, sizeStr, outName, sizeStr, sizeStr, outName)
+		intHtml = xRender.mainhtml % (self.outputFilename, \
+		sizeStr, sizeStr, self.outputFilename, sizeStr, sizeStr, self.outputFilename)
 
 		print xRender.header + intHtml
 		
@@ -135,14 +157,20 @@ An error occurred in initialization.
 			
 		# Run the INDS->dot	
 		try:
+			# Same configuration as last run, as evinced by digest of command list?
+			if grapher.isStale() == True:
+				if self.outputPresent() == True:
+					logging.info('Returning previous SVG, no change in command list.')
+					self.doNormalOutput()
+					return
+				else:
+					logging.info('Output missing, continuing')
+			else:
+				logging.info('XML changed, continuing to process')
+
+			# OK, need to run!
 			grapher.main()
 			
-			# Same configuration as last run, as evinced by digest of command list?
-			if grapher.isStale == True:
-				logging.info('Returning previous SVG, no change in command list.')
-				self.doNormalOutput()
-				return
-				
 		except BaseException, e:
 			intHtml = xRender.header + xRender.exManErrHtml % (cgi.escape(str(e)), cfgHtml)
 			print intHtml

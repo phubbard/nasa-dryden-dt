@@ -15,17 +15,19 @@ import osSpec
 # @author Paul Hubbard 
 # @date 1/12/09
 
+## Build the pathname of the output file.
+def buildOutputFilename(basename, outputType):
+	return('..' + os.sep + '..' + os.sep + 'inds-svg' + os.sep \
+	 + '%s.%s' % (basename, outputType))
+	
 ## Build a string suitable for execution via os.system
 def buildDotCmdDualFN(inputFilename, basename, outputType):
-	
-	outputFilename = '..' + os.sep + '..' + os.sep + 'inds-svg' + os.sep \
-	 + '%s.%s' % (basename, outputType)
 	
 	# Use osSpec to determine local configuration
 	myOS = osSpec.osSpec()
 	
 	cmdStr = '%s %s -T%s %s -o %s' % (myOS.dotCmd, myOS.dotParams, \
-	outputType, inputFilename, outputFilename)
+	outputType, inputFilename, buildOutputFilename(basename, outputType))
 
 	return cmdStr
 	
