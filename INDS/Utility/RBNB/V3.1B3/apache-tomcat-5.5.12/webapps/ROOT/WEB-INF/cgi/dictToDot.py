@@ -6,7 +6,6 @@ import logging
 
 import osSpec
 import indsInterface
-import dotProcessor
 
 ## Generates a DOT-language graph from an INDS deployment. It creates and uses
 # an indsInterface object to query the INDS server and build dictionaries for us to navigate.
