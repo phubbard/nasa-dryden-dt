@@ -116,6 +116,9 @@ def&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <tr><td class="memItemLeft" nowrap align="right" valign="top">def&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdict_to_dot_1_1dot_maker.html#96c10fe507b4bdd922459dea4f7929d5">getInputPortnum</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Parse XML and dig out port number here.  <a href="#96c10fe507b4bdd922459dea4f7929d5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">def&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdict_to_dot_1_1dot_maker.html#84d25c61a4d2ec9ac6b69bafb5b0db3a">isStale</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the existing hash the same as the current one? If so, we may not need to run.  <a href="#84d25c61a4d2ec9ac6b69bafb5b0db3a"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">def&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdict_to_dot_1_1dot_maker.html#aa1a1490d8757c3e68bc734834f0f256">main</a></td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">dictToDot uses indsInterface to get the commands and then generates the dot graph.  <a href="#aa1a1490d8757c3e68bc734834f0f256"></a><br></td></tr>
@@ -142,10 +145,6 @@ string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 tuple&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdict_to_dot_1_1dot_maker.html#5735fbe5cf2b1a5430b774cb7125b860">edgeColors</a> = dict()</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Edge colors. <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bb3a69ffc0ec865443e3ec8563b84577"></a><!-- doxytag: member="dictToDot::dotMaker::isStale" ref="bb3a69ffc0ec865443e3ec8563b84577" args="" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdict_to_dot_1_1dot_maker.html#bb3a69ffc0ec865443e3ec8563b84577">isStale</a> = False</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Has the XML config document changed? <br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdict_to_dot_1_1dot_maker.html#dcc43e3ea8dc3ddeda9fdddcd250c962">outputDot</a> = ''</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This holds the entire output graph as a big string.  <a href="#dcc43e3ea8dc3ddeda9fdddcd250c962"></a><br></td></tr>
@@ -176,7 +175,7 @@ Graph definition.
 <dl compact><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Make graph/digraph a parameter <p>
 Make graph name a parameter </dd></dl>
 
-<p>Definition at line <a class="el" href="dict_to_dot_8py-source.html#l00229">229</a> of file <a class="el" href="dict_to_dot_8py-source.html">dictToDot.py</a>.</p>
+<p>Definition at line <a class="el" href="dict_to_dot_8py-source.html#l00234">234</a> of file <a class="el" href="dict_to_dot_8py-source.html">dictToDot.py</a>.</p>
 
 </div>
 </div><p>
@@ -209,7 +208,31 @@ Make graph name a parameter </dd></dl>
 Parse XML and dig out port number here. 
 <p>
 .. Assumes child node named 'input' with port attribute inside. 
-<p>Definition at line <a class="el" href="dict_to_dot_8py-source.html#l00192">192</a> of file <a class="el" href="dict_to_dot_8py-source.html">dictToDot.py</a>.</p>
+<p>Definition at line <a class="el" href="dict_to_dot_8py-source.html#l00197">197</a> of file <a class="el" href="dict_to_dot_8py-source.html">dictToDot.py</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="84d25c61a4d2ec9ac6b69bafb5b0db3a"></a><!-- doxytag: member="dictToDot::dotMaker::isStale" ref="84d25c61a4d2ec9ac6b69bafb5b0db3a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def dictToDot.dotMaker.isStale           </td>
+          <td>(</td>
+          <td class="paramtype">&nbsp;</td>
+          <td class="paramname"> <em>self</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Is the existing hash the same as the current one? If so, we may not need to run. 
+<p>
+
+<p>Definition at line <a class="el" href="dict_to_dot_8py-source.html#l00045">45</a> of file <a class="el" href="dict_to_dot_8py-source.html">dictToDot.py</a>.</p>
 
 </div>
 </div><p>
@@ -233,7 +256,7 @@ Parse XML and dig out port number here.
 dictToDot uses indsInterface to get the commands and then generates the dot graph. 
 <p>
 
-<p>Definition at line <a class="el" href="dict_to_dot_8py-source.html#l00049">49</a> of file <a class="el" href="dict_to_dot_8py-source.html">dictToDot.py</a>.</p>
+<p>Definition at line <a class="el" href="dict_to_dot_8py-source.html#l00055">55</a> of file <a class="el" href="dict_to_dot_8py-source.html">dictToDot.py</a>.</p>
 
 </div>
 </div><p>
@@ -253,14 +276,14 @@ dictToDot uses indsInterface to get the commands and then generates the dot grap
 This holds the entire output graph as a big string. 
 <p>
 
-<p>Definition at line <a class="el" href="dict_to_dot_8py-source.html#l00037">37</a> of file <a class="el" href="dict_to_dot_8py-source.html">dictToDot.py</a>.</p>
+<p>Definition at line <a class="el" href="dict_to_dot_8py-source.html#l00036">36</a> of file <a class="el" href="dict_to_dot_8py-source.html">dictToDot.py</a>.</p>
 
 </div>
 </div><p>
 <hr>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="dict_to_dot_8py-source.html">dictToDot.py</a></ul>
 </div>
-<hr size="1"><address style="text-align: right;"><small>Generated on Tue Jan 27 14:24:43 2009 for xRender for INDS by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Jan 30 15:46:41 2009 for xRender for INDS by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.8 </small></address>
 </body>

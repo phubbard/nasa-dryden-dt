@@ -5,6 +5,6 @@ digraph G
   Node1 [label="xRender.xRender",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
   Node2 -> Node1 [dir=back,color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
   Node2 [label="object",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-  Node3 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="exManErrHtml\ninitErrHtml\nconfigHtml\nmainhtml\ndotExceptHtml\ndotErrHtml\nheader",fontname="FreeSans"];
+  Node3 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="exManErrHtml\noutputPath\noutputFilename\ninitErrHtml\nconfigHtml\nmainhtml\ndotExceptHtml\ndotErrHtml\nheader\noutputType\n...",fontname="FreeSans"];
   Node3 [label="string",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
 }
