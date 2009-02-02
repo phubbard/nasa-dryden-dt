@@ -11,7 +11,7 @@ import cgi
 import cgitb; cgitb.enable()
 import urllib2
 
-fp = urllib2.urlopen('http://127.0.0.1:8080/')
+fp = urllib2.urlopen('http://127.0.0.1:80/')
 print "Content-type: text/html"
 print '<pre>'
 print cgi.escape(fp.read())
