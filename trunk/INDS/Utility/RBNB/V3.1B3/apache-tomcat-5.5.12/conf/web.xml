@@ -319,6 +319,10 @@
           <param-name>cgiPathPrefix</param-name>
           <param-value>WEB-INF/cgi</param-value>
         </init-param>
+		<init-param>
+		  <param-name>passShellEnvironment</param-name>
+		  <param-value>true</param-value>
+		 </init-param>
          <load-on-startup>10</load-on-startup>
     </servlet>
 	<servlet-mapping>
