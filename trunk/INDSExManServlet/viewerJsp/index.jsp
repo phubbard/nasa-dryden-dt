@@ -17,6 +17,7 @@
 	
 	---  History  ---
 	2009/01/27  Updated the overall layout as per meeting on 2009/01/26
+	2009/02/17  Updated to include SVG viewer
 	
 	--- To Do ---
 	
@@ -68,18 +69,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.3</title>
+	<title>IndsViewer Version 0.4</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="default.css" type="text/css" />
 </head>
 
+<script language="javascript">
+</script>
+
 <body>
 <div id="main">
 	<div id="left">
-		<!-- Set up command list -->
-		<h1>Command List:</h1>
-		<% 
-		   // Switch between viewing all and just current commands
+		<!-- <iframe src="static-inds.svg" width="100%" height="100%" frameborder="0" marginwidth="0" marginheight="0"> -->
+			<object type="image/svg+xml" data="/inds-svg/inds.svg" width="100%" height="100%" name="output" alt="SVG drawing of INDS XML system">
+				<embed src="/inds-svg/inds.svg" type="image/svg+xml" palette="foreground">
+				</embed>
+			</object>
+		<!-- </iframe> -->
+	</div> <!-- left -->
+	
+	<!-- Set up command list -->
+	<div id="center">
+		<h1>Command List</h1>
+		<%
+			// Switch between viewing all and just current commands
 		   if (queryDisplay == null) { %>
 			<a class="display" href="index.jsp?<%= queryString %>&display=current">Display Current</a><br />
 		<% } else { %>
@@ -87,31 +100,34 @@
 		<% } %>
 		<div id="commandlist">
 			<ul>
-			<%
-			  // Build list of commands
-			  queryString = "";
-			  if (queryAction!=null)
-			  	queryString = queryString+"&action="+queryAction;
-				
-			  if (queryDisplay!=null)
-			  	queryString = queryString+"&display="+queryDisplay;
-			  
-			  for (String command : commands) {
-				if (!rem.isComplete(command)) {
-			%>
-					<li><a href="index.jsp?command=<%= command %><%= queryString %>"><%= command %></a><br />
-			<%  } else if (queryDisplay == null) { %>
-					<li><a href="index.jsp?command=<%= command %><%= queryString %>" class="complete"><%= command %></a><br />
-			<%  } %>
-			<% } %>
+				<%
+				  // Build list of commands
+				  queryString = "";
+				  if (queryAction!=null)
+					queryString = queryString+"&action="+queryAction;
+					
+				  if (queryDisplay!=null)
+					queryString = queryString+"&display="+queryDisplay;
+				  
+				  for (String command : commands) {
+					if (!rem.isComplete(command)) {
+				%>
+						<li><a href="index.jsp?command=<%= command %><%= queryString %>"><%= command %></a><br />
+				<%  } else if (queryDisplay == null) { %>
+						<li><a href="index.jsp?command=<%= command %><%= queryString %>" class="complete"><%= command %></a><br />
+				<%  } %>
+				<% } %>
 			</ul>
-		</div> <!-- list -->
-		
+		</div> <!-- commandlist -->
+	</div> <!-- center -->
+
+	<!-- Set up the div for the interface command results -->
+	<div id="right">
 		<!-- Set up the interface actions -->
 		<%
 		  if (queryCommand!=null) {
 		%>
-			<h1>Execute action:</h1>
+			<h1>Execute action</h1>
 			<div id="actionlist">
 				<ul>
 				<% 
@@ -129,12 +145,10 @@
 				<%   } %>
 				<% } %>
 				</ul>
-			</div> <!-- list -->
+			</div> <!-- actionlist -->
 		<% } %>
-	</div> <!-- left -->
-	
-	<!-- Set up the div for the interface command results -->
-	<div id="actionresults">
+		<br />
+		<h1>Action Response</h1>
 		<%
 			if (queryAction!=null) {
 				String commandResults = null;
@@ -146,9 +160,8 @@
 				}
 				java.util.Date clock = new java.util.Date(); 
 		%>
-				<h1>Action Response:</h1>
+
 				<!-- Add a header to the response with time stamp and size of response -->
-				</br>
 				<table>
 					<tr>
 						<td>Command:</td>
@@ -173,7 +186,7 @@
 					<br />&lt;&lt;&lt; <i>response end</i> &gt;&gt;&gt;
 				</div> <!-- actionResponse -->
 		<% } %>
-	</div> <!-- actionResults -->
+	</div> <!-- right -->
 </div> <!-- main -->
 </body>
 
