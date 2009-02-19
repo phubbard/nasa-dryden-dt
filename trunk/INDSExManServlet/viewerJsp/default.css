@@ -52,43 +52,18 @@ a.display {
 	float: right;
 }
 
-/* ~~~~~~~~ */
-/*   main   */
-/* ~~~~~~~~ */
-div#main {    
-        position: absolute;     
-        left: 50%;     
-        width: 100%;
-        margin-top: 5px;
-        margin-left: -50%;
-    }
+/* ~~~~~~ */
+/*  main  */
+/* ~~~~~~ */
+div#main {
+	padding: 0 5px;
+}
 
-/* ~~~~~~~~~ */
-/*  columns  */
-/* ~~~~~~~~~ */
-div#left {
-		float: left;
-		margin-top: 5px;
-		margin-bottom: 5px;
-		padding-left: 10px;
-		width: 45%;
-	}
-	
-div#center {
-		float: left;
-		width: 150px;
-		border-left: solid 1px #000000;
-		border-right: solid 1px #000000;
-		padding: 0 5px;
-	}
+/* ~~~~ */
+/*  td  */
+/* ~~~~ */
 
-div#right {
-		float: left;
-		padding: 0 10px;
-		width: 38%;
-	}
-
-div#right td {
+td {
 		font-family: Arial, sans-serif;
 		font-size: 11px;
 }
