@@ -1,12 +1,12 @@
 /* ~~~~~~~~~~ */
 /*   global   */
 /* ~~~~~~~~~~ */
-body {
+html,body {
         margin:0;
         padding:0;
         width: 100%;
 		font-family: Arial, sans-serif;
-		font-size: 12px;
+		font-size: 11px;
 	}
 
 img {
@@ -17,6 +17,7 @@ img {
 ul {
         list-style: none;
         margin: 0px;
+		padding-left: 10px;
 	}
 
 h1 {
@@ -57,9 +58,9 @@ a.display {
 div#main {    
         position: absolute;     
         left: 50%;     
-        width: 900px;
+        width: 100%;
         margin-top: 5px;
-        margin-left: -450px;
+        margin-left: -50%;
     }
 
 /* ~~~~~~~~~ */
@@ -70,34 +71,46 @@ div#left {
 		margin-top: 5px;
 		margin-bottom: 5px;
 		padding-left: 10px;
-		padding-right: 10px;
-		width: 200px;
-	}
-
-div#commandlist,
-div#actionlist,
-div#actionresponse {
-		border-top: solid 1px #000000;
-		height: 500px;
-		overflow: auto;
+		width: 45%;
 	}
 	
-div#actionlist {
-		height: 150px;
-	}
-	
-div#actionresponse {
-		height: 650px;
-		width: 640px;
-	}
-
-/* */
-div#actionresults {
+div#center {
 		float: left;
-		padding-left: 20px;
+		width: 150px;
+		border-left: solid 1px #000000;
+		border-right: solid 1px #000000;
+		padding: 0 5px;
 	}
 
-div#actionresults td {
+div#right {
+		float: left;
+		padding: 0 10px;
+		width: 38%;
+	}
+
+div#right td {
 		font-family: Arial, sans-serif;
-		font-size: 12px;
+		font-size: 11px;
 }
+
+/* ~~~~~~~ */
+/*  lists  */
+/* ~~~~~~~ */
+div#commandlist {
+		border-top: solid 1px #000000;
+		overflow: auto;
+		height: 725px;
+	}
+
+div#actionlist {
+		border-top: solid 1px #000000;
+		border-bottom: solid 1px #000000;
+	}
+	
+div#actionresponse {
+		overflow: auto;
+		border-top: solid 1px #000000;
+		height: 540px;
+	}
+
+
