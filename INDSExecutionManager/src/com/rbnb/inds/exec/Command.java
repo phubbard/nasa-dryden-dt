@@ -18,15 +18,19 @@
 	---  History  ---
 	2008/12/02  WHF  Created.
 	2008/12/23  WHF  Added name field, and ByteArrayOutputStreams.
-	2009/01/13  WHF  Changed calls to String.isEmpty() to String.length() == 0.	
+	2009/01/13  WHF  Changed calls to String.isEmpty() to String.length() == 0.
+	2009/02/19  WHF  Moved log streams from a RAM based copy to a temporary 
+			file.	
 */
 
 package com.rbnb.inds.exec;
 
 
-import java.io.InputStream;
-import java.io.FileOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 import java.util.ArrayList;
 
@@ -40,7 +44,7 @@ public abstract class Command
 	public Command(Attributes attr)
 	{
 		String temp;
-
+	
 		temp = attr.getValue("initialDirectory");
 		if (temp == null || temp.length() == 0)
 			initialDirectory = ".";
@@ -53,6 +57,17 @@ public abstract class Command
 		
 		// We copy this property out of thread local storage.
 		classification = getCommandProperties().get("classification");
+
+		try {
+			stdOutTempFile = File.createTempFile("exeman"+id, ".out.log");
+			localStdOutStream = new FileOutputStream(stdOutTempFile); 
+			stdErrTempFile = File.createTempFile("exeman"+id, ".err.log");
+			localStdErrStream = new FileOutputStream(stdErrTempFile);
+		} catch (java.io.IOException ioe) {
+			// wrap in an unchecked exception, so as not to interfere with
+			//  existing class hierarchy.
+			throw new RuntimeException(ioe); 
+		}			
 	}
 	
 	/**
@@ -113,10 +128,15 @@ public abstract class Command
 		return java.util.Collections.unmodifiableList(outputs);
 	}	
 	
-	public final ByteArrayOutputStream getLocalStdOutStream() 
+	public final OutputStream getLocalStdOutStream() 
 	{ return localStdOutStream; }
-	public final ByteArrayOutputStream getLocalStdErrStream()
+	public final OutputStream getLocalStdErrStream()
 	{ return localStdErrStream; }
+	
+	public final String getStdOutString() 
+	{ return file2string(stdOutTempFile); }
+	public final String getStdErrString() 
+	{ return file2string(stdErrTempFile); }	
 
 	public final String getInitialDirectory() { return initialDirectory; }
 	public final String getLogfile() { return logFile; }
@@ -165,9 +185,10 @@ public abstract class Command
 	private final ArrayList<Port> 
 		inputs = new ArrayList<Port>(),
 		outputs = new ArrayList<Port>();
-	private final ByteArrayOutputStream 
-		localStdOutStream = new ByteArrayOutputStream(), 
-		localStdErrStream = new ByteArrayOutputStream();
+	private final File stdOutTempFile, stdErrTempFile;
+	private final FileOutputStream 
+		localStdOutStream, // = new ByteArrayOutputStream(), 
+		localStdErrStream; //  = new ByteArrayOutputStream();
 
 	private boolean executionComplete = false;
 	

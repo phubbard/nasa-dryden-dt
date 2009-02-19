@@ -259,16 +259,19 @@ System.err.println(" complete.");
 	
 		public String getCommandOut(String cmd) throws java.rmi.RemoteException
 		{
-			return new String(
+			/*return new String(
 					getCommand(cmd).getLocalStdOutStream().toByteArray()
-			);
+			); */
+			
+			return getCommand(cmd).getStdOutString();
 		}
 	
 		public String getCommandError(String cmd) throws java.rmi.RemoteException
 		{
-			return new String(
+			/* return new String(
 					getCommand(cmd).getLocalStdErrStream().toByteArray()
-			);
+			); */
+			return getCommand(cmd).getStdErrString();
 		}
 		
 		public String getCommandClassification(String cmd)
