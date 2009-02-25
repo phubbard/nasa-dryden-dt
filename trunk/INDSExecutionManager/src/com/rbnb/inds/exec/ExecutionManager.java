@@ -301,9 +301,11 @@ System.err.println(" complete.");
 			return rootConfiguration;
 		}
 			
+		// 2009/02/25  WHF  Tag overrides 'pretty name'.
 		public String getName(String cmd) throws java.rmi.RemoteException
 		{
-			return getCommand(cmd).getPrettyName();			
+			String tag = getCommand(cmd).getTag();
+			return tag.length()==0 ? getCommand(cmd).getPrettyName() : tag;			
 		}
 		
 		private static final long serialVersionUID = 3348353995890377784L;	
