@@ -19,20 +19,22 @@
 	2009/01/27  Updated the overall layout as per meeting on 2009/01/26
 	2009/02/17  Updated to include SVG viewer
 	2009/02/19  Major revision to use frames
+	2009/02/27  Major revision to use java bean to handle rmi to inds execution manager
+	
 	--- To Do ---
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.5</title>
+	<title>IndsViewer Version 0.6</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="default.css" type="text/css" />
 </head>
 
 <frameset cols="45%,15%,40%">
-	<frame name="left" target="_top" src="/cgi-bin/xRender.py" />
-	<frame name="center" target="_top" src="/indsViewer/commandlist.jsp" />
-	<frame name="right" target="_top" src="/indsViewer/action.jsp" />
+	<frame name="left" src="/cgi-bin/xRender.py" frameborder="0" />
+	<frame name="center" target="left" src="/indsViewer/commandlist.jsp" frameborder="0" />
+	<frame name="right" src="/indsViewer/action.jsp" frameborder="0" />
 </frameset>
 </html>
