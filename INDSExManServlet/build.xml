@@ -28,9 +28,14 @@
 
 	<!--*****  Targets *****-->
 	<target name="init" description="Initialize build environment.">
+		<!-- For the indsExec servlet -->
 		<mkdir dir="out" />
 		<mkdir dir="out/WEB-INF/classes" />
 		<mkdir dir="out/WEB-INF/lib" />
+		
+		<!-- For the indsViewer -->
+		<mkdir dir="viewerJsp/WEB-INF/classes" />
+		<mkdir dir="viewerJsp/WEB-INF/lib" />
 	</target>
 	
 	<target name="compile" depends="init">
@@ -49,7 +54,7 @@
 		<copy todir = "out/WEB-INF" file="src/web.xml" />
 		<copy todir = "out/WEB-INF/lib" file="${rmiStubPath}" />	
 		
-		<!-- Build Exection Manager Viewer -->
+		<!-- Build Exection Manager Bean -->
 		<javac destdir="viewerJsp/WEB-INF/classes"
 				deprecation = "on"
 				source = "1.5"
@@ -61,7 +66,7 @@
 			<classpath refid = "rmistubscp" />
 			<compilerarg value="-Xlint:all"/>
 		</javac>
-		<copy todir = "viewerJsp/WEB-INF/lib" file="${rmiStubPath}" />			
+		<copy todir = "viewerJsp/WEB-INF/lib" file="${rmiStubPath}" />
 	</target>
 
 	<target name="library" depends="compile" description 

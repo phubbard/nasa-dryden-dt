@@ -34,7 +34,7 @@
 
 <frameset cols="45%,15%,40%">
 	<frame name="left" src="/cgi-bin/xRender.py" frameborder="0" />
-	<frame name="center" target="left" src="/indsViewer/commandlist.jsp" frameborder="0" />
+	<frame name="center" src="/indsViewer/commandlist.jsp" frameborder="0" />
 	<frame name="right" src="/indsViewer/action.jsp" frameborder="0" />
 </frameset>
 </html>
