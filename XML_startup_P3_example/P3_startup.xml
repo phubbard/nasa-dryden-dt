@@ -13,7 +13,7 @@
 	
 	<!-- Server -->
 	<del initialDirectory="Server" file="rbnb.log"/>
-	<dataTurbine jvmMaxHeap="1024M" initialDirectory="Server" logFile="rbnb.log" name="INDS" address=":3333"/>
+	<dataTurbine jvmMaxHeap="1024M" initialDirectory="Server" logFile="rbnb.log" name="INDS" address=":3333" tag="P3B DataTurbine"/>
 	<sleep duration_ms="15000"/>
 	
 	<!-- Jobs/KMLTrack -->

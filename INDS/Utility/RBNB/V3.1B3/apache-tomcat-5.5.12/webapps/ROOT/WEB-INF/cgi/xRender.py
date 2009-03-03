@@ -5,6 +5,7 @@ import logging
 import cgi
 from cStringIO import StringIO
 from string import capwords, strip, split, join
+from shutil import move
 
 # CGI trackback and logging
 import cgitb; cgitb.enable()
@@ -196,6 +197,20 @@ An error occurred in initialization.
 			return
 		
 		if(rc == 0):
+			# JPW 03/02/09: edit the SVG file to add "target" to the hyperlink
+			origfile = '%s/%s' % (self.outputPath, self.outputFilename)
+			tempfile = '%s/%s.tmp' % (self.outputPath, self.outputFilename)
+			hInFile = open(origfile, 'r')
+			hInFile.seek(0,0)
+			hOutFile = open(tempfile, 'w')
+			for line in hInFile.readlines():
+			    newline = line.replace('<a xlink:href=','<a target="right" xlink:href=')
+			    hOutFile.write(newline)
+			# Close files
+			hInFile.close()
+			hOutFile.close()
+			# Replace the original file with the new one
+			move(tempfile,origfile)
 			self.doNormalOutput()
 		else:
 			print xRender.header + xRender.dotErrHtml % (rc, cfgHtml)
