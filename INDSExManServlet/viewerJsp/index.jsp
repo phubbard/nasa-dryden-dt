@@ -27,14 +27,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.6</title>
+	<title>IndsViewer Version 0.7</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="default.css" type="text/css" />
 </head>
 
 <frameset cols="45%,15%,40%">
 	<frame name="left" src="/cgi-bin/xRender.py" frameborder="0" />
-	<frame name="center" src="/indsViewer/commandlist.jsp" frameborder="0" />
+	<frame name="center" src="/indsViewer/commandlist.jsp" frameborder="1" />
 	<frame name="right" src="/indsViewer/action.jsp" frameborder="0" />
 </frameset>
 </html>

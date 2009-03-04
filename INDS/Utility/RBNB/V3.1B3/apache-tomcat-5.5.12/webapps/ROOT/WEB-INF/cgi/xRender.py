@@ -47,10 +47,8 @@ class xRender(object):
 	## Main output HTML; Note that we simply return a link to the static SVG file.
 	mainhtml = '''<HTML><HEAD><TITLE>
 xRender INDS visualizer</TITLE>
-<BASE TARGET="right" />
 </HEAD>
 <BODY>
-<a href="../indsViewer/action.jsp?action=getConfiguration">Test: base target="right"</a>
 <iframe src="/inds-svg/%s" width="%s" height="%s" 
 frameborder="0" marginwidth="0" marginheight="0">
 <object type="image/svg+xml" data="/inds-svg/%s" width="%s" height="%s"

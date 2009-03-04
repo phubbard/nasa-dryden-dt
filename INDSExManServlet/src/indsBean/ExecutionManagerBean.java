@@ -4,10 +4,15 @@ import com.rbnb.inds.exec.Remote;
 import java.lang.reflect.Method;
 
 /**
- * Create a bean to handle the requests to the INDS execution manager.
+ *  Create a bean to handle the requests to the INDS execution manager.
+ * 
+ *  ---  History  ---
+ *  2009/03/03 Added getCommandName
+ *  
+ *  --- To Do ---
  *
  * Jesse Norris, Creare Inc.
- * Version 0.6
+ * Version 0.7
  */
 
 
@@ -43,7 +48,7 @@ public class ExecutionManagerBean implements java.io.Serializable
 		actions = remoteClass.getDeclaredMethods();
 		
 		// Defaults
-		queryAction = "getName";
+		queryAction = "getConfiguration";
 		queryCommand = null;
 		queryDisplay = null;
 	}
@@ -62,7 +67,7 @@ public class ExecutionManagerBean implements java.io.Serializable
 				Method action = remoteClass.getMethod(queryAction,queryCommand.getClass());
 				remoteResult = action.invoke(remoteIndsObject,queryCommand).toString();
 			} 
-			// This else was for actions that did require a queryCommand
+			// This else was for actions that did require a queryCommand - not needed by the indsViewer
 			//else 
 			//{
 			//	Method action = remoteClass.getMethod(queryAction);
@@ -95,32 +100,30 @@ public class ExecutionManagerBean implements java.io.Serializable
 		for (int i=0; i<actions.length; i++) {
 			if ((actions[i].getName().compareTo("isComplete")!=0) &&
 				(actions[i].getName().compareTo("getCommandList")!=0) && 
-				(actions[i].getName().compareTo("getRootConfiguration")!=0))
+				(actions[i].getName().compareTo("getRootConfiguration")!=0) &&
+				(actions[i].getName().compareTo("getName")!=0))
 				if (actions[i].getName().compareTo(queryAction)==0)
-					actionListHTML = actionListHTML+"<li class='current'><a href=action.jsp?&action="+actions[i].getName()+">"+actions[i].getName()+"</a></li>";
+					actionListHTML = actionListHTML+"<li class='current'><a href='action.jsp?&action="+actions[i].getName()+"'>"+actions[i].getName()+"</a></li>";
 				else
-					actionListHTML = actionListHTML+"<li><a href=action.jsp?&action="+actions[i].getName()+">"+actions[i].getName()+"</a></li>";
+					actionListHTML = actionListHTML+"<li><a href='action.jsp?&action="+actions[i].getName()+"'>"+actions[i].getName()+"</a></li>";
 		}
 		return actionListHTML+"</ul>";
 	}
 	
 	/**
-	* Return the command list
+	* Return the command list (formatted for HTML)
 	*/
-	public String getCommandList() 
+	public String getCommandList()
 		throws java.rmi.RemoteException
 	{
 		String commandListHTML="<ul>";
 		for (String command : remoteIndsObject.getCommandList()) {
 			
-			commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command;
-			
 			if (!remoteIndsObject.isComplete(command)) {
-				commandListHTML=commandListHTML+"'>";
+				commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"'>"+remoteIndsObject.getName(command)+"</a></li>";
 			} else if (queryDisplay == null) {
-				commandListHTML=commandListHTML+"' class='complete'>";
+				commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"' class='complete'>"+remoteIndsObject.getName(command)+"</a></li>";
 			}
-			commandListHTML=commandListHTML+remoteIndsObject.getName(command)+"</a></li>";
 		}		
 		commandListHTML=commandListHTML+"</ul>";
 		return commandListHTML;
@@ -150,6 +153,15 @@ public class ExecutionManagerBean implements java.io.Serializable
 	public String getQueryCommand() 
 	{
 		return queryCommand;
+	}
+	
+	/** 
+	* Return the pretty name as opposed to command id
+	*/
+	public String getCommandName()
+		throws java.rmi.RemoteException
+	{
+	    return (queryCommand!=null ? remoteIndsObject.getName(queryCommand) : null);
 	}
 	
 	/**
