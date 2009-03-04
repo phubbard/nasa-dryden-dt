@@ -19,6 +19,7 @@
 	2009/01/27  Updated the overall layout as per meeting on 2009/01/26
 	2009/02/17  Updated to include SVG viewer
 	2009/02/19  Major revision to use frames
+	2009/03/03  Excluded getName from the action list and added it to Action response
 	
 	--- To Do ---
 	
@@ -27,7 +28,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.5: action.jsp</title>
+	<title>IndsViewer Version 0.7: action.jsp</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="default.css" type="text/css" />
 </head>
@@ -69,6 +70,10 @@
 	<table>
 		<tr>
 			<td>Command:</td>
+			<td><jsp:getProperty name="INDS" property="commandName" /></td>
+		</tr>
+		<tr>
+			<td>Command ID:</td>
 			<td><jsp:getProperty name="INDS" property="queryCommand" /></td>
 		</tr>
 		<tr>
