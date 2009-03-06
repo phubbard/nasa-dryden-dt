@@ -15,7 +15,10 @@
       as the source code files.
   -->
  <target name="compile">
-  <javac destdir="." deprecation="on">
+  <javac destdir="."
+         deprecation="on"
+	 source="1.5"
+         target="1.5">
    <src path="." />
    <classpath path="." />
    <!-- NOTE: In order to use the RBNBBIN, this environment variable cannot
