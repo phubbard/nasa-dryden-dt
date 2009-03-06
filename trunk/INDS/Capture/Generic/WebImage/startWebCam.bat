@@ -1,1 +1,0 @@
-START "HttpMonitor WebCamCap" /MIN java -jar %RBNBBIN%\HttpMonitor.jar webcam.xml
