@@ -180,6 +180,7 @@
 		if (ah.checkFlag('d')) {
 		    // Get date format from the supplied argument
 		    String formatStr = ah.getOption('d');
+System.err.println("Date format string = <" + formatStr + ">");
 		    if ( (formatStr != null) && (!formatStr.trim().equals("")) ) {
 			sdf = new SimpleDateFormat(formatStr);
 		    }
