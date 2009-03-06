@@ -1,5 +1,0 @@
-<monitor destURLPath="http://localhost/RBNB/debug/" minimumInterval="1000" maximumInterval="10000" 
-		mkcolQuery="?archive=10000&amp;cache=1" debug="true">
-      <auth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></auth>
-	<url>https://indscore.dfrc.nasa.gov:443/RBNB/ER2-809-5200-cap/UDP</url>
-</monitor>

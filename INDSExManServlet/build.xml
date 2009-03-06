@@ -5,6 +5,13 @@
 	2009/01/13  JAN  Created.
 	2009/01/14  WHF  Integrated into INDS distribution.
 	2009/01/15  WHF  Added viewer servlet.
+	2009/03/06  JPW  Changed definition of jakartadir from
+			 "../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12" to
+			 "../RBNB/V3.2B1/apache-tomcat-5.5.12".
+			 Also, change the "clean" target to delete both
+			 WAR files in the local directory as well as in
+			 "${jakartadir}/webapps"; also, delete the unpacked
+			 WAR directories in "${jakartadir}/webapps".
 -->
 
 <project name="INDS Execution Manager Servlet" default="library" basedir=".">
@@ -20,7 +27,7 @@
 	
 	<!-- Set this to your web server path  -->  
 	<property name="jakartadir" 
-			value="../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12" />			
+			value="../RBNB/V3.2B1/apache-tomcat-5.5.12" />			
 	<path id = "servletcp" >
 		<pathelement location="${jakartadir}/common/lib/servlet-api.jar"/>
 		<pathelement location="${jakartadir}/common/lib/jsp-api.jar" />
@@ -85,7 +92,12 @@
 
 	<target name="clean" description = "Delete binary files.">
 		<delete dir="out" />
-		<delete dir="indsExec.war" />
+		<delete file="indsExec.war" />
+		<delete file="indsViewer.war" />
+		<delete file="${jakartadir}/webapps/indsExec.war" />
+		<delete file="${jakartadir}/webapps/indsViewer.war" />
+		<delete dir="${jakartadir}/webapps/indsExec" />
+		<delete dir="${jakartadir}/webapps/indsViewer" />
 	</target>
  
 </project>

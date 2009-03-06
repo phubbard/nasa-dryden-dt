@@ -1,0 +1,80 @@
+Mar 6, 2009 11:59:18 AM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The Apache Portable Runtime which allows optimal performance in production environments was not found on the java.library.path: C:\Program Files\Java\jdk1.6.0_03\bin;.;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;.;C:\PROGRA~1\Java\jdk1.6.0_03\bin;C:\PROGRA~1\apache-ant-1.7.0\bin;C:\PROGRA~1\Java\JMF21~1.1E\lib;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\NTRU Cryptosystems\NTRU TCG Software Stack\bin\;C:\Program Files\Wave Systems Corp\Dell Preboot Manager\Access Client\v5\;c:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\user\IDIQ-StackID\CSDiff;"C:\Program Files\Softinterface, Inc\DiffDoc";"C:\Program Files\md5";C:\Python25;C:\StackID\Projects\Battery\StackID;C:\Program Files\jEdit;C:\Program Files\NSIS;C:\Program Files\Graphviz2.20\Bin;C:\Program Files\TortoiseSVN_150\bin;C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9\bin;C:\PROGRA~1\Groovy\Groovy-1.5.6\bin;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2008b\bin;C:\Program Files\MATLAB\R2008b\bin\win32
+Mar 6, 2009 11:59:19 AM org.apache.coyote.http11.Http11BaseProtocol init
+INFO: Initializing Coyote HTTP/1.1 on http-80
+Mar 6, 2009 11:59:19 AM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 843 ms
+Mar 6, 2009 11:59:19 AM org.apache.catalina.core.StandardService start
+INFO: Starting service Catalina
+Mar 6, 2009 11:59:19 AM org.apache.catalina.core.StandardEngine start
+INFO: Starting Servlet Engine: Apache Tomcat/5.5.12
+Mar 6, 2009 11:59:19 AM org.apache.catalina.core.StandardHost start
+INFO: XML validation disabled
+Mar 6, 2009 11:59:19 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive documentation.war
+Mar 6, 2009 11:59:21 AM org.apache.coyote.http11.Http11BaseProtocol start
+INFO: Starting Coyote HTTP/1.1 on http-80
+Mar 6, 2009 11:59:21 AM org.apache.jk.common.ChannelSocket init
+INFO: JK: ajp13 listening on /0.0.0.0:8009
+Mar 6, 2009 11:59:21 AM org.apache.jk.server.JkMain start
+INFO: Jk running ID=0 time=0/0  config=null
+Mar 6, 2009 11:59:21 AM org.apache.catalina.storeconfig.StoreLoader load
+INFO: Find registry server-registry.xml at classpath resource
+Mar 6, 2009 11:59:21 AM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 2360 ms
+Mar 6, 2009 12:00:14 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The Apache Portable Runtime which allows optimal performance in production environments was not found on the java.library.path: C:\Program Files\Java\jdk1.6.0_03\bin;.;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;.;C:\PROGRA~1\Java\jdk1.6.0_03\bin;C:\PROGRA~1\apache-ant-1.7.0\bin;C:\PROGRA~1\Java\JMF21~1.1E\lib;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\NTRU Cryptosystems\NTRU TCG Software Stack\bin\;C:\Program Files\Wave Systems Corp\Dell Preboot Manager\Access Client\v5\;c:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\user\IDIQ-StackID\CSDiff;"C:\Program Files\Softinterface, Inc\DiffDoc";"C:\Program Files\md5";C:\Python25;C:\StackID\Projects\Battery\StackID;C:\Program Files\jEdit;C:\Program Files\NSIS;C:\Program Files\Graphviz2.20\Bin;C:\Program Files\TortoiseSVN_150\bin;C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9\bin;C:\PROGRA~1\Groovy\Groovy-1.5.6\bin;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2008b\bin;C:\Program Files\MATLAB\R2008b\bin\win32
+Mar 6, 2009 12:00:15 PM org.apache.coyote.http11.Http11BaseProtocol init
+INFO: Initializing Coyote HTTP/1.1 on http-80
+Mar 6, 2009 12:00:15 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 360 ms
+Mar 6, 2009 12:00:15 PM org.apache.catalina.core.StandardService start
+INFO: Starting service Catalina
+Mar 6, 2009 12:00:15 PM org.apache.catalina.core.StandardEngine start
+INFO: Starting Servlet Engine: Apache Tomcat/5.5.12
+Mar 6, 2009 12:00:15 PM org.apache.catalina.core.StandardHost start
+INFO: XML validation disabled
+Mar 6, 2009 12:00:15 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive documentation.war
+Mar 6, 2009 12:00:15 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive indsExec.war
+Mar 6, 2009 12:00:15 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive indsViewer.war
+Mar 6, 2009 12:00:16 PM org.apache.coyote.http11.Http11BaseProtocol start
+INFO: Starting Coyote HTTP/1.1 on http-80
+Mar 6, 2009 12:00:16 PM org.apache.jk.common.ChannelSocket init
+INFO: JK: ajp13 listening on /0.0.0.0:8009
+Mar 6, 2009 12:00:16 PM org.apache.jk.server.JkMain start
+INFO: Jk running ID=0 time=0/0  config=null
+Mar 6, 2009 12:00:16 PM org.apache.catalina.storeconfig.StoreLoader load
+INFO: Find registry server-registry.xml at classpath resource
+Mar 6, 2009 12:00:16 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1343 ms
+Mar 6, 2009 1:09:23 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: The Apache Portable Runtime which allows optimal performance in production environments was not found on the java.library.path: C:\Program Files\Java\jdk1.6.0_03\bin;.;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;.;C:\PROGRA~1\Java\jdk1.6.0_03\bin;C:\PROGRA~1\apache-ant-1.7.0\bin;C:\PROGRA~1\Java\JMF21~1.1E\lib;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\NTRU Cryptosystems\NTRU TCG Software Stack\bin\;C:\Program Files\Wave Systems Corp\Dell Preboot Manager\Access Client\v5\;c:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\user\IDIQ-StackID\CSDiff;"C:\Program Files\Softinterface, Inc\DiffDoc";"C:\Program Files\md5";C:\Python25;C:\StackID\Projects\Battery\StackID;C:\Program Files\jEdit;C:\Program Files\NSIS;C:\Program Files\Graphviz2.20\Bin;C:\Program Files\TortoiseSVN_150\bin;C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9\bin;C:\PROGRA~1\Groovy\Groovy-1.5.6\bin;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2008b\bin;C:\Program Files\MATLAB\R2008b\bin\win32
+Mar 6, 2009 1:09:23 PM org.apache.coyote.http11.Http11BaseProtocol init
+INFO: Initializing Coyote HTTP/1.1 on http-80
+Mar 6, 2009 1:09:23 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 359 ms
+Mar 6, 2009 1:09:23 PM org.apache.catalina.core.StandardService start
+INFO: Starting service Catalina
+Mar 6, 2009 1:09:23 PM org.apache.catalina.core.StandardEngine start
+INFO: Starting Servlet Engine: Apache Tomcat/5.5.12
+Mar 6, 2009 1:09:23 PM org.apache.catalina.core.StandardHost start
+INFO: XML validation disabled
+Mar 6, 2009 1:09:23 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive documentation.war
+Mar 6, 2009 1:09:23 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive indsExec.war
+Mar 6, 2009 1:09:24 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive indsViewer.war
+Mar 6, 2009 1:09:25 PM org.apache.coyote.http11.Http11BaseProtocol start
+INFO: Starting Coyote HTTP/1.1 on http-80
+Mar 6, 2009 1:09:25 PM org.apache.jk.common.ChannelSocket init
+INFO: JK: ajp13 listening on /0.0.0.0:8009
+Mar 6, 2009 1:09:25 PM org.apache.jk.server.JkMain start
+INFO: Jk running ID=0 time=0/15  config=null
+Mar 6, 2009 1:09:25 PM org.apache.catalina.storeconfig.StoreLoader load
+INFO: Find registry server-registry.xml at classpath resource
+Mar 6, 2009 1:09:25 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 2000 ms

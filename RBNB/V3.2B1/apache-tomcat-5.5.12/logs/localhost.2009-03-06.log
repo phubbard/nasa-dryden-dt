@@ -1,0 +1,427 @@
+Mar 6, 2009 11:59:20 AM org.apache.catalina.core.ApplicationContext log
+INFO: org.apache.webapp.balancer.BalancerFilter: init(): ruleChain: [org.apache.webapp.balancer.RuleChain: [org.apache.webapp.balancer.rules.URLStringMatchRule: Target string: News / Redirect URL: http://www.cnn.com], [org.apache.webapp.balancer.rules.RequestParameterRule: Target param name: paramName / Target param value: paramValue / Redirect URL: http://www.yahoo.com], [org.apache.webapp.balancer.rules.AcceptEverythingRule: Redirect URL: http://jakarta.apache.org]]
+Mar 6, 2009 11:59:20 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 6, 2009 11:59:20 AM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 6, 2009 11:59:21 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 6, 2009 11:59:21 AM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 6, 2009 11:59:40 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@18bd7f1')
+Mar 6, 2009 11:59:40 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@e4245')
+Mar 6, 2009 11:59:40 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@20fa83')
+Mar 6, 2009 11:59:40 AM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 6, 2009 11:59:40 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 6, 2009 11:59:40 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@29c204')
+Mar 6, 2009 11:59:40 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@180cf2a')
+Mar 6, 2009 11:59:40 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@1a0d866')
+Mar 6, 2009 11:59:40 AM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 6, 2009 11:59:40 AM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 6, 2009 12:00:15 PM org.apache.catalina.core.ApplicationContext log
+INFO: org.apache.webapp.balancer.BalancerFilter: init(): ruleChain: [org.apache.webapp.balancer.RuleChain: [org.apache.webapp.balancer.rules.URLStringMatchRule: Target string: News / Redirect URL: http://www.cnn.com], [org.apache.webapp.balancer.rules.RequestParameterRule: Target param name: paramName / Target param value: paramValue / Redirect URL: http://www.yahoo.com], [org.apache.webapp.balancer.rules.AcceptEverythingRule: Redirect URL: http://jakarta.apache.org]]
+Mar 6, 2009 12:00:15 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 6, 2009 12:00:15 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 6, 2009 12:00:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 6, 2009 12:00:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 6, 2009 12:00:28 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@46d228')
+Mar 6, 2009 12:00:28 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@18f7386')
+Mar 6, 2009 12:00:28 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@e99681')
+Mar 6, 2009 12:00:28 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 6, 2009 12:00:28 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 6, 2009 12:00:28 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@20fa83')
+Mar 6, 2009 12:00:28 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@11eb199')
+Mar 6, 2009 12:00:28 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@1de498')
+Mar 6, 2009 12:00:28 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 6, 2009 12:00:28 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 6, 2009 1:09:23 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:23 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: org.apache.webapp.balancer.BalancerFilter: init(): ruleChain: [org.apache.webapp.balancer.RuleChain: [org.apache.webapp.balancer.rules.URLStringMatchRule: Target string: News / Redirect URL: http://www.cnn.com], [org.apache.webapp.balancer.rules.RequestParameterRule: Target param name: paramName / Target param value: paramValue / Redirect URL: http://www.yahoo.com], [org.apache.webapp.balancer.rules.AcceptEverythingRule: Redirect URL: http://jakarta.apache.org]]
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:24 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:09:25 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: init: loglevel set to 6
+Mar 6, 2009 1:11:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: path=/xRender.py, C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF/cgi
+Mar 6, 2009 1:11:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: currentLoc=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi
+Mar 6, 2009 1:11:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: currentLoc=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi
+Mar 6, 2009 1:11:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: FOUND cgi at C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\xRender.py
+Mar 6, 2009 1:11:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI calc: name=xRender.py, path=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\xRender.py, scriptname=/cgi-bin\xRender.py, cginame=\xRender.py
+Mar 6, 2009 1:11:14 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI(envp=[{COMSPEC=C:\WINDOWS\system32\cmd.exe, HTTP_HOST=localhost, NUMBER_OF_PROCESSORS=2, SYSTEMROOT=C:\WINDOWS, VS90COMNTOOLS=C:\Program Files\Microsoft Visual Studio 9.0\Common7\Tools\, PATH=.;C:\PROGRA~1\Java\jdk1.6.0_03\bin;C:\PROGRA~1\apache-ant-1.7.0\bin;C:\PROGRA~1\Java\JMF21~1.1E\lib;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\NTRU Cryptosystems\NTRU TCG Software Stack\bin\;C:\Program Files\Wave Systems Corp\Dell Preboot Manager\Access Client\v5\;c:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\user\IDIQ-StackID\CSDiff;"C:\Program Files\Softinterface, Inc\DiffDoc";"C:\Program Files\md5";C:\Python25;C:\StackID\Projects\Battery\StackID;C:\Program Files\jEdit;C:\Program Files\NSIS;C:\Program Files\Graphviz2.20\Bin;C:\Program Files\TortoiseSVN_150\bin;C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9\bin;C:\PROGRA~1\Groovy\Groovy-1.5.6\bin;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2008b\bin;C:\Program Files\MATLAB\R2008b\bin\win32, HTTP_CONNECTION=keep-alive, REMOTE_IDENT=, BASEDIR=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.groovy;.gy, HTTP_KEEP_ALIVE=300, TEMP=C:\DOCUME~1\JohnW\LOCALS~1\Temp, X_TOMCAT_SCRIPT_PATH=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\xRender.py, ANT_HOME=C:\PROGRA~1\apache-ant-1.7.0, SERVER_SOFTWARE=TOMCAT, _RUNJDB="C:\Program Files\Java\jdk1.6.0_03\bin\jdb", REMOTE_HOST=127.0.0.1, HOMESHARE=\\erigoserv\users, GATEWAY_INTERFACE=CGI/1.1, CURRENT_DIR=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\bin, PROMPT=$P$G, M2=C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9\bin, HTTP_REFERER=http://localhost/indsViewer/, ACTION=start, HTTP_ACCEPT_LANGUAGE=en-us,en;q=0.5, DCRABBIT10_21ROOT=C:\DCRABBIT_10.21\, HTTP_ACCEPT=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8, PROCESSOR_LEVEL=6, SERVER_PORT=80, USERNAME=JohnW, CLIENTNAME=Console, QUERY_STRING=, EXECUTABLE=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\bin\catalina.bat, HOMEDRIVE=C:, SYSTEMDRIVE=C:, REQUEST_METHOD=GET, JAVA_ENDORSED_DIRS=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\common\endorsed, QTJAVA=C:\Program Files\Java\jre1.6.0_03\lib\ext\QTJava.zip, CONTENT_TYPE=, ALLUSERSPROFILE=C:\Documents and Settings\All Users, RBNBBIN=C:\PROGRA~1\RBNB\V3.2B1\bin, RBNBVER=V3.2B1, CATALINA_HOME=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12, WINDIR=C:\WINDOWS, TMP=C:\DOCUME~1\JohnW\LOCALS~1\Temp, JAVA_OPTS= -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file="${catalina.base}\conf\logging.properties", GROOVY_HOME=C:\PROGRA~1\Groovy\Groovy-1.5.6, FP_NO_HOST_CHECK=NO, JAVA_HOME=C:\Program Files\Java\jdk1.6.0_03, HOMEPATH=\Documents and Settings\JohnW, USERDNSDOMAIN=erigotech.local, COMPUTERNAME=JOHNW01, HTTP_ACCEPT_ENCODING=gzip,deflate, SERVER_NAME=localhost, CONTENT_LENGTH=, USERPROFILE=C:\Documents and Settings\JohnW, AUTH_TYPE=, CLASSPATH=C:\Program Files\Java\jdk1.6.0_03\lib\tools.jar;C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\bin\bootstrap.jar, SBSSERVER=erigoserv, APPDATA=C:\Documents and Settings\JohnW\Application Data, REMOTE_USER=, COMMONPROGRAMFILES=C:\Program Files\Common Files, PROCESSOR_ARCHITECTURE=x86, SESSIONNAME=Console, PROCESSOR_IDENTIFIER=x86 Family 6 Model 15 Stepping 11, GenuineIntel, CATALINA_BASE=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12, M2_HOME=C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9, OS=Windows_NT, LAUNCH4J_HOME=C:\PROGRA~1\Launch4j, REMOTE_ADDR=127.0.0.1, _EXECJAVA=start "Tomcat" "C:\Program Files\Java\jdk1.6.0_03\bin\java", SERVER_PROTOCOL=HTTP/1.1, MAVEN_OPTS=-Xms256m -Xmx512m, HTTP_ACCEPT_CHARSET=ISO-8859-1,utf-8;q=0.7,*;q=0.7, SCRIPT_NAME=/cgi-bin\xRender.py, PATH_INFO=, CATALINA_TMPDIR=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\temp, LOGONSERVER=\\ERIGOSERV, _RUNJAVA="C:\Program Files\Java\jdk1.6.0_03\bin\java", HTTP_USER_AGENT=Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.6) Gecko/2009011913 Firefox/3.0.6, USERDOMAIN=ERIGOTECH, PROCESSOR_REVISION=0f0b, _RUNJAVAW="C:\Program Files\Java\jdk1.6.0_03\bin\javaw", RBNBPI=C:\PROGRA~1\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\webTurbine\WEB-INF\classes, MAINCLASS=org.apache.catalina.startup.Bootstrap, PROGRAMFILES=C:\Program Files, _RUNJAVAC="C:\Program Files\Java\jdk1.6.0_03\bin\javac"}], command=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\xRender.py)
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG inds hostname is localhost
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG Loaded last checksum: e07f226ae92448e0c1719d5c867c46fe
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG inds hostname is localhost
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG Loaded last checksum: e07f226ae92448e0c1719d5c867c46fe
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,562 DEBUG Checking for changes in configuration...
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG New hex digest: 1063a4a0cbed04110256893961bee163 Old: e07f226ae92448e0c1719d5c867c46fe
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG inds hostname is localhost
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG Loaded last checksum: e07f226ae92448e0c1719d5c867c46fe
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 INFO XML changed, continuing to process
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG inds hostname is localhost
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG Loaded last checksum: 1063a4a0cbed04110256893961bee163
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG Loading colors from config file
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG inds hostname is localhost
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG Loaded last checksum: 1063a4a0cbed04110256893961bee163
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG Pull INDS and process into dictionary
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 INFO Trying to get process list from "/indsExec/" ...
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,608 DEBUG Building dictionaries
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,812 DEBUG Dictionaries created OK.
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,812 DEBUG Processing sources...
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,967 INFO DT name is DataTurbine_2
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG Processing servers...
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG Plugins...
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG converters...
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG Sinks...
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG All cmd IDs processed!
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG Saving dot to tempfile
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG dot saved to c:\docume~1\johnw\locals~1\temp\tmpnqhhm_
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG Running DOT to generate SVG
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG inds hostname is localhost
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG Loaded last checksum: 1063a4a0cbed04110256893961bee163
+Mar 6, 2009 1:11:16 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:16,983 DEBUG command string is "C:\PROGRA~1\Graphviz2.20\bin\dot.exe  -Tsvg c:\docume~1\johnw\locals~1\temp\tmpnqhhm_ -o ..\..\inds-svg\inds.svg"
+Mar 6, 2009 1:11:19 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:11:19,733 INFO Dot ran OK
+Mar 6, 2009 1:11:19 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI: addHeader("Content-Type: text/html")
+Mar 6, 2009 1:11:19 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI: write("<HTML><HEAD><TITLE>
+xRender INDS visualizer</TITLE>
+</HEAD>
+<BODY>
+<iframe src="/inds-svg/inds.svg" width="100%" height="100%" 
+frameborder="0" marginwidth="0" marginheight="0">
+<object type="image/svg+xml" data="/inds-svg/inds.svg" width="100%" height="100%"
+name="output" alt="SVG drawing of INDS XML system">
+<embed src="/inds-svg/inds.svg" type="image/svg+xml"
+    palette="foreground">
+</embed>
+</object>
+</iframe>
+</BODY></HTML>	
+	
+")
+Mar 6, 2009 1:11:20 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI: 57 lines received on stderr
+Mar 6, 2009 1:18:34 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: path=/dotFinder.py, C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF/cgi
+Mar 6, 2009 1:18:34 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: currentLoc=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi
+Mar 6, 2009 1:18:34 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: currentLoc=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi
+Mar 6, 2009 1:18:34 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: FOUND cgi at C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\dotFinder.py
+Mar 6, 2009 1:18:34 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI calc: name=dotFinder.py, path=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\dotFinder.py, scriptname=/cgi-bin\dotFinder.py, cginame=\dotFinder.py
+Mar 6, 2009 1:18:34 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI(envp=[{COMSPEC=C:\WINDOWS\system32\cmd.exe, HTTP_HOST=localhost, NUMBER_OF_PROCESSORS=2, SYSTEMROOT=C:\WINDOWS, VS90COMNTOOLS=C:\Program Files\Microsoft Visual Studio 9.0\Common7\Tools\, PATH=.;C:\PROGRA~1\Java\jdk1.6.0_03\bin;C:\PROGRA~1\apache-ant-1.7.0\bin;C:\PROGRA~1\Java\JMF21~1.1E\lib;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\NTRU Cryptosystems\NTRU TCG Software Stack\bin\;C:\Program Files\Wave Systems Corp\Dell Preboot Manager\Access Client\v5\;c:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\user\IDIQ-StackID\CSDiff;"C:\Program Files\Softinterface, Inc\DiffDoc";"C:\Program Files\md5";C:\Python25;C:\StackID\Projects\Battery\StackID;C:\Program Files\jEdit;C:\Program Files\NSIS;C:\Program Files\Graphviz2.20\Bin;C:\Program Files\TortoiseSVN_150\bin;C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9\bin;C:\PROGRA~1\Groovy\Groovy-1.5.6\bin;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2008b\bin;C:\Program Files\MATLAB\R2008b\bin\win32, HTTP_CONNECTION=keep-alive, REMOTE_IDENT=, BASEDIR=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.groovy;.gy, HTTP_KEEP_ALIVE=300, TEMP=C:\DOCUME~1\JohnW\LOCALS~1\Temp, X_TOMCAT_SCRIPT_PATH=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\dotFinder.py, ANT_HOME=C:\PROGRA~1\apache-ant-1.7.0, SERVER_SOFTWARE=TOMCAT, _RUNJDB="C:\Program Files\Java\jdk1.6.0_03\bin\jdb", REMOTE_HOST=127.0.0.1, HOMESHARE=\\erigoserv\users, GATEWAY_INTERFACE=CGI/1.1, CURRENT_DIR=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\bin, PROMPT=$P$G, M2=C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9\bin, ACTION=start, HTTP_ACCEPT_LANGUAGE=en-us,en;q=0.5, DCRABBIT10_21ROOT=C:\DCRABBIT_10.21\, HTTP_ACCEPT=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8, PROCESSOR_LEVEL=6, SERVER_PORT=80, USERNAME=JohnW, CLIENTNAME=Console, QUERY_STRING=, EXECUTABLE=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\bin\catalina.bat, HOMEDRIVE=C:, SYSTEMDRIVE=C:, REQUEST_METHOD=GET, JAVA_ENDORSED_DIRS=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\common\endorsed, QTJAVA=C:\Program Files\Java\jre1.6.0_03\lib\ext\QTJava.zip, CONTENT_TYPE=, ALLUSERSPROFILE=C:\Documents and Settings\All Users, RBNBBIN=C:\PROGRA~1\RBNB\V3.2B1\bin, RBNBVER=V3.2B1, CATALINA_HOME=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12, WINDIR=C:\WINDOWS, TMP=C:\DOCUME~1\JohnW\LOCALS~1\Temp, JAVA_OPTS= -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file="${catalina.base}\conf\logging.properties", GROOVY_HOME=C:\PROGRA~1\Groovy\Groovy-1.5.6, FP_NO_HOST_CHECK=NO, JAVA_HOME=C:\Program Files\Java\jdk1.6.0_03, HOMEPATH=\Documents and Settings\JohnW, USERDNSDOMAIN=erigotech.local, COMPUTERNAME=JOHNW01, HTTP_ACCEPT_ENCODING=gzip,deflate, SERVER_NAME=localhost, CONTENT_LENGTH=, USERPROFILE=C:\Documents and Settings\JohnW, AUTH_TYPE=, CLASSPATH=C:\Program Files\Java\jdk1.6.0_03\lib\tools.jar;C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\bin\bootstrap.jar, SBSSERVER=erigoserv, APPDATA=C:\Documents and Settings\JohnW\Application Data, REMOTE_USER=, COMMONPROGRAMFILES=C:\Program Files\Common Files, PROCESSOR_ARCHITECTURE=x86, SESSIONNAME=Console, PROCESSOR_IDENTIFIER=x86 Family 6 Model 15 Stepping 11, GenuineIntel, CATALINA_BASE=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12, M2_HOME=C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9, OS=Windows_NT, LAUNCH4J_HOME=C:\PROGRA~1\Launch4j, REMOTE_ADDR=127.0.0.1, _EXECJAVA=start "Tomcat" "C:\Program Files\Java\jdk1.6.0_03\bin\java", SERVER_PROTOCOL=HTTP/1.1, MAVEN_OPTS=-Xms256m -Xmx512m, HTTP_ACCEPT_CHARSET=ISO-8859-1,utf-8;q=0.7,*;q=0.7, SCRIPT_NAME=/cgi-bin\dotFinder.py, PATH_INFO=, CATALINA_TMPDIR=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\temp, LOGONSERVER=\\ERIGOSERV, _RUNJAVA="C:\Program Files\Java\jdk1.6.0_03\bin\java", HTTP_USER_AGENT=Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.6) Gecko/2009011913 Firefox/3.0.6, USERDOMAIN=ERIGOTECH, PROCESSOR_REVISION=0f0b, _RUNJAVAW="C:\Program Files\Java\jdk1.6.0_03\bin\javaw", RBNBPI=C:\PROGRA~1\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\webTurbine\WEB-INF\classes, MAINCLASS=org.apache.catalina.startup.Bootstrap, PROGRAMFILES=C:\Program Files, _RUNJAVAC="C:\Program Files\Java\jdk1.6.0_03\bin\javac"}], command=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\dotFinder.py)
+Mar 6, 2009 1:18:34 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI: addHeader("Content-Type: text/html")
+Mar 6, 2009 1:18:34 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI: write("
+	<HEAD><TITLE>Configuration viewer</TITLE>
+	<HTML><BODY>
+	<h3>Configuration:</h3>
+	<pre>
+	 Configuration file: defaults.cfg
+	 INDS hostname: localhost
+	 INDS viewer hostname: localhost:80
+	 dot command: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+	 dot parameters: 
+	</pre>
+	</BODY></HTML>
+	
+")
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: path=/xRender.py, C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF/cgi
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: currentLoc=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: currentLoc=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI: FOUND cgi at C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\xRender.py
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: findCGI calc: name=xRender.py, path=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\xRender.py, scriptname=/cgi-bin\xRender.py, cginame=\xRender.py
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI(envp=[{COMSPEC=C:\WINDOWS\system32\cmd.exe, HTTP_HOST=192.168.2.56, NUMBER_OF_PROCESSORS=2, SYSTEMROOT=C:\WINDOWS, VS90COMNTOOLS=C:\Program Files\Microsoft Visual Studio 9.0\Common7\Tools\, PATH=.;C:\PROGRA~1\Java\jdk1.6.0_03\bin;C:\PROGRA~1\apache-ant-1.7.0\bin;C:\PROGRA~1\Java\JMF21~1.1E\lib;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\NTRU Cryptosystems\NTRU TCG Software Stack\bin\;C:\Program Files\Wave Systems Corp\Dell Preboot Manager\Access Client\v5\;c:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\user\IDIQ-StackID\CSDiff;"C:\Program Files\Softinterface, Inc\DiffDoc";"C:\Program Files\md5";C:\Python25;C:\StackID\Projects\Battery\StackID;C:\Program Files\jEdit;C:\Program Files\NSIS;C:\Program Files\Graphviz2.20\Bin;C:\Program Files\TortoiseSVN_150\bin;C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9\bin;C:\PROGRA~1\Groovy\Groovy-1.5.6\bin;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\MATLAB\R2008b\bin;C:\Program Files\MATLAB\R2008b\bin\win32, HTTP_CONNECTION=keep-alive, REMOTE_IDENT=, BASEDIR=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.groovy;.gy, HTTP_KEEP_ALIVE=300, TEMP=C:\DOCUME~1\JohnW\LOCALS~1\Temp, X_TOMCAT_SCRIPT_PATH=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\xRender.py, ANT_HOME=C:\PROGRA~1\apache-ant-1.7.0, SERVER_SOFTWARE=TOMCAT, _RUNJDB="C:\Program Files\Java\jdk1.6.0_03\bin\jdb", REMOTE_HOST=192.168.2.56, HOMESHARE=\\erigoserv\users, GATEWAY_INTERFACE=CGI/1.1, CURRENT_DIR=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\bin, PROMPT=$P$G, M2=C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9\bin, HTTP_REFERER=http://192.168.2.56/indsViewer/, ACTION=start, HTTP_ACCEPT_LANGUAGE=en-us,en;q=0.5, DCRABBIT10_21ROOT=C:\DCRABBIT_10.21\, HTTP_ACCEPT=text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8, PROCESSOR_LEVEL=6, SERVER_PORT=80, USERNAME=JohnW, CLIENTNAME=Console, QUERY_STRING=, EXECUTABLE=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\bin\catalina.bat, HOMEDRIVE=C:, SYSTEMDRIVE=C:, REQUEST_METHOD=GET, JAVA_ENDORSED_DIRS=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\common\endorsed, QTJAVA=C:\Program Files\Java\jre1.6.0_03\lib\ext\QTJava.zip, CONTENT_TYPE=, ALLUSERSPROFILE=C:\Documents and Settings\All Users, RBNBBIN=C:\PROGRA~1\RBNB\V3.2B1\bin, RBNBVER=V3.2B1, CATALINA_HOME=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12, WINDIR=C:\WINDOWS, TMP=C:\DOCUME~1\JohnW\LOCALS~1\Temp, JAVA_OPTS= -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file="${catalina.base}\conf\logging.properties", GROOVY_HOME=C:\PROGRA~1\Groovy\Groovy-1.5.6, FP_NO_HOST_CHECK=NO, JAVA_HOME=C:\Program Files\Java\jdk1.6.0_03, HOMEPATH=\Documents and Settings\JohnW, USERDNSDOMAIN=erigotech.local, COMPUTERNAME=JOHNW01, HTTP_ACCEPT_ENCODING=gzip,deflate, SERVER_NAME=192.168.2.56, CONTENT_LENGTH=, USERPROFILE=C:\Documents and Settings\JohnW, AUTH_TYPE=, CLASSPATH=C:\Program Files\Java\jdk1.6.0_03\lib\tools.jar;C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\bin\bootstrap.jar, SBSSERVER=erigoserv, APPDATA=C:\Documents and Settings\JohnW\Application Data, REMOTE_USER=, COMMONPROGRAMFILES=C:\Program Files\Common Files, PROCESSOR_ARCHITECTURE=x86, SESSIONNAME=Console, PROCESSOR_IDENTIFIER=x86 Family 6 Model 15 Stepping 11, GenuineIntel, CATALINA_BASE=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12, M2_HOME=C:\PROGRA~1\Apache Software Foundation\apache-maven-2.0.9, OS=Windows_NT, LAUNCH4J_HOME=C:\PROGRA~1\Launch4j, REMOTE_ADDR=192.168.2.56, _EXECJAVA=start "Tomcat" "C:\Program Files\Java\jdk1.6.0_03\bin\java", SERVER_PROTOCOL=HTTP/1.1, MAVEN_OPTS=-Xms256m -Xmx512m, HTTP_ACCEPT_CHARSET=ISO-8859-1,utf-8;q=0.7,*;q=0.7, SCRIPT_NAME=/cgi-bin\xRender.py, PATH_INFO=, CATALINA_TMPDIR=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\temp, LOGONSERVER=\\ERIGOSERV, _RUNJAVA="C:\Program Files\Java\jdk1.6.0_03\bin\java", HTTP_USER_AGENT=Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.6) Gecko/2009011913 Firefox/3.0.6, USERDOMAIN=ERIGOTECH, PROCESSOR_REVISION=0f0b, _RUNJAVAW="C:\Program Files\Java\jdk1.6.0_03\bin\javaw", RBNBPI=C:\PROGRA~1\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\webTurbine\WEB-INF\classes, MAINCLASS=org.apache.catalina.startup.Bootstrap, PROGRAMFILES=C:\Program Files, _RUNJAVAC="C:\Program Files\Java\jdk1.6.0_03\bin\javac"}], command=C:\user\DryScan\nasa-dryden-dt\RBNB\V3.2B1\apache-tomcat-5.5.12\webapps\ROOT\WEB-INF\cgi\xRender.py)
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG inds hostname is localhost
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG Loaded last checksum: 1063a4a0cbed04110256893961bee163
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG inds hostname is localhost
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG Loaded last checksum: 1063a4a0cbed04110256893961bee163
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,799 DEBUG Checking for changes in configuration...
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG Hex digest matches last run from config file
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 INFO Output missing, continuing
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG inds hostname is localhost
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG Loaded last checksum: 1063a4a0cbed04110256893961bee163
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG Loading colors from config file
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG inds hostname is localhost
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG Loaded last checksum: 1063a4a0cbed04110256893961bee163
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG Pull INDS and process into dictionary
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 INFO Trying to get process list from "/indsExec/" ...
+Mar 6, 2009 1:19:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:32,815 DEBUG Building dictionaries
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,033 DEBUG Dictionaries created OK.
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,033 DEBUG Processing sources...
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,033 INFO DT name is DataTurbine_2
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG Processing servers...
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG Plugins...
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG converters...
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG Sinks...
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG All cmd IDs processed!
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG Saving dot to tempfile
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG dot saved to c:\docume~1\johnw\locals~1\temp\tmpbxwgap
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG Running DOT to generate SVG
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG OS is NT, no paramaters set
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG config file defaults.cfg opened ok
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG dot is: C:\PROGRA~1\Graphviz2.20\bin\dot.exe
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG inds hostname is localhost
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG inds viewer hostname is localhost:80
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG Loaded last checksum: 1063a4a0cbed04110256893961bee163
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,049 DEBUG command string is "C:\PROGRA~1\Graphviz2.20\bin\dot.exe  -Tsvg c:\docume~1\johnw\locals~1\temp\tmpbxwgap -o ..\..\inds-svg\inds.svg"
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI (stderr):2009-03-06 13:19:33,236 INFO Dot ran OK
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI: addHeader("Content-Type: text/html")
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI: write("<HTML><HEAD><TITLE>
+xRender INDS visualizer</TITLE>
+</HEAD>
+<BODY>
+<iframe src="/inds-svg/inds.svg" width="100%" height="100%" 
+frameborder="0" marginwidth="0" marginheight="0">
+<object type="image/svg+xml" data="/inds-svg/inds.svg" width="100%" height="100%"
+name="output" alt="SVG drawing of INDS XML system">
+<embed src="/inds-svg/inds.svg" type="image/svg+xml"
+    palette="foreground">
+</embed>
+</object>
+</iframe>
+</BODY></HTML>	
+	
+")
+Mar 6, 2009 1:19:33 PM org.apache.catalina.core.ApplicationContext log
+INFO: cgi: runCGI: 50 lines received on stderr
+Mar 6, 2009 1:22:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@5d3ac0')
+Mar 6, 2009 1:22:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@bc312f')
+Mar 6, 2009 1:22:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@14124d6')
+Mar 6, 2009 1:22:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 6, 2009 1:22:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+Mar 6, 2009 1:22:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@bebb88')
+Mar 6, 2009 1:22:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@a0a36')
+Mar 6, 2009 1:22:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeReplaced('org.apache.catalina.WELCOME_FILES', '[Ljava.lang.String;@124614c')
+Mar 6, 2009 1:22:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+Mar 6, 2009 1:22:32 PM org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()

@@ -1,5 +1,0 @@
-<monitor destURLPath="http://localhost/RBNB/pngTest/" mkcolQuery="?a=10000" 
-		debug="true" minimumInterval="60000" maximumInterval="600000">
-	<auth><user>inds</user><password>TC4^data</password></auth>
-	<url>http://branch.nsstc.nasa.gov/rtmm/INDS/TC4/dc8goes.png</url>
-</monitor>
