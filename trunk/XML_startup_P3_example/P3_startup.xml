@@ -102,7 +102,7 @@
 	
 	<!-- B200 project -->
 	<del initialDirectory="Projects/B200" file="*.log"/>
-	<csvDemux initialDirectory="Projects/B200" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="B200.xml">
+	<csvDemux initialDirectory="Projects/B200" logFile="CSVDemux.log" dateFormat="yyyyMMdd'T'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="B200.xml">
 	    <input type="rbnb" port="localhost:3333" channel="B200/B200_ASR_reduced.txt"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="HASR"/>
 	</csvDemux>
@@ -110,7 +110,7 @@
 	
 	<!-- NOAA P3 project -->
 	<del initialDirectory="Projects/NOAA_P3" file="*.log"/>
-	<csvDemux initialDirectory="Projects/NOAA_P3" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="NOAA_P3.xml">
+	<csvDemux initialDirectory="Projects/NOAA_P3" logFile="CSVDemux.log" dateFormat="yyyyMMdd'T'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="NOAA_P3.xml">
 	    <input type="rbnb" port="localhost:3333" channel="NOAA_P3/WP3D.txt"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="WP3D"/>
 	</csvDemux>
@@ -118,7 +118,7 @@
 	
 	<!-- CV580 project -->
 	<del initialDirectory="Projects/CV580" file="*.log"/>
-	<csvDemux initialDirectory="Projects/CV580" logFile="CSVDemux.log" dateFormat="yyyyMMdd\'T\'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="CV580.xml">
+	<csvDemux initialDirectory="Projects/CV580" logFile="CSVDemux.log" dateFormat="yyyyMMdd'T'HHmmss" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="CV580.xml">
 	    <input type="rbnb" port="localhost:3333" channel="CV580/_CSV"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="CV580_IWG1"/>
 	</csvDemux>
@@ -126,13 +126,13 @@
 	
 	<!-- Twin Otter project -->
 	<del initialDirectory="Projects/TwinOtter" file="*.log"/>
-	<csvDemux initialDirectory="Projects/TwinOtter" logFile="TwinOtterDemux.log" dateFormat="yyyy-MM-dd\'T\'HH:mm:ss\'Z\'" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="TwinOtter.xml">
+	<csvDemux initialDirectory="Projects/TwinOtter" logFile="TwinOtterDemux.log" dateFormat="yyyy-MM-dd'T'HH:mm:ss'Z'" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="TwinOtter.xml">
 	    <input type="rbnb" port="localhost:3333" channel="P3B-5800-cap/UDP"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="true" name="N255SA"/>
 	</csvDemux>
 	<deadReckoning initialDirectory="Projects/TwinOtter" logFile="DeadReckoning.log" maxLatency_sec="1800"/>
 	
-	<sleep duration_ms="5000"/>
+	<sleep duration_ms="15000"/>
 	
 	<!-- Capture/HttpMonitor -->
 	<del initialDirectory="Capture/HttpMonitor" file="*.log"/>
