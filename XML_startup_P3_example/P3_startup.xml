@@ -132,7 +132,7 @@
 	</csvDemux>
 	<deadReckoning initialDirectory="Projects/TwinOtter" logFile="DeadReckoning.log" maxLatency_sec="1800"/>
 	
-	<sleep duration_ms="15000"/>
+	<sleep duration_ms="5000"/>
 	
 	<!-- Capture/HttpMonitor -->
 	<del initialDirectory="Capture/HttpMonitor" file="*.log"/>

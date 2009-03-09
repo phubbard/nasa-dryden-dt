@@ -1,6 +1,6 @@
 
 REM INDS startup batch file for Windows
-REM NOTE: We assume that JAVA_HOME is defined in the environment
+REM NOTE: We assume that JAVA_HOME and CATALINA_OPTS are defined in the environment
 
 REM Start Tomcat
 pushd ..\RBNB\V3.2B1\apache-tomcat-5.5.12\bin
