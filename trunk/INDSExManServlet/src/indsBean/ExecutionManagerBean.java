@@ -8,11 +8,12 @@ import java.lang.reflect.Method;
  * 
  *  ---  History  ---
  *  2009/03/03 Added getCommandName
+ %  2009/03/09 Added an attempt to reconnect to Execution Manager if certain errors are caught
  *  
  *  --- To Do ---
  *
  * Jesse Norris, Creare Inc.
- * Version 0.7
+ * Version 0.8
  */
 
 
@@ -29,7 +30,7 @@ public class ExecutionManagerBean implements java.io.Serializable
 	/** 
 	  * Constructor method initializes the remoteIndsObject and remoteClass
 	  */
-	public ExecutionManagerBean()
+	public void ExecutionManagerBean()
 		throws java.rmi.RemoteException, java.rmi.NotBoundException, java.lang.ClassNotFoundException
 	{
 		// Connect using RMI:
@@ -57,6 +58,7 @@ public class ExecutionManagerBean implements java.io.Serializable
 	 * Return the HTML formatted response for the current queryCommand and queryAction
      */
     public String getActionResponse() 
+		throws java.rmi.RemoteException, java.rmi.NotBoundException, java.lang.ClassNotFoundException
 	{
 		String remoteResult = new String();
 		
@@ -84,6 +86,12 @@ public class ExecutionManagerBean implements java.io.Serializable
 		}
 		catch (java.lang.reflect.InvocationTargetException e)
 		{
+		}
+		catch (java.lang.NullPointerException e)
+		{
+			// Attempt to reconnect to execution manager
+			ExecutionManagerBean();
+			remoteResult = getActionResponse();
 		}
 		
 		return remoteResult;
@@ -114,18 +122,33 @@ public class ExecutionManagerBean implements java.io.Serializable
 	* Return the command list (formatted for HTML)
 	*/
 	public String getCommandList()
-		throws java.rmi.RemoteException
+		throws java.rmi.RemoteException, java.rmi.NotBoundException, java.lang.ClassNotFoundException
 	{
 		String commandListHTML="<ul>";
-		for (String command : remoteIndsObject.getCommandList()) {
-			
-			if (!remoteIndsObject.isComplete(command)) {
-				commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"'>"+remoteIndsObject.getName(command)+"</a></li>";
-			} else if (queryDisplay == null) {
-				commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"' class='complete'>"+remoteIndsObject.getName(command)+"</a></li>";
-			}
-		}		
-		commandListHTML=commandListHTML+"</ul>";
+		try 
+		{
+			for (String command : remoteIndsObject.getCommandList()) {
+				
+				if (!remoteIndsObject.isComplete(command)) {
+					commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"'>"+remoteIndsObject.getName(command)+"</a></li>";
+				} else if (queryDisplay == null) {
+					commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"' class='complete'>"+remoteIndsObject.getName(command)+"</a></li>";
+				}
+			}		
+			commandListHTML=commandListHTML+"</ul>";
+		}
+		catch (java.lang.NullPointerException e)
+		{
+			// Attempt to reconnect to execution manager
+			ExecutionManagerBean();
+			commandListHTML = getCommandList();
+		}
+		catch (java.rmi.ConnectException e)
+		{
+			// Attempt to reconnect to execution manager
+			ExecutionManagerBean();
+			commandListHTML = getCommandList();
+		}
 		return commandListHTML;
 	}
 	
@@ -159,9 +182,22 @@ public class ExecutionManagerBean implements java.io.Serializable
 	* Return the pretty name as opposed to command id
 	*/
 	public String getCommandName()
-		throws java.rmi.RemoteException
+		throws java.rmi.RemoteException, java.rmi.NotBoundException, java.lang.ClassNotFoundException
 	{
-	    return (queryCommand!=null ? remoteIndsObject.getName(queryCommand) : null);
+		String commandName = null;
+		try
+		{
+			if (queryCommand!=null) {
+				commandName = remoteIndsObject.getName(queryCommand);
+			}
+		}
+		catch (java.rmi.ConnectException e)
+		{
+			// Attempt to reconnect to execution manager
+			ExecutionManagerBean();
+			commandName = getCommandName();
+		}
+	    return commandName; //(queryCommand!=null ? remoteIndsObject.getName(queryCommand) : null);
 	}
 	
 	/**
