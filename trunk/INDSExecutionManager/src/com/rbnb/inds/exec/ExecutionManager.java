@@ -211,6 +211,7 @@ System.err.println(cmd);
 System.err.println("Stopping command "+cmd);						
 						cmd.stopExecution();
 					}
+					cmd.cleanup();
 				}
 			}
 		}

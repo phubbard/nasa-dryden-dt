@@ -59,15 +59,36 @@ public abstract class Command
 		classification = getCommandProperties().get("classification");
 
 		try {
+			// Note that deleteOnExit only works on normal shutdown (not ^C).
 			stdOutTempFile = File.createTempFile("exeman"+id, ".out.log");
+			stdOutTempFile.deleteOnExit();
 			localStdOutStream = new FileOutputStream(stdOutTempFile); 
 			stdErrTempFile = File.createTempFile("exeman"+id, ".err.log");
+			stdErrTempFile.deleteOnExit();
 			localStdErrStream = new FileOutputStream(stdErrTempFile);
 		} catch (java.io.IOException ioe) {
 			// wrap in an unchecked exception, so as not to interfere with
 			//  existing class hierarchy.
 			throw new RuntimeException(ioe); 
 		}			
+	}
+	
+	/**
+	  * Perform cleanup operations on shutdown.
+	  *
+	  * @since 2009/03/10
+	  */
+	public final void cleanup()
+	{
+		try {
+			localStdOutStream.close();
+			localStdErrStream.close();
+			stdOutTempFile.delete();
+			stdErrTempFile.delete();
+		} catch (java.io.IOException ioe) {
+			// Swallow exception:
+			System.err.println("WARNING: "+ioe.getMessage());
+		}
 	}
 	
 	/**
