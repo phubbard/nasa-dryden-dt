@@ -12,6 +12,13 @@ import pycurl
 import time
 import StringIO
 
+# Check commandline arguments
+if len(sys.argv) < 2:
+    print "Usage: python %s <get_username:get_password>]" % sys.argv[0]
+    raise SystemExit
+
+userPasswordStr = sys.argv[1]
+
 # interval is both the time to sleep between fetches as well as the increment
 # to add to the base time used in the RBNB-WebTurbine URL (the "?t=" value)
 interval = 1
@@ -26,7 +33,7 @@ cg = pycurl.Curl()
 cp = pycurl.Curl()
 
 cg.setopt(pycurl.HTTPAUTH,pycurl.HTTPAUTH_BASIC)
-cg.setopt(pycurl.USERPWD,'rbnb:rbnb')
+cg.setopt(pycurl.USERPWD,userPasswordStr)
 
 # mkcol the source
 c=pycurl.Curl()
