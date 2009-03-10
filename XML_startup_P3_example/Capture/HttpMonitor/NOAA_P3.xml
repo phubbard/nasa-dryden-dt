@@ -6,5 +6,5 @@
          debug="true">
       <auth><mode>BASIC</mode><user>rbnb</user><password>rbnb</password></auth>
       <!--url>http://indscore.dfrc.nasa.gov/RBNB/NOAA_P3/WP3D.txt</url-->
-      <url>http://192.168.2.56/NOAA_P3_JPW/WP3D.txt</url>
+      <url>http://192.168.2.56/RBNB/NOAA_P3_temp/WP3D.txt</url>
 </monitor>
