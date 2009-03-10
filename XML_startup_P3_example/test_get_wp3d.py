@@ -112,5 +112,6 @@ while 1:
 		cp.perform()	# put result
 	except:
 		print 'Failed to put %s' % (put_url)
+		continue
 	print 'Put data to %s' % (put_url)
 	
