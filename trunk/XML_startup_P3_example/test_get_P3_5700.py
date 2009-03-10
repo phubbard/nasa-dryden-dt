@@ -17,6 +17,17 @@ import time
 import StringIO
 import socket
 
+# Check commandline arguments
+if len(sys.argv) < 4:
+    print "Usage: python %s <get_username:get_password> <udp_host> <udp_port>]" % sys.argv[0]
+    print "Note:  Data will be sent via UDP to udp_host:udp_port"
+    raise SystemExit
+
+userPasswordStr = sys.argv[1]
+# For sending data out using UDP
+udp_out_host = sys.argv[2]
+udp_out_port = int(sys.argv[3])
+
 # interval is both the time to sleep between fetches as well as the increment
 # to add to the base time used in the RBNB-WebTurbine URL (the "?t=" value)
 interval = 1
@@ -28,10 +39,6 @@ put_src = 'http://localhost/RBNB/P3_temp'
 put_url = put_src + '/UDP'
 put_mkcol = put_src + '?c=10000'
 
-# For sending data out using UDP
-udp_out_host = '192.168.2.65'
-udp_out_port = int(5700)
-
 # Send data out using HTTP?  If false, we use UDP
 bHttpOut = False;
 
@@ -40,7 +47,7 @@ cg = pycurl.Curl()
 cp = None
 
 cg.setopt(pycurl.HTTPAUTH,pycurl.HTTPAUTH_BASIC)
-cg.setopt(pycurl.USERPWD,'rbnb:rbnb')
+cg.setopt(pycurl.USERPWD,userPasswordStr)
 
 if (bHttpOut):
 	# mkcol the source
