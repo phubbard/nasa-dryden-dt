@@ -89,7 +89,7 @@ div.header h1 {
 /* ~~~~~~~ */
 div#commandlist {
 		border-top: solid 1px #000000;
-		overflow: auto;
+		/*overflow: auto; */
 		/* height: 100%; */
 	}
 
