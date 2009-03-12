@@ -46,6 +46,9 @@ public class ExecutionManagerBean implements java.io.Serializable
 	{
 		try 
 		{
+			// Display a message
+			System.out.print("Attempting to connect to Execution Manager...");
+			
 			// Connect using RMI:
 			java.rmi.registry.Registry reg
 				= java.rmi.registry.LocateRegistry.getRegistry();
@@ -65,10 +68,15 @@ public class ExecutionManagerBean implements java.io.Serializable
 			queryAction = "getConfiguration";
 			queryCommand = null;
 			queryDisplay = null;
+			
+			// Display a message
+			System.out.println("Connection established!");
 		}
 		catch (java.rmi.ConnectException e)
 		{
-			throw new ExecutionManagerException("A connection to the Execution Manager could not be established!\n\tCheck that an instance of the Execution Manager is running.");
+			String message="Connection failed!\nCheck that an instance of the Execution Manager is running.\n";
+			System.out.println(message);
+			throw new ExecutionManagerException(message);
 		}
 	}
 	
