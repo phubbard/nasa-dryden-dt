@@ -1,0 +1,13 @@
+
+Rebuild the servlets
+====================
+
+cd RBNB\<RBNB version>\<apache-tomcat version>\webapps
+delete indsExec, indsExec.war, indsViewer, indsViewer.war
+
+cd INDSExManServlet
+delete indsExec.war, indsViewer.war
+
+bring up a command prompt in INDSExManServlet
+ant clean
+ant    (NOTE: A new copy of the two “.war” files is automatically put in Tomcat’s webapps directory)
