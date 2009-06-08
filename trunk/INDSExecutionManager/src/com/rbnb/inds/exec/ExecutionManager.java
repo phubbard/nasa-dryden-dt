@@ -19,6 +19,7 @@
 	2008/12/02  WHF  Created.
 	2008/12/23  WHF  Remote interface added.  
 			Shutdown processes in reverse order from startup.
+	2009/06/08  WHF  Added handling of Remote terminate method.
 */
 
 package com.rbnb.inds.exec;
@@ -307,6 +308,11 @@ System.err.println(" complete.");
 		{
 			String tag = getCommand(cmd).getTag();
 			return tag.length()==0 ? getCommand(cmd).getPrettyName() : tag;			
+		}
+		
+		public void terminate(String cmd) throws java.rmi.RemoteException
+		{
+			getCommand(cmd).stopExecution();
 		}
 		
 		private static final long serialVersionUID = 3348353995890377784L;	
