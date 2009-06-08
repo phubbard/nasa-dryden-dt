@@ -20,6 +20,7 @@
 	2008/12/19  WHF  Created.
 	2009/01/09  WHF  Added getChildConfiguration and getName.
 	2009/01/15  WHF  Added getRootConfiguration and getCommandClassification.
+	2009/06/08  WHF  Added terminate().
 */
 
 package com.rbnb.inds.exec;
@@ -85,5 +86,13 @@ public interface Remote extends java.rmi.Remote
 	  * @since 2009/01/09
 	  */
 	public String getName(String cmd) throws java.rmi.RemoteException;
+	
+	/**
+	  * Stops command execution of the named task.  Nothing happens if the 
+	  *  task has already stopped.
+	  *
+	  * @since 2009/06/08
+	  */
+	public void terminate(String cmd) throws java.rmi.RemoteException;
 }
 
