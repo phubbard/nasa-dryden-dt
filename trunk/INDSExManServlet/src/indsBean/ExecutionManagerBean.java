@@ -10,12 +10,13 @@ import java.lang.reflect.Method;
  *  2009/03/03 Added getCommandName
  *  2009/03/09 Added an attempt to reconnect to Execution Manager if certain errors are caught
  *  2009/03/10 Added an ExecutionMangerException class to handle errors
+ *  2009/06/21 Updated getActionResponse to handle methods that return different types
  *  
  *  --- To Do ---
  *  Still need to improve error handling.
  *
  * Jesse Norris, Creare Inc.
- * Version 0.9
+ * Version 1.0
  */
 
 
@@ -90,17 +91,18 @@ public class ExecutionManagerBean implements java.io.Serializable
 		
 		try
 		{
-			if (queryCommand != null) 
+			if (queryCommand != null)
 			{
 				Method action = remoteClass.getMethod(queryAction,queryCommand.getClass());
-				remoteResult = action.invoke(remoteIndsObject,queryCommand).toString();
-			} 
-			// This else was for actions that did require a queryCommand - not needed by the indsViewer
-			//else 
-			//{
-			//	Method action = remoteClass.getMethod(queryAction);
-			//	remoteResult = action.invoke(remoteIndsObject).toString();
-			//}
+				if (action.getGenericReturnType() == String.class) {
+					remoteResult = action.invoke(remoteIndsObject,queryCommand).toString();
+				} else if (action.getGenericReturnType() == void.class) {
+					action.invoke(remoteIndsObject,queryCommand);
+					remoteResult = queryAction+" executed successfully.";
+				} else {
+					remoteResult = "Action "+queryAction+" not invoked!  INDS Viewer does not support return type of "+action.getReturnType().toString();
+				}
+			}
 		}
 		
 		// Need to update with meaningful responses
@@ -141,9 +143,9 @@ public class ExecutionManagerBean implements java.io.Serializable
 					(actions[i].getName().compareTo("getRootConfiguration")!=0) &&
 					(actions[i].getName().compareTo("getName")!=0))
 					if (actions[i].getName().compareTo(queryAction)==0)
-						actionListHTML = actionListHTML+"<li class='current'><a href='action.jsp?&action="+actions[i].getName()+"'>"+actions[i].getName()+"</a></li>";
+						actionListHTML = actionListHTML+"<li class='current'><a href='action.jsp?action="+actions[i].getName()+"'>"+actions[i].getName()+"</a></li>";
 					else
-						actionListHTML = actionListHTML+"<li><a href='action.jsp?&action="+actions[i].getName()+"'>"+actions[i].getName()+"</a></li>";
+						actionListHTML = actionListHTML+"<li><a href='action.jsp?action="+actions[i].getName()+"'>"+actions[i].getName()+"</a></li>";
 			}
 		}
 		catch (java.lang.NullPointerException e)
