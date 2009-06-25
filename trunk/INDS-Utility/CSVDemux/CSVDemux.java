@@ -665,6 +665,10 @@
 		// Need to set time zone
 		// Timestamp embedded in the UDP packet
 		String embeddedTimeStr = strArray[1].trim();
+		if (embeddedTimeStr.trim().length() == 0) {
+		    if (!bSilent) System.err.println("Embedded timestamp is empty; ignoring packet.");
+		    continue;
+		}
 		// JPW 03/07/08: Add check on duplicate embedded timestamp
 		if ( (!bOutputDuplicateTimestamp) && (embeddedTimeStr.equals(prevEmbeddedTimeStr)) ) {
 		    if (!bSilent) System.err.println("Duplicate embedded timestamp (" + embeddedTimeStr + "); don't output data.");
