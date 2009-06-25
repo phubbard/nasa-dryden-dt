@@ -17,6 +17,7 @@
 	
 	---  History  ---
 	2008/12/16  WHF  Created.
+	2009/06/25  JPW  Add "useEmbeddedTimestamp" field.
 */
 
 package com.rbnb.inds.exec.commands;
@@ -40,9 +41,11 @@ public abstract class Demux extends DtCommand
 		
 		// Parse attributes:
 		String silentMode = attr.getValue("silentMode"),
-			chanNameFromID = attr.getValue("chanNameFromID"),
-			xmlFileStr = attr.getValue("xmlFile");
-			
+		chanNameFromID = attr.getValue("chanNameFromID"),
+		xmlFileStr = attr.getValue("xmlFile");
+		// JPW 06/25/09: Add "useEmbeddedTimestamp" field
+		String useEmbeddedTimestamp = attr.getValue("useEmbeddedTimestamp");
+		
 		if ("true".equals(silentMode)) addArgument("-S");
 		if ("true".equals(chanNameFromID)) addArgument("-I");
 		if (xmlFileStr != null) {
@@ -55,7 +58,9 @@ public abstract class Demux extends DtCommand
 			// For this, we do want the full path:
 			xmlFile = new File(getInitialDirectory()+'/'+xmlFileStr);
 		} else xmlFile = null;
-
+		// JPW 06/25/09: Add "useEmbeddedTimestamp" field
+		if ("true".equals(useEmbeddedTimestamp)) addArgument("-t");
+		
 		// Inputs / Outputs handled on execution.		
 	}
 					
