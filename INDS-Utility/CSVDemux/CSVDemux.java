@@ -15,6 +15,7 @@
      *                Add xmlTypeList
      * 07/02/08  JPW  For floating point chans, set the mime-type to "application/octet-stream"; for string chans set the mime-type to "text/plain".
      *                Fix a bug with non-multichan mode (need a new double array for each PutDataAsFloat64() call).
+     * 06/25/09  JPW  In process(), if the embedded timestamp has no year specified, use the current year.
      *
      */
     
@@ -684,6 +685,13 @@
 			rightNow.get(java.util.Calendar.YEAR),
 			rightNow.get(java.util.Calendar.MONTH),
 			rightNow.get(java.util.Calendar.DAY_OF_MONTH));
+		    date = calendar.getTime();
+		}
+		else if (calendar.get(java.util.Calendar.YEAR) == 1970)
+		{
+		    // JPW 06/25/09: Adjust year to be the current year
+		    Calendar rightNow = Calendar.getInstance();
+		    calendar.set(java.util.Calendar.YEAR,rightNow.get(java.util.Calendar.YEAR));
 		    date = calendar.getTime();
 		}
 		
