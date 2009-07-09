@@ -20,6 +20,7 @@
 	2009/02/17  Updated to include SVG viewer
 	2009/02/19  Major revision to use frames
 	2009/02/27  Major revision to use java bean to handle rmi to inds execution manager
+	2009/07/08  Revision to handle the inds execution manager terminate action
 	
 	--- To Do ---
 -->
@@ -27,7 +28,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.7</title>
+	<title>IndsViewer Version 0.8</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="default.css" type="text/css" />
 </head>

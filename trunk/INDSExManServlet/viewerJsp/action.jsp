@@ -20,6 +20,7 @@
 	2009/02/17  Updated to include SVG viewer
 	2009/02/19  Major revision to use frames
 	2009/03/03  Excluded getName from the action list and added it to Action response
+	2009/07/08  Added JavaScript function confirmTermiante to handle terminate action
 	
 	--- To Do ---
 	
@@ -28,9 +29,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.7: action.jsp</title>
+	<title>IndsViewer Version 0.8: action.jsp</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="default.css" type="text/css" />
+	<script language="JavaScript">
+		function confirmTerminate(message,command) {
+			<!-- Use a pop-up window to confirm terminate -->
+			if (confirm(message,command)) {
+				location.href="action.jsp?action=terminate";
+				
+				<!-- Update the command to show it is no longer active -->
+				parent.center.document.getElementById(command).setAttribute("class", "complete");
+			}
+			return false;
+		}
+	</script>
 </head>
 
 <body>
