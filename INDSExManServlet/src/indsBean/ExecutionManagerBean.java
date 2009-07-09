@@ -11,6 +11,8 @@ import java.lang.reflect.Method;
  *  2009/03/09 Added an attempt to reconnect to Execution Manager if certain errors are caught
  *  2009/03/10 Added an ExecutionMangerException class to handle errors
  *  2009/06/21 Updated getActionResponse to handle methods that return different types
+ *  2009/06/30 Added a javascript onclick to generate a confirmation popup before terminating
+ *  2009/07/08 Added id elements to html commandlist for accessing with javascript
  *  
  *  --- To Do ---
  *  Still need to improve error handling.
@@ -99,6 +101,9 @@ public class ExecutionManagerBean implements java.io.Serializable
 				} else if (action.getGenericReturnType() == void.class) {
 					action.invoke(remoteIndsObject,queryCommand);
 					remoteResult = queryAction+" executed successfully.";
+					// Terminate behaves differently than the other commands.
+					if (queryAction.compareTo("terminate")==0)
+						queryAction = null;
 				} else {
 					remoteResult = "Action "+queryAction+" not invoked!  INDS Viewer does not support return type of "+action.getReturnType().toString();
 				}
@@ -138,14 +143,33 @@ public class ExecutionManagerBean implements java.io.Serializable
 			
 			actionListHTML = "<ul>";
 			for (int i=0; i<actions.length; i++) {
+				// Go through actions and don't bother creating a link unless it is not one of these
 				if ((actions[i].getName().compareTo("isComplete")!=0) &&
 					(actions[i].getName().compareTo("getCommandList")!=0) && 
 					(actions[i].getName().compareTo("getRootConfiguration")!=0) &&
-					(actions[i].getName().compareTo("getName")!=0))
-					if (actions[i].getName().compareTo(queryAction)==0)
-						actionListHTML = actionListHTML+"<li class='current'><a href='action.jsp?action="+actions[i].getName()+"'>"+actions[i].getName()+"</a></li>";
-					else
-						actionListHTML = actionListHTML+"<li><a href='action.jsp?action="+actions[i].getName()+"'>"+actions[i].getName()+"</a></li>";
+					(actions[i].getName().compareTo("getName")!=0)) {
+						
+						// Determine if it is the current selected queryAction
+						if (actions[i].getName().compareTo(queryAction)==0)
+							actionListHTML = actionListHTML+"<li class='current'>";
+						else
+							actionListHTML = actionListHTML+"<li>";
+						
+						// Construct hyperlink
+												
+						// If it's the terminate command, need to force a pop-up for confirming
+						// This is done using the Javascript in action.jsp
+						if (actions[i].getName().compareTo("terminate")==0) {
+							actionListHTML = actionListHTML+"<a href='' ";
+							if ((queryCommand!=null) && !remoteIndsObject.isComplete(queryCommand))
+								actionListHTML = actionListHTML+"onclick='confirmTerminate(\"Terminate "+remoteIndsObject.getName(queryCommand)+"?\",\""+queryCommand+"\");'";
+						}
+						else
+							actionListHTML = actionListHTML+"<a href='action.jsp?action="+actions[i].getName()+"'";
+						
+						// Close out the hyperlink
+						actionListHTML = actionListHTML+">"+actions[i].getName()+"</a></li>";
+					}
 			}
 		}
 		catch (java.lang.NullPointerException e)
@@ -170,9 +194,9 @@ public class ExecutionManagerBean implements java.io.Serializable
 			for (String command : remoteIndsObject.getCommandList()) {
 				
 				if (!remoteIndsObject.isComplete(command)) {
-					commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"'>"+remoteIndsObject.getName(command)+"</a></li>";
+					commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"' id='"+command+"'>"+remoteIndsObject.getName(command)+"</a></li>";
 				} else if (queryDisplay == null) {
-					commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"' class='complete'>"+remoteIndsObject.getName(command)+"</a></li>";
+					commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"' id='"+command+"' class='complete'>"+remoteIndsObject.getName(command)+"</a></li>";
 				}
 			}		
 			commandListHTML=commandListHTML+"</ul>";

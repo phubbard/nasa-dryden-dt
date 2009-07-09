@@ -45,7 +45,7 @@
 		
 	   // Switch between viewing all and just current commands
 	   if (INDS.getQueryDisplay() == null) { %>
-		<a class="display" href="commandlist.jsp?&display=current">Display Current</a><br />
+		<a class="display" href="commandlist.jsp?display=current">Display Current</a><br />
 	<% } else { %>
 		<a class="display" href="commandlist.jsp">Display All</a><br />
 	<% } %>
