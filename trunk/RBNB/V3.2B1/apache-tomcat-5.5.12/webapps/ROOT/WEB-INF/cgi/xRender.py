@@ -196,13 +196,14 @@ An error occurred in initialization.
 		
 		if(rc == 0):
 			# JPW 03/02/09: edit the SVG file to add "target" to the hyperlink
+			# JAN 08/26/09: changed target attribute to "_top" for the new layout
 			origfile = '%s/%s' % (self.outputPath, self.outputFilename)
 			tempfile = '%s/%s.tmp' % (self.outputPath, self.outputFilename)
 			hInFile = open(origfile, 'r')
 			hInFile.seek(0,0)
 			hOutFile = open(tempfile, 'w')
 			for line in hInFile.readlines():
-			    newline = line.replace('<a xlink:href=','<a target="right" xlink:href=')
+			    newline = line.replace('<a xlink:href=','<a target="_top" xlink:href=')
 			    hOutFile.write(newline)
 			# Close files
 			hInFile.close()

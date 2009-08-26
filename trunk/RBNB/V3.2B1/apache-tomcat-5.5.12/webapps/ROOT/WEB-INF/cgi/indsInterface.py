@@ -104,7 +104,7 @@ class indsInterface:
 	## For a given command, return the URL to associate with the graph node. 
 	# Used to be getConfigUrl, now via indsViewer
 	def getInfoUrl(self, cmdId):
-		return '../indsViewer/action.jsp?command=%s' % cmdId
+		return '../indsViewer/index.jsp?command=%s' % cmdId
 		
 	## Get 'nice' name for a command ID
 	def getNiceName(self, cmdId):
