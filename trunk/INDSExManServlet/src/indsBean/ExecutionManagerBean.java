@@ -70,7 +70,7 @@ public class ExecutionManagerBean implements java.io.Serializable
 			// Defaults
 			queryAction = "getConfiguration";
 			queryCommand = null;
-			queryDisplay = null;
+			queryDisplay = "all";
 			
 			// Display a message
 			System.out.println("Connection established!");
@@ -103,13 +103,12 @@ public class ExecutionManagerBean implements java.io.Serializable
 					remoteResult = queryAction+" executed successfully.";
 					// Terminate behaves differently than the other commands.
 					if (queryAction.compareTo("terminate")==0)
-						queryAction = null;
+						queryAction = "getConfiguration"; // Reset to default action
 				} else {
 					remoteResult = "Action "+queryAction+" not invoked!  INDS Viewer does not support return type of "+action.getReturnType().toString();
 				}
 			}
 		}
-		
 		// Need to update with meaningful responses
 		catch (java.lang.NoSuchMethodException e) 
 		{
@@ -123,6 +122,7 @@ public class ExecutionManagerBean implements java.io.Serializable
 		catch (java.lang.NullPointerException e)
 		{
 			// Attempt to reconnect to execution manager
+			System.out.println("getActionResponse: java.lang.NullPointerException");
 			ExecutionManagerConnect();
 			remoteResult = getActionResponse();
 		}
@@ -140,7 +140,6 @@ public class ExecutionManagerBean implements java.io.Serializable
 		
 		try 
 		{
-			
 			actionListHTML = "<ul>";
 			for (int i=0; i<actions.length; i++) {
 				// Go through actions and don't bother creating a link unless it is not one of these
@@ -150,36 +149,35 @@ public class ExecutionManagerBean implements java.io.Serializable
 					(actions[i].getName().compareTo("getName")!=0)) {
 						
 						// Determine if it is the current selected queryAction
-						if (actions[i].getName().compareTo(queryAction)==0)
-							actionListHTML = actionListHTML+"<li class='current'>";
+						actionListHTML = actionListHTML+"\n\t\t\t";
+						if ((queryAction!=null) && (actions[i].getName().compareTo(queryAction)==0))
+							actionListHTML = actionListHTML+"<li class='current' ";
 						else
-							actionListHTML = actionListHTML+"<li>";
+							actionListHTML = actionListHTML+"<li ";
 						
-						// Construct hyperlink
-												
 						// If it's the terminate command, need to force a pop-up for confirming
 						// This is done using the Javascript in action.jsp
 						if (actions[i].getName().compareTo("terminate")==0) {
-							actionListHTML = actionListHTML+"<a href='' ";
-							if ((queryCommand!=null) && !remoteIndsObject.isComplete(queryCommand))
-								actionListHTML = actionListHTML+"onclick='confirmTerminate(\"Terminate "+remoteIndsObject.getName(queryCommand)+"?\",\""+queryCommand+"\");'";
+							if ((queryCommand!=null) && (!remoteIndsObject.isComplete(queryCommand)))
+								actionListHTML = actionListHTML+"onclick='confirmTerminate(\"Terminate "+remoteIndsObject.getName(queryCommand)+"?\",\""+queryCommand+"\");' onmouseover='this.style.color=\"#0000c9\";' onmouseout='this.style.color=\"#000000\";'";
 						}
 						else
-							actionListHTML = actionListHTML+"<a href='action.jsp?action="+actions[i].getName()+"'";
+							actionListHTML = actionListHTML+"onclick='window.location.replace(\"index.jsp?action="+actions[i].getName()+"\");' onmouseover='this.style.color=\"#0000c9\";' onmouseout='this.style.color=\"#000000\";'";
 						
 						// Close out the hyperlink
-						actionListHTML = actionListHTML+">"+actions[i].getName()+"</a></li>";
+						actionListHTML = actionListHTML+">"+actions[i].getName()+"</li>";
 					}
 			}
 		}
 		catch (java.lang.NullPointerException e)
 		{
 			// Attempt to reconnect to execution manager
+			System.out.println("getActionList: java.lang.NullPointerException");
 			ExecutionManagerConnect();
 			actionListHTML = getActionList();
 		}
-			
-		return actionListHTML+"</ul>";
+		
+		return actionListHTML+"\n\t\t</ul>";
 	}
 	
 	/**
@@ -189,27 +187,36 @@ public class ExecutionManagerBean implements java.io.Serializable
 		throws java.rmi.RemoteException, java.rmi.NotBoundException, java.lang.ClassNotFoundException, indsBean.ExecutionManagerException
 	{
 		String commandListHTML="<ul>";
+		String currentHTML=null;
 		try 
 		{
 			for (String command : remoteIndsObject.getCommandList()) {
 				
+				// mark the current command
+				currentHTML="";
+				if (queryCommand != null)
+					if (command.compareTo(queryCommand)==0)
+						currentHTML = " class='current'";
+				
 				if (!remoteIndsObject.isComplete(command)) {
-					commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"' id='"+command+"'>"+remoteIndsObject.getName(command)+"</a></li>";
-				} else if (queryDisplay == null) {
-					commandListHTML=commandListHTML+"<li><a target='right' href='action.jsp?command="+command+"' id='"+command+"' class='complete'>"+remoteIndsObject.getName(command)+"</a></li>";
+					commandListHTML=commandListHTML+"\n\t\t\t\t<li"+currentHTML+" id='"+command+"' onclick='window.location.replace(\"index.jsp?command="+command+"\");' onmouseover='this.style.color=\"#0000c9\";' onmouseout='this.style.color=\"#000000\";'>"+remoteIndsObject.getName(command)+"</li>";
+				} else if (queryDisplay.compareTo("all") == 0) {
+					commandListHTML=commandListHTML+"\n\t\t\t\t<li"+currentHTML+" id='"+command+"' style='color: #990000' onclick='window.location.replace(\"index.jsp?command="+command+"\");' onmouseover='this.style.color=\"#ff0000\";' onmouseout='this.style.color=\"#990000\";'>"+remoteIndsObject.getName(command)+"</li>";
 				}
 			}		
-			commandListHTML=commandListHTML+"</ul>";
+			commandListHTML=commandListHTML+"\n\t\t\t</ul>";
 		}
 		catch (java.lang.NullPointerException e)
 		{
 			// Attempt to reconnect to execution manager
+			System.out.println("getCommandList: java.lang.NullPointerException");
 			ExecutionManagerConnect();
 			commandListHTML = getCommandList();
 		}
 		catch (java.rmi.ConnectException e)
 		{
 			// Attempt to reconnect to execution manager
+			System.out.println("getCommandList: java.rmi.ConnectException");
 			ExecutionManagerConnect();
 			commandListHTML = getCommandList();
 		}
@@ -258,6 +265,7 @@ public class ExecutionManagerBean implements java.io.Serializable
 		catch (java.rmi.ConnectException e)
 		{
 			// Attempt to reconnect to execution manager
+			System.out.println("hit the catch in getCommandName");
 			ExecutionManagerConnect();
 			commandName = getCommandName();
 		}

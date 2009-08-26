@@ -1,29 +1,54 @@
-/* ~~~~~~~~~~ */
-/*   global   */
-/* ~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~ */
+/*   html,body   */
+/* ~~~~~~~~~~~~~ */
 html,body {
-        margin:0;
-        padding:0;
-        width: 100%;
+		margin: 0;
+		padding: 0;
+		height: 100%;
 		font-family: Arial, sans-serif;
 		font-size: 11px;
+		overflow: hidden; /* might miss 2px due to border on header & footer */
 	}
 
-ul {
-        list-style: none;
-        margin: 0px;
-		padding-left: 20px;
+/* ~~~~~~~~~~~~~~ */
+/*   layout css   */
+/* ~~~~~~~~~~~~~~ */
+#header {
+		height: 5%;
+		background-color: #ddd;
+		border-bottom: 1px solid gray;
+		text-align: center;
 	}
 
-li.current {
-		list-style: circle;
+.column {
+		float: left;
+		overflow: scroll;
+		height: 90%;
 	}
 
-h1 {
-		font-size: 14px;
-		margin-bottom: 0px;
-		padding-bottom: 0px;
+#left {
+		overflow: auto;
 	}
+	
+.separator {
+		float: left;
+		width: 1px;
+		background-color: gray;
+		cursor: e-resize;
+		height: 90%;
+	}
+
+/* ~~~~~~~~~ */
+/*   footer  */
+/* ~~~~~~~~~ */
+#footer {
+		clear: both;
+		background-color: #ddd;
+		border-top: 1px solid gray;
+		text-align: center;
+		height:5%;			/* Height of the footer */
+	}
+
 /* ~~~~~~~~~~~~~~~~~~ */
 /* hyperlink defaults */
 /* ~~~~~~~~~~~~~~~~~~ */
@@ -38,25 +63,10 @@ a:hover {
         color: #0000c9;
     }
 
-a.complete:link, 
-a.complete:visited {
-	color: #990000;
-}
-
-a.complete:hover {
-	color: #ff0000;
-}
-
 a.display {
 	float: right;
+	margin-right: 2px;
 }
-
-/* ~~~~~~ */
-/*  main  */
-/* ~~~~~~ */
-div#main {
-	padding: 5px 5px;
-	}
 
 /* ~~~~ */
 /*  td  */
@@ -68,18 +78,19 @@ td {
 	}
 	
 /* ~~~~~~~~ */
-/*  header  */
+/*  heading  */
 /* ~~~~~~~~ */
-div.header {
-	background: #222222;
-	color: #ffffff;
-	border-top: solid 2px #999999;
-	border-left: solid 2px #999999;
-	border-right: solid 2px #000000;
-	border-bottom: solid 2px #000000;
+div.heading {
+		background: #222222;
+		color: #ffffff;
+		border-top: solid 2px #999999;
+		border-left: solid 2px #999999;
+		border-right: solid 2px #000000;
+		border-bottom: solid 2px #000000;
+		margin: 2px;
 	}
 
-div.header h1 {
+div.heading h1 {
 		margin-top: 0px;
 		margin-left: 5px;
 	}
@@ -87,17 +98,41 @@ div.header h1 {
 /* ~~~~~~~ */
 /*  lists  */
 /* ~~~~~~~ */
+ul {
+        list-style: none;
+        margin: 0px;
+		padding-left: 20px;
+	}
+
+h1 {
+		font-size: 14px;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+	}
+	
 div#commandlist {
 		border-top: solid 1px #000000;
-		/*overflow: auto; */
-		/* height: 100%; */
 	}
 
 div#actionlist {
+		margin: 2px;
+	}
+
+div#actionlist li,
+div#commandlist li {
+		cursor: pointer;
+	}
+
+div#actionlist li.current,
+div#commandlist li.current {
+		list-style: circle;
+	}
+
+table#responsetable {
+		margin-left: 2px;
 	}
 	
 div#actionresponse {
-		overflow: auto;
 		border-top: solid 1px #000000;
-		/* height: 100%; */
+		margin: 2px;
 	}
