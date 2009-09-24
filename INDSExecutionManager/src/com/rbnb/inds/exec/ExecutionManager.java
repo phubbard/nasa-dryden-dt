@@ -261,19 +261,12 @@ System.err.println(" complete.");
 	
 		public String getCommandOut(String cmd) throws java.rmi.RemoteException
 		{
-			/*return new String(
-					getCommand(cmd).getLocalStdOutStream().toByteArray()
-			); */
-			
-			return getCommand(cmd).getStdOutString();
+			return getCommand(cmd).getStdOutString(pageSize, page);
 		}
 	
 		public String getCommandError(String cmd) throws java.rmi.RemoteException
 		{
-			/* return new String(
-					getCommand(cmd).getLocalStdErrStream().toByteArray()
-			); */
-			return getCommand(cmd).getStdErrString();
+			return getCommand(cmd).getStdErrString(pageSize, page);
 		}
 		
 		public String getCommandClassification(String cmd)
@@ -314,6 +307,28 @@ System.err.println(" complete.");
 		{
 			getCommand(cmd).stopExecution();
 		}
+		
+		public int getPageSize() throws java.rmi.RemoteException
+		{
+			return pageSize;
+		}
+		
+		public void setPageSize(int newSize) throws java.rmi.RemoteException
+		{
+			pageSize = newSize;
+		}
+		
+		public int getPage() throws java.rmi.RemoteException
+		{
+			return page;
+		}
+		
+		public void setPage(int newPage) throws java.rmi.RemoteException
+		{
+			page = newPage;
+		}
+		
+		private int pageSize = 1000, page = -1;
 		
 		private static final long serialVersionUID = 3348353995890377784L;	
 	}

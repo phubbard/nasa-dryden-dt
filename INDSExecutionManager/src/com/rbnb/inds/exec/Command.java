@@ -61,10 +61,12 @@ public abstract class Command
 		try {
 			// Note that deleteOnExit only works on normal shutdown (not ^C).
 			stdOutTempFile = File.createTempFile("exeman"+id, ".out.log");
+			stdOutPagedFile = new PagedFile(stdOutTempFile, 1000);
 			stdOutTempFile.deleteOnExit();
 			localStdOutStream = new FileOutputStream(stdOutTempFile); 
 			stdErrTempFile = File.createTempFile("exeman"+id, ".err.log");
 			stdErrTempFile.deleteOnExit();
+			stdErrPagedFile = new PagedFile(stdErrTempFile, 1000);
 			localStdErrStream = new FileOutputStream(stdErrTempFile);
 		} catch (java.io.IOException ioe) {
 			// wrap in an unchecked exception, so as not to interfere with
@@ -154,10 +156,12 @@ public abstract class Command
 	public final OutputStream getLocalStdErrStream()
 	{ return localStdErrStream; }
 	
-	public final String getStdOutString() 
-	{ return file2string(stdOutTempFile); }
-	public final String getStdErrString() 
-	{ return file2string(stdErrTempFile); }	
+	public final String getStdOutString(int pageSize, int page) 
+	//{ return file2string(stdOutTempFile); }
+	{ return stdOutPagedFile.getPage(pageSize, page); }
+	public final String getStdErrString(int pageSize, int page) 
+	//{ return file2string(stdErrTempFile); }	
+	{ return stdErrPagedFile.getPage(pageSize, page); }
 
 	public final String getInitialDirectory() { return initialDirectory; }
 	public final String getLogfile() { return logFile; }
@@ -207,6 +211,7 @@ public abstract class Command
 		inputs = new ArrayList<Port>(),
 		outputs = new ArrayList<Port>();
 	private final File stdOutTempFile, stdErrTempFile;
+	private final PagedFile stdOutPagedFile, stdErrPagedFile;
 	private final FileOutputStream 
 		localStdOutStream, // = new ByteArrayOutputStream(), 
 		localStdErrStream; //  = new ByteArrayOutputStream();
