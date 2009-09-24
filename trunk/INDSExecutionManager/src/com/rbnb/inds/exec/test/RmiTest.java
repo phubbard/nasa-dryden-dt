@@ -39,8 +39,13 @@ public class RmiTest
 		
 		// Lookup specific commands, if any:
 		for (int ii = 0; ii < args.length; ++ii) {
+			boolean doTerm = false;
 			String cmd = args[ii];
 			
+			if (cmd.endsWith("X")) {
+				doTerm = true;
+				cmd = cmd.substring(0, cmd.length()-1);
+			}
 			System.err.println("\n\n****  "+cmd+"  ****");
 			System.err.println("----  Output Stream  ----");
 			System.err.println(rem.getCommandOut(cmd));
@@ -52,6 +57,8 @@ public class RmiTest
 
 			System.err.println("\n----  Child Configuration  ----");
 			System.err.println(rem.getChildConfiguration(cmd));
+			
+			if (doTerm) rem.terminate(cmd);
 		}
 	}
 }

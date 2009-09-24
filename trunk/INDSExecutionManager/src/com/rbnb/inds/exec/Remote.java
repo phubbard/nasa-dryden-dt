@@ -21,6 +21,7 @@
 	2009/01/09  WHF  Added getChildConfiguration and getName.
 	2009/01/15  WHF  Added getRootConfiguration and getCommandClassification.
 	2009/06/08  WHF  Added terminate().
+	2009/09/24  WHF  Added the page methods.
 */
 
 package com.rbnb.inds.exec;
@@ -94,5 +95,28 @@ public interface Remote extends java.rmi.Remote
 	  * @since 2009/06/08
 	  */
 	public void terminate(String cmd) throws java.rmi.RemoteException;
+	
+	/**
+	  * Returns the current page size in lines, for paged log retrieval.
+	  */
+	public int getPageSize() throws java.rmi.RemoteException;
+	
+	/**
+	  * Changes the current page size, in lines, for paged log retrieval.
+	  *  The default page size is 1000 lines.
+	  */
+	public void setPageSize(int newSize) throws java.rmi.RemoteException;
+	
+	/**
+	  * Returns the current page number, with zero being the first page,
+	  * one being the second page, negative one being the last page, and
+	  * negative two being the second to last page, etc.
+	  */
+	public int getPage() throws java.rmi.RemoteException;
+	
+	/**
+	  * Set the new log page.  The default page is -1.
+	  */	
+	public void setPage(int newPage) throws java.rmi.RemoteException;
 }
 
