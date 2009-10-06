@@ -20,6 +20,7 @@
 	2008/12/23  WHF  Remote interface added.  
 			Shutdown processes in reverse order from startup.
 	2009/06/08  WHF  Added handling of Remote terminate method.
+	2009/10/06  WHF  Added page count methods to the Remote implementation.
 */
 
 package com.rbnb.inds.exec;
@@ -327,6 +328,18 @@ System.err.println(" complete.");
 		{
 			page = newPage;
 		}
+		
+		public int getCommandOutPageCount(String cmd)
+			throws java.rmi.RemoteException
+		{
+			return getCommand(cmd).getCommandOutPageCount();
+		}
+			
+		public int getCommandErrorPageCount(String cmd)
+		{
+			return getCommand(cmd).getCommandErrorPageCount();	
+		}
+		
 		
 		private int pageSize = 1000, page = -1;
 		
