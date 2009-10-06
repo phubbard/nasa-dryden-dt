@@ -22,6 +22,7 @@
 	2009/01/15  WHF  Added getRootConfiguration and getCommandClassification.
 	2009/06/08  WHF  Added terminate().
 	2009/09/24  WHF  Added the page methods.
+	2009/10/06  WHF  Added the page count methods.
 */
 
 package com.rbnb.inds.exec;
@@ -118,5 +119,20 @@ public interface Remote extends java.rmi.Remote
 	  * Set the new log page.  The default page is -1.
 	  */	
 	public void setPage(int newPage) throws java.rmi.RemoteException;
+	
+	/**
+	  * Get the number of pages for the standard output log for the specified
+	  *   command.
+	  */
+	public int getCommandOutPageCount(String cmd)
+			throws java.rmi.RemoteException;
+			
+	/**
+	  * Get the number of pages for the standard error log for the specified
+	  *   command.
+	  */
+	public int getCommandErrorPageCount(String cmd)
+			throws java.rmi.RemoteException;
+	
 }
 

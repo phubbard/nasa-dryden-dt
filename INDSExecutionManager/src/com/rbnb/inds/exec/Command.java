@@ -21,6 +21,7 @@
 	2009/01/13  WHF  Changed calls to String.isEmpty() to String.length() == 0.
 	2009/02/19  WHF  Moved log streams from a RAM based copy to a temporary 
 			file.	
+	2009/10/06  WHF  Added page count methods for log streams.
 */
 
 package com.rbnb.inds.exec;
@@ -162,6 +163,14 @@ public abstract class Command
 	public final String getStdErrString(int pageSize, int page) 
 	//{ return file2string(stdErrTempFile); }	
 	{ return stdErrPagedFile.getPage(pageSize, page); }
+	public int getCommandOutPageCount()
+	{
+		return stdOutPagedFile.getPageCount();
+	}
+	public int getCommandErrorPageCount()
+	{
+		return stdErrPagedFile.getPageCount();
+	}
 
 	public final String getInitialDirectory() { return initialDirectory; }
 	public final String getLogfile() { return logFile; }
