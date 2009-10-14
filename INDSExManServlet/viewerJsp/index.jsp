@@ -23,6 +23,7 @@
 	2009/07/08  Revision to handle the inds execution manager terminate action
 	2009/07/23  Added response to stop browser caching
 	2009/08/01  Major revision to use divisions instead of frames
+	2009/10/06  Added pagination functionality
 	
 	--- To Do ---
 -->
@@ -35,7 +36,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.9</title>
+	<title>IndsViewer Version 0.10</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="default.css" />
 	<script type="text/javascript" src="scripts.js"></script>
@@ -64,6 +65,48 @@
 	if (request.getParameter("action")!=null)
 		INDS.setQueryAction(request.getParameter("action"));
 		
+	// Reset the page count on either a new command or action
+	if ((request.getParameter("action")!=null) || 
+		(request.getParameter("command")!=null) ||
+		(request.getParameter("cmd")!=null))
+		INDS.setPage(0); 
+	
+	// Parse add/subtract page lines
+	String pageParameter = request.getParameter("page");	
+	if (pageParameter!=null)
+		if (pageParameter.compareTo("addline")==0)
+			INDS.setPageSize(INDS.getPageSize()+50); // increment by 50
+		else if (pageParameter.compareTo("subtractline")==0)
+			if (INDS.getPageSize()-50 > 0)
+				INDS.setPageSize(INDS.getPageSize()-50);
+			else
+				INDS.setPageSize(1);
+				
+	// Execute current action to force the page total update after add/subtract!
+	INDS.getActionResponse();
+	
+	// Update pageTotal
+	int pageTotal = 1;
+	if (INDS.getQueryCommand()!=null) {
+		if (INDS.getQueryAction().compareTo("getCommandOut")==0)
+			pageTotal = INDS.getCommandOutPageCount();
+		else if (INDS.getQueryAction().compareTo("getCommandError")==0)
+			pageTotal = INDS.getCommandErrorPageCount();
+	}
+	
+	// Parse previous/next page
+	// remember: setPage and getPage are referenced to zero...
+	if (pageParameter!=null)
+		if (pageParameter.compareTo("previous")==0)
+			INDS.setPage(INDS.getPage()-1); // previous page		
+		else if (pageParameter.compareTo("next")==0)
+			INDS.setPage(INDS.getPage()+1); // next page
+			
+	if (INDS.getPage() >= pageTotal)
+		INDS.setPage(0); // return to first page
+	else if (INDS.getPage() < 0)
+		INDS.setPage(pageTotal-1); // skip to last page
+	
 	// Parse formatting
 	if (request.getParameter("leftWidth")!=null)
 		Format.setLeftWidth(request.getParameter("leftWidth"));
@@ -74,13 +117,14 @@
 	if (request.getParameter("rightWidth")!=null)
 		Format.setRightWidth(request.getParameter("rightWidth"));
 		
+	if (request.getParameter("commandListHeight")!=null)
+		Format.setCommandListHeight(request.getParameter("commandListHeight"));
 	
 	// Clock
 	java.util.Date clock = new java.util.Date();
 	
 	// Execute the current command and get the action response
 	String commandResults = INDS.getActionResponse();
-		
 %>
 
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
@@ -99,19 +143,20 @@
 	</div> <!-- heading -->
 	<!--[if IE]><br />&nbsp;&nbsp;Internet Explorer does not have a plugin for SVG.<![endif]-->
 	<![if !IE]>
-		<object data="/cgi-bin/xRender.py" type="image/svg+xml" width="99%" height="92%">
+		<object data="/cgi-bin/xRender.py" type="image/svg+xml" width="100%" height="92%" style=">
 			Problem with xRender.py.
 		</object>
 		<!-- <iframe id="svgiframe" src="/cgi-bin/xRender.py" frameborder="0" width="99%" height="92%">Problem with xRender.py.	</iframe>-->
 	<![endif]>
 </div> <!-- left -->
 
-<div id="leftseparator" class="separator" onmousedown="initalizeDragColumnResize(event,'left','center');"></div><!-- leftseparator -->
+<div id="leftseparator" class="columnseparator" onmousedown="initalizeDragColumnResize(event,'left','center');"></div><!-- leftseparator -->
 
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
-<!-- ::                         COMMAND LIST                              :: -->
+<!-- ::                     COMMAND & ACTION LISTS                        :: -->
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <%= "<div id=\"center\" class=\"column\" style=\"width: " %><jsp:getProperty name="Format" property="centerWidth" /><%= "\">" %>
+	
 	<div class="heading">
 		<h1>Command List</h1>
 	</div> <!-- heading -->
@@ -123,56 +168,67 @@
 			<a class="display" href="index.jsp?display=all">Display All</a><br />
 	<% } %>
 	
-	<div id="commandlist">
+	<%= "<div id=\"commandlist\" style=\"height: " %><jsp:getProperty name="Format" property="commandListHeight" /><%= "\">" %>
 		<jsp:getProperty name="INDS" property="commandList" />
 	</div> <!-- commandlist -->
+	
+	<div id="commandlistseparator" class="rowseparator" onmousedown="windowResize();"><!-- --></div><!-- rowseparator -->
+	
+	<div class="heading">
+		<h1>Execute Action</h1>
+	</div> <!-- heading -->
+	
+	<div id="actionlist">
+		<table id="responsetable">
+			<tr>
+				<td>Command ID:</td>
+				<td><i><jsp:getProperty name="INDS" property="queryCommand" /></i></td>
+			</tr>
+		</table>
+		<jsp:getProperty name="INDS" property="actionList" />
+	</div> <!-- actionlist -->
+		
 </div> <!-- center -->
 
-<div id="rightseparator" class="separator" onmousedown="initalizeDragColumnResize(event,'center','right');"></div><!-- rightseparator -->
+<div id="rightseparator" class="columnseparator" onmousedown="initalizeDragColumnResize(event,'center','right');"></div><!-- rightseparator -->
 
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <!-- ::                        ACTION RESPONSE                            :: -->
 <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 <%= "<div id=\"right\" class=\"column\" style=\"width: " %><jsp:getProperty name="Format" property="rightWidth" /><%= "\">" %>
 	<div class="heading">
-		<h1>Execute action</h1>
-	</div>
-	<div id="actionlist">
-		<jsp:getProperty name="INDS" property="actionList" />
-	</div> <!-- actionlist -->
-	<br />
-	
-	<div class="heading">
 		<h1>Action Response</h1>
 	</div> <!-- heading -->
-	<!-- Add a header to the response with time stamp and size of response -->
-	<table id="responsetable">
-		<tr>
-			<td>Command:</td>
-			<td><jsp:getProperty name="INDS" property="commandName" /></td>
-		</tr>
-		<tr>
-			<td>Command ID:</td>
-			<td><jsp:getProperty name="INDS" property="queryCommand" /></td>
-		</tr>
-		<tr>
-			<td>Action:</td>
-			<td><jsp:getProperty name="INDS" property="queryAction" /></td>
-		</tr>
-		<tr>
-			<td>Server Timestamp:</td>
-			<td><%= clock.toString() %></td>
-		</tr>
-		<tr>
-			<td>Response Length:</td>
-			<td><%= commandResults.length() %> (characters)</td>
-		</tr>
-	</table>
-	
 	<div id="actionresponse">
-		<br /><br />&lt;&lt;&lt; <i>response start</i> &gt;&gt;&gt;<br />
+		<div id="responsenavigationheader">
+			<% if (pageTotal > 1) { %>
+				<a href="index.jsp?page=previous"><img src="buttonPreviousOff.gif" width="20px" height="9px" alt="previous" onmouseover="this.src='buttonPreviousOn.gif';" onmouseout="this.src='buttonPreviousOff.gif';"/></a>
+				<a href="index.jsp?page=addline">+</a>/<a href="index.jsp?page=subtractline">-</a>
+				<%= commandResults.length() %> (characters) <%= clock.toString() %> &nbsp;&nbsp;page: <%= INDS.getPage()+1 %> of <%= pageTotal %>
+				<a href="index.jsp?page=next"><img src="buttonNextOff.gif" width="20px" height="9px" alt="next" onmouseover="this.src='buttonNextOn.gif';" onmouseout="this.src='buttonNextOff.gif';"/></a>
+			<% } else { %>
+				<% if ((INDS.getQueryAction().compareTo("getCommandOut")==0) || (INDS.getQueryAction().compareTo("getCommandError")==0)) { %>
+					<a href="index.jsp?page=addline">+</a>/<a href="index.jsp?page=subtractline">-</a>
+				<% } %>
+				<%= commandResults.length() %> (characters) <%= clock.toString() %>
+			<% } %>
+		</div> <!-- responsenavigationheader -->
+		
 		<code><pre><%= commandResults.replaceAll("<","&lt;").replaceAll(">","&gt;") %></pre></code>
-		<br />&lt;&lt;&lt; <i>response end</i> &gt;&gt;&gt;
+		
+		<div id="responsenavigationfooter">
+			<% if (pageTotal > 1) { %>
+				<a href="index.jsp?page=previous"><img src="buttonPreviousOff.gif" width="20px" height="9px" alt="previous" onmouseover="this.src='buttonPreviousOn.gif';" onmouseout="this.src='buttonPreviousOff.gif';"/></a>
+				<a href="index.jsp?page=addline">+</a>/<a href="index.jsp?page=subtractline">-</a>
+				<%= commandResults.length() %> (characters) <%= clock.toString() %> &nbsp;&nbsp;page: <%= INDS.getPage()+1 %> of <%= pageTotal %>
+				<a href="index.jsp?page=next"><img src="buttonNextOff.gif" width="20px" height="9px" alt="next" onmouseover="this.src='buttonNextOn.gif';" onmouseout="this.src='buttonNextOff.gif';"/></a>
+			<% } else { %>
+				<% if ((INDS.getQueryAction().compareTo("getCommandOut")==0) || (INDS.getQueryAction().compareTo("getCommandError")==0)) { %>
+					<a href="index.jsp?page=addline">+</a>/<a href="index.jsp?page=subtractline">-</a>
+				<% } %>
+				<%= commandResults.length() %> (characters) <%= clock.toString() %>
+			<% } %>
+		</div> <!-- responsenavigationfooter -->
 	</div> <!-- actionResponse -->
 </div> <!-- right -->
 

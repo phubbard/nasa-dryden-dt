@@ -4,7 +4,8 @@ package indsBean;
  *  Create a bean to keep track of html page formatting.
  * 
  *  ---  History  ---
- *  
+ *  2009/10/12 Added command list height
+ *
  *  --- To Do ---
  *
  * Jesse Norris, Creare Inc.
@@ -18,6 +19,7 @@ public class FormatBean implements java.io.Serializable
 	private String leftWidth;
 	private String centerWidth;
 	private String rightWidth;
+	private String commandListHeight;
 	
 	/** 
 	  * Constructor method initializes
@@ -28,6 +30,7 @@ public class FormatBean implements java.io.Serializable
 		leftWidth = "33%";
 		centerWidth = "22%";
 		rightWidth = "43%";
+		commandListHeight = "60%";
 	}
 	
 	public String getLeftWidth() 
@@ -58,5 +61,15 @@ public class FormatBean implements java.io.Serializable
 	public void setRightWidth(String rightWidth)
 	{
 		this.rightWidth = rightWidth;
+	}
+	
+	public String getCommandListHeight()
+	{
+		return commandListHeight;
+	}
+	
+	public void setCommandListHeight(String commandListHeight)
+	{
+		this.commandListHeight = commandListHeight;
 	}
 }
