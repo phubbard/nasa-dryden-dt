@@ -13,6 +13,7 @@ import java.lang.reflect.Method;
  *  2009/06/21 Updated getActionResponse to handle methods that return different types
  *  2009/06/30 Added a javascript onclick to generate a confirmation popup before terminating
  *  2009/07/08 Added id elements to html commandlist for accessing with javascript
+ *  2009/10/04 Updated to ignore the new getPage, setPage, getPageSize and setPageSize functions for the actionlist
  *  
  *  --- To Do ---
  *  Still need to improve error handling.
@@ -146,7 +147,13 @@ public class ExecutionManagerBean implements java.io.Serializable
 				if ((actions[i].getName().compareTo("isComplete")!=0) &&
 					(actions[i].getName().compareTo("getCommandList")!=0) && 
 					(actions[i].getName().compareTo("getRootConfiguration")!=0) &&
-					(actions[i].getName().compareTo("getName")!=0)) {
+					(actions[i].getName().compareTo("getName")!=0) &&
+					(actions[i].getName().compareTo("getPage")!=0) &&
+					(actions[i].getName().compareTo("setPage")!=0) &&
+					(actions[i].getName().compareTo("getPageSize")!=0) &&
+					(actions[i].getName().compareTo("setPageSize")!=0) &&
+					(actions[i].getName().compareTo("getCommandOutPageCount")!=0) &&
+					(actions[i].getName().compareTo("getCommandErrorPageCount")!=0)) {
 						
 						// Determine if it is the current selected queryAction
 						actionListHTML = actionListHTML+"\n\t\t\t";
@@ -284,4 +291,50 @@ public class ExecutionManagerBean implements java.io.Serializable
 	{
 		return queryDisplay;
 	}
+	
+	/**
+	* setPageSize sets the number of lines to be returned for paginated log responses
+	*/
+	public void setPageSize(int newPageSize) throws java.rmi.RemoteException
+	{
+		remoteIndsObject.setPageSize(newPageSize);
+	}
+	
+	public int getPageSize() throws java.rmi.RemoteException
+	{
+		return remoteIndsObject.getPageSize();
+	}
+	
+	/**
+	* setPage sets the current page to be returned for paginated log responses
+	*/
+	public void setPage(int newPage) throws java.rmi.RemoteException
+	{
+		remoteIndsObject.setPage(newPage);
+	}
+	
+	public int getPage() throws java.rmi.RemoteException
+	{
+		return remoteIndsObject.getPage();
+	}
+	
+	/**
+	* getCommandOutPageCount retrieves the page count for the command out log file 
+	*/
+	public int getCommandOutPageCount() throws java.rmi.RemoteException
+	{
+		return remoteIndsObject.getCommandOutPageCount(queryCommand);
+	}
+	
+	/**
+	* getCommandErrorPageCount retrieves the page count for the command error log file
+	*/
+	public int getCommandErrorPageCount() throws java.rmi.RemoteException
+	{
+		return remoteIndsObject.getCommandErrorPageCount(queryCommand);
+	}
+	
+	/** 
+	*
+	*/
 }

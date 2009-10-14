@@ -1,3 +1,29 @@
+// Assign a function for resize event
+window.onresize=windowResize;
+
+function windowResize() {
+	// Maximize the command list div height and keep the execute action div at the bottom.
+	// Check that the height is sufficient to display at least a couple commands and the actions
+	var mainHeight
+	
+	if (leftseparator.offsetHeight)
+		mainHeight = leftseparator.offsetHeight;
+	else if (leftseparator.style.pixelHeight)
+		mainHeight = leftseparator.style.pixelHeight;
+	
+	if ((mainHeight*1) < 200) {
+		alert('Warning: browser height is too short.  Please increase.');
+		commandlist.style.height = "40px";
+	}
+	else
+		commandlist.style.height = (mainHeight-180)+"px";
+	
+	// Send the new layout
+	window.location.replace("index.jsp?commandListHeight="+commandlist.style.height);
+	
+	return false;
+}
+
 // confirmTerminate
 function confirmTerminate(message,command) {
 	// Use a pop-up window to confirm terminate
