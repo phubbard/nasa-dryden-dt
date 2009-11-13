@@ -16,7 +16,7 @@ function windowResize() {
 		commandlist.style.height = "40px";
 	}
 	else
-		commandlist.style.height = (mainHeight-180)+"px";
+		commandlist.style.height = (mainHeight-185)+"px";
 	
 	// Send the new layout
 	window.location.replace("index.jsp?commandListHeight="+commandlist.style.height);
