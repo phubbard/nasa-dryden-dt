@@ -24,6 +24,7 @@
 	2009/07/23  Added response to stop browser caching
 	2009/08/01  Major revision to use divisions instead of frames
 	2009/10/06  Added pagination functionality
+	2009/11/13  Updated +/- pagination to show page length
 	
 	--- To Do ---
 -->
@@ -36,7 +37,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.10</title>
+	<title>IndsViewer Version 0.11</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="default.css" />
 	<script type="text/javascript" src="scripts.js"></script>
@@ -143,7 +144,7 @@
 	</div> <!-- heading -->
 	<!--[if IE]><br />&nbsp;&nbsp;Internet Explorer does not have a plugin for SVG.<![endif]-->
 	<![if !IE]>
-		<object data="/cgi-bin/xRender.py" type="image/svg+xml" width="100%" height="92%" style=">
+		<object data="/cgi-bin/xRender.py" type="image/svg+xml" width="100%" height="92%">
 			Problem with xRender.py.
 		</object>
 		<!-- <iframe id="svgiframe" src="/cgi-bin/xRender.py" frameborder="0" width="99%" height="92%">Problem with xRender.py.	</iframe>-->
@@ -179,13 +180,11 @@
 	</div> <!-- heading -->
 	
 	<div id="actionlist">
-		<table id="responsetable">
-			<tr>
-				<td>Command ID:</td>
-				<td><i><jsp:getProperty name="INDS" property="queryCommand" /></i></td>
-			</tr>
-		</table>
+		Command ID: <i><jsp:getProperty name="INDS" property="queryCommand" /></i>
 		<jsp:getProperty name="INDS" property="actionList" />
+		<% if ((INDS.getQueryAction().compareTo("getCommandOut")==0) || (INDS.getQueryAction().compareTo("getCommandError")==0)) { %>
+			Response page length: <a href="index.jsp?page=addline">+</a>/<a href="index.jsp?page=subtractline">-</a> <%= INDS.getPageSize() %> lines
+		<% } %>
 	</div> <!-- actionlist -->
 		
 </div> <!-- center -->
@@ -203,14 +202,10 @@
 		<div id="responsenavigationheader">
 			<% if (pageTotal > 1) { %>
 				<a href="index.jsp?page=previous"><img src="buttonPreviousOff.gif" width="20px" height="9px" alt="previous" onmouseover="this.src='buttonPreviousOn.gif';" onmouseout="this.src='buttonPreviousOff.gif';"/></a>
-				<a href="index.jsp?page=addline">+</a>/<a href="index.jsp?page=subtractline">-</a>
-				<%= commandResults.length() %> (characters) <%= clock.toString() %> &nbsp;&nbsp;page: <%= INDS.getPage()+1 %> of <%= pageTotal %>
+				(<%= commandResults.length() %> char) <%= clock.toString() %> &nbsp;&nbsp;page: <%= INDS.getPage()+1 %> of <%= pageTotal %>
 				<a href="index.jsp?page=next"><img src="buttonNextOff.gif" width="20px" height="9px" alt="next" onmouseover="this.src='buttonNextOn.gif';" onmouseout="this.src='buttonNextOff.gif';"/></a>
 			<% } else { %>
-				<% if ((INDS.getQueryAction().compareTo("getCommandOut")==0) || (INDS.getQueryAction().compareTo("getCommandError")==0)) { %>
-					<a href="index.jsp?page=addline">+</a>/<a href="index.jsp?page=subtractline">-</a>
-				<% } %>
-				<%= commandResults.length() %> (characters) <%= clock.toString() %>
+				(<%= commandResults.length() %> char) <%= clock.toString() %>
 			<% } %>
 		</div> <!-- responsenavigationheader -->
 		
@@ -219,14 +214,10 @@
 		<div id="responsenavigationfooter">
 			<% if (pageTotal > 1) { %>
 				<a href="index.jsp?page=previous"><img src="buttonPreviousOff.gif" width="20px" height="9px" alt="previous" onmouseover="this.src='buttonPreviousOn.gif';" onmouseout="this.src='buttonPreviousOff.gif';"/></a>
-				<a href="index.jsp?page=addline">+</a>/<a href="index.jsp?page=subtractline">-</a>
-				<%= commandResults.length() %> (characters) <%= clock.toString() %> &nbsp;&nbsp;page: <%= INDS.getPage()+1 %> of <%= pageTotal %>
+				(<%= commandResults.length() %> char) <%= clock.toString() %> &nbsp;&nbsp;page: <%= INDS.getPage()+1 %> of <%= pageTotal %>
 				<a href="index.jsp?page=next"><img src="buttonNextOff.gif" width="20px" height="9px" alt="next" onmouseover="this.src='buttonNextOn.gif';" onmouseout="this.src='buttonNextOff.gif';"/></a>
 			<% } else { %>
-				<% if ((INDS.getQueryAction().compareTo("getCommandOut")==0) || (INDS.getQueryAction().compareTo("getCommandError")==0)) { %>
-					<a href="index.jsp?page=addline">+</a>/<a href="index.jsp?page=subtractline">-</a>
-				<% } %>
-				<%= commandResults.length() %> (characters) <%= clock.toString() %>
+				(<%= commandResults.length() %> char) <%= clock.toString() %>
 			<% } %>
 		</div> <!-- responsenavigationfooter -->
 	</div> <!-- actionResponse -->

@@ -144,15 +144,15 @@ div#commandlist li {
 		cursor: pointer;
 	}
 
+div#actionlist ul {
+		margin: 2px 0 2px 0;
+	}
+
 div#actionlist li.current,
 div#commandlist li.current {
 		list-style: circle;
 	}
 
-table#responsetable {
-		margin-left: 2px;
-	}
-	
 div#actionresponse {
 		overflow: scroll;
 		height: 90%;
