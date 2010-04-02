@@ -54,8 +54,9 @@ public class ExecutionManagerBean implements java.io.Serializable
 			System.out.print("Attempting to connect to Execution Manager...");
 			
 			// Connect using RMI:
+			String indsHost = System.getProperty("inds.host");	// mjm
 			java.rmi.registry.Registry reg
-				= java.rmi.registry.LocateRegistry.getRegistry();
+				= java.rmi.registry.LocateRegistry.getRegistry(indsHost); // mjm
 			
 			String[] names = reg.list();
 			
