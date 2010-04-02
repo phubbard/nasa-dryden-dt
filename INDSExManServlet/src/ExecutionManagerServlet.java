@@ -46,9 +46,12 @@ public class ExecutionManagerServlet extends HttpServlet
 	public ExecutionManagerServlet() 
 		throws java.rmi.RemoteException, java.rmi.NotBoundException, java.lang.ClassNotFoundException
 	{
+	        String indsHost = System.getProperty("inds.host"); // mjm
+	        //System.err.println("inds.host: "+indsHost);
+
 		// Connect using RMI:
 		java.rmi.registry.Registry reg
-			= java.rmi.registry.LocateRegistry.getRegistry();
+			= java.rmi.registry.LocateRegistry.getRegistry(indsHost); // mjm 
 		
 		String[] names = reg.list();
 		
