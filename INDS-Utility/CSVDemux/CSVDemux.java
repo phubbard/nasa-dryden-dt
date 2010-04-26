@@ -16,6 +16,9 @@
      * 07/02/08  JPW  For floating point chans, set the mime-type to "application/octet-stream"; for string chans set the mime-type to "text/plain".
      *                Fix a bug with non-multichan mode (need a new double array for each PutDataAsFloat64() call).
      * 06/25/09  JPW  In process(), if the embedded timestamp has no year specified, use the current year.
+     * 04/26/10  JPW  In process(), make a couple tweaks:
+     *                    1. Don't assume the index of our desired channel is 0
+     *                    2. Support String or Byte array data types
      *
      */
     
@@ -602,19 +605,29 @@
 	ChannelMap out = new ChannelMap();
 	
 	try {
-	    if (in.GetIndex(In)!=0) return;
-	    
-            // String[] data = in.GetDataAsString(0);
-	    byte[][] byteData=in.GetDataAsByteArray(0);
-	    
-	    if ( (byteData == null) || (byteData.length == 0) ) {
-	        return;
+	    // JPW 04/26/2010: Make a couple tweaks:
+	    //    1. Don't assume the index of our desired channel is 0
+	    //    2. Support String or Byte array data types
+	    int chanIdx = in.GetIndex(In);
+	    if (chanIdx == -1) {
+		return;
 	    }
-	    
-	    String[] data = new String[ byteData.length ];
-	    for (int k = 0; k < byteData.length; ++k) {
-		data[k] = new String(byteData[k]);
-	    }
+	    int chanType = in.GetType(chanIdx);
+	    String[] data = null;
+	    if (chanType == ChannelMap.TYPE_STRING) {
+                data = in.GetDataAsString(chanIdx);
+            } else if (chanType == ChannelMap.TYPE_BYTEARRAY) {
+            	byte[][] byteData=in.GetDataAsByteArray(chanIdx);
+	        if ( (byteData == null) || (byteData.length == 0) ) {
+	            return;
+	        }
+	        data = new String[ byteData.length ];
+	        for (int k = 0; k < byteData.length; ++k) {
+		    data[k] = new String(byteData[k]);
+		}
+            } else {
+            	System.err.println("Unknown channel data type: " + chanType);
+            }
 	    
 	    if (bRecoverMode) {
 		System.err.println("Recover " + data.length + " packets");
@@ -702,7 +715,7 @@
 		// Convert time to number of seconds since epoch
 		double embeddedTime = ((double)date.getTime())/1000.0;
 		// Time the UDP packet arrived at UDPCapture
-		double arrivalTime = in.GetTimes(0)[i];
+		double arrivalTime = in.GetTimes(chanIdx)[i];
 		// Timestamp put on the output data - can either be arrivalTime or embeddedTime;
 		double rbnbOutTime = arrivalTime;
 		if (!bUseArrivalTime) {
