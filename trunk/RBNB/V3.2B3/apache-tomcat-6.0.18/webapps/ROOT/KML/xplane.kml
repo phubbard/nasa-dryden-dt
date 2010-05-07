@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+<Document>
+<Folder>
+	<name>XPlane Demo</name>
+	<description>
+	<![CDATA[<a href="http://192.168.2.56/TimeDrive?d=1800&play=live&rate=1800">TimeDrive</a>]]>
+	</description>
+	<open>1</open>
+	<NetworkLink>
+                <name>XPlane</name>
+                <visibility>0</visibility>
+                <open>0</open>
+                <Url>
+                        <href>http://192.168.2.56/TimeDrive/RBNB/TrackKML_XPlane/TrackData_XPlane/XPlaneParserSource</href>
+                        <refreshMode>onInterval</refreshMode>
+                        <refreshInterval>3</refreshInterval>
+                </Url>
+        </NetworkLink>
+</Folder>
+</Document>
+</kml>

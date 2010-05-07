@@ -12,6 +12,12 @@
 			 WAR files in the local directory as well as in
 			 "${jakartadir}/webapps"; also, delete the unpacked
 			 WAR directories in "${jakartadir}/webapps".
+	2010/05/07  JPW  Changed definition of jakartadir from
+			 "../RBNB/V3.2B1/apache-tomcat-5.5.12" to
+			 "../RBNB/V3.2B3/apache-tomcat-6.0.18".
+			 Also, for this new Tomcat distribution, I changed the
+			 definition of where to find servlet-api.jar and
+			 jsp-api.jar (see below).
 -->
 
 <project name="INDS Execution Manager Servlet" default="library" basedir=".">
@@ -27,10 +33,13 @@
 	
 	<!-- Set this to your web server path  -->  
 	<property name="jakartadir" 
-			value="../RBNB/V3.2B1/apache-tomcat-5.5.12" />			
+			value="../RBNB/V3.2B3/apache-tomcat-6.0.18" />			
 	<path id = "servletcp" >
-		<pathelement location="${jakartadir}/common/lib/servlet-api.jar"/>
-		<pathelement location="${jakartadir}/common/lib/jsp-api.jar" />
+		<!-- With new Tomcat 6, these paths have changed a bit -->
+		<!--pathelement location="${jakartadir}/common/lib/servlet-api.jar"/-->
+		<!--pathelement location="${jakartadir}/common/lib/jsp-api.jar" /-->
+		<pathelement location="${jakartadir}/lib/servlet-api.jar"/>
+		<pathelement location="${jakartadir}/lib/jsp-api.jar" />
 	</path>
 
 	<!--*****  Targets *****-->
