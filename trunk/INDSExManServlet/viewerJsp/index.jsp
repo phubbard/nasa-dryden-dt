@@ -25,6 +25,7 @@
 	2009/08/01  Major revision to use divisions instead of frames
 	2009/10/06  Added pagination functionality
 	2009/11/13  Updated +/- pagination to show page length
+	2010/05/12  Added exception handling to setPage and getPage methods of ExecutionManagerBean
 	
 	--- To Do ---
 -->
@@ -37,7 +38,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>IndsViewer Version 0.11</title>
+	<title>IndsViewer Version 0.12</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="default.css" />
 	<script type="text/javascript" src="scripts.js"></script>
