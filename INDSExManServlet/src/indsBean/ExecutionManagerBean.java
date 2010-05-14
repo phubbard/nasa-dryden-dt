@@ -14,12 +14,13 @@ import java.lang.reflect.Method;
  *  2009/06/30 Added a javascript onclick to generate a confirmation popup before terminating
  *  2009/07/08 Added id elements to html commandlist for accessing with javascript
  *  2009/10/04 Updated to ignore the new getPage, setPage, getPageSize and setPageSize functions for the actionlist
+ *  2010/05/12 Catch java.rmi.ConnectException in setPage and getPage methods, and retry connection to Execution Manager.  
  *  
  *  --- To Do ---
  *  Still need to improve error handling.
  *
  * Jesse Norris, Creare Inc.
- * Version 1.0
+ * Version 1.1
  */
 
 
@@ -309,14 +310,36 @@ public class ExecutionManagerBean implements java.io.Serializable
 	/**
 	* setPage sets the current page to be returned for paginated log responses
 	*/
-	public void setPage(int newPage) throws java.rmi.RemoteException
+	public void setPage(int newPage) throws java.rmi.RemoteException,java.rmi.NotBoundException, java.lang.ClassNotFoundException, indsBean.ExecutionManagerException
 	{
-		remoteIndsObject.setPage(newPage);
+		try
+		{
+			remoteIndsObject.setPage(newPage);
+		}
+		catch (java.rmi.ConnectException e)
+		{
+			// Attempt to reconnect to execution manager
+			System.out.println("setPage: java.rmi.ConnectException");
+			ExecutionManagerConnect();
+			remoteIndsObject.setPage(newPage);
+		}
 	}
 	
-	public int getPage() throws java.rmi.RemoteException
+	public int getPage() throws java.rmi.RemoteException,java.rmi.NotBoundException, java.lang.ClassNotFoundException, indsBean.ExecutionManagerException
 	{
-		return remoteIndsObject.getPage();
+		int page;
+		try 
+		{
+			page = remoteIndsObject.getPage();
+		} 
+		catch (java.rmi.ConnectException e)
+		{
+			// Attempt to reconnect to execution manager
+			System.out.println("getPage: java.rmi.ConnectException");
+			ExecutionManagerConnect();
+			page = remoteIndsObject.getPage();
+		}
+		return page;
 	}
 	
 	/**
