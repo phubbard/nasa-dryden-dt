@@ -297,14 +297,36 @@ public class ExecutionManagerBean implements java.io.Serializable
 	/**
 	* setPageSize sets the number of lines to be returned for paginated log responses
 	*/
-	public void setPageSize(int newPageSize) throws java.rmi.RemoteException
+	public void setPageSize(int newPageSize) throws java.rmi.RemoteException,java.rmi.NotBoundException, java.lang.ClassNotFoundException, indsBean.ExecutionManagerException
 	{
-		remoteIndsObject.setPageSize(newPageSize);
+		try
+		{
+			remoteIndsObject.setPageSize(newPageSize);
+		}
+		catch (java.rmi.ConnectException e)
+		{
+			// Attempt to reconnect to execution manager
+			System.out.println("setPageSize: java.rmi.ConnectException");
+			ExecutionManagerConnect();
+			remoteIndsObject.setPageSize(newPageSize);
+		}
 	}
 	
-	public int getPageSize() throws java.rmi.RemoteException
+	public int getPageSize() throws java.rmi.RemoteException,java.rmi.NotBoundException, java.lang.ClassNotFoundException, indsBean.ExecutionManagerException
 	{
-		return remoteIndsObject.getPageSize();
+		int page;
+		try 
+		{
+			page = remoteIndsObject.getPageSize();
+		} 
+		catch (java.rmi.ConnectException e)
+		{
+			// Attempt to reconnect to execution manager
+			System.out.println("getPageSize: java.rmi.ConnectException");
+			ExecutionManagerConnect();
+			page = remoteIndsObject.getPageSize();
+		}
+		return page;
 	}
 	
 	/**
@@ -345,17 +367,41 @@ public class ExecutionManagerBean implements java.io.Serializable
 	/**
 	* getCommandOutPageCount retrieves the page count for the command out log file 
 	*/
-	public int getCommandOutPageCount() throws java.rmi.RemoteException
+	public int getCommandOutPageCount() throws java.rmi.RemoteException,java.rmi.NotBoundException, java.lang.ClassNotFoundException, indsBean.ExecutionManagerException
 	{
-		return remoteIndsObject.getCommandOutPageCount(queryCommand);
+		int page;
+		try 
+		{
+			page = remoteIndsObject.getCommandOutPageCount(queryCommand);
+		} 
+		catch (java.rmi.ConnectException e)
+		{
+			// Attempt to reconnect to execution manager
+			System.out.println("getCommandOutPageCount: java.rmi.ConnectException");
+			ExecutionManagerConnect();
+			page = remoteIndsObject.getCommandOutPageCount(queryCommand);
+		}
+		return page;
 	}
 	
 	/**
 	* getCommandErrorPageCount retrieves the page count for the command error log file
 	*/
-	public int getCommandErrorPageCount() throws java.rmi.RemoteException
+	public int getCommandErrorPageCount() throws java.rmi.RemoteException,java.rmi.NotBoundException, java.lang.ClassNotFoundException, indsBean.ExecutionManagerException
 	{
-		return remoteIndsObject.getCommandErrorPageCount(queryCommand);
+		int page;
+		try 
+		{
+			page = remoteIndsObject.getCommandErrorPageCount(queryCommand);
+		} 
+		catch (java.rmi.ConnectException e)
+		{
+			// Attempt to reconnect to execution manager
+			System.out.println("getCommandErrorPageCount: java.rmi.ConnectException");
+			ExecutionManagerConnect();
+			page = remoteIndsObject.getCommandErrorPageCount(queryCommand);
+		}
+		return page;		
 	}
 	
 	/** 
