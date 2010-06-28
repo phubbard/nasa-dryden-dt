@@ -62,7 +62,7 @@ public abstract class Command
 		if (temp == null || temp.length() == 0) 
 		      classification = getCommandProperties().get("classification");
 		else  classification = attr.getValue("classification");
-		System.err.println("Command classification: "+classification);
+//		System.err.println("Command classification: "+classification);
 
 		try {
 			// Note that deleteOnExit only works on normal shutdown (not ^C).
