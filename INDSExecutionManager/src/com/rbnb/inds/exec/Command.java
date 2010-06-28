@@ -22,6 +22,7 @@
 	2009/02/19  WHF  Moved log streams from a RAM based copy to a temporary 
 			file.	
 	2009/10/06  WHF  Added page count methods for log streams.
+	2010/05/04  MJM  Optional attribute over-ride to command-classification (for runProcess)
 */
 
 package com.rbnb.inds.exec;
@@ -57,7 +58,11 @@ public abstract class Command
 		id = getClass().getSimpleName() + '_' + (++commandCount);
 		
 		// We copy this property out of thread local storage.
-		classification = getCommandProperties().get("classification");
+		temp = attr.getValue("classification");   // MJM get classification from attr
+		if (temp == null || temp.length() == 0) 
+		      classification = getCommandProperties().get("classification");
+		else  classification = attr.getValue("classification");
+		System.err.println("Command classification: "+classification);
 
 		try {
 			// Note that deleteOnExit only works on normal shutdown (not ^C).
