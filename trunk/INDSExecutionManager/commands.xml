@@ -4,6 +4,11 @@
 	<global>
 		<dataTurbineDirectory>../INDS/Utility/RBNB/V3.1B3/bin</dataTurbineDirectory>
 	</global>
+ 	<command>
+		<name>runProcess</name>
+		<class>com.rbnb.inds.exec.commands.runProcess</class>
+		<classification>source</classification>
+	</command>
 	<command>
 		<name>del</name>
 		<class>com.rbnb.inds.exec.commands.Del</class>
