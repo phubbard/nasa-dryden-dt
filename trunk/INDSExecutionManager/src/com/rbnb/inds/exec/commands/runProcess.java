@@ -42,11 +42,11 @@ public class runProcess extends ExternalCommand
 
 		File exeFile;
 		String exeDir = getCommandProperties().get("executableDirectory");
+		if(exeDir == null) exeDir = "";
 
 		String iniDir = attr.getValue("initialDirectory");
 		if(iniDir == null || iniDir.length()==0) iniDir = exeDir;
 
-		
 		if(exeDir.compareTo(".") == 0)       // local to iniDir (vs exeDir)
 		      exeFile = new File(iniDir+"/"+myProcess);
 		else if(exeDir.compareTo("") == 0)   // unspecified - working dir
