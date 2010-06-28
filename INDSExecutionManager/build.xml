@@ -3,6 +3,7 @@
 	
 	2008/12/02  WHF  Created.
 	2008/12/22  WHF  Added rmic.
+	2010/04/23  MJM  moved master copy of xsd file to here vs P3_example
 -->
 <project name="INDSExecutionManager" default="compile">
 	<target name="compile">
@@ -17,7 +18,7 @@
 		<!-- Copy the schema into the output directory. -->
 		<!--  Right now, the schema lives elsewhere; someday it should be in 
 				this package. -->
-		<copy file="../XML_startup_P3_example/inds_startup.xsd"
+		<copy file="inds_startup.xsd"
 				todir="out/com/rbnb/schema" />
 		<copy file="commands.xml"
 				todir="../XML_startup_P3_example/" />
