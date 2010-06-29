@@ -88,6 +88,37 @@
 	</xsd:complexType>
 </xsd:element>
 
+<xsd:element name="runProcess" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="CommandType">
+				<xsd:attribute name="executable" type="xsd:string"/>
+				<xsd:attribute name="arguments" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="javaProcess" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="JavaCommandType">
+				<xsd:attribute name="executable" type="xsd:string"/>
+				<xsd:attribute name="arguments" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="rbnbPipe" substitutionGroup="command">
+	<xsd:complexType>
+		<xsd:complexContent>
+			<xsd:extension base="JavaCommandType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:element>
+
 <xsd:element name="xmlDemux" substitutionGroup="command">
 	<xsd:complexType>
 		<xsd:complexContent>

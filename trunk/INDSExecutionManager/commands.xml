@@ -2,7 +2,7 @@
 
 <commands>
 	<global>
-		<dataTurbineDirectory>../INDS/Utility/RBNB/V3.1B3/bin</dataTurbineDirectory>
+		<dataTurbineDirectory>../RBNB/V3.2B3/bin</dataTurbineDirectory>
 	</global>
  	<command>
 		<name>runProcess</name>
@@ -22,79 +22,79 @@
 	<command>
 		<name>tomcat</name>
 		<class>com.rbnb.inds.exec.commands.Tomcat</class>
-		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/bin</executableDirectory>
+		<executableDirectory>../RBNB/V3.2B3/apache-tomcat-6.0.18/bin</executableDirectory>
 		<classification>server</classification>
 	</command>
 	<command>
 		<name>httpMonitor</name>
 		<class>com.rbnb.inds.exec.commands.HttpMonitor</class>
-		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/bin</executableDirectory>
+		<executableDirectory>../RBNB/V3.2B3/bin</executableDirectory>
 		<classification>source</classification>
 	</command>
 	<command>
 		<name>dataTurbine</name>
 		<class>com.rbnb.inds.exec.commands.DataTurbine</class>
-		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/bin</executableDirectory>
+		<executableDirectory>../RBNB/V3.2B3/bin</executableDirectory>
 		<classification>server</classification>
 	</command>
 	<command>
 		<name>xmlDemux</name>
 		<class>com.rbnb.inds.exec.commands.XmlDemux</class>
-		<executableDirectory>../INDS/Utility/XMLDemux</executableDirectory>
+		<executableDirectory>../INDS-Utility/XMLDemux</executableDirectory>
 		<classification>converter</classification>
 	</command>
 	<command>
 		<name>csvDemux</name>
 		<class>com.rbnb.inds.exec.commands.CsvDemux</class>
-		<executableDirectory>../INDS/Utility/CSVDemux</executableDirectory>
+		<executableDirectory>../INDS-Utility/CSVDemux</executableDirectory>
 		<classification>converter</classification>
 	</command>
 	<command>
 		<name>udpCapture</name>
 		<class>com.rbnb.inds.exec.commands.UdpCapture</class>
-		<executableDirectory>../INDS/Utility/UDPCapture</executableDirectory>
+		<executableDirectory>../INDS-Utility/UDPCapture</executableDirectory>
 		<classification>source</classification>
 	</command>
 	<command>
 		<name>timeDrive</name>
 		<class>com.rbnb.inds.exec.commands.TimeDrive</class>
-		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/bin</executableDirectory>
+		<executableDirectory>../RBNB/V3.2B3/bin</executableDirectory>
 		<classification>server</classification>
 	</command>
 	<command>
 		<name>png</name>
 		<class>com.rbnb.inds.exec.commands.plugins.PngPlugIn</class>
-		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+		<executableDirectory>../RBNB/V3.2B3/apache-tomcat-6.0.18/webapps/webTurbine/WEB-INF/classes</executableDirectory>
 		<classification>plugin</classification>
 	</command>	
 	<command>
 		<name>thumbNail</name>
 		<class>com.rbnb.inds.exec.commands.plugins.ThumbNailPlugIn</class>
-		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+		<executableDirectory>../RBNB/V3.2B3/apache-tomcat-6.0.18/webapps/webTurbine/WEB-INF/classes</executableDirectory>
 		<classification>plugin</classification>
 	</command>	
 	<command>
 		<name>toString</name>
 		<class>com.rbnb.inds.exec.commands.plugins.ToStringPlugIn</class>
-		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+		<executableDirectory>../RBNB/V3.2B3/apache-tomcat-6.0.18/webapps/webTurbine/WEB-INF/classes</executableDirectory>
 		<classification>plugin</classification>
 	</command>	
 	<command>
 		<name>trackData</name>
 		<class>com.rbnb.inds.exec.commands.plugins.TrackDataPlugIn</class>
-		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+		<executableDirectory>../RBNB/V3.2B3/apache-tomcat-6.0.18/webapps/webTurbine/WEB-INF/classes</executableDirectory>
 		<classification>plugin</classification>
 	</command>	
 	<command>
 		<name>trackKML</name>
 		<class>com.rbnb.inds.exec.commands.plugins.TrackKmlPlugIn</class>
-		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+		<executableDirectory>../RBNB/V3.2B3/apache-tomcat-6.0.18/webapps/webTurbine/WEB-INF/classes</executableDirectory>
 		<classification>plugin</classification>
 	</command>	
 	<command>
 		<name>deadReckoning</name>
 		<class>com.rbnb.inds.exec.commands.plugins.DeadReckoningPlugIn</class>
-		<executableDirectory>../INDS/Utility/RBNB/V3.1B3/apache-tomcat-5.5.12/webapps/webTurbine/WEB-INF/classes</executableDirectory>
+		<executableDirectory>../RBNB/V3.2B3/apache-tomcat-6.0.18/webapps/webTurbine/WEB-INF/classes</executableDirectory>
 		<classification>plugin</classification>
 	</command>	
 </commands>

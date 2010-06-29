@@ -124,6 +124,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="JavaCommandType">
 				<xsd:attribute name="chanNameFromID" type="xsd:boolean"/>
+				<xsd:attribute name="useEmbeddedTimestamp" type="xsd:boolean"/>
 				<xsd:attribute name="silentMode" type="xsd:boolean"/>
 				<xsd:attribute name="xmlFile" type="xsd:string"/>
 			</xsd:extension>
@@ -137,6 +138,7 @@
 			<xsd:extension base="JavaCommandType">
 				<xsd:attribute name="chanNameFromID" type="xsd:boolean"/>
 				<xsd:attribute name="checkEmbeddedTimestamp" type="xsd:boolean"/>
+				<xsd:attribute name="useEmbeddedTimestamp" type="xsd:boolean"/>
 				<xsd:attribute name="dateFormat" type="xsd:string"/>
 				<xsd:attribute name="silentMode" type="xsd:boolean"/>
 				<xsd:attribute name="xmlFile" type="xsd:string"/>
