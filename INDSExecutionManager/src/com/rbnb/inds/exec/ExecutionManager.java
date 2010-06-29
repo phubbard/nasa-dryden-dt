@@ -25,6 +25,7 @@
 
 package com.rbnb.inds.exec;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -203,14 +204,43 @@ System.err.println(cmd);
 	private final Runnable shutdownRunner = new Runnable() {
 		public void run()
 		{
+			// JPW 06/29/2010: If it exists, run the shutdown script
+			String osStr = System.getProperty("os.name");
+			String winFileStr = "iemShutdown.bat";
+			String linuxFileStr = "iemShutdown.sh";
+			File winFile = new File(winFileStr);
+			File linuxFile = new File(linuxFileStr);
+			if ( (osStr.indexOf("Windows") != -1) && (winFile.exists()) ) {
+			    // Use the Windows shutdown script
+			    System.err.println("\n\nShutting down; using the Windows terminate script, " + winFileStr + "\n\n");
+			    try {
+			    	Process termProcess = Runtime.getRuntime().exec(winFileStr);
+				termProcess.waitFor();
+				Thread.sleep(3000);
+			    } catch (Exception ex) {
+			    	System.err.println("Error running Windows shutdown script:\n" + ex);
+			    }
+			} else if (linuxFile.exists()) {
+			    // Use the Linux shutdown script
+			    System.err.println("\n\nShutting down; using the Linux terminate script, " + linuxFileStr + "\n\n");
+			    try {
+				Process termProcess = Runtime.getRuntime().exec(linuxFileStr);
+				termProcess.waitFor();
+				Thread.sleep(3000);
+			    } catch (Exception ex) {
+			        System.err.println("Error running Linux shutdown script:\n" + ex);
+			    }
+			}
+			// Use the standard, built-in shutdown
 			synchronized (currentCommands) {
 				//for (Command cmd : currentCommands) {
 				for (ListIterator<Command> iter = currentCommands.listIterator(
 						currentCommands.size());
-						iter.hasPrevious(); ) {
+						iter.hasPrevious(); )
+				{
 					Command cmd = iter.previous();
 					if (!cmd.isExecutionComplete()) {
-System.err.println("Stopping command "+cmd);						
+						System.err.println("Stopping command "+cmd);
 						cmd.stopExecution();
 					}
 					cmd.cleanup();
