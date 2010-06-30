@@ -224,7 +224,8 @@ System.err.println(cmd);
 			    // Use the Linux shutdown script
 			    System.err.println("\n\nShutting down; using the Linux terminate script, " + linuxFileStr + "\n\n");
 			    try {
-				Process termProcess = Runtime.getRuntime().exec(new String("sh " + linuxFileStr));
+				//Process termProcess = Runtime.getRuntime().exec(new String("sh " + linuxFileStr));
+				Process termProcess = Runtime.getRuntime().exec("sleep 15");
 				termProcess.waitFor();
 				Thread.sleep(3000);
 			    } catch (Exception ex) {
