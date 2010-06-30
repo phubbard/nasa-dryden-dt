@@ -224,11 +224,17 @@ System.err.println(cmd);
 			    // Use the Linux shutdown script
 			    System.err.println("\n\nShutting down; using the Linux terminate script, " + linuxFileStr + "\n\n");
 			    try {
-			    	// Under Mac OS X version 10.6 running Java 1.6.0_17, Process.waitFor() just returns
-				//Process termProcess = Runtime.getRuntime().exec(new String("sh " + linuxFileStr));
-				ProcessBuilder pb = new ProcessBuilder("sh",linuxFileStr);
-				Process termProcess = pb.start();
-				termProcess.waitFor();
+			    	// Under Mac OS X version 10.6 running Java 1.6.0_17, Process.waitFor() just returns;
+			    	// therefore, we put in a sleep for 30 sec to run the kill script.  This is a kludge,
+			    	// but can't think of anything else to do right now.
+				Process linuxProcess = Runtime.getRuntime().exec(new String("sh " + linuxFileStr));
+				linuxProcess.waitFor();
+				if (linuxProcess.exitValue() == 0) {
+				    System.err.println("Exit value = 0; appears to be a normal exit.");
+				} else {
+				    System.err.println("Exit value = " + linuxProcess.exitValue() + "; giving 30 sec additional time to clean up.");
+				    Thread.sleep(30000);
+				}
 				Thread.sleep(3000);
 			    } catch (Exception ex) {
 			        System.err.println("Error running Linux shutdown script:\n" + ex);
