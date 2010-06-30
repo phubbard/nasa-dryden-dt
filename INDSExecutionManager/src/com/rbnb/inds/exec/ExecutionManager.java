@@ -204,6 +204,7 @@ System.err.println(cmd);
 	private final Runnable shutdownRunner = new Runnable() {
 		public void run()
 		{
+			synchronized (currentCommands) {
 			// JPW 06/29/2010: If it exists, run the shutdown script
 			String osStr = System.getProperty("os.name");
 			String winFileStr = "iemShutdown.bat";
@@ -224,24 +225,15 @@ System.err.println(cmd);
 			    // Use the Linux shutdown script
 			    System.err.println("\n\nShutting down; using the Linux terminate script, " + linuxFileStr + "\n\n");
 			    try {
-			    	// Under Mac OS X version 10.6 running Java 1.6.0_17, Process.waitFor() just returns;
-			    	// therefore, we put in a sleep for 30 sec to run the kill script.  This is a kludge,
-			    	// but can't think of anything else to do right now.
 				Process linuxProcess = Runtime.getRuntime().exec(new String("sh " + linuxFileStr));
 				linuxProcess.waitFor();
-				if (linuxProcess.exitValue() == 0) {
-				    System.err.println("Exit value = 0; appears to be a normal exit.");
-				} else {
-				    System.err.println("Exit value = " + linuxProcess.exitValue() + "; giving 30 sec additional time to clean up.");
-				    Thread.sleep(30000);
-				}
 				Thread.sleep(3000);
 			    } catch (Exception ex) {
 			        System.err.println("Error running Linux shutdown script:\n" + ex);
 			    }
 			}
-			// Use the standard, built-in shutdown
-			synchronized (currentCommands) {
+			
+				System.err.println("\n\nGo through list of commands in reverse to shut them down...\n");
 				//for (Command cmd : currentCommands) {
 				for (ListIterator<Command> iter = currentCommands.listIterator(
 						currentCommands.size());
