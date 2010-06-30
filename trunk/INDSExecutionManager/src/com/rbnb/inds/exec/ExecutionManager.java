@@ -344,6 +344,7 @@ System.err.println(" complete.");
 			System.err.println("RMI terminate method called; shutting down...");
 			Thread shutdownThread = new Thread(shutdownRunner);
 			shutdownThread.start();
+			System.exit(0);
 		}
 		
 		public int getPageSize() throws java.rmi.RemoteException

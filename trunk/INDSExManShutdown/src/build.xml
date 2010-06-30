@@ -1,0 +1,43 @@
+
+<!-- Name: build.xml
+     By:   John Wilson
+     Date: 06/30/2010
+
+     Description:
+         Ant build file for INDSExManShutdown application.
+-->
+
+<project name="INDSExManShutdown" default="jar" basedir=".">
+ 
+  <target name="init">
+    <mkdir dir="../classes"/>
+    <mkdir dir="../dist"/>
+  </target>
+  
+  <!-- Compile source code; put class files in ../class -->
+  <target name="compile" depends="init">
+    <javac destdir="../classes" includeAntRuntime="false" deprecation="on">
+      <src path="." />
+      <classpath path="../classes" />
+    </javac>
+    <echo>Compiled INDSExManShutdown</echo>
+  </target>
+  
+  <!-- Build the jar file -->
+  <target name="jar" depends="compile">
+    <jar destfile="../dist/iemshutdown.jar" basedir="../classes">
+      <manifest>
+        <attribute name="Main-Class" value="com.rbnb.inds.INDSExManShutdown"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <!-- Cleans out all compiled files -->
+  <target name="clean">
+    <!-- Delete the class and dist directories -->
+    <delete dir="../classes"/>
+    <delete dir="../dist"/>
+  </target>
+  
+</project>
+
