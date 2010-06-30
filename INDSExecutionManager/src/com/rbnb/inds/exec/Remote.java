@@ -23,6 +23,7 @@
 	2009/06/08  WHF  Added terminate().
 	2009/09/24  WHF  Added the page methods.
 	2009/10/06  WHF  Added the page count methods.
+	2010/06/30  JPW  Added terminateIEM().
 */
 
 package com.rbnb.inds.exec;
@@ -96,6 +97,13 @@ public interface Remote extends java.rmi.Remote
 	  * @since 2009/06/08
 	  */
 	public void terminate(String cmd) throws java.rmi.RemoteException;
+	
+	/**
+	  * Stops execution of all commands and finishes INDS Execution Manager.
+	  *
+	  * @since 2010/06/30
+	  */
+	public void terminateIEM() throws java.rmi.RemoteException;
 	
 	/**
 	  * Returns the current page size in lines, for paged log retrieval.

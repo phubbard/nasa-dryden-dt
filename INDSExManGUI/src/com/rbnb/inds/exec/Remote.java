@@ -20,6 +20,10 @@
 	2008/12/19  WHF  Created.
 	2009/01/09  WHF  Added getChildConfiguration and getName.
 	2009/01/15  WHF  Added getRootConfiguration and getCommandClassification.
+	2009/06/08  WHF  Added terminate().
+	2009/09/24  WHF  Added the page methods.
+	2009/10/06  WHF  Added the page count methods.
+	2010/06/30  JPW  Added terminateIEM().
 */
 
 package com.rbnb.inds.exec;
@@ -85,5 +89,58 @@ public interface Remote extends java.rmi.Remote
 	  * @since 2009/01/09
 	  */
 	public String getName(String cmd) throws java.rmi.RemoteException;
+	
+	/**
+	  * Stops command execution of the named task.  Nothing happens if the 
+	  *  task has already stopped.
+	  *
+	  * @since 2009/06/08
+	  */
+	public void terminate(String cmd) throws java.rmi.RemoteException;
+	
+	/**
+	  * Stops execution of all commands and finishes INDS Execution Manager.
+	  *
+	  * @since 2010/06/30
+	  */
+	public void terminateIEM() throws java.rmi.RemoteException;
+	
+	/**
+	  * Returns the current page size in lines, for paged log retrieval.
+	  */
+	public int getPageSize() throws java.rmi.RemoteException;
+	
+	/**
+	  * Changes the current page size, in lines, for paged log retrieval.
+	  *  The default page size is 1000 lines.
+	  */
+	public void setPageSize(int newSize) throws java.rmi.RemoteException;
+	
+	/**
+	  * Returns the current page number, with zero being the first page,
+	  * one being the second page, negative one being the last page, and
+	  * negative two being the second to last page, etc.
+	  */
+	public int getPage() throws java.rmi.RemoteException;
+	
+	/**
+	  * Set the new log page.  The default page is -1.
+	  */	
+	public void setPage(int newPage) throws java.rmi.RemoteException;
+	
+	/**
+	  * Get the number of pages for the standard output log for the specified
+	  *   command.
+	  */
+	public int getCommandOutPageCount(String cmd)
+			throws java.rmi.RemoteException;
+			
+	/**
+	  * Get the number of pages for the standard error log for the specified
+	  *   command.
+	  */
+	public int getCommandErrorPageCount(String cmd)
+			throws java.rmi.RemoteException;
+	
 }
 

@@ -204,7 +204,6 @@ System.err.println(cmd);
 	private final Runnable shutdownRunner = new Runnable() {
 		public void run()
 		{
-			synchronized (currentCommands) {
 			// JPW 06/29/2010: If it exists, run the shutdown script
 			String osStr = System.getProperty("os.name");
 			String winFileStr = "iemShutdown.bat";
@@ -232,8 +231,8 @@ System.err.println(cmd);
 			        System.err.println("Error running Linux shutdown script:\n" + ex);
 			    }
 			}
-				/*
-				System.err.println("\n\nGo through list of commands in reverse to shut them down...\n");
+			synchronized (currentCommands) {
+				System.err.println("\n\nGo through list of commands in reverse to shut down/clean up remaining commands...\n");
 				//for (Command cmd : currentCommands) {
 				for (ListIterator<Command> iter = currentCommands.listIterator(
 						currentCommands.size());
@@ -246,7 +245,6 @@ System.err.println(cmd);
 					}
 					cmd.cleanup();
 				}
-				*/
 			}
 		}
 	};
@@ -338,8 +336,14 @@ System.err.println(" complete.");
 		
 		public void terminate(String cmd) throws java.rmi.RemoteException
 		{
-System.err.println("In the public terminate() method: terminate command <" + cmd + ">");
 			getCommand(cmd).stopExecution();
+		}
+		
+		public void terminateIEM() throws java.rmi.RemoteException
+		{
+			System.err.println("RMI terminate method called; shutting down...");
+			Thread shutdownThread = new Thread(shutdownRunner);
+			shutdownThread.start();
 		}
 		
 		public int getPageSize() throws java.rmi.RemoteException

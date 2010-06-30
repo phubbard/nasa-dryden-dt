@@ -56,6 +56,7 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
 
     private JTextField hostNameTF;
     private JButton connectB;
+    private JButton terminateB;
     private JList commandLB;
     private JCheckBox showCompletedCommandsCB;
     private JLabel processIDLabel;
@@ -101,6 +102,7 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
 
         //
         // Host and connect button
+        // JPW 06/30/2010: Add terminate button
         //
         GridBagLayout tempgbl = new GridBagLayout();
         JPanel tempP = new JPanel(tempgbl);
@@ -117,12 +119,27 @@ public class INDSExManGUI extends JFrame implements ListSelectionListener, ListC
                 fetchCommandList(evt);
             }
         });
+        terminateB = new JButton("Terminate IEM");
+        terminateB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	if (remoteObj == null) {
+            	    return;
+            	}
+            	try {
+            	    remoteObj.terminateIEM();
+            	} catch (RemoteException re) {
+            	    System.err.println("Caught exception trying to terminate IEM:\n" + re);
+            	}
+            }
+        });
         gbc.insets = new Insets(0,0,0,5);
         add(tempP, tempL, tempgbl, gbc, 0, 0, 1, 1);
         gbc.insets = new Insets(0,0,0,5);
         add(tempP, hostNameTF, tempgbl, gbc, 1, 0, 1, 1);
-        gbc.insets = new Insets(0,0,0,5);
+        gbc.insets = new Insets(0,0,0,30);
         add(tempP, connectB, tempgbl, gbc, 2, 0, 1, 1);
+        gbc.insets = new Insets(0,0,0,0);
+        add(tempP, terminateB, tempgbl, gbc, 3, 0, 1, 1);
         // Add tempP to guiPanel
         gbc.insets = new Insets(15,15,0,15);
         add(guiPanel, tempP, gbl, gbc, 0, 0, 2, 1);
