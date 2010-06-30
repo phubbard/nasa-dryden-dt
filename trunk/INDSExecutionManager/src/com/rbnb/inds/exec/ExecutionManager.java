@@ -224,8 +224,10 @@ System.err.println(cmd);
 			    // Use the Linux shutdown script
 			    System.err.println("\n\nShutting down; using the Linux terminate script, " + linuxFileStr + "\n\n");
 			    try {
+			    	// Under Mac OS X version 10.6 running Java 1.6.0_17, Process.waitFor() just returns
 				//Process termProcess = Runtime.getRuntime().exec(new String("sh " + linuxFileStr));
-				Process termProcess = Runtime.getRuntime().exec("sleep 15");
+				ProcessBuilder pb = new ProcessBuilder("sh",linuxFileStr);
+				Process termProcess = pb.start();
 				termProcess.waitFor();
 				Thread.sleep(3000);
 			    } catch (Exception ex) {
