@@ -1,0 +1,27 @@
+<flightMon debug="true"> 
+	<input
+			service="FlightAware"
+			serviceUser="nasadryden"
+			servicePassword="ca4c3f7f44340d6341b69da549fa9f7c2df16267"
+			intervalSecHigh="60"
+			intervalSecMedium="600"
+			intervalSecLow="3600"
+			timeoutMs="60000"
+			maxStaleRequestsHigh="5"
+			maxStaleRequestsMedium="5"
+			maxStaleRequestsLow="168" 
+	>
+		<flights>
+			<tail>N70AR</tail> <!-- NASA Twin Otter GOSpill 2010-->
+		</flights>
+      </input>
+      <output
+				rbnbSource="FlightAwareMon"
+				host="localhost:3333"
+            	archiveMode="append"
+            	archiveFrames="100000"
+            	timeoutMs="60000" >
+		<csv on="true"  decimation="1" />
+		<iwg on="true" decimation="1" />
+      </output>
+</flightMon>

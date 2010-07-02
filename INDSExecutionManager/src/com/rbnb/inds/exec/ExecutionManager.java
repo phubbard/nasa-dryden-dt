@@ -18,9 +18,16 @@
 	---  History  ---
 	2008/12/02  WHF  Created.
 	2008/12/23  WHF  Remote interface added.  
-			Shutdown processes in reverse order from startup.
+			 Shutdown processes in reverse order from startup.
 	2009/06/08  WHF  Added handling of Remote terminate method.
 	2009/10/06  WHF  Added page count methods to the Remote implementation.
+	2010/06/28  JPW  Add new RMI method for terminating the INDS Execution
+	                 manager, terminateIEM().  Also, in the shutdown hook,
+	                 add support for calling an external shutdown script file.
+	2010/07/02  JPW  ShutdownRunner is now its own class.  This was
+	                 separated out so that an instance of this class could
+	                 be independently called either from the shutdown hook
+	                 or else from the new RMI method terminateIEM().
 */
 
 package com.rbnb.inds.exec;
@@ -49,7 +56,10 @@ public class ExecutionManager
 {
 	public ExecutionManager() throws java.rmi.RemoteException
 	{
-		Runtime.getRuntime().addShutdownHook(new Thread(shutdownRunner));
+		// ShutdownRunner is now its own class
+		// Runtime.getRuntime().addShutdownHook(new Thread(shutdownRunner));
+		shutdownThread = new Thread(new ShutdownRunner(currentCommands));
+		Runtime.getRuntime().addShutdownHook(shutdownThread);
 		
 		try {
 			java.rmi.registry.Registry reg 
@@ -201,6 +211,9 @@ System.err.println(cmd);
 		private final byte buffer[] = new byte[1024];
 	};
 	
+	/*
+	 * JPW 07/02/2010: Code has been moved to its own class, ShutdownRunner
+	 *
 	private final Runnable shutdownRunner = new Runnable() {
 		public void run()
 		{
@@ -248,6 +261,7 @@ System.err.println(cmd);
 			}
 		}
 	};
+	*/
 		
 	/**
 	  * Waits for all started processes to complete.
@@ -342,8 +356,16 @@ System.err.println(" complete.");
 		public void terminateIEM() throws java.rmi.RemoteException
 		{
 			System.err.println("RMI terminate method called; shutting down...");
-			Thread shutdownThread = new Thread(shutdownRunner);
-			shutdownThread.start();
+			// Remove the existing shutdown thread (so when we call
+			// System.exit(), we don't call another instance of
+			// ShutdownRunner).
+			try {
+				Runtime.getRuntime().removeShutdownHook(shutdownThread);
+			} catch (Exception ex) {
+				System.err.println("Exception removing shutdown hook:\n" + ex);
+			}
+			ShutdownRunner sr = new ShutdownRunner(currentCommands);
+			sr.run();
 			System.exit(0);
 		}
 		
@@ -437,6 +459,8 @@ System.err.println(" complete.");
 	
 	private Thread logRunnerThread;
 	private String rootConfiguration;
+	
+	private Thread shutdownThread = null;
 }
 
 
