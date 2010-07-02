@@ -1,0 +1,23 @@
+<flightMon debug="true"> 
+	<input
+			service="SkyConnect"
+			serviceUser="NASA"
+			servicePassword="3xpLrA5hn"
+			intervalSecHigh="10"
+			timeoutMs="20000"
+			maxStaleRequestsHigh="0"> <!-- infinite -->
+		<flights>
+			<!--<tail>N255SA</tail> <!- NASA Twin Otter SMAPVEX 2008 --> -->
+			<tail>N70AR</tail> <!-- NASA Twin Otter GOSpill 2010-->
+		</flights>
+      </input>
+      <output
+				rbnbSource="SkyConnectMon"
+				host="localhost:3333"
+            	archiveMode="append"
+            	archiveFrames="100000"
+            	timeoutMs="60000" >
+		<csv on="true"  decimation="1" />
+		<iwg on="true" decimation="1" />
+      </output>
+</flightMon>
