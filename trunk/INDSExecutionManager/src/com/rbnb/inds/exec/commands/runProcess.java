@@ -60,7 +60,7 @@ public class runProcess extends ExternalCommand
 		else                                // in executableDirectory
 		*/
 		setExecutablePath(exeFile.getCanonicalPath());
-		System.err.println("exiDir: '"+exeDir+"', exefile: "+exeFile.getCanonicalPath());
+		System.err.println("runProcess task: exe dir: <"+exeDir+">, exe file: <"+exeFile.getCanonicalPath() + ">");
 
        		myName = myProcess;   // "tag" is available to over-ride this
 
