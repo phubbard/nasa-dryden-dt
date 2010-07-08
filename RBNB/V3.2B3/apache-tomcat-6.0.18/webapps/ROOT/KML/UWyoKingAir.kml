@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+<Document>
+<Folder>
+	<name>UWyoKingAir</name>
+	<description>
+	<![CDATA[<a href="http://192.168.2.56/TimeDrive">TimeDrive</a>]]>
+	</description>
+	<open>1</open>
+	<NetworkLink>
+                <name>KingAir</name>
+                <visibility>0</visibility>
+                <open>0</open>
+                <Url>
+                        <href>http://192.168.2.56/TimeDrive/RBNB/TrackKML_UWyoKingAir/TrackData_UWyoKingAir/UWYO_KING_AIR</href>
+                        <refreshMode>onInterval</refreshMode>
+                        <refreshInterval>3</refreshInterval>
+                </Url>
+        </NetworkLink>
+</Folder>
+</Document>
+</kml>
