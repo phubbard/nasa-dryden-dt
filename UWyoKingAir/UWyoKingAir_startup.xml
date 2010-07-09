@@ -51,15 +51,15 @@
 	<del initialDirectory="Capture/UDPCapture" file="*.log"/>
 	<udpCapture initialDirectory="Capture/UDPCapture" logFile="UWyoKingAir-50000-cap.log">
 	    <input type="udp" port="50000"/>
-	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="false" name="UWyoKingAir-50000-cap"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="false" name="UWKA-50000-cap"/>
 	</udpCapture>
 	<sleep duration_ms="5000"/>
 	
 	<!-- Project (demux) -->
 	<del initialDirectory="Projects/UWyoKingAir" file="*.log"/>
-	<xmlDemux initialDirectory="Projects/UWyoKingAir" logFile="XMLDemux.log" silentMode="true" chanNameFromID="true" xmlFile="demux.xml">
-	    <input type="rbnb" port="localhost:3333" channel="UWyoKingAir-50000-cap/UDP"/>
-	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="false" name="UWYO_KING_AIR"/>
+	<xmlDemux initialDirectory="Projects/UWyoKingAir" logFile="XMLDemux.log" silentMode="true" chanNameFromID="true" xmlFile="UWKA.xml">
+	    <input type="rbnb" port="localhost:3333" channel="UWKA-50000-cap/UDP"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="false"/>
 	</xmlDemux>
 	
 </startup>

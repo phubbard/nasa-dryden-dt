@@ -85,4 +85,4 @@ colorBy		red
 #   In other words, "chan" cannot be an absolute Source/Channel name.
 # - The "nickname" specifies the string that will be displayed in Google Earth with the data value.
 #
-label_chan	Altitude=Alt(m)
+label_chan	GPS_Altitude=Alt(m)
