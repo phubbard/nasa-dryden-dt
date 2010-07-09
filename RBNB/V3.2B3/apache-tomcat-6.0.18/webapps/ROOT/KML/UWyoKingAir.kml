@@ -4,7 +4,7 @@
 <Folder>
 	<name>UWyoKingAir</name>
 	<description>
-	<![CDATA[<a href="http://192.168.2.56/TimeDrive">TimeDrive</a>]]>
+	<![CDATA[<a href="http://130.134.183.53/TimeDrive">TimeDrive</a>]]>
 	</description>
 	<open>1</open>
 	<NetworkLink>
@@ -12,7 +12,7 @@
                 <visibility>0</visibility>
                 <open>0</open>
                 <Url>
-                        <href>http://192.168.2.56/TimeDrive/RBNB/TrackKML_UWyoKingAir/TrackData_UWyoKingAir/UWYO_KING_AIR</href>
+                        <href>http://130.134.183.53/TimeDrive/RBNB/TrackKML_UWyoKingAir/TrackData_UWyoKingAir/U_WyomingKA_IWG1</href>
                         <refreshMode>onInterval</refreshMode>
                         <refreshInterval>3</refreshInterval>
                 </Url>
