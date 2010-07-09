@@ -16,7 +16,7 @@
 # type      (type channel)
 # class     (classification channel)
 
-alt		Altitude
+alt		GPS_Altitude
 lat		Latitude
 lon		Longitude
 
