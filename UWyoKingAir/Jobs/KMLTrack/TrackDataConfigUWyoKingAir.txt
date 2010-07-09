@@ -17,6 +17,6 @@
 # class     (classification channel)
 
 alt		GPS_Altitude
-lat		Latitude
-lon		Longitude
+lat		MIDG_Latitude
+lon		MIDG_Longitude
 
