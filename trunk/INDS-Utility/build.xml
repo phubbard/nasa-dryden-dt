@@ -13,7 +13,7 @@
  <target name="compile-all">
   <subant target="compile">
    <fileset dir="."
-	    includes="CPLDemux/build.xml,CSVDemux/build.xml,FileUpdater/build.xml,UDPCapture/build.xml,UDPChatSource/build.xml,UDPRecaster/build.xml,UDPWrite/build.xml,XMLDemux/build.xml"/>
+	    includes="CPLDemux/build.xml,CSVDemux/build.xml,DirectIPServer/build.xml,FileUpdater/build.xml,UDPCapture/build.xml,UDPChatSource/build.xml,UDPRecaster/build.xml,UDPWrite/build.xml,XMLDemux/build.xml"/>
   </subant>
  </target>
 
@@ -21,7 +21,7 @@
  <target name="clean-all">
   <subant target="clean">
    <fileset dir="."
-	    includes="CPLDemux/build.xml,CSVDemux/build.xml,FileUpdater/build.xml,UDPCapture/build.xml,UDPChatSource/build.xml,UDPRecaster/build.xml,UDPWrite/build.xml,XMLDemux/build.xml"/>
+	    includes="CPLDemux/build.xml,CSVDemux/build.xml,DirectIPServer/build.xml,FileUpdater/build.xml,UDPCapture/build.xml,UDPChatSource/build.xml,UDPRecaster/build.xml,UDPWrite/build.xml,XMLDemux/build.xml"/>
    </subant>
  </target>
 
