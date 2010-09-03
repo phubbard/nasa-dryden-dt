@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- 09/03/10, JPW, Gumstix/Beacon demo setup file -->
+<config xmlns="urn:xmlns:reveal"><label>IWG1VM</label><info>IWGADTS IWG1 Trivial Format CSV data</info><rate>0.200000</rate><host>rvl-201.005</host><start>Fri Jul  9 17:21:17 2010</start>
+  <target>udp://130.134.183.53:50000</target>
+  <parameter id="Marker"><type>marker</type><format>IWG1</format><label>Frame Header</label><info xmlns="urn:xmlns:reveal">Frame Header Text</info></parameter>
+  <parameter id="TimeStamp"><type>double</type><label>Time (UTC)</label><info xmlns="urn:xmlns:reveal">Timestamp for data frame: UTC seconds past Unix epoch</info></parameter>
+  <parameter id="Latitude"><type>double</type><label>Latitude (deg)</label><info xmlns="urn:xmlns:reveal">MIDG-II Latitude: +/- 90 degrees</info></parameter>
+  <parameter id="Longitude"><type>double</type><label>Longitude (deg)</label><info xmlns="urn:xmlns:reveal">MIDG-II Longitude: +/- 180 degrees</info></parameter>
+  <parameter id="GPS_Alt_MSL"><type>float</type><label>GPS Altitude MSL (m)</label><info xmlns="urn:xmlns:reveal">LTN-2001 GPS Altitude MSL (m)</info></parameter>
+  <parameter id="GPS_Altitude"><type>float</type><label>GPS Altitude (m)</label><info xmlns="urn:xmlns:reveal">MIDG-II GPS Altitude: +/- 30000 meters</info></parameter>
+  <parameter id="Pressure_Altitude"><type>float</type><label>Pressure Altitude (ft)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="RADAR_Altitude"><type>float</type><label>RADAR Altitude (ft)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Ground_Speed"><type>float</type><label>Ground Speed (m/s)</label><info xmlns="urn:xmlns:reveal">UNS-1B Ground Speed: 0-2107 meter/sec</info></parameter>
+  <parameter id="True_Air_Speed"><type>float</type><label>True Air Speed (m/s)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Indicated_Air_Speed"><type>float</type><label>Indicated Air Speed (m/s)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Mach_Number"><type>float</type><label>Mach Number</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Vertical_Speed"><type>float</type><label>Vertical Speed (m/s)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="True_Heading"><type>float</type><label>True Heading (deg)</label><info xmlns="urn:xmlns:reveal">+/- 180 degrees</info></parameter>
+  <parameter id="Track_Angle"><type>float</type><label>Track Angle (deg)</label><info xmlns="urn:xmlns:reveal">+/- 180 degrees</info></parameter>
+  <parameter id="Drift_Angle"><type>float</type><label>Drift Angle (deg)</label><info xmlns="urn:xmlns:reveal">+/- 180 degrees</info></parameter>
+  <parameter id="Pitch_Angle"><type>float</type><label>Pitch Angle (deg)</label><info xmlns="urn:xmlns:reveal">MIDG-II Pitch Angle: +/- 180 degrees</info></parameter>
+  <parameter id="Roll_Angle"><type>float</type><label>Roll Angle (deg)</label><info xmlns="urn:xmlns:reveal">MIDG-II Roll Angle: +/- 180 degrees</info></parameter>
+  <parameter id="Yaw_Angle"><type>float</type><label>Slip / Yaw Angle (deg)</label><info xmlns="urn:xmlns:reveal">MIDG-II Yaw Angle (they mean true heading angle): +/- 180 degrees</info></parameter>
+  <parameter id="Attack_Angle"><type>float</type><label>Angle of Attack (deg)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Static_Air_Temp"><type>float</type><label>Static Air Temp (C)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Dew_Point"><type>float</type><label>Dew Point (C)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Total_Air_Temp"><type>float</type><label>Total Air Temp (C)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Static_Pressure"><type>float</type><label>Static Pressure (mbar)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Dynamic_Pressure"><type>float</type><label>Dynamic Pressure (mbar)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Cabin_Pressure"><type>float</type><label>Cabin Pressure (mbar)</label><info xmlns="urn:xmlns:reveal">Omega Cabin Pressure: 0-2070 mbar (Caveat: poor accuracy)</info></parameter>
+  <parameter id="Wind_Speed"><type>float</type><label>Wind Speed (m/s)</label><info xmlns="urn:xmlns:reveal">UNS-1B Wind Speed: 0-132 meters/second</info></parameter>
+  <parameter id="Wind_Direction"><type>float</type><label>Wind Direction (deg)</label><info xmlns="urn:xmlns:reveal">+/- 180 degrees</info></parameter>
+  <parameter id="Vert_Wind_Speed"><type>float</type><label>Vertical Wind Speed (m/s)</label><info xmlns="urn:xmlns:reveal">Data is not available</info></parameter>
+  <parameter id="Solar_Zenith_Angle"><type>float</type><label>Solar Zenith Angle (deg)</label><info xmlns="urn:xmlns:reveal">Solar Zenith Angle: degrees</info></parameter>
+  <parameter id="Aircraft_Sun_Elevation"><type>float</type><label>Aircraft Sun Elevation (deg)</label><info xmlns="urn:xmlns:reveal">Sun Elevation in Aircraft Reference Frame: degrees</info></parameter>
+  <parameter id="Sun_Azimuth"><type>float</type><label>Solar Azimuth Angle (deg)</label><info xmlns="urn:xmlns:reveal">Solar Azimuth Angle: degrees</info></parameter>
+  <parameter id="Aircraft_Sun_Azimuth"><type>float</type><label>Aircraft Sun Azimuth (deg)</label><info xmlns="urn:xmlns:reveal">Sun Azimuth in Aircraft Reference Frame: degrees</info></parameter>
+</config>
