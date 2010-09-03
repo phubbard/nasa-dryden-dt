@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Gumstix Beacon project -->
+
+<!--startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://whf/schema/inds_startup.xsd"-->
+<startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/user/DryScan/nasa-dryden-dt/UWyoKingAir/inds_startup.xsd">
+	
+	<!-- Tomcat -->
+	<!-- Doesn't work with the new Tomcat (apache-tomcat-6.0.18) -->
+	<!-- tomcat initialDirectory="Tomcat" logFile="tommy.log">
+		<input type="tcp" port="localhost:80" />
+	</tomcat>
+	<sleep duration_ms="5000"/-->
+	
+	<!-- Server -->
+	<del initialDirectory="Server" file="rbnb.log"/>
+	<dataTurbine jvmMaxHeap="1024M" initialDirectory="Server" logFile="rbnb.log" name="INDS" address=":3333" tag="BeaconDT"/>
+	<sleep duration_ms="15000"/>
+	
+	<!-- Jobs/KMLTrack -->
+	<del initialDirectory="Jobs/KMLTrack" file="*.log"/>
+	<trackKML initialDirectory="Jobs/KMLTrack" logFile="TrackKML.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfig.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackKML" />
+	</trackKML>
+	<trackData initialDirectory="Jobs/KMLTrack" logFile="TrackData.log" noGUI="true" configFile="TrackDataConfig.txt">
+	    <plugin type="rbnb" port="localhost:3333" name="TrackData" />
+	</trackData>
+	
+	<!-- Jobs/TimeDrive -->
+	<del initialDirectory="Jobs/TimeDrive" file="*.log"/>
+	<timeDrive initialDirectory="Jobs/TimeDrive" logFile="timedrive.log" multiUserMode="ip">
+	    <input type="tcp" port="4000"/>
+	    <output type="tcp" port="localhost:80"/>
+	</timeDrive>
+	
+	<!-- Jobs/PlugIns -->
+	<del initialDirectory="Jobs/PlugIns" file="*.log"/>
+	<png initialDirectory="Jobs/PlugIns" logFile="png.log" width="320" height="200">
+	    <plugin type="rbnb" port="localhost:3333" name="PNGPlugIn" />
+	</png>
+	<toString initialDirectory="Jobs/PlugIns" logFile="toString.log">
+	    <plugin type="rbnb" port="localhost:3333" name="ToString" />
+	</toString>
+	<thumbNail initialDirectory="Jobs/PlugIns" logFile="thumbNail.log" scale="0.5" quality="0.9" maxImages="10">
+	    <plugin type="rbnb" port="localhost:3333" name="ThumbNail" />
+	</thumbNail>
+	
+	<sleep duration_ms="5000"/>
+	
+	<!-- Data Capture -->
+	<del initialDirectory="Capture/DirectIP" file="*.log"/>
+	<runProcess tag="DirectIPServer" classification="source" initialDirectory="../INDS-Utility/DirectIPServer/dist" executable="/usr/bin/java" arguments="-cp ./directipserver.jar:../../../RBNB/V3.2B3/bin/rbnb.jar com.erigo.directip.DirectIPServer 1537 localhost:3333" />
+	<sleep duration_ms="5000"/>
+	
+	<!-- Project (demux) -->
+	<del initialDirectory="Projects/Beacon" file="*.log"/>
+	<csvDemux initialDirectory="Projects/Beacon" logFile="CSVDemux.log" dateFormat="yyyy-MM-dd'T'HH:mm:ss'Z'" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="Beacon.xml">
+            <input type="rbnb" port="localhost:3333" channel="SBD/payload"/>
+            <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="false" name="Beacon"/>
+        </csvDemux>
+	
+</startup>
