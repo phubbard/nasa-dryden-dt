@@ -10,7 +10,7 @@ This will keep track of the changes made to the Iridium code and additions that 
 
 ==Version 4==
 Reset MO and MT buffers (the MO and MT buffers are supposed to reset after a session, but it is best practice to do this manually)
-Interrupts for SBDIRING (currently the test code is buggy)
+Interrupts for SBDRING (currently the test code is buggy)
 Low power mode
 Tweak retries
 Modem configuration (setting to default, setting to wanted states, etc)
@@ -34,7 +34,7 @@ Fixed read issues
 Basic sending of data, no receiving
 Issues with read buffer]
 
-==Currently Supported at Commands==
+=Currently Supported at Commands=
 
 Hayes AT comamnds was creating in 1977. Modems ranging from satellite, ham radio and 3/4G services still use a variant of the AT command set.
 
@@ -46,11 +46,21 @@ Sending a message requires the following steps:
 5. Read MT buffer
 6. Repeat step 3 if there are messages in the gateway.
 
-=AT+SBDWT=
+==AT+SBDWT==
 Write a message to the modem's MO Buffer.
 
-=AT+SBDRT=
+==AT+SBDRT==
 Read a message from the modem's MT Buffer
 
-=AT+SBDIX= 
+==AT+SBDIX==
 Initiates a session between the modem and the satellite constellation. During this session, information stored in the MO buffer will be sent to the constellation and any messagse waiting will be sent to the MT buffer.
+
+=Driver Specifics=
+The driver uses Linux specific libraries to communicate to serial ports and sockets. Hence, it must be compiled in a Linux Environment or VM. 
+
+
+=Iridium Constellation=
+
+SBDRING (in my experience, Chris Rodriguez) is unreliable. Connecting with kermit and sending messages to the modem shows that sometimes SBDRING doesn't ring the modem, yet when you manually start a session, the message transfers. Sometimes a message transfers and a ring happens after words. In my interrupt service routine, SBDRING happens, an interrupt gets issues and sometimes a ring or two follow immediately, triggering additional interrupts when there may only be messages. 
+
+In early development, bad link conditions (proximity to buildings and bad weather), can lead the developer to thinking his/her code isn't working since the link conditions may fluctuate quickly. 
