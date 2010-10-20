@@ -10,6 +10,10 @@ This will keep track of the changes made to the Iridium code and additions that 
 
 ==Version 4==
 Reset MO and MT buffers
+Interrupts for SBDIRING (currently the test code is buggy)
+Low power mode
+Tweak retries
+
 
 ==Version 3==
 Cleaned up Code
