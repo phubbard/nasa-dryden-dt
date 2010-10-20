@@ -9,22 +9,22 @@ This will keep track of the changes made to the Iridium code and additions that 
 = Details =
 
 ==Version 4==
-Reset MO and MT buffers (the MO and MT buffers are supposed to reset after a session, but it is best practice to do this manually)
-Interrupts for SBDRING (currently the test code is buggy)
-Low power mode
-Tweak retries
-Modem configuration (setting to default, setting to wanted states, etc)
+Reset MO and MT buffers (the MO and MT buffers are supposed to reset after a session, but it is best practice to do this manually)<br>
+Interrupts for SBDRING (currently the test code is buggy)<br>
+Low power mode<br>
+Tweak retries<br>
+Modem configuration (setting to default, setting to wanted states, etc)<br>
 
 
 ==Version 3==
-Cleaned up Code
-Added Commenting
-Receiving capability
-If extra messages in gateway, daemon automatically receives
-SBDIRING buggy
-Added Verbose
-Added Logging
-Fixed a buffer initialization bug
+Cleaned up Code<br>
+Added Commenting<br>
+Receiving capability<br>
+If extra messages in gateway, daemon automatically receives<br>
+SBDIRING buggy<br>
+Added Verbose<br>
+Added Logging<br>
+Fixed a buffer initialization bug<br>
 
 ==Version 2==
 Fixed read issues
@@ -38,13 +38,14 @@ Issues with read buffer]
 
 Hayes AT comamnds was creating in 1977. Modems ranging from satellite, ham radio and 3/4G services still use a variant of the AT command set.
 
-Sending a message requires the following steps:
-1. Register with the constellation
-2. Write a message to the MO Buffer
-3. Initiate a session to transfer MO to Constellation
-4. Read the output of the session and determine if there is a message in the MT buffer and if others are waiting in the constellation.
-5. Read MT buffer
-6. Repeat step 3 if there are messages in the gateway.
+Sending a message requires the following steps:<br>
+
+1. Register with the constellation<br>
+2. Write a message to the MO Buffer<br>
+3. Initiate a session to transfer MO to Constellation<br>
+4. Read the output of the session and determine if there is a message in the MT buffer and if others are waiting in the constellation.<br>
+5. Read MT buffer<br>
+6. Repeat step 3 if there are messages in the gateway.<br>
 
 ==AT+SBDWT==
 Write a message to the modem's MO Buffer.
