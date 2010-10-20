@@ -9,10 +9,11 @@ This will keep track of the changes made to the Iridium code and additions that 
 = Details =
 
 ==Version 4==
-Reset MO and MT buffers
+Reset MO and MT buffers (the MO and MT buffers are supposed to reset after a session, but it is best practice to do this manually)
 Interrupts for SBDIRING (currently the test code is buggy)
 Low power mode
 Tweak retries
+Modem configuration (setting to default, setting to wanted states, etc)
 
 
 ==Version 3==
@@ -34,3 +35,22 @@ Basic sending of data, no receiving
 Issues with read buffer]
 
 ==Currently Supported at Commands==
+
+Hayes AT comamnds was creating in 1977. Modems ranging from satellite, ham radio and 3/4G services still use a variant of the AT command set.
+
+Sending a message requires the following steps:
+1. Register with the constellation
+2. Write a message to the MO Buffer
+3. Initiate a session to transfer MO to Constellation
+4. Read the output of the session and determine if there is a message in the MT buffer and if others are waiting in the constellation.
+5. Read MT buffer
+6. Repeat step 3 if there are messages in the gateway.
+
+=AT+SBDWT=
+Write a message to the modem's MO Buffer.
+
+=AT+SBDRT=
+Read a message from the modem's MT Buffer
+
+=AT+SBDIX= 
+Initiates a session between the modem and the satellite constellation. During this session, information stored in the MO buffer will be sent to the constellation and any messagse waiting will be sent to the MT buffer.
