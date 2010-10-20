@@ -31,4 +31,6 @@ Fixed read issues
 ==Version 1==
 
 Basic sending of data, no receiving
-Issues with read buffer
+Issues with read buffer]
+
+==Currently Supported at Commands==
