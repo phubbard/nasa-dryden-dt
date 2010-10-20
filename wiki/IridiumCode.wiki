@@ -3,7 +3,7 @@ Wiki for Iridium Code
 
 = Introduction =
 
-This will keep track of the changes made to the Iridium code and additions that need to be made. Also, an explation of the AT commands used is given. Below all that, relevant insights into wokring with Iridium are logged.
+This will keep track of the changes made to the Iridium code and additions that need to be made. Also, an explation of the AT commands used is given. Below all that, relevant insights into working with Iridium and this code are logged.
 
 
 = Details =
