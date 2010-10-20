@@ -3,13 +3,28 @@ Wiki for Iridium Code
 
 = Introduction =
 
-This will keep track of the changes made to the Iridium code and additions that need to be made. 
+This will keep track of the changes made to the Iridium code and additions that need to be made. Also, an explation of the AT commands used is given.
 
 
 = Details =
 
+==Version 4==
+Reset MO and MT buffers
+
 ==Version 3==
+Cleaned up Code
+Added Commenting
+Receiving capability
+If extra messages in gateway, daemon automatically receives
+SBDIRING buggy
+Added Verbose
+Added Logging
+Fixed a buffer initialization bug
 
 ==Version 2==
+Fixed read issues
 
 ==Version 1==
+
+Basic sending of data, no receiving
+Issues with read buffer
