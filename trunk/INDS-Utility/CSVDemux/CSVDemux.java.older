@@ -16,12 +16,6 @@
      * 07/02/08  JPW  For floating point chans, set the mime-type to "application/octet-stream"; for string chans set the mime-type to "text/plain".
      *                Fix a bug with non-multichan mode (need a new double array for each PutDataAsFloat64() call).
      * 06/25/09  JPW  In process(), if the embedded timestamp has no year specified, use the current year.
-     * 04/26/10  JPW  In process(), make a couple tweaks:
-     *                    1. Don't assume the index of our desired channel is 0
-     *                    2. Support String or Byte array data types
-     * 10/22/10  JPW  Add a filter capability; channels to be filtered, along with the associated MIN and MAX settings, are
-     *                provided in a file whose name is specified with the "-f" command line argument.  To implement this
-     *                new capability, I added the ChannelFilter class.
      *
      */
     
@@ -33,7 +27,6 @@
     import java.util.Calendar;
     import java.util.Date;
     import java.util.TimeZone;
-    import java.util.Vector;
     
     import com.rbnb.sapi.ChannelMap;
     import com.rbnb.sapi.Sink;
@@ -118,10 +111,6 @@
 	private static final String FLT_MIMETYPE = "application/octet-stream";
 	private static final String STR_MIMETYPE = "text/plain";
 	
-	// JPW 10/22/10: Variables to support data filtering
-	private String filterFileName = null;
-	private ChannelFilter[] filters = null;
-	
 	//-------------------------------------------------------------------------
 	//Main
 	public static void main(String[] arg) throws Exception {
@@ -143,7 +132,6 @@
 		    System.err.println(" -c <num>            : cache frames");
 		    System.err.println(" -d <date format>    : date format (as specified by Java's SimpleDateFormat class)");
 		    System.err.println("             default : yyyy-MM-dd'T'HH:mm:ss.SSS");
-		    System.err.println(" -f <name>           : name of file containing channel filter information");
 		    System.err.println(" -h                  : print this usage info");
 		    System.err.println(" -i <name>           : name of input");
 		    System.err.println("             no default; required option");
@@ -179,6 +167,8 @@
 		if (ah.checkFlag('A')) {
 		    String serverAddressL=ah.getOption('A');
 		    if (serverAddressL != null) serverAddressOut=serverAddressL;
+		} else {
+		    serverAddressOut = serverAddress;
 		}
 		
 		// cache size
@@ -194,21 +184,6 @@
 		    // System.err.println("Date format string = <" + formatStr + ">");
 		    if ( (formatStr != null) && (!formatStr.trim().equals("")) ) {
 			sdf = new SimpleDateFormat(formatStr);
-		    }
-		}
-		
-		// filter file
-		if (ah.checkFlag('f')){
-		    filterFileName = ah.getOption('f');
-		    if ( (filterFileName == null) || (filterFileName.trim().equals("")) ) {
-			System.err.println("The name of the filter file must be specified along with the -f option.");
-			System.exit(0);
-		    } else {
-			// Check to make sure the file exists
-			if(!(new File(filterFileName)).exists()) {
-			    System.err.println("Could not open the specified filter file: " + filterFileName);
-			    System.exit(0);
-			}
 		    }
 		}
 		
@@ -359,16 +334,6 @@
 	    }
 	    sdf.setTimeZone(calendar.getTimeZone());
 	    
-	    // Read filter file (if one is specified)
-	    if ( (filterFileName != null) && (!filterFileName.trim().equals("")) ) {
-		try {
-		    parseFilterFile();
-		} catch (Exception e) {
-		    System.err.println("\nError with specified filter file: " + filterFileName);
-		    System.exit(0);
-		}
-	    }
-	    
 	    // Parse XML file
 	    if(!(new File(XMLFile)).exists())
 	    {
@@ -390,7 +355,6 @@
 	    xmlTypeList = xml.getType();
 	    // Get info (used as registration user info)
 	    String[] info = xml.getInfo();
-	    System.err.println("\nChannel information:");
 	    for (int i = 0; i < numParameters; ++i) {
 		System.err.println(
 		    "\t" +
@@ -404,7 +368,6 @@
 		    ", type = " +
 		    xmlTypeList[i]);
 	    }
-	    System.err.println(" ");
 	    
 	    // Channel map for subscription
 	    csub.Add(In);
@@ -431,15 +394,6 @@
 		    } else {
 			regmap.PutUserInfo(reg_idx,"<null userinfo>");
 		    }
-		    // Save channel index values for each of the filtered channels
-		    if (filters != null) {
-			for (int idx = 0; idx < filters.length; ++idx) {
-			    if (cname.equals(filters[idx].getChanName())) {
-				filters[idx].setChanIdx(i);
-				break;
-			    }
-			}
-		    }
 		}
 	    }
 	    
@@ -455,125 +409,9 @@
 	    reg_idx = regmap.Add(cname);
 	    regmap.PutUserInfo(reg_idx,"CSV string");
 	    
-	    // If any filters have been defined, go through the filter list and
-	    // remove any filters for which we didn't find a matching channel.
-	    if (filters == null) {
-		System.err.println("\nNo channel filters are defined\n");
-	    } else {
-		// First, need to determine the total number of filters.
-		int tempTotalNum = 0;
-		for (int i = 0; i < filters.length; ++i) {
-		    if (filters[i].getChanIdx() >= 0) {
-			++tempTotalNum;
-		    }
-		}
-		if (tempTotalNum == 0) {
-		    filters = null;
-		    System.err.println("\nNo channel filters are defined\n");
-		} else {
-		    int nextFilterIdx = 0;
-		    ChannelFilter[] newFilters = new ChannelFilter[tempTotalNum];
-		    for (int i = 0; i < filters.length; ++i) {
-			if (filters[i].getChanIdx() >= 0) {
-			    newFilters[nextFilterIdx] = filters[i];
-			    ++nextFilterIdx;
-			}
-		    }
-		    filters = newFilters;
-		    // Print out filter information
-		    System.err.println("\nChannel filters:");
-		    for (int idx = 0; idx < filters.length; ++idx) {
-			if (filters[idx].getChanIdx() >= 0) {
-			    System.err.println(filters[idx]);
-			}
-		    }
-		    System.err.println(" ");
-		}
-	    }
-	    
 	}
-        
-	// Parse the specified filter file
-	private void parseFilterFile() throws Exception {
-	    
-	    BufferedReader bufferedReader = null;
-	    
-	    filters = null;
-	    
-	    Vector filterVector = new Vector();
-	    
-	    if ( (filterFileName == null) || (filterFileName.trim().equals("")) ) {
-		throw new Exception("Filter file name not specified");
-	    }
-	    
-	    File file = new File(filterFileName);
-	    
-	    if (!file.exists()) {
-		throw new Exception(new String("Could not open the specified filter file: " + filterFileName));
-	    }
-	    FileReader fileReader = new FileReader(file);
-	    bufferedReader = new BufferedReader(fileReader);
-	    
-	    String line = bufferedReader.readLine();
-	    while (line != null) {
-		line = line.trim();
-		// Skip over empty lines
-		if (line.equals("")) {
-		    line = bufferedReader.readLine();
-		    continue;
-		}
-		// Skip over comment lines
-		if (line.charAt(0) == '#') {
-		    line = bufferedReader.readLine();
-		    continue;
-		}
-		// Parse out the filter specifications
-		// String should be of the form: <name> <min value> <max value>
-		String[] tokens = line.split("[\\s]+");
-		Vector filterComponents = new Vector();
-		for (int i = 0; i < tokens.length; ++i) {
-		    String tempStr = tokens[i].trim();
-		    if ( (tempStr != null) && (!tempStr.isEmpty()) ) {
-			filterComponents.add(tempStr);
-		    }
-		}
-		if (filterComponents.size() != 3) {
-		    System.err.println("\nParsing filter file: skip line with unrecognized format: <" + line + ">");
-		    line = bufferedReader.readLine();
-		    continue;
-		}
-		String chanName = (String)filterComponents.elementAt(0);
-		String minValStr = (String)filterComponents.elementAt(1);
-		String maxValStr = (String)filterComponents.elementAt(2);
-		double minVal = 0;
-		double maxVal = 0;
-		// Parse the values
-		try {
-		    minVal = Double.parseDouble(minValStr);
-		    maxVal = Double.parseDouble(maxValStr);
-		    ChannelFilter filter = new ChannelFilter(chanName, minVal, maxVal);
-		    filterVector.add(filter);
-		} catch (Exception e) {
-		    System.err.println("\nParsing filter file: skip line with unrecognized format: <" + line + ">");
-		    System.err.println(e);
-		    line = bufferedReader.readLine();
-		    continue;
-		}
-		
-		// Read the next line in the file
-		line = bufferedReader.readLine();
-	    }
-	    
-	    if (filterVector.size() > 0) {
-		filters = new ChannelFilter[filterVector.size()];
-		for (int i = 0; i < filterVector.size(); ++i) {
-		    filters[i] = (ChannelFilter)filterVector.elementAt(i);
-		}
-	    }
-	    
-	}
-	
-        private void makeSource() {
+       
+       private void makeSource() {
 	   do {
 	       try {
 		   if (src!=null) { //a restart; do not overwrite earlier data
@@ -764,29 +602,19 @@
 	ChannelMap out = new ChannelMap();
 	
 	try {
-	    // JPW 04/26/2010: Make a couple tweaks:
-	    //    1. Don't assume the index of our desired channel is 0
-	    //    2. Support String or Byte array data types
-	    int chanIdx = in.GetIndex(In);
-	    if (chanIdx == -1) {
-		return;
+	    if (in.GetIndex(In)!=0) return;
+	    
+            // String[] data = in.GetDataAsString(0);
+	    byte[][] byteData=in.GetDataAsByteArray(0);
+	    
+	    if ( (byteData == null) || (byteData.length == 0) ) {
+	        return;
 	    }
-	    int chanType = in.GetType(chanIdx);
-	    String[] data = null;
-	    if (chanType == ChannelMap.TYPE_STRING) {
-                data = in.GetDataAsString(chanIdx);
-            } else if (chanType == ChannelMap.TYPE_BYTEARRAY) {
-            	byte[][] byteData=in.GetDataAsByteArray(chanIdx);
-	        if ( (byteData == null) || (byteData.length == 0) ) {
-	            return;
-	        }
-	        data = new String[ byteData.length ];
-	        for (int k = 0; k < byteData.length; ++k) {
-		    data[k] = new String(byteData[k]);
-		}
-            } else {
-            	System.err.println("Unknown channel data type: " + chanType);
-            }
+	    
+	    String[] data = new String[ byteData.length ];
+	    for (int k = 0; k < byteData.length; ++k) {
+		data[k] = new String(byteData[k]);
+	    }
 	    
 	    if (bRecoverMode) {
 		System.err.println("Recover " + data.length + " packets");
@@ -808,6 +636,10 @@
 		
 		String[] strArray = nextCSVStr.split(",");
 		
+		// JPW 02/13/2008: Don't hardwire that we need 14 tokens (this
+		//                 was specifically for the Panther data).
+		//                 Rather, we need to match what was in the
+		//                 XML file
 		int requiredNumComponents = xml.getNParam();
 		if (strArray.length != requiredNumComponents) {
 		    System.err.println("ERROR: CSV string has " + strArray.length + " components, requires " + requiredNumComponents);
@@ -826,29 +658,6 @@
 		if (!marker.equals(markerStr)) {
 		    System.err.println("Marker mismatch: expecing \"" + markerStr + "\", got \"" + marker + "\"");
 		    continue;
-		}
-		
-		// JPW 10/22/2010: Check data against any filters that the user has defined
-		if ( (filters != null) && (filters.length > 0) ) {
-		    boolean bPass = false;
-		    for (int filterIdx = 0; filterIdx < filters.length; ++filterIdx) {
-			bPass = false;
-			try {
-			    bPass = filters[filterIdx].checkValue(strArray);
-			    if (!bPass) {
-				if (!bSilent) System.err.println("Data didn't pass filter:\n\tData string = <" + nextCSVStr.trim() + ">\n\t" + filters[filterIdx]);
-				else System.out.print("F");
-				break;
-			    }
-			} catch (Exception filterE) {
-			    if (!bSilent) System.err.println("Filter error:\n\tData string = <" + nextCSVStr.trim() + ">\n\t" + filters[filterIdx]);
-			    else System.out.print("F");
-			    break;
-			}
-		    }
-		    if (!bPass) {
-			continue;
-		    }
 		}
 		
 		// Embedded time
@@ -893,7 +702,7 @@
 		// Convert time to number of seconds since epoch
 		double embeddedTime = ((double)date.getTime())/1000.0;
 		// Time the UDP packet arrived at UDPCapture
-		double arrivalTime = in.GetTimes(chanIdx)[i];
+		double arrivalTime = in.GetTimes(0)[i];
 		// Timestamp put on the output data - can either be arrivalTime or embeddedTime;
 		double rbnbOutTime = arrivalTime;
 		if (!bUseArrivalTime) {
@@ -967,11 +776,7 @@
 		    } else {
 			// floating point data
 			try {
-			    String tempValStr = strArray[j].trim();
-			    dataVal = Double.NaN;
-			    if (!tempValStr.isEmpty()) {
-				dataVal = Double.parseDouble(tempValStr);
-			    }
+			    dataVal = Double.parseDouble(strArray[j].trim());
 			} catch (NumberFormatException nfe) {
 			    System.err.println("\nCaught NumberFormatException parsing data value; set value to NaN:\n" + nfe);
 			    dataVal = Double.NaN;
