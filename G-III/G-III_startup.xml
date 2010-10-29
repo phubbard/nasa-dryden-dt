@@ -32,12 +32,12 @@
 	
 	<!-- Start rbnbFolder -->
 	<del initialDirectory="Capture/rbnbFolder" file="*.log"/>
-	<runProcess tag="JPLimages" classification="source" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-cp /home/johnw/INDSExecutionManager/trunk/RBNB/V3.2B3/bin:/home/johnw/INDSExecutionManager/trunk/RBNB/V3.2B3/bin/rbnb.jar -jar rbnbFolder.jar -a localhost -s JPLimages -f /usr/local/JPLimages" />
+	<runProcess tag="jplimages" classification="source" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-cp /usr/local/software/INDSExecutionManager/trunk/RBNB/V3.2B3/bin:/usr/local/software/INDSExecutionManager/trunk/RBNB/V3.2B3/bin/rbnb.jar -jar rbnbFolder.jar -a localhost -s jplimages -f /usr/local/JPLimages" />
 	<sleep duration_ms="3000"/>
 	
 	<!-- Start MakeTimeMirror -->
 	<del initialDirectory="Jobs/MakeTimeMirror" file="*.log"/>
-	<runProcess tag="TimeMirror" classification="source" initialDirectory="../INDS-Utility/MakeTimeMirror" executable="/usr/bin/java" arguments="-cp /home/johnw/INDSExecutionManager/trunk/INDS-Utility/MakeTimeMirror:/home/johnw/INDSExecutionManager/trunk/RBNB/V3.2B3/bin/rbnb.jar MakeTimeMirror localhost:3333 JPLimages 130.134.86.73:3333 JPLimages" />
+	<runProcess tag="TimeMirror" classification="source" initialDirectory="../INDS-Utility/MakeTimeMirror" executable="/usr/bin/java" arguments="-cp /usr/local/software/INDSExecutionManager/trunk/INDS-Utility/MakeTimeMirror:/usr/local/software/INDSExecutionManager/trunk/RBNB/V3.2B3/bin/rbnb.jar MakeTimeMirror localhost:3333 jplimages 130.134.86.73:3333 jplimages" />
 	<sleep duration_ms="3000"/>
 	
 	<!--                                -->
@@ -50,7 +50,7 @@
 	    <input type="udp" port="5800"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="DCAPS-cap"/>
 	</udpCapture>
-	<runProcess tag="DCAPS-caster" classification="plugin" logFile="DCAPS-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c DCAPS-cap/UDP -g -r 130.134.86.73:5900 -x" />
+	<runProcess tag="DCAPS-caster" classification="plugin" logFile="DCAPS-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c DCAPS-cap/UDP -g -r 130.134.183.40:5900 -x" />
 	
 	<!-- UAVSAR out sending to port 5902 -->
 	<del initialDirectory="CaptureCaster/UAVSAR-5902" file="*.log"/>
@@ -58,7 +58,7 @@
 	    <input type="udp" port="5902"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5902-cap"/>
 	</udpCapture>
-	<runProcess tag="UAVSAR-5903-caster" classification="plugin" logFile="UAVSAR-5903-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5902-cap/UDP -g -r 130.134.86.73:5903 -x" />
+	<runProcess tag="UAVSAR-5903-caster" classification="plugin" logFile="UAVSAR-5903-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5902-cap/UDP -g -r 130.134.183.40:5903 -x" />
 	
 	<!-- UAVSAR out sending to port 5904 -->
 	<del initialDirectory="CaptureCaster/UAVSAR-5904" file="*.log"/>
@@ -66,7 +66,7 @@
 	    <input type="udp" port="5904"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5904-cap"/>
 	</udpCapture>
-	<runProcess tag="UAVSAR-5905-caster" classification="plugin" logFile="UAVSAR-5905-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5904-cap/UDP -g -r 130.134.86.73:5905 -x" />
+	<runProcess tag="UAVSAR-5905-caster" classification="plugin" logFile="UAVSAR-5905-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5904-cap/UDP -g -r 130.134.183.40:5905 -x" />
 	
 	<!-- UAVSAR input command line -->
 	<del initialDirectory="CaptureCaster/UAVSAR-5909" file="*.log"/>
