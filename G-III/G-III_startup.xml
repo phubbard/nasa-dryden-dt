@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- Gumstix Beacon project -->
+<!-- G-III project -->
 
 <!--startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://whf/schema/inds_startup.xsd"-->
-<startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/user/DryScan/nasa-dryden-dt/UWyoKingAir/inds_startup.xsd">
+<startup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/user/DryScan/nasa-dryden-dt/G-III/inds_startup.xsd">
 	
 	<!-- Tomcat -->
 	<!-- Doesn't work with the new Tomcat (apache-tomcat-6.0.18) -->
@@ -14,24 +14,8 @@
 	
 	<!-- Server -->
 	<del initialDirectory="Server" file="rbnb.log"/>
-	<dataTurbine jvmMaxHeap="1024M" initialDirectory="Server" logFile="rbnb.log" name="INDS" address=":3333" tag="BeaconDT"/>
+	<dataTurbine jvmMaxHeap="1024M" initialDirectory="Server" logFile="rbnb.log" name="INDS" address=":3333" tag="G-III_DT"/>
 	<sleep duration_ms="15000"/>
-	
-	<!-- Jobs/KMLTrack -->
-	<del initialDirectory="Jobs/KMLTrack" file="*.log"/>
-	<trackKML initialDirectory="Jobs/KMLTrack" logFile="TrackKML.log" consolidateResponse="true" noGUI="true" configFile="TrackKMLConfig.txt">
-	    <plugin type="rbnb" port="localhost:3333" name="TrackKML" />
-	</trackKML>
-	<trackData initialDirectory="Jobs/KMLTrack" logFile="TrackData.log" noGUI="true" configFile="TrackDataConfig.txt">
-	    <plugin type="rbnb" port="localhost:3333" name="TrackData" />
-	</trackData>
-	
-	<!-- Jobs/TimeDrive -->
-	<del initialDirectory="Jobs/TimeDrive" file="*.log"/>
-	<timeDrive initialDirectory="Jobs/TimeDrive" logFile="timedrive.log" multiUserMode="ip">
-	    <input type="tcp" port="4000"/>
-	    <output type="tcp" port="localhost:80"/>
-	</timeDrive>
 	
 	<!-- Jobs/PlugIns -->
 	<del initialDirectory="Jobs/PlugIns" file="*.log"/>
@@ -44,19 +28,52 @@
 	<thumbNail initialDirectory="Jobs/PlugIns" logFile="thumbNail.log" scale="0.5" quality="0.9" maxImages="10">
 	    <plugin type="rbnb" port="localhost:3333" name="ThumbNail" />
 	</thumbNail>
+	<sleep duration_ms="3000"/>
 	
-	<sleep duration_ms="5000"/>
+	<!-- Start rbnbFolder -->
+	<del initialDirectory="Capture/rbnbFolder" file="*.log"/>
+	<runProcess tag="JPLimages" classification="source" logFile="JPLimages.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-cp ../../../RBNB/V3.2B3/bin/rbnb.jar -jar ../../../RBNB/V3.2B3/bin/rbnbFolder.jar -a localhost -s JPLimages -f /usr/local/JPLimages" />
+	<sleep duration_ms="3000"/>
 	
-	<!-- Data Capture -->
-	<del initialDirectory="Capture/DirectIP" file="*.log"/>
-	<runProcess tag="DirectIPServer" classification="source" initialDirectory="../INDS-Utility/DirectIPServer/dist" executable="/usr/bin/java" arguments="-cp ./directipserver.jar:../../../RBNB/V3.2B3/bin/rbnb.jar com.erigo.directip.DirectIPServer 1537 localhost:3333" />
-	<sleep duration_ms="5000"/>
+	<!-- Start MakeTimeMirror -->
+	<del initialDirectory="Jobs/MakeTimeMirror" file="*.log"/>
+	<runProcess tag="TimeMirror" classification="source" logFile="TimeMirror.log" initialDirectory="../INDS-Utility/MakeTimeMirror" executable="/usr/bin/java" arguments="-cp .:../../../RBNB/V3.2B3/bin/rbnb.jar MakeTimeMirror localhost:3333 JPLimages 130.134.86.73:3333 JPLimages" />
+	<sleep duration_ms="3000"/>
 	
-	<!-- Project (demux) -->
-	<del initialDirectory="Projects/Beacon" file="*.log"/>
-	<csvDemux initialDirectory="Projects/Beacon" logFile="CSVDemux.log" dateFormat="yyyy-MM-dd'T'HH:mm:ss'Z'" silentMode="true" checkEmbeddedTimestamp="true" xmlFile="Beacon.xml">
-            <input type="rbnb" port="localhost:3333" channel="SBD/payload"/>
-            <output type="rbnb" port="localhost:3333" cacheFrames="200" archiveFrames="1000000" overwriteArchive="false" name="Beacon"/>
-        </csvDemux>
+	<!----------------   ----------------->
+	<!-- UDPCapture/UDPCaster processes -->
+	<!----------------   ----------------->
+	
+	<!-- DCAPS (IWG1 packet) -->
+	<del initialDirectory="CaptureCaster/DCAPS" file="*.log"/>
+	<udpCapture initialDirectory="CaptureCaster/DCAPS" logFile="DCAPS-capture.log">
+	    <input type="udp" port="5800"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="DCAPS-cap"/>
+	</udpCapture>
+	<runProcess tag="DCAPS-caster" classification="plugin" logFile="DCAPS-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c DCAPS-cap/UDP -g -r 130.134.86.73:5900 -x" />
+	
+	<!-- UAVSAR out sending to port 5902 -->
+	<del initialDirectory="CaptureCaster/UAVSAR-5902" file="*.log"/>
+	<udpCapture initialDirectory="CaptureCaster/UAVSAR-5902" logFile="UAVSAR-5902-capture.log">
+	    <input type="udp" port="5902"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5902-cap"/>
+	</udpCapture>
+	<runProcess tag="UAVSAR-5903-caster" classification="plugin" logFile="UAVSAR-5903-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5902-cap/UDP -g -r 130.134.86.73:5903 -x" />
+	
+	<!-- UAVSAR out sending to port 5904 -->
+	<del initialDirectory="CaptureCaster/UAVSAR-5904" file="*.log"/>
+	<udpCapture initialDirectory="CaptureCaster/UAVSAR-5904" logFile="UAVSAR-5904-capture.log">
+	    <input type="udp" port="5904"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5904-cap"/>
+	</udpCapture>
+	<runProcess tag="UAVSAR-5905-caster" classification="plugin" logFile="UAVSAR-5905-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5904-cap/UDP -g -r 130.134.86.73:5905 -x" />
+	
+	<!-- UAVSAR input command line -->
+	<del initialDirectory="CaptureCaster/UAVSAR-5909" file="*.log"/>
+	<udpCapture initialDirectory="CaptureCaster/UAVSAR-5909" logFile="UAVSAR-5909-capture.log">
+	    <input type="udp" port="5909"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5909-cap"/>
+	</udpCapture>
+	<runProcess tag="UAVSAR-5908-caster" classification="plugin" logFile="UAVSAR-5908-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5909-cap/UDP -g -r 192.168.8.100:5908 -x" />
 	
 </startup>
