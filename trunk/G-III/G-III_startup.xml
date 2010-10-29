@@ -32,7 +32,7 @@
 	
 	<!-- Start rbnbFolder -->
 	<del initialDirectory="Capture/rbnbFolder" file="*.log"/>
-	<runProcess tag="jplimages" classification="source" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar rbnbFolder.jar -a localhost -f /usr/local/JPLimages" />
+	<runProcess tag="jplimages" classification="source" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar folder.jar -a localhost -f /usr/local/JPLimages" />
 	<sleep duration_ms="3000"/>
 	
 	<!-- Start MakeTimeMirror -->
@@ -67,6 +67,14 @@
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5904-cap"/>
 	</udpCapture>
 	<runProcess tag="UAVSAR-5905-caster" classification="plugin" logFile="UAVSAR-5905-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5904-cap/UDP -g -r 130.134.183.40:5905 -x" />
+	
+	<!-- UAVSAR comm link -->
+	<del initialDirectory="CaptureCaster/UAVSAR-5907" file="*.log"/>
+	<udpCapture initialDirectory="CaptureCaster/UAVSAR-5907" logFile="UAVSAR-5907-capture.log">
+	    <input type="udp" port="5907"/>
+	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5907-cap"/>
+	</udpCapture>
+	<runProcess tag="UAVSAR-5906-caster" classification="plugin" logFile="UAVSAR-5906-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5907-cap/UDP -g -r 192.168.8.100:5906 -x" />
 	
 	<!-- UAVSAR input command line -->
 	<del initialDirectory="CaptureCaster/UAVSAR-5909" file="*.log"/>
