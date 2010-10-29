@@ -40,9 +40,9 @@
 	<runProcess tag="TimeMirror" classification="source" logFile="TimeMirror.log" initialDirectory="../INDS-Utility/MakeTimeMirror" executable="/usr/bin/java" arguments="-cp .:../../../RBNB/V3.2B3/bin/rbnb.jar MakeTimeMirror localhost:3333 JPLimages 130.134.86.73:3333 JPLimages" />
 	<sleep duration_ms="3000"/>
 	
-	<!----------------   ----------------->
+	<!--                                -->
 	<!-- UDPCapture/UDPCaster processes -->
-	<!----------------   ----------------->
+	<!--                                -->
 	
 	<!-- DCAPS (IWG1 packet) -->
 	<del initialDirectory="CaptureCaster/DCAPS" file="*.log"/>
