@@ -32,12 +32,12 @@
 	
 	<!-- Start rbnbFolder -->
 	<del initialDirectory="Capture/rbnbFolder" file="*.log"/>
-	<runProcess tag="JPLimages" classification="source" logFile="JPLimages.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-cp ../../../RBNB/V3.2B3/bin/rbnb.jar -jar ../../../RBNB/V3.2B3/bin/rbnbFolder.jar -a localhost -s JPLimages -f /usr/local/JPLimages" />
+	<runProcess tag="JPLimages" classification="source" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-cp ./rbnb.jar -jar ./rbnbFolder.jar -a localhost -s JPLimages -f /usr/local/JPLimages" />
 	<sleep duration_ms="3000"/>
 	
 	<!-- Start MakeTimeMirror -->
 	<del initialDirectory="Jobs/MakeTimeMirror" file="*.log"/>
-	<runProcess tag="TimeMirror" classification="source" logFile="TimeMirror.log" initialDirectory="../INDS-Utility/MakeTimeMirror" executable="/usr/bin/java" arguments="-cp .:../../../RBNB/V3.2B3/bin/rbnb.jar MakeTimeMirror localhost:3333 JPLimages 130.134.86.73:3333 JPLimages" />
+	<runProcess tag="TimeMirror" classification="source" initialDirectory="../INDS-Utility/MakeTimeMirror" executable="/usr/bin/java" arguments="-cp .:../../../RBNB/V3.2B3/bin/rbnb.jar MakeTimeMirror localhost:3333 JPLimages 130.134.86.73:3333 JPLimages" />
 	<sleep duration_ms="3000"/>
 	
 	<!--                                -->
