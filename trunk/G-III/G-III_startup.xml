@@ -32,7 +32,7 @@
 	
 	<!-- Start rbnbFolder -->
 	<del initialDirectory="Capture/rbnbFolder" file="*.log"/>
-	<runProcess tag="JPLimages" classification="source" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-cp ./rbnb.jar -jar ./rbnbFolder.jar -a localhost -s JPLimages -f /usr/local/JPLimages" />
+	<runProcess tag="JPLimages" classification="source" initialDirectory="/home/johnw/INDSExecutionManager/trunk/RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-cp .:rbnb.jar -jar rbnbFolder.jar -a localhost -s JPLimages -f /usr/local/JPLimages" />
 	<sleep duration_ms="3000"/>
 	
 	<!-- Start MakeTimeMirror -->
