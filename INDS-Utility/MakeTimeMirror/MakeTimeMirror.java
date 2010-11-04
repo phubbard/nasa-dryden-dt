@@ -12,8 +12,7 @@ import com.rbnb.sapi.Control;
  * archive mode = append.
  *
  * Before making the mirror, we check to make sure we can connect to the
- * downstream source.  We will continue to try to connect to the downstream
- * source in a sleepy loop for up to 15 minutes.
+ * downstream source.
  *
  * If the upstream source's frames each contain multiple points (let's say
  * N points per frame) then the effective size of the downstream source is not
@@ -32,6 +31,9 @@ import com.rbnb.sapi.Control;
  * --------------------
  * 10/28/2010  JPW  Created.
  * 10/29/2010  MJM  Change to "append" archive mode; don't match upstream source.
+ * 11/04/2010  JPW  Try indefinitely to connect to the downstream server (we
+ *                  used to have a specific time limit, but now we just keep
+ *                  trying indefinitely).
  *
  */
 
@@ -51,28 +53,19 @@ public class MakeTimeMirror {
     	String toSourceName = argsI[3];
 	
     	// Make sure we can connect to the downstream RBNB server before proceeding
-    	boolean bMadeConnection = false;
-    	int MAX_NUM_SLEEPS = 45;  // Try it up to 15 minutes
-	for (int i = 1; i <= MAX_NUM_SLEEPS; ++i) {
+	while (true) {
 	    try {
 		Server tempServer = Server.newServerHandle("DTServer",toServerAddr);
 		Controller tempController = tempServer.createController("tempMirrorConnection");
 		tempController.start();
 		tempController.stop();
-		bMadeConnection = true;
 		break;
 	    } catch (Exception e) {
-		if (i < MAX_NUM_SLEEPS) {
-		    // Must not have been able to make the connection; try again
-		    // after sleeping for a bit
-		    System.err.println("Waiting for downstream server to be network accessible...");
-		    try {Thread.sleep(20000);} catch (Exception e2) {}
-		}
+		// Must not have been able to make the connection; try again
+		// after sleeping for a bit
+		System.err.println("Waiting for downstream server to be network accessible...");
+		try {Thread.sleep(20000);} catch (Exception e2) {}
 	    }
-	}
-	if (!bMadeConnection) {
-	    System.err.println("\nCould not connect to the downstream server at " + toServerAddr);
-	    System.exit(0);
 	}
     	
     	System.err.println(
