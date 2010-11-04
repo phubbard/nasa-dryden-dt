@@ -50,7 +50,7 @@
 	    <input type="udp" port="5800"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="DCAPS-cap"/>
 	</udpCapture>
-	<runProcess tag="DCAPS-caster" classification="plugin" logFile="DCAPS-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c DCAPS-cap/UDP -g -r 130.134.183.40:5900 -x" />
+	<runProcess tag="DCAPS-caster" classification="plugin" logFile="DCAPS-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c DCAPS-cap/UDP -g -i -r 130.134.183.40:5900 -x" />
 	
 	<!-- UAVSAR out sending to port 5902 -->
 	<del initialDirectory="CaptureCaster/UAVSAR-5902" file="*.log"/>
@@ -58,7 +58,7 @@
 	    <input type="udp" port="5902"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5902-cap"/>
 	</udpCapture>
-	<runProcess tag="UAVSAR-5903-caster" classification="plugin" logFile="UAVSAR-5903-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5902-cap/UDP -g -r 130.134.183.40:5903 -x" />
+	<runProcess tag="UAVSAR-5903-caster" classification="plugin" logFile="UAVSAR-5903-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5902-cap/UDP -g -i -r 130.134.183.40:5903 -x" />
 	
 	<!-- UAVSAR out sending to port 5904 -->
 	<del initialDirectory="CaptureCaster/UAVSAR-5904" file="*.log"/>
@@ -66,7 +66,7 @@
 	    <input type="udp" port="5904"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5904-cap"/>
 	</udpCapture>
-	<runProcess tag="UAVSAR-5905-caster" classification="plugin" logFile="UAVSAR-5905-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5904-cap/UDP -g -r 130.134.183.40:5905 -x" />
+	<runProcess tag="UAVSAR-5905-caster" classification="plugin" logFile="UAVSAR-5905-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5904-cap/UDP -g -i -r 130.134.183.40:5905 -x" />
 	
 	<!-- UAVSAR comm link -->
 	<del initialDirectory="CaptureCaster/UAVSAR-5907" file="*.log"/>
@@ -74,7 +74,7 @@
 	    <input type="udp" port="5907"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5907-cap"/>
 	</udpCapture>
-	<runProcess tag="UAVSAR-5906-caster" classification="plugin" logFile="UAVSAR-5906-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5907-cap/UDP -g -r 192.168.8.100:5906 -x" />
+	<runProcess tag="UAVSAR-5906-caster" classification="plugin" logFile="UAVSAR-5906-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5907-cap/UDP -g -i -r 192.168.8.100:5906 -x" />
 	
 	<!-- UAVSAR input command line -->
 	<del initialDirectory="CaptureCaster/UAVSAR-5909" file="*.log"/>
@@ -82,6 +82,6 @@
 	    <input type="udp" port="5909"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="UAVSAR-5909-cap"/>
 	</udpCapture>
-	<runProcess tag="UAVSAR-5908-caster" classification="plugin" logFile="UAVSAR-5908-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5909-cap/UDP -g -r 192.168.8.100:5908 -x" />
+	<runProcess tag="UAVSAR-5908-caster" classification="plugin" logFile="UAVSAR-5908-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c UAVSAR-5909-cap/UDP -g -i -r 192.168.8.100:5908 -x" />
 	
 </startup>
