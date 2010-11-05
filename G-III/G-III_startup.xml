@@ -32,7 +32,7 @@
 	
 	<!-- Start rbnbFolder -->
 	<del initialDirectory="Capture/rbnbFolder" file="*.log"/>
-	<runProcess tag="jplimages" classification="source" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar folder.jar -a localhost -f /usr/local/JPLimages" />
+	<runProcess tag="jplimages" classification="source" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar folder.jar -a localhost -f /usr/local/JPLimages -m create -D" />
 	<sleep duration_ms="15000"/>
 	
 	<!--                                -->
