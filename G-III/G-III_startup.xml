@@ -45,7 +45,7 @@
 	    <input type="udp" port="5800"/>
 	    <output type="rbnb" port="localhost:3333" cacheFrames="10" archiveFrames="8640000" overwriteArchive="true" name="DCAPS-cap"/>
 	</udpCapture>
-	<runProcess tag="DCAPS-caster" classification="plugin" logFile="DCAPS-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c DCAPS-cap/UDP -g -i -r 130.134.183.40:5900 -x" />
+	<runProcess tag="DCAPS-caster" classification="plugin" logFile="DCAPS-caster.log" initialDirectory="../RBNB/V3.2B3/bin" executable="/usr/bin/java" arguments="-jar udpcaster.jar -c DCAPS-cap/UDP -d 5 -g -i -r 130.134.183.40:5900 -x" />
 	
 	<!-- UAVSAR out sending to port 5902 -->
 	<del initialDirectory="CaptureCaster/UAVSAR-5902" file="*.log"/>
