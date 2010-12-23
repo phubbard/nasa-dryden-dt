@@ -1,6 +1,9 @@
 
+import com.rbnb.api.Client;
 import com.rbnb.api.Controller;
+import com.rbnb.api.Rmap;
 import com.rbnb.api.Server;
+import com.rbnb.api.Source;
 import com.rbnb.sapi.Control;
 
 /*****************************************************************************
@@ -34,6 +37,8 @@ import com.rbnb.sapi.Control;
  * 11/04/2010  JPW  Try indefinitely to connect to the downstream server (we
  *                  used to have a specific time limit, but now we just keep
  *                  trying indefinitely).
+ * 12/23/2010  JPW  Add stopOutputSource() - terminate an existing output
+ *                  Source (if one already exists).
  *
  */
 
@@ -58,6 +63,11 @@ public class MakeTimeMirror {
 		Server tempServer = Server.newServerHandle("DTServer",toServerAddr);
 		Controller tempController = tempServer.createController("tempMirrorConnection");
 		tempController.start();
+		try {
+		    stopOutputSource(tempController,toSourceName);
+		} catch (Exception me) {
+		    System.err.println("Caught exception trying to stop existing downstream Mirror:\n" + me);
+		}
 		tempController.stop();
 		break;
 	    } catch (Exception e) {
@@ -104,6 +114,66 @@ public class MakeTimeMirror {
 	    0.);
 	
 	controller.stop();
+    }
+    
+    /**
+     * If there is already an existing output Source (possibly from an earlier
+     * Mirror that went away and left the output Source) then we need to
+     * terminate this existing output Source first before establishing the
+     * new Mirror.  Otherwise, when the new Mirror tries to make the new output
+     * Source, an IllegalStateException will be thrown (“Cannot reconnect to
+     * existing client handler”).
+     * <p>
+     * This method is largely based on com.rbnb.api.MirrorController.stopOutputSource()
+     * This method uses the same logic as rbnbAdmin for terminating a Source.
+     * <p>
+     *
+     *   Date      By	Description
+     * MM/DD/YYYY
+     * ----------  --	-----------
+     * 06/06/2007  JPW	Created.
+     *
+     */
+    private static void stopOutputSource(Controller controllerI, String sourceNameI) throws Exception {
+	
+	Rmap tempRmap =
+	    Rmap.createFromName(
+		sourceNameI + Rmap.PATHDELIMITER + "...");
+	tempRmap.markLeaf();
+	Rmap rmap = controllerI.getRegistered(tempRmap);
+	if (rmap == null) {
+	    // No existing downstream source - just return
+	    return;
+	}
+	// Get rid of all the unnamed stuff in the Rmap hierarchy
+	rmap = rmap.toNameHierarchy();
+	if (rmap == null) {
+	    // No existing downstream source - just return
+	    return;
+	}
+	// System.err.println(
+	//     "\nMakeTimeMirror.stopOutputSource(): Full Rmap =\n" +
+	//     rmap +
+	//     "\n");
+	Rmap startingRmap = rmap.findDescendant(sourceNameI,false);
+	if (startingRmap == null) {
+	    // No existing downstream source - just return
+	    return;
+	}
+	// System.err.println(
+	//     "\nMirrorController.stopOutputSource(): Starting Rmap =\n" +
+	//     startingRmap +
+	//     "\n");
+	
+	// If the client is a Source, clear the keep cache flag.  This will
+	// ensure that the RBO will actually go away.
+	if (startingRmap instanceof Source) {
+	    ((Source) startingRmap).setCkeep(false);
+	}
+	// Stop the downstream source
+	System.err.println("Stopping the existing downstream source before starting the new Mirror.");
+	controllerI.stop((Client)startingRmap);
+	
     }
     
 }
