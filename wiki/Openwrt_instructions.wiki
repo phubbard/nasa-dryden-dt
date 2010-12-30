@@ -17,7 +17,7 @@ As of 12/30/2010 there are two main versions of openWRT out there. The latest ve
 
 To check out you will need *SVN*. Go to the directory on your host machine where you would like to place the build directory. Mine is ~/REVEAL
 
-SVN checkout svn://svn.openwrt.org/openwrt/branches/backfire/ 
+*SVN checkout svn://svn.openwrt.org/openwrt/branches/backfire/* 
 
 ::take a coffee break and wait for everything to download::
 
@@ -26,5 +26,74 @@ SVN checkout svn://svn.openwrt.org/openwrt/branches/backfire/
 Now, if everything went well, you have a directory called openwrt and in it, a folder called backfire. 
 
 Change directory into backfire and after running a quick ls, you should see folders and files...i.e. tools, staging, makefile, etc.
+
+run the following:
+
+*make menuconfig* (I realize running make for the first time does the same, but just do this)
+
+
+You will go into a menu. Yay. 
+
+Here the fun truly begins. You have the optionto compile openWRT for a different targets. Play with this depending on your device. Lets do a simple compile for everyone in the ubiquiti product line. Why not?
+
+*Pick AR71xx as your target system and then choose "ubiquiti products" *
+
+*exit*
+
+Now you should be at the command prompt yet again. Type make.
+
+It broke, right? If it didn't, luck you and take a two hour break.
+
+But, 9/10 when you build something for the first time...or create its "world," you are missing dependencies.
+
+No sweat. The easiest way of doing this is installing the dependencies from Ubuntu's synaptic manager. These will most likely be -dev files or other random tools the compiler may need. 
+
+Real quickly, some I had to install:
+
+flex
+gawk
+libncruses5-dev
+m4
+patch
+
+once you install these dependencies, run make again.
+
+now you should see a long and ardous process that creates the "world." After this, compiling won't take as long, so don't worry.
+
+= Openwrt image =
+
+If all went well with creating the world and compiling the first image, you should see the directory 
+
+openwrt/backfire/bin/ar71xx/
+
+in said directory, you will find images...many images...for different ubiquiti products.  Now, you may wonder what jffs2 and squashfs (yummy) mean. They are two different filing systems. The only different I have found is that in one of them it is easier to create an SD file overlay (more to come on that) with the routerstation pro (which has an sd slot)...the litestation does not have sd support.
+
+So, pick a binary relevant to you. I will pick the rspro one for sakes of consistency.
+
+That .bin file:
+*openwrt-ar71xx-ubnt-rspro-jffs2-factory.bin* 
+
+will be loaded to your respective device. Now, there are two ways of doing this which will be dicussed next.
+
+= loading your image =
+
+I'm going to assume you have read the hardware parts on this wiki. If you have not, go read them now.
+
+There are two ways of loading an image. One is through the browser (does not work with RSPRO's default kamikaze load but does work with AIROS on the litestation.) and through the UART interface.
+
+I will discuss at first the UART. and then the browser, as once you upgrade the RSPRO's image you can load through the web interface.
+
+== UART ==
+
+Both the RSPRO and the Litestation have a UART interface. Getting/hacking the cable for this is available online, but I'll include a wiki for it since it is a pain. 
+
+You are going to want to install a program called *TFTP*
+
+TFTP allows you to transfer information via the uart. 
+
+To figure out what port your UART is on, do an ls /dev/ttyUSB* before and after installing the cable and see the difference. Or you can run dmesg and see what port was assigned to it. 
+
+== WEB Browser ==
+
 
 
