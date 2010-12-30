@@ -1,4 +1,4 @@
-This page talks about openWRT, what it is, how to compile it and run it.
+#summary This page talks about openWRT, what it is, how to compile it and run it.
 
 
 = Introduction =
