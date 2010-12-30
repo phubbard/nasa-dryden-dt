@@ -1,4 +1,4 @@
-#This page talks about openWRT, what it is, how to compile it and run it.
+This page talks about openWRT, what it is, how to compile it and run it.
 
 
 = Introduction =
@@ -94,4 +94,3 @@ TFTP allows you to transfer information via the uart.
 To figure out what port your UART is on, do an ls /dev/ttyUSB (with an asterisk, don't know how to escape that special character on the wiki) before and after installing the cable and see the difference. Or you can run dmesg and see what port was assigned to it. 
 
 == WEB Browser ==
-
