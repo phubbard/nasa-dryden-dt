@@ -93,9 +93,9 @@ TFTP allows you to transfer information to the bootloader of the router. Make su
 
 To figure out what port your UART is on, do an ls /dev/ttyUSB (with an asterisk, don't know how to escape that special character on the wiki) before and after installing the cable and see the difference. Or you can run dmesg and see what port was assigned to it. Do this to make sure linux recognized your stuff and to know who to kermit into.
 
-Unplug the router and turn it back on and hold down the reset button. You should see on the kermit window TFTP running. Change your ip address to a 192.168.2 or above address.
+Unplug the router and turn it back on and hold down the reset button. You should see on the kermit window TFTP running. Change your ip address to a 192.168.22 or above address.
 
-ping 192.168.1.1, you should see stuff coming back.
+ping 192.168.1.1 (or .20), you should see stuff coming back.
 
 Start TFTP and conect to 192.168.1.1
 type binary for binary mode
@@ -110,5 +110,3 @@ This is the method I've been using for a year and haven't gone back since (ok, I
 The browser, however, is easier. Once you do your first firmware install on RSPRO or using the default AIROS on the litestation...you can go to your browser and put in the routers IP address. There is a tab that allows you to load an image. Simple and to the point.
 
 I use LUCI as my web manager, combined with a few MRTG addons to look at statistics. I forgot what the default kamikaze build comes with on the RSPRO, but it doesn't matter, it too has a tab and so does AIROS. Sadly, to re-iterate, the default kamikaze web loader does not support this feature well, so you must TFTP the latest firmware.
-
-
