@@ -110,3 +110,12 @@ This is the method I've been using for a year and haven't gone back since (ok, I
 The browser, however, is easier. Once you do your first firmware install on RSPRO or using the default AIROS on the litestation...you can go to your browser and put in the routers IP address. There is a tab that allows you to load an image. Simple and to the point.
 
 I use LUCI as my web manager, combined with a few MRTG addons to look at statistics. I forgot what the default kamikaze build comes with on the RSPRO, but it doesn't matter, it too has a tab and so does AIROS. Sadly, to re-iterate, the default kamikaze web loader does not support this feature well, so you must TFTP the latest firmware.
+
+=How do I get stuff to work?"
+
+You will ahve to install additional drivers for many things. This can be accomplised on of two ways. 
+
+1. Recompiling with appropriate drivers builtin
+2. Using the OPKG package manager (similar to Ubuntu's apt-get)
+
+If you are using the SR71 MIMO card, as I am, then you WILL have to download the ath9k chipset drivers. I just compile everything into the image so that I may just pass on the image to others when the time comes.
