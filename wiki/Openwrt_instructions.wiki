@@ -1,13 +1,30 @@
-#summary One-sentence summary of this page.
+#This page talks about openWRT, what it is, how to compile it and run it.
+
 
 = Introduction =
 
-Add your content here.
+OpenWRT is a linux flavor for embedded devices, more specifically, for routers and gateways and all sorts of networking fun. There are other flavors, some free and some paid, tomato, chili, DD-WRT, etc. Why OpenWRT?
+
+Well, it is open. Open source is good. Second, the developer community is great on keeping up on new drivers for new cards. Support for the 802.11N Atheros and Broadcom chipset was quick on openwrt's last version of Kamikaze. Oh, yes, they name their version based on alcholic beverages. No control over that. :( 
+
+There are some QOS and Management tools available for it that I will get into later, but for now, how do you get it? Compile it? And run it?
+
+= Checking it out =
+
+In this document, I assume you have a linux box (running Ubuntu, preferably). I dislike virtual machines, use at your own risk and long compile times.
+
+As of 12/30/2010 there are two main versions of openWRT out there. The latest version of Kamikaze and the newest version of openwrt, "Backfire." Some people still use white russian, which is super old, but some forums supporting white russian will provide you with great troubleshooting tips.
+
+To check out you will need *SVN*. Go to the directory on your host machine where you would like to place the build directory. Mine is ~/REVEAL
+
+SVN checkout svn://svn.openwrt.org/openwrt/branches/backfire/ 
+
+::take a coffee break and wait for everything to download::
+
+= Creating your world =
+
+Now, if everything went well, you have a directory called openwrt and in it, a folder called backfire. 
+
+Change directory into backfire and after running a quick ls, you should see folders and files...i.e. tools, staging, makefile, etc.
 
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
