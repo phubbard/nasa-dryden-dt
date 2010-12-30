@@ -1,5 +1,5 @@
+#summary Wiki for Iridium Code work and todos and generic information
 #labels Iridium
-#Summary Wiki for Iridium Code work and todos and generic information
 
 = Introduction =
 
