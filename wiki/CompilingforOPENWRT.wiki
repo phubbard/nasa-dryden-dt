@@ -1,4 +1,4 @@
-#compiling programs to run on OPENWRT
+#summary compiling programs to run on OPENWRT
 
 = Introduction =
 
