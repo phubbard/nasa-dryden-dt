@@ -15,7 +15,9 @@ import com.rbnb.sapi.Control;
  * archive mode = append.
  *
  * Before making the mirror, we check to make sure we can connect to the
- * downstream source.
+ * downstream source.  If there is already an existing output Source with the
+ * desired output Source name, we terminate that Source before setting up the
+ * new Mirror.
  *
  * If the upstream source's frames each contain multiple points (let's say
  * N points per frame) then the effective size of the downstream source is not
@@ -30,6 +32,8 @@ import com.rbnb.sapi.Control;
  *
  * Copyright 2010 Erigo Technologies
  *
+ * Version: 0.2
+ *
  * Modification History
  * --------------------
  * 10/28/2010  JPW  Created.
@@ -39,6 +43,7 @@ import com.rbnb.sapi.Control;
  *                  trying indefinitely).
  * 12/23/2010  JPW  Add stopOutputSource() - terminate an existing output
  *                  Source (if one already exists).
+ * 01/06/2011  JPW  Add version number (start at 0.2)
  *
  */
 
