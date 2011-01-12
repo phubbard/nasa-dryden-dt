@@ -1,4 +1,4 @@
-#Router custom startup script
+#router custom startup script
 
 = Introduction =
 
@@ -42,8 +42,6 @@ START=999
 start() {
 /etc/DTNRouter
 }
-
-
 
 
 
