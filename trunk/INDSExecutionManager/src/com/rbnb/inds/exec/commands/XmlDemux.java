@@ -17,6 +17,7 @@
 	
 	---  History  ---
 	2008/12/15  WHF  Created.
+	2011/01/17  JPW  Add support for "useNativeBytes" attribute.
 */
 
 package com.rbnb.inds.exec.commands;
@@ -34,6 +35,9 @@ public class XmlDemux extends Demux
 	public XmlDemux(Attributes attr) throws java.io.IOException
 	{
 		super("XMLDemux", attr);
+		
+		if ("true".equals(attr.getValue("useNativeBytes")))
+			addArgument("-b");
 		
 	}					
 }
