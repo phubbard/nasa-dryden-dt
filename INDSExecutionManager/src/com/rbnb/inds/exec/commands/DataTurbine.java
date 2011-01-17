@@ -17,6 +17,7 @@
 	
 	---  History  ---
 	2008/12/04  WHF  Created.
+	2011/01/17  JPW  Add support for the "parent" attribute.
 */
 
 package com.rbnb.inds.exec.commands;
@@ -34,7 +35,8 @@ public class DataTurbine extends JavaCommand
 		super(attr);
 		
 		String _name = attr.getValue("name"),
-			address = attr.getValue("address");
+			address = attr.getValue("address"),
+			parentDT = attr.getValue("parent");
 			
 		File rbnbJarFile = new File(getCommandProperties().get(
 				"executableDirectory")+"/rbnb.jar");
@@ -55,6 +57,11 @@ public class DataTurbine extends JavaCommand
 			name = _name;
 		} else if (address != null) name = address;
 		else name = "localhost:3333";		
+		
+		if (parentDT != null) {
+			addArgument("-p");
+			addArgument(parentDT);
+		}
 		
 		if ("true".equals(attr.getValue("loadArchivesAtStart")))
 			addArgument("-F");

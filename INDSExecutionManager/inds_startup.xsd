@@ -108,6 +108,7 @@
 				<xsd:attribute name="useEmbeddedTimestamp" type="xsd:boolean"/>
 				<xsd:attribute name="silentMode" type="xsd:boolean"/>
 				<xsd:attribute name="xmlFile" type="xsd:string"/>
+				<xsd:attribute name="useNativeBytes" type="xsd:boolean"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
