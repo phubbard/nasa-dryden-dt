@@ -18,6 +18,7 @@
 	---  History  ---
 	2008/12/15  WHF  Created.
 	2011/01/17  JPW  Add support for "useNativeBytes" attribute.
+	2011/02/07  JPW  Add support for filter option ("-f <chan>=<value>").
 */
 
 package com.rbnb.inds.exec.commands;
@@ -38,6 +39,9 @@ public class XmlDemux extends Demux
 		
 		if ("true".equals(attr.getValue("useNativeBytes")))
 			addArgument("-b");
+		
+		String filterStr = attr.getValue("filter");
+		if (filterStr != null) addArguments("-f", filterStr);
 		
 	}					
 }
