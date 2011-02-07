@@ -109,6 +109,7 @@
 				<xsd:attribute name="silentMode" type="xsd:boolean"/>
 				<xsd:attribute name="xmlFile" type="xsd:string"/>
 				<xsd:attribute name="useNativeBytes" type="xsd:boolean"/>
+				<xsd:attribute name="filter" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>

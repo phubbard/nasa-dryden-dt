@@ -4,6 +4,8 @@
 	2008/12/02  WHF  Created.
 	2008/12/22  WHF  Added rmic.
 	2010/04/23  MJM  moved master copy of xsd file to here vs P3_example
+	2011/02/07  JPW  Don't bother copying commands.xml to the P3 example directory;
+	                 this file should in fact be copies to all of the individual project directories.
 -->
 <project name="INDSExecutionManager" default="compile">
 	<target name="compile">
@@ -20,8 +22,10 @@
 				this package. -->
 		<copy file="inds_startup.xsd"
 				todir="out/com/rbnb/schema" />
+<!--  JPW 2011/02/07: Don't bother copying commands.xml to the P3 example directly;
+                      this file should in fact be copies to all of the individual project directories.
 		<copy file="commands.xml"
-				todir="../XML_startup_P3_example/" />
+				todir="../XML_startup_P3_example/" /> -->
 				
 		<!-- Build Jar files: -->
 		<mkdir dir="bin" />
