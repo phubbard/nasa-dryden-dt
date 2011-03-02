@@ -26,6 +26,32 @@ import com.rbnb.sapi.Source;
  * transferred, we consider that channel completed and we won't transfer
  * any other frames from that channel.
  *
+ * Note that this utility was constructed specifically to support the G-III
+ * mission and run on DFRC's Multilink2 machine.  It is used to transfer
+ * data from ML2/jplimages to INDSCore/JPLimages.  A mirror doesn't work in
+ * this case because if the ML2/jplimages source is temporarily shut down
+ * (for instance when MakeTimeMirror on the n-channel system on the G-III
+ * is starting up) then this mirror between ML2 and INDSCore doesn't pick up
+ * the new data in the new ML2/jplimages.
+ *
+ * This program does have a potential problem in the following situation:
+ * When this program starts, let's assume the mirror from n-channel on the
+ * G-III to ML2 hasn't started yet.  TransferData starts and the archive
+ * associated with source JPLimages is loaded on INDSCore.  Let's say JPLimages
+ * contains the following three channels:
+ *
+ *	foo1.kml
+ *	foo2.kml
+ *	foo3.kml
+ *
+ * At a later time, the mirror from n-channel to ML2 starts up, and the archive
+ * associated with the mirror output source, jplimages on ML2, loads.  This
+ * source also contains a frame for the above three channels: foo1.kml,
+ * foo2.kml, and foo3.kml.  Since these appear as "new channels" to
+ * TransferData, these three frames are transferred over to INDSCore.  On
+ * INDSCore/JPLimages then you end up with two frames, both at the same exact
+ * timestamp, for these three channels.  This may or may not be an issue.
+ *
  * Copyright 2011 Erigo Technologies
  *
  * Version: 0.1
