@@ -1,0 +1,222 @@
+
+import com.rbnb.api.Client;
+import com.rbnb.api.Controller;
+import com.rbnb.api.Rmap;
+import com.rbnb.api.Server;
+
+import com.rbnb.sapi.ChannelMap;
+import com.rbnb.sapi.Control;
+import com.rbnb.sapi.SAPIException;
+import com.rbnb.sapi.Sink;
+import com.rbnb.sapi.Source;
+
+/*****************************************************************************
+ *
+ * TransferData
+ *
+ * Perform a polling "request newest" on a user-specified channel; all data
+ * points whose time is after the last fetched data will be transferred to
+ * the specified output channel.
+ *
+ * Copyright 2011 Erigo Technologies
+ *
+ * Version: 0.1
+ *
+ * Modification History
+ * --------------------
+ * 03/01/2011  JPW  Created.
+ *
+ */
+
+public class TransferData {
+    
+    private String fromServerAddr = null;
+    private String fromChanName = null;
+    private String toServerAddr = null;
+    private String toSourceName = null;
+    private String toChanName = null;
+    
+    private Source src = null;
+    
+    private Sink snk = null;
+    
+    private double lastTimestamp = -Double.MAX_VALUE;
+    
+    private boolean bKeepRequesting = true;
+    private boolean bShutdown = false;
+    
+    public static void main(String[] argsI) {
+    	
+	if (argsI.length != 5) {
+	    System.err.println("Usage: java TransferData <from server> <from source/chan> <to server> <to source> <to chan>");
+	    System.err.println("Example: java TransferData localhost:3333 Foo/a0 localhost:3333 FooNew b0");
+	    System.exit(0);
+	}
+	
+	new TransferData(argsI[0],argsI[1],argsI[2],argsI[3],argsI[4]);
+	
+    }
+    
+    public TransferData(String fromServerAddrI, String fromChanNameI, String toServerAddrI, String toSourceNameI, String toChanNameI) {
+	
+	fromServerAddr = fromServerAddrI;
+    	fromChanName = fromChanNameI;
+    	toServerAddr = toServerAddrI;
+    	toSourceName = toSourceNameI;
+    	toChanName = toChanNameI;
+    	
+    	MyShutdownHook shutdownHook = new MyShutdownHook();
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
+	
+    	while (bKeepRequesting) {
+	    try {
+		System.err.println("\n\nStartup source and sink connections to transfer data:" + fromChanName + " ==> " + toSourceName + "/" + toChanName);
+		makeSink();
+		makeSource();
+		byte[] data = null;
+		lastTimestamp = -Double.MAX_VALUE;
+		while (bKeepRequesting) {
+		    ChannelMap requestMap = new ChannelMap();
+		    requestMap.Add(fromChanName);
+		    snk.Request(requestMap, lastTimestamp, 0.0, "after");
+		    ChannelMap dataMap = snk.Fetch(15000);
+		    if ( !dataMap.GetIfFetchTimedOut() && (dataMap.NumberOfChannels() == 1) ) {
+			byte[][] byteData = dataMap.GetDataAsByteArray(0);
+			if ( (byteData != null) && (byteData.length != 0) ) {
+			    data = byteData[0];
+			    lastTimestamp = dataMap.GetTimeStart(0);
+			    // Put the datapoint
+			    dataMap = new ChannelMap();
+			    dataMap.Add(new String(toSourceName + "/" + toChanName));
+			    dataMap.PutTime(lastTimestamp,0.0);
+			    dataMap.PutDataAsByteArray(0, data);
+			    System.err.println("Put datapoint at time " + lastTimestamp);
+			}
+		    }
+		}
+	    } catch (Exception e) {
+		System.err.println("Caught exception:\n" + e);
+		if (snk != null) {
+		    snk.CloseRBNBConnection();
+		    snk = null;
+		}
+		if (src != null) {
+		    src.CloseRBNBConnection();
+		    src = null;
+		}
+		// Sleep for a bit before starting up again
+		try {Thread.sleep(5000);} catch (Exception e2) {}
+	    }
+	}
+	
+	// Shut down source and sink
+	if (snk != null) {
+	    snk.CloseRBNBConnection();
+	    snk = null;
+	}
+	if (src != null) {
+	    src.CloseRBNBConnection();
+	    src = null;
+	}
+	
+	System.err.println("Shut down source and sink connections.\n");
+	bShutdown = true;
+	
+    }
+    
+    private void makeSink() throws SAPIException{
+	snk = new Sink();
+    	snk.OpenRBNBConnection(fromServerAddr,"TransferSink");
+    }
+    
+    private void makeSource() throws SAPIException {
+	// Terminate the source in the downstream RBNB server before proceeding
+	while (true) {
+	    try {
+		Server tempServer = Server.newServerHandle("DTServer",toServerAddr);
+		Controller tempController = tempServer.createController("tempConnection");
+		tempController.start();
+		try {
+		    stopOutputSource(tempController,toSourceName);
+		} catch (Exception me) {
+		    System.err.println("Caught exception trying to stop existing downstream Source:\n" + me);
+		}
+		tempController.stop();
+		break;
+	    } catch (Exception e) {
+		// Must not have been able to make the connection; try again
+		// after sleeping for a bit
+		System.err.println("Waiting for downstream server to be network accessible...");
+		try {Thread.sleep(10000);} catch (Exception e2) {}
+	    }
+	}
+	// Now start the new source
+    	src = new Source(10,"append",1000000);
+    	src.OpenRBNBConnection(toServerAddr,toSourceName);
+    }
+    
+    /**
+     * If there is already an existing output Source then we need to
+     * terminate this existing output Source first before establishing the
+     * new Source.  Otherwise, when the new Source tries to connect, an
+     * IllegalStateException will be thrown (“Cannot reconnect to
+     * existing client handler”).
+     * <p>
+     * This method is largely based on com.rbnb.api.MirrorController.stopOutputSource()
+     * This method uses the same logic as rbnbAdmin for terminating a Source.
+     * <p>
+     *
+     *   Date      By	Description
+     * MM/DD/YYYY
+     * ----------  --	-----------
+     * 03/01/2011  JPW	Created.
+     *
+     */
+    private static void stopOutputSource(Controller controllerI, String sourceNameI) throws Exception {
+	
+	Rmap tempRmap =
+	    Rmap.createFromName(
+		sourceNameI + Rmap.PATHDELIMITER + "...");
+	tempRmap.markLeaf();
+	Rmap rmap = controllerI.getRegistered(tempRmap);
+	if (rmap == null) {
+	    // No existing downstream source - just return
+	    return;
+	}
+	// Get rid of all the unnamed stuff in the Rmap hierarchy
+	rmap = rmap.toNameHierarchy();
+	if (rmap == null) {
+	    // No existing downstream source - just return
+	    return;
+	}
+	Rmap startingRmap = rmap.findDescendant(sourceNameI,false);
+	if (startingRmap == null) {
+	    // No existing downstream source - just return
+	    return;
+	}
+	
+	// If the client is a Source, clear the keep cache flag.  This will
+	// ensure that the RBO will actually go away.
+	if (startingRmap instanceof com.rbnb.api.Source) {
+	    ((com.rbnb.api.Source) startingRmap).setCkeep(false);
+	}
+	// Stop the downstream source
+	System.err.println("Stopping the existing downstream source (before starting the new source).");
+	controllerI.stop((Client)startingRmap);
+	
+    }
+    
+    private class MyShutdownHook extends Thread {
+        public void run() {
+            System.err.println("Shutting down the application...");
+            bKeepRequesting = false;
+            // Wait for things to shutdown
+            while (!bShutdown) {
+        	try {Thread.sleep(1000);} catch (Exception e2) {}
+            }
+            System.err.println("...shutdown is complete.");
+        }
+    }
+
+    
+}
