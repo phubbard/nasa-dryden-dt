@@ -18,13 +18,15 @@ import com.rbnb.sapi.Source;
  * TransferData
  *
  * Transfer data from a given source on one server to another source on a
- * second server.  The input source will be composed of a series of channels
- * where each channel is going to have only one frame in it.  At startup,
- * this program checks for all the existing channels; no data from the
- * existing channels is transferred.  Data in channels that show up after
- * startup are transferred.  Once a frame from a new channel has been
- * transferred, we consider that channel completed and we won't transfer
- * any other frames from that channel.
+ * second server.  This application was developed for a specific need for
+ * transferring data from the G-III to INDSCore.  In this case, the input
+ * source is composed of a series of channels where each channel is going to
+ * have only one frame in it.  At startup, this program checks for all the
+ * existing channels in the downstream/output source (if one currently exists);
+ * no data from these existing channels will be transferred.  Data in channels
+ * in the upstream source which show up after startup are transferred.  Once a
+ * frame from a new channel has been transferred, we consider that channel
+ * completed and we won't transfer any other frames from that channel.
  *
  * Note that this utility was constructed specifically to support the G-III
  * mission and run on DFRC's Multilink2 machine.  It is used to transfer
@@ -33,24 +35,6 @@ import com.rbnb.sapi.Source;
  * (for instance when MakeTimeMirror on the n-channel system on the G-III
  * is starting up) then this mirror between ML2 and INDSCore doesn't pick up
  * the new data in the new ML2/jplimages.
- *
- * This program does have a potential problem in the following situation:
- * When this program starts, let's assume the mirror from n-channel on the
- * G-III to ML2 hasn't started yet.  TransferData starts and the archive
- * associated with source JPLimages is loaded on INDSCore.  Let's say JPLimages
- * contains the following three channels:
- *
- *	foo1.kml
- *	foo2.kml
- *	foo3.kml
- *
- * At a later time, the mirror from n-channel to ML2 starts up, and the archive
- * associated with the mirror output source, jplimages on ML2, loads.  This
- * source also contains a frame for the above three channels: foo1.kml,
- * foo2.kml, and foo3.kml.  Since these appear as "new channels" to
- * TransferData, these three frames are transferred over to INDSCore.  On
- * INDSCore/JPLimages then you end up with two frames, both at the same exact
- * timestamp, for these three channels.  This may or may not be an issue.
  *
  * Copyright 2011 Erigo Technologies
  *
@@ -108,18 +92,26 @@ public class TransferData {
 		
 		if (existingChansV == null) {
 		    existingChansV = new Vector<String>();
-		    // Do an initial registration request to find the list of
-		    // chans that exist at startup - we don't want to end up
-		    // requesting data on any of these channels.
+		    // Do an initial registration request of the downstream/
+		    // output source to find the list of chans that exist at
+		    // startup - we don't want to end up requesting data on any
+		    // of these channels.
+		    Sink tempSink = new Sink();
+		    tempSink.OpenRBNBConnection(toServerAddr,"TempSink");
 		    ChannelMap requestMap = new ChannelMap();
-		    requestMap.Add(new String(fromSourceName + "/..."));
-		    snk.RequestRegistration(requestMap);
-		    ChannelMap regMap = snk.Fetch(15000);
+		    requestMap.Add(new String(toSourceName + "/..."));
+		    tempSink.RequestRegistration(requestMap);
+		    ChannelMap regMap = tempSink.Fetch(15000);
+		    tempSink.CloseRBNBConnection();
 		    if ( !regMap.GetIfFetchTimedOut() && (regMap.NumberOfChannels() > 0) ) {
 		    	System.err.println("Ignoring existing channels:");
 			for (int i = 0; i < regMap.NumberOfChannels(); ++i) {
-			    System.err.println("\t" + regMap.GetName(i));
-			    existingChansV.add(regMap.GetName(i));
+			    String origFullChanName = regMap.GetName(i);
+			    // We've got to replace "toSourceName" with "fromSourceName"
+			    String justChanName = origFullChanName.substring( origFullChanName.indexOf('/') + 1 );
+			    String newFullChanName = new String(fromSourceName + "/" + justChanName);
+			    System.err.println("\t" + newFullChanName);
+			    existingChansV.add(newFullChanName);
 			}
 			System.err.println(" ");
 		    }
