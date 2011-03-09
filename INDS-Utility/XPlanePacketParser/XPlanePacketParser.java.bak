@@ -1,0 +1,101 @@
+
+/*
+ *
+ * Read and parse a binary packet that has been UDP'ed out of X-Plane.
+ * This version of the application reads the packet from a file.
+ *
+ */
+ 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.BufferUnderflowException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+public class XPlanePacketParser {
+    
+    public static final void main(String[] argsI) {
+	
+	byte[] packetBytes = new byte[77];
+	
+	// Open binary file and read content
+	FileInputStream in = null;
+        try {
+            in = new FileInputStream("C:\\user\\DryScan\\X-Plane\\XPlanePacketParser\\packet.bin");
+	} catch(FileNotFoundException fnfe) {
+	    System.err.println("File not found");
+	    System.exit(-1);
+	}
+	try {
+	    int avail = in.available();
+	    if (avail != 77) {
+		System.err.println("Packet size = " + avail + ", expected 77");
+		System.exit(-1);
+	    } else {
+		in.read(packetBytes);
+	    }
+        } catch(IOException ioe) {
+            if (in != null) {
+		try {
+                    in.close();
+		} catch (IOException ioe2) {
+		    // nothing to do
+		}
+            }
+	    System.err.println("Caught exception: " + ioe);
+	    System.exit(-1);
+        }
+	
+	ByteBuffer packetBB = ByteBuffer.wrap(packetBytes);
+	packetBB = packetBB.order(ByteOrder.LITTLE_ENDIAN);
+	
+	try {
+	
+	// Read the 5 character header
+	byte[] header = new byte[5];
+	header[0] = packetBB.get();
+	header[1] = packetBB.get();
+	header[2] = packetBB.get();
+	header[3] = packetBB.get();
+	header[4] = packetBB.get();
+	String headerStr = new String(header);
+	System.err.println("Header: " + headerStr);
+	
+	// Read the ID of the first 36-byte structure (should be 18; pitch/roll/headings)
+	int id = packetBB.getInt();
+	if (id != 18) {
+	    System.err.println("ID of first structure is " + id + ", expected 18");
+	    System.exit(-1);
+	}
+	System.err.println("ID of first structure is " + id);
+	
+	// Read 8 single precision floats
+	float[] data = new float[8];
+	for (int i=0; i<data.length; ++i) {
+	    data[i] = packetBB.getFloat();
+	    System.err.println("data[" + i + "] = " + data[i]);
+	}
+	
+	// Read the ID of the second 36-byte structure (should be 20; lat/lon/altitude)
+	id = packetBB.getInt();
+	if (id != 20) {
+	    System.err.println("ID of first structure is " + id + ", expected 20");
+	    System.exit(-1);
+	}
+	System.err.println("ID of second structure is " + id);
+	
+	// Read 8 single precision floats
+	for (int i=0; i<data.length; ++i) {
+	    data[i] = packetBB.getFloat();
+	    System.err.println("data[" + i + "] = " + data[i]);
+	}
+	
+	} catch (BufferUnderflowException bue) {
+	    System.err.println("Caught exception: " + bue);
+	    System.exit(-1);
+	}
+	
+    }
+    
+}
