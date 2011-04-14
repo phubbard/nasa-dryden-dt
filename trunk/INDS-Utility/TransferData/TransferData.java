@@ -43,6 +43,10 @@ import com.rbnb.sapi.Source;
  * Modification History
  * --------------------
  * 03/01/2011  JPW  Created.
+ * 04/14/2011  JPW  Add a new "_Status" channel which outputs when new data is
+ *                  flushed to the output source.
+ *                  Also, instead of closing the RBNB source connection when
+ *                  the program is being terminated, we Detach().
  *
  */
 
@@ -152,7 +156,25 @@ public class TransferData {
 				src.Flush(dataMap);
 				existingChansV.add(chanName);
 				Date date = new Date( (long)(timestamp * 1000) );
-				System.err.println(date + "  Put data in channel " + toServerAddr + "/" + toSourceName + "/" + justChanName + ", size " + data.length);
+				Date currentTime = new Date();
+				String statusStr =
+				    new String(
+					"Time of transfer: " +
+					currentTime +
+					", File timestamp: " +
+					date +
+					", Output channel: " +
+					toServerAddr + "/" + toSourceName + "/" + justChanName +
+					", Size: " +
+					data.length +
+					"\n");
+				System.err.print(statusStr);
+				// Send the status string to the source
+				dataMap = new ChannelMap();
+				dataMap.Add("_Status");
+				dataMap.PutTime(timestamp,0.0);
+				dataMap.PutDataAsString(0, statusStr);
+				src.Flush(dataMap);
 			    }
 			}
 		    }
@@ -178,8 +200,9 @@ public class TransferData {
 	    snk.CloseRBNBConnection();
 	}
 	if (src != null) {
-	    System.err.println("Shut down source connection.");
-	    src.CloseRBNBConnection();
+	    System.err.println("Detaching source connection.");
+	    // src.CloseRBNBConnection();
+	    src.Detach();
 	}
 	
 	bShutdown = true;
