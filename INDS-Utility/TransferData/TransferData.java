@@ -112,6 +112,10 @@ public class TransferData {
 		// makeSink();
 		// makeSource();
 		
+		// Make sure the downstream source is loaded
+		makeSource();
+		src.Detach();
+		
 		if (existingChansV == null) {
 		    existingChansV = new Vector<String>();
 		    // Do an initial registration request of the downstream/
@@ -331,7 +335,7 @@ public class TransferData {
 	    ((com.rbnb.api.Source) startingRmap).setCkeep(false);
 	}
 	// Stop the downstream source
-	System.err.println("Stopping the existing downstream source (before starting the new source).");
+	// System.err.println("Stopping the existing downstream source (before starting the new source).");
 	controllerI.stop((Client)startingRmap);
 	
     }
