@@ -216,7 +216,8 @@ public class TransferData {
 			}
 		    }
 		    // Sleep some before polling the upstream RBNB server again
-		    try {Thread.sleep(5000);} catch (Exception e2) {}
+		    System.err.println("Sleep for 5 sec before next poll...");
+		    try {Thread.sleep(5000);} catch (Exception e2) {System.err.println(e2);}
 		}
 	    } catch (Exception e) {
 		System.err.println("Caught exception:\n" + e);
