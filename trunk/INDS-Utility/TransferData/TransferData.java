@@ -112,11 +112,10 @@ public class TransferData {
 		// makeSink();
 		// makeSource();
 		
-		// Make sure the downstream source is loaded
-		makeSource();
-		src.Detach();
-		
 		if (existingChansV == null) {
+		    // Make sure the downstream source is loaded
+		    makeSource();
+		    src.Detach();
 		    existingChansV = new Vector<String>();
 		    // Do an initial registration request of the downstream/
 		    // output source to find the list of chans that exist at
