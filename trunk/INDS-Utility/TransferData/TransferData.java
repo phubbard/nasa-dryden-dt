@@ -1,4 +1,7 @@
 
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.util.Date;
 import java.util.Vector;
 
@@ -47,6 +50,12 @@ import com.rbnb.sapi.Source;
  *                  flushed to the output source.
  *                  Also, instead of closing the RBNB source connection when
  *                  the program is being terminated, we Detach().
+ * 04/18/2011  JPW  Make new Sink and Source connections each time they are
+ *                  needed, and then close these connections when not being
+ *                  used.  This is to fix a particular problem NASA was having
+ *                  running this program on Multilink2.
+ *                  Also, send the Status information out on a particular
+ *                  UDP port in addition to being sent to the "_Status" chan.
  *
  */
 
@@ -56,6 +65,10 @@ public class TransferData {
     private String fromSourceName = null;
     private String toServerAddr = null;
     private String toSourceName = null;
+    
+    // For UDP output
+    private String udpOutputAddr = null;
+    private int udpOutputPort = 5000;
     
     private Source src = null;
     
@@ -68,22 +81,25 @@ public class TransferData {
     
     public static void main(String[] argsI) {
     	
-	if (argsI.length != 4) {
-	    System.err.println("Usage: java TransferData <from server> <from source> <to server> <to source>");
-	    System.err.println("Example: java TransferData localhost:3333 Foo localhost:3333 FooNew");
+	if (argsI.length != 6) {
+	    System.err.println("Usage: java TransferData <from server> <from source> <to server> <to source> <status UDP addr> <status UDP port>");
+	    System.err.println("Example: java TransferData localhost:3333 Foo localhost:3333 FooNew localhost 5000");
 	    System.exit(0);
 	}
 	
-	new TransferData(argsI[0],argsI[1],argsI[2],argsI[3]);
+	new TransferData(argsI[0],argsI[1],argsI[2],argsI[3],argsI[4],argsI[5]);
 	
     }
     
-    public TransferData(String fromServerAddrI, String fromSourceNameI, String toServerAddrI, String toSourceNameI) {
+    public TransferData(String fromServerAddrI, String fromSourceNameI, String toServerAddrI, String toSourceNameI, String udpOutputAddrI, String udpOutputPortStrI) {
 	
 	fromServerAddr = fromServerAddrI;
     	fromSourceName = fromSourceNameI;
     	toServerAddr = toServerAddrI;
     	toSourceName = toSourceNameI;
+    	
+    	udpOutputAddr = udpOutputAddrI;
+    	udpOutputPort = Integer.parseInt(udpOutputPortStrI);
     	
     	MyShutdownHook shutdownHook = new MyShutdownHook();
         Runtime.getRuntime().addShutdownHook(shutdownHook);
@@ -91,8 +107,10 @@ public class TransferData {
     	while (bKeepRequesting) {
 	    try {
 		System.err.println("\n\nStartup source and sink connections to transfer data:  " + fromServerAddr + "/" + fromSourceName + "  ==>  " + toServerAddr + "/" + toSourceName + "\n");
-		makeSink();
-		makeSource();
+		// Instead of making sink/source connections once, we'll make
+		// them each time they are needed.
+		// makeSink();
+		// makeSource();
 		
 		if (existingChansV == null) {
 		    existingChansV = new Vector<String>();
@@ -126,8 +144,11 @@ public class TransferData {
 		    // Request registration information to see if there are any new channels we should grab
 		    ChannelMap requestMap = new ChannelMap();
 		    requestMap.Add(new String(fromSourceName + "/..."));
+		    makeSink();
 		    snk.RequestRegistration(requestMap);
 		    ChannelMap regMap = snk.Fetch(15000);
+		    snk.CloseRBNBConnection();
+		    snk = null;
 		    if ( regMap.GetIfFetchTimedOut() || (regMap.NumberOfChannels() == 0) ) {
 			continue;
 		    }
@@ -139,8 +160,11 @@ public class TransferData {
 			}
 			requestMap = new ChannelMap();
 			requestMap.Add(chanName);
+			makeSink();
 			snk.Request(requestMap, 0.0, 0.0, "newest");
 			ChannelMap dataMap = snk.Fetch(15000);
+			snk.CloseRBNBConnection();
+			snk = null;
 			if ( !dataMap.GetIfFetchTimedOut() && (dataMap.NumberOfChannels() == 1) ) {
 			    byte[][] byteData = dataMap.GetDataAsByteArray(0);
 			    if ( (byteData != null) && (byteData.length != 0) ) {
@@ -153,8 +177,13 @@ public class TransferData {
 				dataMap.Add(justChanName);
 				dataMap.PutTime(timestamp,0.0);
 				dataMap.PutDataAsByteArray(0, data);
+				makeSource();
 				src.Flush(dataMap);
 				existingChansV.add(chanName);
+				// Output status information 3 places:
+				// 1. Standard error
+				// 2. To the "_Status" channel
+				// 3. Send it out UDP
 				Date date = new Date( (long)(timestamp * 1000) );
 				Date currentTime = new Date();
 				String statusStr =
@@ -168,13 +197,21 @@ public class TransferData {
 					", Size: " +
 					data.length +
 					"\n");
+				// 1. Send status string to std err
 				System.err.print(statusStr);
-				// Send the status string to the source
+				// 2. Send the status string to the Source
 				dataMap = new ChannelMap();
 				dataMap.Add("_Status");
 				dataMap.PutTime(timestamp,0.0);
 				dataMap.PutDataAsString(0, statusStr);
 				src.Flush(dataMap);
+				src.Detach();
+				// 3. Send status string out UDP
+				DatagramSocket socket = new DatagramSocket();
+				byte[] buf = statusStr.getBytes();
+				InetAddress address = InetAddress.getByName(udpOutputAddr);
+				DatagramPacket packet = new DatagramPacket(buf, buf.length, address, udpOutputPort);
+				socket.send(packet);
 			    }
 			}
 		    }
@@ -210,11 +247,17 @@ public class TransferData {
     }
     
     private void makeSink() throws SAPIException{
+    	if (snk != null) {
+	    snk.CloseRBNBConnection();
+    	}
 	snk = new Sink();
     	snk.OpenRBNBConnection(fromServerAddr,"TransferSink");
     }
     
     private void makeSource() throws SAPIException {
+	if (src != null) {
+	    src.CloseRBNBConnection();
+    	}
 	// Terminate the source in the downstream RBNB server before proceeding
 	while (true) {
 	    try {
