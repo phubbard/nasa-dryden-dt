@@ -107,16 +107,14 @@ public class TransferData {
     	while (bKeepRequesting) {
 	    try {
 		System.err.println("\n\nStartup source and sink connections to transfer data:  " + fromServerAddr + "/" + fromSourceName + "  ==>  " + toServerAddr + "/" + toSourceName + "\n");
-		// Instead of making sink/source connections once, we'll make
-		// them each time they are needed.
+		// For disruption tolerance, make new Sink connection for every request
 		// makeSink();
-		// makeSource();
+		makeSource();
+		
+		DatagramSocket socket = new DatagramSocket();
+		InetAddress address = InetAddress.getByName(udpOutputAddr);
 		
 		if (existingChansV == null) {
-		    // Make sure the downstream source is loaded
-		    makeSource(true);
-		    src.Detach();
-		    src = null;
 		    existingChansV = new Vector<String>();
 		    // Do an initial registration request of the downstream/
 		    // output source to find the list of chans that exist at
@@ -183,7 +181,6 @@ public class TransferData {
 				dataMap.Add(justChanName);
 				dataMap.PutTime(timestamp,0.0);
 				dataMap.PutDataAsByteArray(0, data);
-				makeSource(false);
 				src.Flush(dataMap);
 				existingChansV.add(chanName);
 				// Output status information 3 places:
@@ -211,15 +208,13 @@ public class TransferData {
 				dataMap.PutTime(timestamp,0.0);
 				dataMap.PutDataAsString(0, statusStr);
 				src.Flush(dataMap);
-				src.Detach();
-				src = null;
 				// 3. Send status string out UDP
-				DatagramSocket socket = new DatagramSocket();
+				//DatagramSocket socket = new DatagramSocket();
+				//InetAddress address = InetAddress.getByName(udpOutputAddr);
 				byte[] buf = statusStr.getBytes();
-				InetAddress address = InetAddress.getByName(udpOutputAddr);
 				DatagramPacket packet = new DatagramPacket(buf, buf.length, address, udpOutputPort);
 				socket.send(packet);
-				socket.close();
+				//socket.close();
 			    }
 			}
 		    }
@@ -262,30 +257,28 @@ public class TransferData {
     	snk.OpenRBNBConnection(fromServerAddr,"TransferSink");
     }
     
-    private void makeSource(boolean bTerminateExistingSourceI) throws SAPIException {
+    private void makeSource() throws SAPIException {
 	if (src != null) {
 	    src.Detach();
     	}
-    	if (bTerminateExistingSourceI) {
-	    // Terminate the source in the downstream RBNB server
-	    while (true) {
+	// Terminate the source in the downstream RBNB server
+	while (true) {
+	    try {
+		Server tempServer = Server.newServerHandle("DTServer",toServerAddr);
+		Controller tempController = tempServer.createController("tempConnection");
+		tempController.start();
 		try {
-		    Server tempServer = Server.newServerHandle("DTServer",toServerAddr);
-		    Controller tempController = tempServer.createController("tempConnection");
-		    tempController.start();
-		    try {
-			stopOutputSource(tempController,toSourceName);
-		    } catch (Exception me) {
-			System.err.println("Caught exception trying to stop existing downstream Source:\n" + me);
-		    }
-		    tempController.stop();
-		    break;
-		} catch (Exception e) {
-		    // Must not have been able to make the connection; try again
-		    // after sleeping for a bit
-		    System.err.println("Waiting for downstream server to be network accessible...");
-		    try {Thread.sleep(10000);} catch (Exception e2) {}
+		    stopOutputSource(tempController,toSourceName);
+		} catch (Exception me) {
+		    System.err.println("Caught exception trying to stop existing downstream Source:\n" + me);
 		}
+		tempController.stop();
+		break;
+	    } catch (Exception e) {
+		// Must not have been able to make the connection; try again
+		// after sleeping for a bit
+		System.err.println("Waiting for downstream server to be network accessible...");
+		try {Thread.sleep(10000);} catch (Exception e2) {}
 	    }
 	}
 	// Now start the new source
