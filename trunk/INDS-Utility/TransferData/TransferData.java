@@ -114,8 +114,9 @@ public class TransferData {
 		
 		if (existingChansV == null) {
 		    // Make sure the downstream source is loaded
-		    makeSource();
+		    makeSource(true);
 		    src.Detach();
+		    src = null;
 		    existingChansV = new Vector<String>();
 		    // Do an initial registration request of the downstream/
 		    // output source to find the list of chans that exist at
@@ -182,7 +183,7 @@ public class TransferData {
 				dataMap.Add(justChanName);
 				dataMap.PutTime(timestamp,0.0);
 				dataMap.PutDataAsByteArray(0, data);
-				makeSource();
+				makeSource(false);
 				src.Flush(dataMap);
 				existingChansV.add(chanName);
 				// Output status information 3 places:
@@ -211,6 +212,7 @@ public class TransferData {
 				dataMap.PutDataAsString(0, statusStr);
 				src.Flush(dataMap);
 				src.Detach();
+				src = null;
 				// 3. Send status string out UDP
 				DatagramSocket socket = new DatagramSocket();
 				byte[] buf = statusStr.getBytes();
@@ -228,7 +230,7 @@ public class TransferData {
 		    snk = null;
 		}
 		if (src != null) {
-		    src.CloseRBNBConnection();
+		    src.Detach();
 		    src = null;
 		}
 		// Sleep for a bit before starting up again
@@ -243,8 +245,8 @@ public class TransferData {
 	}
 	if (src != null) {
 	    System.err.println("Detaching source connection.");
-	    // src.CloseRBNBConnection();
 	    src.Detach();
+	    src = null;
 	}
 	
 	bShutdown = true;
@@ -259,28 +261,30 @@ public class TransferData {
     	snk.OpenRBNBConnection(fromServerAddr,"TransferSink");
     }
     
-    private void makeSource() throws SAPIException {
+    private void makeSource(boolean bTerminateExistingSourceI) throws SAPIException {
 	if (src != null) {
-	    src.CloseRBNBConnection();
+	    src.Detach();
     	}
-	// Terminate the source in the downstream RBNB server before proceeding
-	while (true) {
-	    try {
-		Server tempServer = Server.newServerHandle("DTServer",toServerAddr);
-		Controller tempController = tempServer.createController("tempConnection");
-		tempController.start();
+    	if (bTerminateExistingSourceI) {
+	    // Terminate the source in the downstream RBNB server
+	    while (true) {
 		try {
-		    stopOutputSource(tempController,toSourceName);
-		} catch (Exception me) {
-		    System.err.println("Caught exception trying to stop existing downstream Source:\n" + me);
+		    Server tempServer = Server.newServerHandle("DTServer",toServerAddr);
+		    Controller tempController = tempServer.createController("tempConnection");
+		    tempController.start();
+		    try {
+			stopOutputSource(tempController,toSourceName);
+		    } catch (Exception me) {
+			System.err.println("Caught exception trying to stop existing downstream Source:\n" + me);
+		    }
+		    tempController.stop();
+		    break;
+		} catch (Exception e) {
+		    // Must not have been able to make the connection; try again
+		    // after sleeping for a bit
+		    System.err.println("Waiting for downstream server to be network accessible...");
+		    try {Thread.sleep(10000);} catch (Exception e2) {}
 		}
-		tempController.stop();
-		break;
-	    } catch (Exception e) {
-		// Must not have been able to make the connection; try again
-		// after sleeping for a bit
-		System.err.println("Waiting for downstream server to be network accessible...");
-		try {Thread.sleep(10000);} catch (Exception e2) {}
 	    }
 	}
 	// Now start the new source
