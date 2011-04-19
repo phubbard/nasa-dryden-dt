@@ -219,6 +219,7 @@ public class TransferData {
 				InetAddress address = InetAddress.getByName(udpOutputAddr);
 				DatagramPacket packet = new DatagramPacket(buf, buf.length, address, udpOutputPort);
 				socket.send(packet);
+				socket.close();
 			    }
 			}
 		    }
