@@ -112,7 +112,6 @@ public class TransferData {
 		makeSource();
 		
 		DatagramSocket socket = new DatagramSocket();
-		InetAddress address = InetAddress.getByName(udpOutputAddr);
 		
 		if (existingChansV == null) {
 		    existingChansV = new Vector<String>();
@@ -209,12 +208,12 @@ public class TransferData {
 				dataMap.PutDataAsString(0, statusStr);
 				src.Flush(dataMap);
 				// 3. Send status string out UDP
-				//DatagramSocket socket = new DatagramSocket();
-				//InetAddress address = InetAddress.getByName(udpOutputAddr);
+				// DatagramSocket socket = new DatagramSocket();
+				InetAddress address = InetAddress.getByName(udpOutputAddr);
 				byte[] buf = statusStr.getBytes();
 				DatagramPacket packet = new DatagramPacket(buf, buf.length, address, udpOutputPort);
 				socket.send(packet);
-				//socket.close();
+				// socket.close();
 			    }
 			}
 		    }
