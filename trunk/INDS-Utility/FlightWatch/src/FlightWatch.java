@@ -18,10 +18,9 @@ import com.rbnb.sapi.*;
 public class FlightWatch {
 	
 	private static String rbnbServer = "localhost:3333";
-//	private static String gmailUser = "respira42";	
 	private static String gmailUser = "matt.miller42";
 	private static String gmailPW = "barkley1";		// bleh
-//	private static String monitorChan = "RespiraWatch/event.txt";
+	
 	private static String monitorChan = "host-chat/chat/user";
 	private static double updateInc = 10.;		// update interval (sec)
 	private static CalendarService myService;
