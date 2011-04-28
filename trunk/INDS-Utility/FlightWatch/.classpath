@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/mattm/workspace/RBNB Dev 8-30-10/Build/Lib/rbnb.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/mattm/My Documents/eclipse/gdata/ThirdParty/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/mattm/My Documents/eclipse/gdata/ThirdParty/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/mattm/My Documents/eclipse/gdata/ThirdParty/google-collect-1.0-rc5.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/mattm/My Documents/eclipse/gdata/ThirdParty/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/mattm/My Documents/eclipse/gdata/ThirdParty/rbnb.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/mattm/My Documents/eclipse/gdata/java/lib/gdata-client-meta-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/mattm/My Documents/eclipse/gdata/java/lib/gdata-calendar-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/mattm/My Documents/eclipse/gdata/java/lib/gdata-calendar-meta-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/mattm/My Documents/eclipse/gdata/java/lib/gdata-client-1.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
