@@ -21,10 +21,11 @@ public class FlightWatch {
 //    private static String rbnbServer = "localhost:3333";
 //    private static String monitorChan = "host-chat/chat/user";
     private static String rbnbServer ="indscore.dfrc.nasa.gov";
-//    private static String monitorChan = "INDS_VM_DC8/DC8-817-TC4_IWG1/_IWG1";
-    private static String monitorChan = "INDS_VM_DC8/DC8-817-TC4_IWG1/_IWG1";
-    
-    private static String sourceName = "DC8-817";
+
+    // flights:
+    private static String monitorChan = "INDS_VM_ER2-806/ER2-806/_IWG1";
+//    private static String monitorChan = "INDS_VM_DC8/DC8-817-TC4_IWG1/_IWG1";    
+    private static String sourceName = "ER2-806";
 
     private static String gmailUser = "matt.miller42";
     private static String gmailPW = "barkley1";        // bleh
