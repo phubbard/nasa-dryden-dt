@@ -23,27 +23,44 @@ public class FlightWatch {
     private static String rbnbServer ="indscore.dfrc.nasa.gov";
 
     // flights:
-    private static String monitorChan = "INDS_VM_ER2-806/ER2-806/_IWG1";
-//    private static String monitorChan = "INDS_VM_DC8/DC8-817-TC4_IWG1/_IWG1";    
-    private static String sourceName = "ER2-806";
+//    private static String monitorChan = "INDS_VM_ER2-806/ER2-806/_IWG1";
+//    private static String monitorChan = "INDS_VM_DC8/DC8-817-TC4_IWG1/_IWG1";  
+    private static String monitorChan = "INDS_VM_G3/N502/_IWG1";
+    private static String flightName = "";
 
-    private static String gmailUser = "matt.miller42";
-    private static String gmailPW = "barkley1";        // bleh
+    private static String gmailUser = "dfrc.reveal.beacon";		// separately append @gmail.com suffix
+    private static String gmailPW = "r3v3al#1";        // bleh
 
-    private static double updateInc = 60.;        // update interval (sec)
+    private static double updateInc = 60.;        	// update/check interval (sec)
+    private static double idleTimeOut = 600.;		// idle period timeout (sec)
     private static CalendarService myService;
     private static URL postUrl;
     private static boolean activeState=false;
 
-// constructor
+    //---------------------------------------------------------------------------------
+    // constructor
     public FlightWatch() {}
 
     public final static void main(String[] args) {
         Timer myTimer;
 
-        if(args.length>0) rbnbServer = args[0];
-        System.err.println("FlightWatch, connecting to: "+rbnbServer);
+        int i=0;
+        if(args.length>i) rbnbServer 	= args[i++];
+        if(args.length>i) flightName 	= args[i++];
+        if(args.length>i) monitorChan 	= args[i++];		// simple position dependent args for now
+        if(args.length>i) updateInc 	= Double.parseDouble(args[i++]);
+        if(args.length>i) idleTimeOut 	= Double.parseDouble(args[i++]);
+        if(args.length>i) gmailUser 	= args[i++];
+        if(args.length>i) gmailPW 		= args[i++];
 
+        System.err.println("FlightWatch, rbnbServer: "+rbnbServer);
+        System.err.println("FlightWatch, flightName: "+flightName);
+        System.err.println("FlightWatch, monitorChan: "+monitorChan);
+        System.err.println("FlightWatch, updateInc: "+updateInc);
+        System.err.println("FlightWatch, idleTimeOut: "+idleTimeOut);
+        System.err.println("FlightWatch, gmailUser: "+gmailUser);
+        System.err.println("FlightWatch, gmailPW: "+gmailPW.charAt(0)+"*****");		// bleh
+        
         initCalendar();
         activeState=false;
 
@@ -53,19 +70,44 @@ public class FlightWatch {
         }, 0,(int)(updateInc*1000.));         // check interval
     }
 
+    //---------------------------------------------------------------------------------
     public static void initCalendar() {
         // Create a CalenderService and authenticate
         try {
             myService = new CalendarService(gmailUser);
             myService.setUserCredentials(gmailUser+"@gmail.com", gmailPW);
-            postUrl = new URL("http://www.google.com/calendar/feeds/"+gmailUser+"@gmail.com/private/full");
+//            postUrl = new URL("http://www.google.com/calendar/feeds/"+gmailUser+"@gmail.com/private/full");
+//            postUrl = new URL("http://www.google.com/calendar/feeds/edjnt3885jqm8qfio0eu28druc@group.calendar.google.com/private/full");// try secondary calendar
+            postUrl = null;
+            
+         // Get list of calendars you own, find the ID of the one with title matching spec
+            URL feedUrl = new URL("https://www.google.com/calendar/feeds/default/owncalendars/full");
+            CalendarFeed resultFeed = myService.getFeed(feedUrl, CalendarFeed.class);
+            System.err.println("Calendars you own:");
+            for (int i = 0; i < resultFeed.getEntries().size(); i++) {
+              CalendarEntry entry = resultFeed.getEntries().get(i);
+              String calTitle = entry.getTitle().getPlainText();
+              System.err.println("\t" + calTitle);
+//              System.err.println("\t" + entry.getId());
+              if(flightName.equals(calTitle)) {	// form postUrl for this titled entry
+//            	  postUrl = new URL(entry.getId());		// bleh need to massage...
+            	  postUrl = new URL(entry.getId().replace("/default/calendars","") + "/private/full");
+            	  System.err.println("PostUrl for "+flightName+": "+postUrl);
+              }
+            }
+            if(postUrl == null) {
+            	System.err.println("ERROR: could not find calendar feed for: "+flightName);
+            	System.exit(-1);
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(-1);
         }
     }
 
+    //---------------------------------------------------------------------------------
     public static void updateCalendar(String calTitle, String calMsg, double eTime) {
-        final boolean useCurrentTime=true;
+        final boolean useCurrentTime=true;	// use RT clock, ignore eTime from data
 
         try {
             // create event
@@ -75,7 +117,7 @@ public class FlightWatch {
 
             // timestamp at event time
             DateTime startTime; Date dTime;
-            long tOffset = 60000;    // msec offset for reminder to fire
+            long tOffset = 0;    // msec offset for reminder to fire?
             if(useCurrentTime) {
                 dTime = new Date((long)System.currentTimeMillis() + tOffset);
             } else {        // (may be lagged from current time)
@@ -88,38 +130,39 @@ public class FlightWatch {
             eventTimes.setStartTime(startTime);
             eventTimes.setEndTime(endTime);
             myEntry.addTime(eventTimes);
-//System.err.println("startTime: "+startTime);
-
+            
+/*		// setting reminder to ALL enables web-set reminders for this event?
             int reminderMinutes = 0;
             Method methodType = Method.ALL;
-
             Reminder reminder = new Reminder();
             reminder.setMinutes(reminderMinutes);
             reminder.setMethod(methodType);
             myEntry.getReminder().add(reminder);
-//            myEntry.update();
+*/
+//          myEntry.update();
 
             // Send the request (ignore the response):
             myService.insert(postUrl, myEntry);
-            System.err.println("Update Calendar: " + calTitle);
+            System.err.println("Update Calendar: " + calTitle + ", "+dTime);
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(-1);
         }
     }
 
     //---------------------------------------------------------------------------------
     static double lastTime=0.;
-    static double idleTimeOut=60.;
     static double clockTime=0.;
     static double lastClockTime=0.;
 
     private static void TimerMethod()
     {
-        clockTime = System.currentTimeMillis() / 1000.;        // seconds
+    	long iclockTime = System.currentTimeMillis();
+        clockTime = iclockTime / 1000.;        // seconds
 
         if(lastClockTime == 0.) {
             lastClockTime = clockTime;
-            updateCalendar(sourceName+"-Start Monitoring", "Startup", clockTime);
+            updateCalendar(flightName+": Monitoring", "Startup", clockTime);
         }
 
         try {
@@ -151,22 +194,26 @@ public class FlightWatch {
                 idleTime = clockTime - lastClockTime;
             }
 
-            System.err.println("clockTime: "+clockTime+", eTime: "+eTime+", deltaTime: "+dTime+", idleTime: "+idleTime);
+            System.err.println("FlightWatch("+flightName+
+            		"), active: "+activeState+
+            		", "+new Date(iclockTime)+
+            		", idle: "+(float)idleTime);
 
             if((activeState == false) && (dTime>0.)) {
-                System.err.println(sourceName+"-Active!");
-                updateCalendar(sourceName+"-Active!", calMsg, eTime*1000.);
+                System.err.println(flightName+": Active!");
+                updateCalendar(flightName+": Active!", calMsg, eTime*1000.);
                 activeState=true;
             }
             if((activeState==true) && (idleTime > idleTimeOut)) {
-                System.err.println(sourceName+"-Idle.");
-                updateCalendar(sourceName+"-Idle.", calMsg, eTime*1000.);
+                System.err.println(flightName+": Idle.");
+                updateCalendar(flightName+": Idle.", calMsg, eTime*1000.);
                 activeState=false;
             }
 
             lastTime = eTime;
 
-        } catch (Exception e){ System.err.println("OOPS, Exception in RBNB fetch"); };
-
+        } catch (Exception e){ 
+        	System.err.println("OOPS, Exception in RBNB fetch: "+e); };
+        	System.exit(-1);
     }
 }
