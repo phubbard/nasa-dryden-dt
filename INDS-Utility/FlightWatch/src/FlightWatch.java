@@ -1,6 +1,6 @@
 // FlightWatch
 // subscribe to an RBNB channel, update Google Calendar upon new data
-// Matt Miller 04/27/2011
+// Matt Miller 05/20/2011
 
 import com.google.gdata.client.calendar.*;
 import com.google.gdata.data.DateTime;
@@ -68,6 +68,13 @@ public class FlightWatch {
         myTimer.schedule(new TimerTask() {
             @Override public void run() { TimerMethod(); }
         }, 0,(int)(updateInc*1000.));         // check interval
+        
+        try {
+        	while(true) Thread.sleep(100000);		// ZZZ....
+        } catch (InterruptedException e) {}
+        finally {
+            updateCalendar(flightName+": Stop Monitor.", "Shutdown", 0.);	// doesn't catch?
+        }
     }
 
     //---------------------------------------------------------------------------------
@@ -118,7 +125,7 @@ public class FlightWatch {
             // timestamp at event time
             DateTime startTime; Date dTime;
             long tOffset = 0;    // msec offset for reminder to fire?
-            if(useCurrentTime) {
+            if(useCurrentTime || eTime==0.) {
                 dTime = new Date((long)System.currentTimeMillis() + tOffset);
             } else {        // (may be lagged from current time)
                 dTime = new Date((long)eTime + tOffset);
@@ -157,6 +164,7 @@ public class FlightWatch {
 
     private static void TimerMethod()
     {
+//    	System.err.println("Timer");
     	long iclockTime = System.currentTimeMillis();
         clockTime = iclockTime / 1000.;        // seconds
 
@@ -213,7 +221,8 @@ public class FlightWatch {
             lastTime = eTime;
 
         } catch (Exception e){ 
-        	System.err.println("OOPS, Exception in RBNB fetch: "+e); };
+        	System.err.println("OOPS, Exception in RBNB fetch: "+e);
         	System.exit(-1);
+        }
     }
 }
