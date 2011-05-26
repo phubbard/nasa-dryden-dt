@@ -100,14 +100,17 @@ public class FlightWatch {
 //            	  postUrl = new URL(entry.getId());		// bleh need to massage...
             	  postUrl = new URL(entry.getId().replace("/default/calendars","") + "/private/full");
             	  System.err.println("PostUrl for "+flightName+": "+postUrl);
+            	  break;
               }
             }
-            if(postUrl == null) {
-            	System.err.println("ERROR: could not find calendar feed for: "+flightName);
+            if(postUrl == null) {		// didn't find a match
+            	System.err.println("ERROR: could not find calendar feed for: \""+flightName+"\"");
+            	System.err.println("Exiting.");
             	System.exit(-1);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        	System.err.println("Exiting.");
             System.exit(-1);
         }
     }
@@ -153,7 +156,8 @@ public class FlightWatch {
             System.err.println("Update Calendar: " + calTitle + ", "+dTime);
         } catch (Exception e) {
             e.printStackTrace();
-            System.exit(-1);
+        	System.err.println("Exiting.");
+            System.exit(-1);		//  don't thrash on google calendar update
         }
     }
 
@@ -222,7 +226,7 @@ public class FlightWatch {
 
         } catch (Exception e){ 
         	System.err.println("OOPS, Exception in RBNB fetch: "+e);
-        	System.exit(-1);
+//        	System.exit(-1);		// no exit keep trying?
         }
     }
 }
