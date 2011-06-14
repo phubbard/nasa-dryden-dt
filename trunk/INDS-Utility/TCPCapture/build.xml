@@ -1,0 +1,41 @@
+<!-- Name: build.xml
+     By:   John Wilson
+     Date: 06/14/2011
+
+     Description:
+         Ant build file for TCPCapture application.
+-->
+
+<project name="TCPCapture" default="compile" basedir=".">
+ 
+ <!-- Load environment variables -->
+ <property environment="env"/>
+ 
+ <!-- Compile the TCPCapture source code; put class files in the same directory
+      as the source code files.
+  -->
+ <target name="compile">
+  <javac destdir="."
+         deprecation="on"
+	 source="1.5"
+         target="1.5">
+   <src path="." />
+   <classpath path="." />
+   <!-- NOTE: In order to use the RBNBBIN, this environment variable cannot
+        have any quotes enclosed in its definition. -->
+   <classpath path="${env.RBNBBIN}/rbnb.jar" />
+  </javac>
+  <echo>Compiled TCPCapture</echo>
+ </target>
+ 
+ <!-- Cleans out all compiled files. -->
+ <target name="clean">
+  <delete>
+    <!-- Delete all files with ".class" extension from -->
+    <!-- the current directory and any subdirectories. -->
+    <fileset dir="." includes="**/*.class"/>
+  </delete>
+ </target>
+ 
+</project>
+
