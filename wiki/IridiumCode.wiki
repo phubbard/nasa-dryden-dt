@@ -13,7 +13,12 @@ Reset MO and MT buffers (the MO and MT buffers are supposed to reset after a ses
 Interrupts for SBDRING (currently the test code is buggy)<br>
 Low power mode<br>
 Tweak retries<br>
-Modem configuration (setting to default, setting to wanted states, etc)<br>
+Modem configuration (setting to default, setting to wanted states, etc)
+FLUSH pipe
+(priority) Robust operation and modem hanging
+Move to STDERR
+
+<br>
 
 
 ==Version 3==
