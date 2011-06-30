@@ -435,15 +435,18 @@ int main(int argc, char *argv[])
 	{
 		printStructs(my9601, 1);
 	}
-	initSBDIXReturn(); 
-	fd=initSerPort(ModemPathDefault, BAUDRATE);
+	initSBDIXReturn();
+	// use ptr->ModemPath instead of ModemPathDefault
+	fd=initSerPort(ptr->ModemPath, BAUDRATE);
 	//init of stuff is done, lets get to work
 	//begin loop for now until interrupts from socket enabled.
 	while(1)
 	{
-		ReadLength=readData(ptr->SocketDescriptor, udpIn, sizeof(udpIn)-1); 
-		if(ReadLength >0)
-		{
+		ReadLength=readData(ptr->SocketDescriptor, udpIn, sizeof(udpIn)-1);
+		// if nothing is read, sleep for a bit
+		if (ReadLength <= 0) {
+			usleep(100000);
+		} else {
 			sprintf(udpIn,"%s\r",udpIn); 
 			if(verboseon)
 			{
