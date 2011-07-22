@@ -634,6 +634,9 @@ public class XMLDemux{
 	       
             } else {
 		System.err.print("x");
+		// MJM 07/21/2011: for network disruption tolerance,
+		//                 reset connection on any timeout
+		makeSink();
 	    }
 	    
 	    // Reset count if needed
