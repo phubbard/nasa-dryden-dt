@@ -543,7 +543,7 @@ public class XMLDemux{
 		       if (snk.VerifyConnection()) snk.CloseRBNBConnection();
 		   }
 		   snk=new Sink();
-		   snk.OpenRBNBConnection(serverAddress,"DemuxSink");
+		   snk.OpenRBNBConnection(serverAddress,"XMLDemuxSink");
 		   System.err.println("Connected to Sink: "+serverAddress);
 		   // JPW 12/14/2006: Add recover mode; we'll make one request
 		   //                 for all the data
