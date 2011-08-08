@@ -74,6 +74,7 @@
 		<delete dir="out" />
 		<delete dir="rmi" />
 		<delete file="bin/inds_exec.jar" />
+		<delete file="bin/inds_rmistubs.jar" />
 	</target>
 	
 	<target name="documentation">
