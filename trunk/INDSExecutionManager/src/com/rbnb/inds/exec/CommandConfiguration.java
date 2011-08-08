@@ -67,9 +67,24 @@ class CommandConfiguration
 		
 		try {
 			// Load the configuration file from the current working directory.
-			java.io.FileInputStream fis = new java.io.FileInputStream(
-					"commands.xml"
-			);
+			// JPW 08/05/2011: If commands.xml isn't found in the
+			//                 current working directory, take a
+			//                 guess as to its location in the
+			//                 INDSExecutionManager directory.
+			java.io.FileInputStream fis = null;
+			try {
+			    fis = new java.io.FileInputStream("commands.xml");
+			} catch (java.io.FileNotFoundException fileNotFoundEx) {
+			    // Take a guess that the INDSExecutionManager
+			    // directory is located one folder up and over...
+			    fis = new java.io.FileInputStream(
+			    	new String(
+			    	".." +
+			    	java.io.File.separator +
+			    	"INDSExecutionManager" +
+			    	java.io.File.separator +
+			    	"commands.xml"));
+			}
 			
 			XMLReader xmlReader 
 					= org.xml.sax.helpers.XMLReaderFactory.createXMLReader();

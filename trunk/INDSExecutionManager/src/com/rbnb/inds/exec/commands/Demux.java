@@ -18,6 +18,10 @@
 	---  History  ---
 	2008/12/16  WHF  Created.
 	2009/06/25  JPW  Add "useEmbeddedTimestamp" field.
+	2011/08/04  JPW  Class now extends JavaCommand (instead of DtCommand)
+	                 because the sub-classes that extend Demux (CsvDemux
+	                 and XmlDemux) are now included in the RBNB distribution
+	                 as a jar file.
 */
 
 package com.rbnb.inds.exec.commands;
@@ -30,14 +34,25 @@ import org.xml.sax.Attributes;
 /**
   * Root class of Demultiplexing commands.
   */
-public abstract class Demux extends DtCommand
+public abstract class Demux extends JavaCommand
 {
 	/**
 	  * @param demuxClass  The fully qualified demux Java class.
 	  */
 	public Demux(String demuxClass, Attributes attr) throws java.io.IOException
 	{
-		super(demuxClass, attr);
+		// super(demuxClass, attr);
+		super(attr);
+		
+		File jarFile = new File(
+			getCommandProperties().get("executableDirectory") +
+			"/" +
+			demuxClass.toLowerCase() +
+			".jar");
+		
+		// Add arguments for Java executable here (see also JavaCommand):
+		addArgument("-jar");
+		addArgument(jarFile.getCanonicalPath());
 		
 		// Parse attributes:
 		String silentMode = attr.getValue("silentMode"),

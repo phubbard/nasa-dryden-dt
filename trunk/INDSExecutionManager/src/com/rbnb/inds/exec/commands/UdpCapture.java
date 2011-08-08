@@ -1,5 +1,5 @@
 /*
-	UdpDemux.java
+	UdpCapture.java
 	 
 	Copyright 2008 Creare Inc.
 	
@@ -17,6 +17,10 @@
 	
 	---  History  ---
 	2008/12/16  WHF  Created.
+	2011/08/04  JPW  UDPCapture is now included in the RBNB distribution as
+	                 a jar file (no longer a class file under the
+	                 INDS-Utility directory).  Correspondingly, we change
+	                 how to launch this application.
 */
 
 package com.rbnb.inds.exec.commands;
@@ -35,6 +39,13 @@ public class UdpCapture extends JavaCommand
 	{
 		super(attr);
 		
+		/*
+		 * JPW 08/04/2011: UDPCapture is now included in the RBNB
+		 *                 distribution as a jar file (no longer a class
+		 *                 file under the INDS-Utility directory).
+		 *                 Correspondingly, we change how to launch
+		 *                 this application.
+		 *
 		File rbnbJarFile = new File(getCommandProperties().get(
 				"dataTurbineDirectory")+"/rbnb.jar"),
 			capDir = new File(
@@ -49,6 +60,15 @@ public class UdpCapture extends JavaCommand
 		addArgument(classPath);
 		
 		addArgument("UDPCapture");
+		*/
+		File jarFile = new File(
+			getCommandProperties().get("executableDirectory") +
+			"/udpcapture.jar");
+		
+		// Add arguments for Java executable here (see also JavaCommand):
+		addArgument("-jar");
+		addArgument(jarFile.getCanonicalPath());
+		
 		
 		// Inputs / Outputs handled on execution.		
 	}
