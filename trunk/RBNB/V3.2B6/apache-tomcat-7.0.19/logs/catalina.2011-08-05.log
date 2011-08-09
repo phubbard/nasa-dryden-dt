@@ -1,0 +1,66 @@
+Aug 5, 2011 5:11:52 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: C:\PROGRA~1\Java\jdk1.6.0_26\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\jEdit;C:\Program Files\MATLAB\R2010a\bin;C:\Program Files\MATLAB\R2009a\bin;C:\Program Files\MATLAB\R2009a\bin\win32;C:\Program Files\TortoiseSVN\bin;C:\Python26;C:\PROGRA~1\Java\jdk1.6.0_26\bin;C:\PROGRA~1\apache-ant-1.8.0\bin;C:\Program Files\Graphviz2.26.3\bin;C:\PROGRA~1\JMF21~1.1E\lib;C:\Program Files\SlikSvn\bin\;C:\Program Files\Altium Designer S09 Viewer\System;C:\Program Files\Android\android-sdk-windows\tools;C:\Program Files\Android\android-sdk-windows\platform-tools;C:\Program Files\TortoiseHg\;C:\Program Files\GNU\GnuPG\pub;.
+Aug 5, 2011 5:11:55 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-80"]
+Aug 5, 2011 5:11:55 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+Aug 5, 2011 5:11:55 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 3157 ms
+Aug 5, 2011 5:11:56 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Aug 5, 2011 5:11:56 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.19
+Aug 5, 2011 5:11:56 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive documentation.war
+Aug 5, 2011 5:12:03 PM org.apache.catalina.util.SessionIdGenerator createSecureRandom
+INFO: Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [2,671] milliseconds.
+Aug 5, 2011 5:12:04 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory docs
+Aug 5, 2011 5:12:04 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory examples
+Aug 5, 2011 5:12:04 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory host-manager
+Aug 5, 2011 5:12:04 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory manager
+Aug 5, 2011 5:12:04 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory RBNB
+Aug 5, 2011 5:12:05 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory rbnbUser
+Aug 5, 2011 5:12:05 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory ROOT
+Aug 5, 2011 5:12:05 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory stylesheets
+Aug 5, 2011 5:12:05 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory TimeDrive
+Aug 5, 2011 5:12:05 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory webTurbine
+Aug 5, 2011 5:12:05 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-80"]
+Aug 5, 2011 5:12:05 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+Aug 5, 2011 5:12:05 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 10079 ms
+Aug 5, 2011 5:33:19 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-80"]
+Aug 5, 2011 5:33:20 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+Aug 5, 2011 5:33:21 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Aug 5, 2011 5:33:21 PM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/webTurbine] appears to have started a thread named [AWT-Shutdown] but has failed to stop it. This is very likely to create a memory leak.
+Aug 5, 2011 5:33:21 PM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/webTurbine] appears to have started a thread named [AWT-EventQueue-0] but has failed to stop it. This is very likely to create a memory leak.
+Aug 5, 2011 5:33:21 PM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/webTurbine] appears to have started a thread named [Thread-17] but has failed to stop it. This is very likely to create a memory leak.
+Aug 5, 2011 5:33:21 PM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/webTurbine] appears to have started a thread named [ucThread] but has failed to stop it. This is very likely to create a memory leak.
+Aug 5, 2011 5:33:21 PM org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+SEVERE: The web application [/webTurbine] appears to have started a thread named [Thread-20] but has failed to stop it. This is very likely to create a memory leak.
+Aug 5, 2011 5:33:21 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-80"]
+Aug 5, 2011 5:33:21 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+Aug 5, 2011 5:33:21 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-80"]
+Aug 5, 2011 5:33:21 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
