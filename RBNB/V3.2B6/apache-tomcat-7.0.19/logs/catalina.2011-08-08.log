@@ -1,0 +1,114 @@
+Aug 8, 2011 5:31:06 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: C:\PROGRA~1\Java\jdk1.6.0_26\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\jEdit;C:\Program Files\MATLAB\R2010a\bin;C:\Program Files\MATLAB\R2009a\bin;C:\Program Files\MATLAB\R2009a\bin\win32;C:\Program Files\TortoiseSVN\bin;C:\Python26;C:\PROGRA~1\Java\jdk1.6.0_26\bin;C:\PROGRA~1\apache-ant-1.8.0\bin;C:\Program Files\Graphviz2.26.3\bin;C:\PROGRA~1\JMF21~1.1E\lib;C:\Program Files\SlikSvn\bin\;C:\Program Files\Altium Designer S09 Viewer\System;C:\Program Files\Android\android-sdk-windows\tools;C:\Program Files\Android\android-sdk-windows\platform-tools;C:\Program Files\TortoiseHg\;C:\Program Files\GNU\GnuPG\pub;.
+Aug 8, 2011 5:31:09 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-80"]
+Aug 8, 2011 5:31:09 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+Aug 8, 2011 5:31:09 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 4587 ms
+Aug 8, 2011 5:31:09 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Aug 8, 2011 5:31:09 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.19
+Aug 8, 2011 5:31:09 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive documentation.war
+Aug 8, 2011 5:31:10 PM org.apache.catalina.util.SessionIdGenerator createSecureRandom
+INFO: Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [297] milliseconds.
+Aug 8, 2011 5:31:10 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory docs
+Aug 8, 2011 5:31:10 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory examples
+Aug 8, 2011 5:31:11 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory host-manager
+Aug 8, 2011 5:31:11 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory manager
+Aug 8, 2011 5:31:11 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory RBNB
+Aug 8, 2011 5:31:11 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory rbnbUser
+Aug 8, 2011 5:31:11 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory ROOT
+Aug 8, 2011 5:31:11 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory stylesheets
+Aug 8, 2011 5:31:11 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory TimeDrive
+Aug 8, 2011 5:31:11 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory webTurbine
+Aug 8, 2011 5:31:11 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-80"]
+Aug 8, 2011 5:31:11 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+Aug 8, 2011 5:31:11 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 2276 ms
+Aug 8, 2011 5:35:06 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-80"]
+Aug 8, 2011 5:35:07 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+Aug 8, 2011 5:35:08 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Aug 8, 2011 5:35:08 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-80"]
+Aug 8, 2011 5:35:08 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+Aug 8, 2011 5:35:08 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-80"]
+Aug 8, 2011 5:35:08 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+Aug 8, 2011 5:36:00 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: C:\PROGRA~1\Java\jdk1.6.0_26\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\jEdit;C:\Program Files\MATLAB\R2010a\bin;C:\Program Files\MATLAB\R2009a\bin;C:\Program Files\MATLAB\R2009a\bin\win32;C:\Program Files\TortoiseSVN\bin;C:\Python26;C:\PROGRA~1\Java\jdk1.6.0_26\bin;C:\PROGRA~1\apache-ant-1.8.0\bin;C:\Program Files\Graphviz2.26.3\bin;C:\PROGRA~1\JMF21~1.1E\lib;C:\Program Files\SlikSvn\bin\;C:\Program Files\Altium Designer S09 Viewer\System;C:\Program Files\Android\android-sdk-windows\tools;C:\Program Files\Android\android-sdk-windows\platform-tools;C:\Program Files\TortoiseHg\;C:\Program Files\GNU\GnuPG\pub;.
+Aug 8, 2011 5:36:00 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-80"]
+Aug 8, 2011 5:36:00 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+Aug 8, 2011 5:36:00 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 494 ms
+Aug 8, 2011 5:36:00 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Aug 8, 2011 5:36:00 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.19
+Aug 8, 2011 5:36:00 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive documentation.war
+Aug 8, 2011 5:36:00 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive indsExec.war
+Aug 8, 2011 5:36:00 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive indsViewer.war
+Aug 8, 2011 5:36:00 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory docs
+Aug 8, 2011 5:36:01 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory examples
+Aug 8, 2011 5:36:01 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory host-manager
+Aug 8, 2011 5:36:01 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory manager
+Aug 8, 2011 5:36:01 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory RBNB
+Aug 8, 2011 5:36:01 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory rbnbUser
+Aug 8, 2011 5:36:01 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory ROOT
+Aug 8, 2011 5:36:01 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory stylesheets
+Aug 8, 2011 5:36:01 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory TimeDrive
+Aug 8, 2011 5:36:01 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory webTurbine
+Aug 8, 2011 5:36:01 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-80"]
+Aug 8, 2011 5:36:01 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+Aug 8, 2011 5:36:01 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1091 ms
+Aug 8, 2011 5:43:44 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-80"]
+Aug 8, 2011 5:43:45 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+Aug 8, 2011 5:43:46 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Aug 8, 2011 5:43:46 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-80"]
+Aug 8, 2011 5:43:46 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+Aug 8, 2011 5:43:46 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-80"]
+Aug 8, 2011 5:43:46 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
