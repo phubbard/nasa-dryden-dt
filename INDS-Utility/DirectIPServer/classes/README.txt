@@ -67,7 +67,7 @@ RUN THE DirectIP SERVER
 
 Here's how to execute the DirectIP server (this example uses Linux syntax in the classpath definition):
 
-java -cp <path to rbnb.jar>:directipserver.jar com.erigo.directip.DirectIPServer <server port> <RBNB host:port>
+java -cp <path to rbnb.jar>:directipserver.jar com.erigo.directip.DirectIPServer <server port> <RBNB host:port> <y|n verbose mode> <y|n binary payload>
 
 NOTES:
 
@@ -79,3 +79,7 @@ NOTES:
 3. <RBNB host:port> is the host and port of the DataTurbine server; if none
    is specified, the application will attempt to send the output data to the
    DataTurbine server at localhost:3333.
+
+4. Output will be verbose if the third command line argument is the letter y
+
+5. The SBD payload will be treated as a binary packet if the fourth command line argument is the letter y
